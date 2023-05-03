@@ -21,13 +21,14 @@
 * SwiftUI
 * Github
 * Github Action
-* SwiftLint 
+* SpriteKit
+* CoreMotion
 
 <br/>
 
 ### 🛠 Development Environment
 
-![Generic badge](https://img.shields.io/badge/iOS-16.2+-lightgrey.svg) ![Generic badge](https://img.shields.io/badge/Xcode-14.3-blue.svg)
+![Generic badge](https://img.shields.io/badge/iOS-16.2+-lightgrey.svg) ![Generic badge](https://img.shields.io/badge/Xcode-14.3-blue.svg) ![Generic badge](https://img.shields.io/badge/Swift-5.8-purple.svg)
 
 <br/>
 
