@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var isAnimation: Bool = false
-    @State var upBalls: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -33,21 +32,24 @@ struct ContentView: View {
                     .opacity(isAnimation ? 0 : 1)
                     // 컵
                     ZStack {
-                        Rectangle()
-                            .stroke(Color.gray, lineWidth: 4)
                         VStack {
                             Spacer()
                             Circle()
                                 .fill(.yellow)
+                                .animation(.easeInOut(duration: 1.5).delay(1.1), value: isAnimation)
                             Circle()
                                 .fill(.green)
+                                .animation(.easeInOut(duration: 1.5).delay(1.2), value: isAnimation)
                             Circle()
                                 .fill(.blue)
+                                .animation(.easeInOut(duration: 1.5).delay(1.3), value: isAnimation)
                         }
                         .opacity(isAnimation ? 1 : 0)
-                        .offset(y: upBalls ? 0 : -geo.size.height/1.5)
-                        .animation(.default, value: upBalls)
+                        .animation(.default.delay(0.5), value: isAnimation)
+                        .offset(y: isAnimation ? -geo.size.height : 0)
                         .frame(width: 28)
+                        Rectangle()
+                            .stroke(Color.gray, lineWidth: 4)
                     }
                     .frame(width: geo.size.width / 1.3, height: geo.size.height / 1.7)
                 }
@@ -58,9 +60,13 @@ struct ContentView: View {
                     .frame(width: 32, height: 400)
                     .offset(y: isAnimation ? 0 : -geo.size.height/1.5)
                     .animation(.easeInOut(duration: 1.5), value: isAnimation)
+                Color(.black)
+                    .opacity(isAnimation ? 0.5 : 0)
+                    .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
             }
+            .edgesIgnoringSafeArea(.all)
             .onTapGesture {
-                isAnimation.toggle()
+                isAnimation = true
             }
         }
     }
