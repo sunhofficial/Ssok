@@ -69,8 +69,9 @@
 		7C94D54A2A02AB3A00AAC279 /* 6Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				C74982A72A03960B00228FD5 /* ViewModel */,
+				C74982A52A0394DF00228FD5 /* Views */,
 				7C94D5662A02AE9B00AAC279 /* Model */,
-				7C94D55D2A02ADAB00AAC279 /* Presenter */,
 				7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */,
 				7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */,
 				7C94D5512A02AB3B00AAC279 /* Preview Content */,
@@ -86,19 +87,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		7C94D55D2A02ADAB00AAC279 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				7C94D5762A02B1DC00AAC279 /* Ending */,
-				7C94D5712A02B17600AAC279 /* Gacha */,
-				7C94D56D2A02B15A00AAC279 /* Straw */,
-				7C94D56A2A02B14600AAC279 /* AddMember */,
-				7C94D5672A02B06B00AAC279 /* Intro */,
-				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		7C94D5662A02AE9B00AAC279 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,48 +94,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		7C94D5672A02B06B00AAC279 /* Intro */ = {
-			isa = PBXGroup;
-			children = (
-				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
-				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
-			);
-			path = Intro;
-			sourceTree = "<group>";
-		};
-		7C94D56A2A02B14600AAC279 /* AddMember */ = {
-			isa = PBXGroup;
-			children = (
-				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
-				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
-			);
-			path = AddMember;
-			sourceTree = "<group>";
-		};
-		7C94D56D2A02B15A00AAC279 /* Straw */ = {
-			isa = PBXGroup;
-			children = (
-				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
-				7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */,
-			);
-			path = Straw;
-			sourceTree = "<group>";
-		};
-		7C94D5712A02B17600AAC279 /* Gacha */ = {
-			isa = PBXGroup;
-			children = (
-				7C94D5622A02AE5E00AAC279 /* GachaView.swift */,
-				7C94D5722A02B18100AAC279 /* GachaViewModel.swift */,
-			);
-			path = Gacha;
-			sourceTree = "<group>";
-		};
-		7C94D5762A02B1DC00AAC279 /* Ending */ = {
+		C74982A52A0394DF00228FD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
+				7C94D5622A02AE5E00AAC279 /* GachaView.swift */,
+				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
+				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
+				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
+				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
 			);
-			path = Ending;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C74982A72A03960B00228FD5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */,
+				7C94D5722A02B18100AAC279 /* GachaViewModel.swift */,
+				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
+				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
