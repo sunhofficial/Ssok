@@ -20,6 +20,8 @@
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
+		C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* ViewExtension.swift */; };
+		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
+		C74DD5432A065B1500852B09 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +73,9 @@
 		7C94D54A2A02AB3A00AAC279 /* 6Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				C74DD5452A065C2000852B09 /* Model */,
 				C74982A72A03960B00228FD5 /* ViewModel */,
 				C74982A52A0394DF00228FD5 /* Views */,
-				7C94D5662A02AE9B00AAC279 /* Model */,
 				7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */,
 				7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */,
 				7C94D5512A02AB3B00AAC279 /* Preview Content */,
@@ -85,13 +89,6 @@
 				7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		7C94D5662A02AE9B00AAC279 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C74982A52A0394DF00228FD5 /* Views */ = {
@@ -110,12 +107,21 @@
 		C74982A72A03960B00228FD5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C74DD5432A065B1500852B09 /* ViewExtension.swift */,
 				7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */,
 				7C94D5722A02B18100AAC279 /* GachaViewModel.swift */,
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C74DD5452A065C2000852B09 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C74DD5462A065C2C00852B09 /* Member.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +203,10 @@
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
 				7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */,
+				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */,
+				C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
