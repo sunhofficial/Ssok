@@ -13,7 +13,6 @@ struct StrawView: View {
     @State var wid = UIScreen.main.bounds.width
     @State var hei = UIScreen.main.bounds.height
     
-    
     var body: some View {
         ZStack {
             BottleView()
@@ -56,83 +55,32 @@ struct StrawView: View {
                 Image("Straw").opacity(0.8).transition(.move(edge: .top))
 
             }
-            
-            
             Image("cutcup").position(x: wid/2 ,y:349.05)
             
             Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
-            
             //Dim
             Color(.white)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(isAnimation ? 0.5 : 0)
                 .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
             //  첫 번째 볼
-            if getFirstBall {
-//                Text("\(member[Int.random(in: 0..<member.count)])")
-                Text("HI")
-                    .font(.system(size: 80, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: UIScreen.main.bounds.width / 1.8, height: UIScreen.main.bounds.width / 1.8)
-                    .foregroundColor(.white)
-                    .background(
-                        Image("Back_pearl1")
-                            .foregroundColor(.yellow)
-                            .frame(width: UIScreen.main.bounds.width / 1.5, height: UIScreen.main.bounds.width / 1.5)
-                    )
-                    .transition(.asymmetric(insertion: .offset(y: -UIScreen.main.bounds.height), removal: .offset(y: UIScreen.main.bounds.height)))
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 1)) {
-                            getFirstBall = false
-                            getSecondBall = true
-                        }
-                    }
-            }
+            BallView(
+                getCurrentBall: $getFirstBall,
+                getNextBall: $getSecondBall,
+                contents: "소다"
+            )
             // 두 번째 볼
-            if getSecondBall {
-//                Text("\(member[Int.random(in: 0..<member.count)])")
-                Text("HI")
-                    .font(.system(size: 80, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: UIScreen.main.bounds.width / 1.8, height: UIScreen.main.bounds.width / 1.8)
-                    .foregroundColor(.white)
-                    .background(
-                        Image("Back_pearl2")
-                            .foregroundColor(.yellow)
-                            .frame(width: UIScreen.main.bounds.width / 1.5, height: UIScreen.main.bounds.width / 1.5)
-                    )
-                    .transition(.asymmetric(insertion: .offset(y: -UIScreen.main.bounds.height), removal: .offset(y: UIScreen.main.bounds.height)))
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 1)) {
-                            getSecondBall = false
-                            getThirdBall = true
-                        }
-                    }
-            }
+            BallView(
+                getCurrentBall: $getSecondBall,
+                getNextBall: $getThirdBall,
+                contents: "\(whereList[Int.random(in: 0..<whereList.count)])"
+            )
             // 세 번째 볼
-            if getThirdBall {
-//                Text("\(member[Int.random(in: 0..<member.count)])")
-                Text("HI")
-                    .font(.system(size: 80, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: UIScreen.main.bounds.width / 1.8, height: UIScreen.main.bounds.width / 1.8)
-                    .foregroundColor(.white)
-                    .background(
-                        Image("Back_pearl1")
-                            .foregroundColor(.yellow)
-                            .frame(width: UIScreen.main.bounds.width / 1.5, height: UIScreen.main.bounds.width / 1.5)
-                    )
-                    .transition(.asymmetric(insertion: .offset(y: -UIScreen.main.bounds.height), removal: .offset(y: UIScreen.main.bounds.height)))
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 1)) {
-                            getThirdBall = false
-                            isAnimation = false
-                        }
-                    }
-            }
+            BallView(
+                getCurrentBall: $getThirdBall,
+                getNextBall: $getThirdBall,
+                contents: "\(whatList[Int.random(in: 0..<whatList.count)])"
+            )
         }
         .onTapGesture {
             withAnimation(.easeInOut(duration: 1)) {
