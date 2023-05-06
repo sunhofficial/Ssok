@@ -22,6 +22,8 @@
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
 		C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* ViewExtension.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
+		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
+		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
+		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				C74DD5462A065C2C00852B09 /* Member.swift */,
+				C74DD5482A065FDE00852B09 /* Where.swift */,
+				C74DD54A2A065FEB00852B09 /* What.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
+				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
@@ -206,6 +213,7 @@
 				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */,
+				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
 				C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
