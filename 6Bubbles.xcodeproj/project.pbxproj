@@ -20,7 +20,6 @@
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
-		ABB019C32A07E01A0000556F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C22A07E01A0000556F /* TestView.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView2.swift */; };
 		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
@@ -43,7 +42,6 @@
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
-		ABB019C22A07E01A0000556F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView2.swift; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -116,17 +114,48 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		C74982A52A0394DF00228FD5 /* Views */ = {
+		ABB019C62A07E7500000556F /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		ABB019C72A07E7580000556F /* AddMember */ = {
+			isa = PBXGroup;
+			children = (
+				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
+			);
+			path = AddMember;
+			sourceTree = "<group>";
+		};
+		ABB019C82A07E7620000556F /* BubbleTea */ = {
+			isa = PBXGroup;
+			children = (
+				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
+				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
+				ABB019C42A07E4D30000556F /* StrawView2.swift */,
+				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
+			);
+			path = BubbleTea;
+			sourceTree = "<group>";
+		};
+		ABB019C92A07E77F0000556F /* Ending */ = {
 			isa = PBXGroup;
 			children = (
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
-				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
-				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
-				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
-				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
-				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
-				ABB019C22A07E01A0000556F /* TestView.swift */,
-				ABB019C42A07E4D30000556F /* StrawView2.swift */,
+			);
+			path = Ending;
+			sourceTree = "<group>";
+		};
+		C74982A52A0394DF00228FD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABB019C62A07E7500000556F /* Intro */,
+				ABB019C72A07E7580000556F /* AddMember */,
+				ABB019C82A07E7620000556F /* BubbleTea */,
+				ABB019C92A07E77F0000556F /* Ending */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,7 +256,6 @@
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
-				ABB019C32A07E01A0000556F /* TestView.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
 				7C94D5612A02AE4200AAC279 /* StrawView.swift in Sources */,
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,
