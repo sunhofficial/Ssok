@@ -21,6 +21,7 @@
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
 		ABB019C32A07E01A0000556F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C22A07E01A0000556F /* TestView.swift */; };
+		ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView2.swift */; };
 		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
@@ -43,6 +44,7 @@
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
 		ABB019C22A07E01A0000556F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		ABB019C42A07E4D30000556F /* StrawView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView2.swift; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
 				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
 				ABB019C22A07E01A0000556F /* TestView.swift */,
+				ABB019C42A07E4D30000556F /* StrawView2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
+				ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
 				ABB019C32A07E01A0000556F /* TestView.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,

@@ -11,8 +11,8 @@ import SwiftUI
 struct _BubblesApp: App {
     var body: some Scene {
         WindowGroup {
-            AddMemberView()
-            
+//            AddMemberView()
+            IntroView()
         }
     }
 }
