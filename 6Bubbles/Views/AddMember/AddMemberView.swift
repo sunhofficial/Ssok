@@ -129,9 +129,6 @@ struct AddMemberView: View {
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
         }
-        .onTapGesture {
-            endTextEditing()
-        }
     }
 }
 
