@@ -97,7 +97,6 @@ struct AddMemberView: View {
                                 .font(.system(size: 13))
                                 .foregroundColor(Color(.darkGray))
                         }
-
                     }
                     .frame(height: 400)
                     .listStyle(.inset)
