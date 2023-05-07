@@ -20,7 +20,7 @@
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
-		C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* ViewExtension.swift */; };
+		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
@@ -41,7 +41,7 @@
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
-		C74DD5432A065B1500852B09 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
@@ -77,6 +77,7 @@
 		7C94D54A2A02AB3A00AAC279 /* 6Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				ABB019BE2A07CD840000556F /* Global */,
 				C74DD5452A065C2000852B09 /* Model */,
 				C74982A72A03960B00228FD5 /* ViewModel */,
 				C74982A52A0394DF00228FD5 /* Views */,
@@ -95,6 +96,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		ABB019BE2A07CD840000556F /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				ABB019BF2A07CD8A0000556F /* Extension */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		ABB019BF2A07CD8A0000556F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C74DD5432A065B1500852B09 /* View+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		C74982A52A0394DF00228FD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +128,6 @@
 		C74982A72A03960B00228FD5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C74DD5432A065B1500852B09 /* ViewExtension.swift */,
 				7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */,
 				7C94D5722A02B18100AAC279 /* GachaViewModel.swift */,
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
@@ -214,7 +230,7 @@
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
-				C74DD5442A065B1500852B09 /* ViewExtension.swift in Sources */,
+				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -325,7 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
