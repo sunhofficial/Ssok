@@ -1,14 +1,11 @@
-// AddMemberView
-// 004
-
-
-import Foundation
 //
 //  ContentView.swift
 //  Soda
 //
 //  Created by 김민 on 2023/05/03.
 //
+// AddMemberView
+// 004
 
 import SwiftUI
 
@@ -20,8 +17,9 @@ struct AddMemberView: View {
     @State private var isAlertShowing = false
     @State private var keyboardHeight: CGFloat = 0
     @State private var isTextFieldEmtpy = true
-    @State var members: [Member] = []
+    @State private var members: [Member] = []
     @FocusState private var isFocused: Bool
+    @EnvironmentObject var randomMember: RandomMember
     
     var body: some View {
         GeometryReader { geometry in
@@ -111,6 +109,9 @@ struct AddMemberView: View {
                         .background(Color.orange)
                         .cornerRadius(12)
                 }
+                .simultaneousGesture(TapGesture().onEnded {
+                    randomMember.randomMemberNames = setRandomMember(members)
+                })
             }
             .navigationTitle("게임 인원")
             .navigationBarTitleDisplayMode(.large)
@@ -124,7 +125,6 @@ struct AddMemberView: View {
         }
         .onAppear {
             setMemberData()
-
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
@@ -165,6 +165,19 @@ extension AddMemberView {
             isFocused = true
         }
         memberName = ""
+    }
+    
+    private func setRandomMember(_ members: [Member]) -> [String] {
+        var randomMember: [String] = []
+        let memberNum = (1...members.count).randomElement()!
+        
+        while randomMember.count < memberNum {
+            let member = members.randomElement()!
+            
+            if !randomMember.contains(member.name) { randomMember.append(member.name) }
+        }
+
+        return randomMember
     }
 }
 

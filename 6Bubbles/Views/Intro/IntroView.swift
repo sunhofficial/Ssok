@@ -1,21 +1,11 @@
-// IntroView
-// 001~003
-
-//import SwiftUI
-//struct IntroView : View{
-//    var body: some View{
-//        ZStack{
-//            BottleView()
-//        }
-//    }
-//}
-
 //
 //  IntroView.swift
 //  MC2
 //
 //  Created by 김용주 on 2023/05/06.
 //
+// IntroView
+// 001~003
 
 import SwiftUI
 import SpriteKit
