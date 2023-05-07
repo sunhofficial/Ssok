@@ -75,6 +75,8 @@ struct AddMemberView: View {
                                 isAlertShowing = false
                                 isFocused = false
                             }
+                        } message: {
+                            Text("팀원 선택은 최대 6명까지만\n선택 가능합니다")
                         }
                     }
                     .padding(.top, 7)
