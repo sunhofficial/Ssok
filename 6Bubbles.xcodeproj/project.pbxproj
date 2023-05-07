@@ -116,48 +116,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		ABB019C62A07E7500000556F /* Intro */ = {
+		C74982A52A0394DF00228FD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
-			);
-			path = Intro;
-			sourceTree = "<group>";
-		};
-		ABB019C72A07E7580000556F /* AddMember */ = {
-			isa = PBXGroup;
-			children = (
 				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
-			);
-			path = AddMember;
-			sourceTree = "<group>";
-		};
-		ABB019C82A07E7620000556F /* BubbleTea */ = {
-			isa = PBXGroup;
-			children = (
 				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
 				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
 				ABB019C42A07E4D30000556F /* StrawView2.swift */,
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
-			);
-			path = BubbleTea;
-			sourceTree = "<group>";
-		};
-		ABB019C92A07E77F0000556F /* Ending */ = {
-			isa = PBXGroup;
-			children = (
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
-			);
-			path = Ending;
-			sourceTree = "<group>";
-		};
-		C74982A52A0394DF00228FD5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				ABB019C62A07E7500000556F /* Intro */,
-				ABB019C72A07E7580000556F /* AddMember */,
-				ABB019C82A07E7620000556F /* BubbleTea */,
-				ABB019C92A07E77F0000556F /* Ending */,
 			);
 			path = Views;
 			sourceTree = "<group>";
