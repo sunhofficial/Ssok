@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Member: Identifiable, Codable {
     var id = UUID()
     var name: String

@@ -13,6 +13,8 @@ struct BallView: View {
     @State var wid: CGFloat = UIScreen.main.bounds.width
     @State var hei: CGFloat = UIScreen.main.bounds.height
     
+    @EnvironmentObject var randomMember: RandomMember
+    
     var body: some View {
         if getCurrentBall {
             Text(contents)
@@ -33,6 +35,17 @@ struct BallView: View {
                         getCurrentBall = false
                         getNextBall = true
                     }
+                }
+                .onAppear {
+                    // MARK: - random으로 who를 만드는 로직
+                    /*
+                     randomMember.randomMeberNames에 접근하면 이름들을 string배열로 받아올 수 있어욥
+                     1~6명까지 뜨도록 했어여
+                     ex1. ["남식씨", "용주", "지은씨", "창진씨", "잼민서노", "밍"]
+                     ex2. ["밍", "잼민서노", "지은씨"]
+                     ex3. ["남식씨"]
+                     */
+                    print(randomMember.randomMemberNames)
                 }
         }
     }

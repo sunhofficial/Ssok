@@ -1,14 +1,11 @@
-// AddMemberView
-// 004
-
-
-import Foundation
 //
 //  ContentView.swift
 //  Soda
 //
 //  Created by 김민 on 2023/05/03.
 //
+// AddMemberView
+// 004
 
 import SwiftUI
 
@@ -20,111 +17,117 @@ struct AddMemberView: View {
     @State private var isAlertShowing = false
     @State private var keyboardHeight: CGFloat = 0
     @State private var isTextFieldEmtpy = true
-    @State var members: [Member] = []
+    @State private var members: [Member] = []
     @FocusState private var isFocused: Bool
+    @EnvironmentObject var randomMember: RandomMember
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                VStack {
-                    // 추가 textField
-                    HStack {
-                        TextField("게임 인원을 입력해 주세요", text: $memberName)
-                            .focused($isFocused)
-                            .padding(.leading, 10)
-                            .frame(height: 40)
-                            .overlay {
-                                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                                    .stroke(lineWidth: 1)
-                                    .stroke(Color(.systemGray6))
-                            }
-                            .onSubmit {
-                                if memberName == "" {
-                                    isTextFieldEmtpy = true
-                                } else {
-                                    isTextFieldEmtpy = false
-                                    plusButtonDidTap()
-                                }
-                            }
-                            .onChange(of: memberName) { newValue in
-                                if newValue == "" {
-                                    isTextFieldEmtpy = true
-                                } else {
-                                    isTextFieldEmtpy = false
-                                }
-                            }
-                            .padding(.leading, 15)
-                        Button {
-                            plusButtonDidTap()
-                        } label: {
-                            if isTextFieldEmtpy {
-                                Image(systemName: "plus.circle.fill")
-                                    .imageScale(.large)
-                                    .foregroundColor(Color(.systemGray5))
+        GeometryReader { geometry in
+            VStack {
+                // 추가 textField
+                HStack {
+                    TextField("게임 인원을 입력해 주세요", text: $memberName)
+                        .focused($isFocused)
+                        .padding(.leading, 10)
+                        .frame(height: 40)
+                        .overlay {
+                            RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                                .stroke(lineWidth: 1)
+                                .stroke(Color(.systemGray6))
+                        }
+                        .onSubmit {
+                            if memberName == "" {
+                                isTextFieldEmtpy = true
                             } else {
-                                Image(systemName: "plus.circle.fill")
-                                    .imageScale(.large)
-                                    .foregroundColor(.orange)
-
+                                isTextFieldEmtpy = false
+                                plusButtonDidTap()
                             }
                         }
-                        .padding(.trailing, 15)
-                        .disabled(isTextFieldEmtpy)
-                        .alert("인원은 최대 6명까지 가능합니다.", isPresented: $isAlertShowing) {
-                            Button("OK") {
-                                isAlertShowing = false
-                                isFocused = false
+                        .onChange(of: memberName) { newValue in
+                            if newValue == "" {
+                                isTextFieldEmtpy = true
+                            } else {
+                                isTextFieldEmtpy = false
                             }
+                        }
+                        .padding(.leading, 15)
+                    Button {
+                        plusButtonDidTap()
+                    } label: {
+                        if isTextFieldEmtpy {
+                            Image(systemName: "plus.circle.fill")
+                                .imageScale(.large)
+                                .foregroundColor(Color(.systemGray5))
+                        } else {
+                            Image(systemName: "plus.circle.fill")
+                                .imageScale(.large)
+                                .foregroundColor(.orange)
+                            
                         }
                     }
-                    .padding(.top, 7)
-                    .padding(.bottom, 5)
-                    
-                    // List
-                    List {
-                        Section {
-                            ForEach(members) { member in
-                                HStack {
-                                    Text("🧋")
-                                    Text(member.name)
-                                }
-                            }
-                            .onDelete(perform: removeMembers)
-                        } footer: {
-                            Text("인원은 최대 6명까지 가능합니다.")
-                                .font(.system(size: 13))
-                                .foregroundColor(Color(.darkGray))
+                    .padding(.trailing, 15)
+                    .disabled(isTextFieldEmtpy)
+                    .alert("인원은 최대 6명까지 가능합니다.", isPresented: $isAlertShowing) {
+                        Button("OK") {
+                            isAlertShowing = false
+                            isFocused = false
                         }
-
-                    }
-                    .frame(height: 400)
-                    .listStyle(.inset)
-                    .scrollDisabled(true)
-                    
-                    Spacer()
-
-                    NavigationLink(destination: StrawView()){
-                        EmptyView()
+                    } message: {
+                        Text("팀원 선택은 최대 6명까지만\n선택 가능합니다")
                     }
                 }
+                .padding(.top, 7)
+                .padding(.bottom, 5)
+                
+                // List
+                List {
+                    Section {
+                        ForEach(members) { member in
+                            HStack {
+                                Text("🧋")
+                                Text(member.name)
+                            }
+                        }
+                        .onDelete(perform: removeMembers)
+                    } footer: {
+                        Text("인원은 최대 6명까지 가능합니다.")
+                            .font(.system(size: 13))
+                            .foregroundColor(Color(.darkGray))
+                    }
+                }
+                .frame(height: 400)
+                .listStyle(.inset)
+                .scrollDisabled(true)
+                
+                Spacer()
+                
+                NavigationLink(destination: StrawView()) {
+                    Text("다음")
+                        .foregroundColor(.white)
+                        .fontWeight(.medium)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color.orange)
+                        .cornerRadius(12)
+                }
+                .simultaneousGesture(TapGesture().onEnded {
+                    randomMember.randomMemberNames = setRandomMember(members)
+                })
             }
             .navigationTitle("게임 인원")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                        .foregroundColor(.orange)
-                }
-            }
-            .onAppear {
-                setMemberData()
-//                disableKeyboardAvoidance()
-            }
-            .onDisappear {
-                NotificationCenter.default.removeObserver(self)
+            .navigationBarTitleDisplayMode(.large)
+            .navigationBarBackButtonHidden()
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                EditButton()
+                    .foregroundColor(.orange)
             }
         }
-        .onTapGesture {
-            endTextEditing()
+        .onAppear {
+            setMemberData()
+        }
+        .onDisappear {
+            NotificationCenter.default.removeObserver(self)
         }
     }
 }
@@ -139,16 +142,6 @@ extension AddMemberView {
             members = decodedData ?? []
         }
     }
-    
-//    private func disableKeyboardAvoidance() {
-//        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
-//            let value = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-//            keyboardHeight = value.height
-//        }
-//        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { notification in
-//            keyboardHeight = 0
-//        }
-//    }
     
     private func appendMembers(_ memberName: String) {
         members.append(Member(name: memberName))
@@ -169,6 +162,19 @@ extension AddMemberView {
             isFocused = true
         }
         memberName = ""
+    }
+    
+    private func setRandomMember(_ members: [Member]) -> [String] {
+        var randomMember: [String] = []
+        let memberNum = (1...members.count).randomElement()!
+        
+        while randomMember.count < memberNum {
+            let member = members.randomElement()!
+            
+            if !randomMember.contains(member.name) { randomMember.append(member.name) }
+        }
+
+        return randomMember
     }
 }
 
