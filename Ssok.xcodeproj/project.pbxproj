@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C94D5482A02AB3A00AAC279 /* 6Bubbles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 6Bubbles.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BubblesApp.swift; sourceTree = "<group>"; };
 		7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		7C94D53F2A02AB3900AAC279 = {
 			isa = PBXGroup;
 			children = (
-				7C94D54A2A02AB3A00AAC279 /* 6Bubbles */,
+				7C94D54A2A02AB3A00AAC279 /* Ssok */,
 				7C94D5492A02AB3A00AAC279 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,12 +73,12 @@
 		7C94D5492A02AB3A00AAC279 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C94D5482A02AB3A00AAC279 /* 6Bubbles.app */,
+				7C94D5482A02AB3A00AAC279 /* Ssok.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7C94D54A2A02AB3A00AAC279 /* 6Bubbles */ = {
+		7C94D54A2A02AB3A00AAC279 /* Ssok */ = {
 			isa = PBXGroup;
 			children = (
 				ABB019BE2A07CD840000556F /* Global */,
@@ -89,7 +89,7 @@
 				7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */,
 				7C94D5512A02AB3B00AAC279 /* Preview Content */,
 			);
-			path = 6Bubbles;
+			path = Ssok;
 			sourceTree = "<group>";
 		};
 		7C94D5512A02AB3B00AAC279 /* Preview Content */ = {
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7C94D5472A02AB3A00AAC279 /* 6Bubbles */ = {
+		7C94D5472A02AB3A00AAC279 /* Ssok */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C94D5562A02AB3B00AAC279 /* Build configuration list for PBXNativeTarget "6Bubbles" */;
+			buildConfigurationList = 7C94D5562A02AB3B00AAC279 /* Build configuration list for PBXNativeTarget "Ssok" */;
 			buildPhases = (
 				7C94D5442A02AB3A00AAC279 /* Sources */,
 				7C94D5452A02AB3A00AAC279 /* Frameworks */,
@@ -167,9 +167,9 @@
 			);
 			dependencies = (
 			);
-			name = 6Bubbles;
+			name = Ssok;
 			productName = 6Bubbles;
-			productReference = 7C94D5482A02AB3A00AAC279 /* 6Bubbles.app */;
+			productReference = 7C94D5482A02AB3A00AAC279 /* Ssok.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -187,7 +187,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7C94D5432A02AB3900AAC279 /* Build configuration list for PBXProject "6Bubbles" */;
+			buildConfigurationList = 7C94D5432A02AB3900AAC279 /* Build configuration list for PBXProject "Ssok" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -200,7 +200,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7C94D5472A02AB3A00AAC279 /* 6Bubbles */,
+				7C94D5472A02AB3A00AAC279 /* Ssok */,
 			);
 		};
 /* End PBXProject section */
@@ -366,7 +366,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"6Bubbles/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
 				DEVELOPMENT_TEAM = N3H5YNSQ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"6Bubbles/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
 				DEVELOPMENT_TEAM = N3H5YNSQ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -420,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7C94D5432A02AB3900AAC279 /* Build configuration list for PBXProject "6Bubbles" */ = {
+		7C94D5432A02AB3900AAC279 /* Build configuration list for PBXProject "Ssok" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C94D5542A02AB3B00AAC279 /* Debug */,
@@ -429,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C94D5562A02AB3B00AAC279 /* Build configuration list for PBXNativeTarget "6Bubbles" */ = {
+		7C94D5562A02AB3B00AAC279 /* Build configuration list for PBXNativeTarget "Ssok" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C94D5572A02AB3B00AAC279 /* Debug */,
