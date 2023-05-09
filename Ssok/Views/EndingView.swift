@@ -72,7 +72,7 @@ struct EndingView: View {
                         .foregroundColor(.black)
                 }
                 Button(action: {st2 = true}){
-                    Text("Once Again?")
+                    Text("다시하기")
                 }.foregroundColor(.white)
                     .fontWeight(.bold)
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
