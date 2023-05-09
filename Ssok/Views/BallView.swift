@@ -45,6 +45,7 @@ struct BallView: View {
                      ex2. ["밍", "잼민서노", "지은씨"]
                      ex3. ["남식씨"]
                      */
+                    print(randomMember.randomMemberName)
                 }
         }
     }

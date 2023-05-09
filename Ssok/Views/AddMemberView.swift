@@ -111,7 +111,8 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    randomMember.randomMemberNames = setRandomMembers(members)
+//                    randomMember.randomMemberNames = setRandomMembers(members)
+                    randomMember.randomMemberName = setRandomMember(members)
                 })
             }
             .navigationTitle("게임 인원")
