@@ -114,6 +114,16 @@ struct StrawView: View {
                     }
                     
                 }
+                .onTapGesture {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        isAnimation = true
+                    }
+                    withAnimation(.easeInOut(duration: 1).delay(3)) {
+                        getFirstBall = true
+                    }
+                }
+                .navigationBarBackButtonHidden()
+                .navigationBarItems(leading: backButton)
                 
                 if getThirdBall == true{
                     Button(action: {st = true}) {
@@ -125,16 +135,6 @@ struct StrawView: View {
         }else {
             EndingView(wheresentence : Where, whatsentence : What)
         }
-        .onTapGesture {
-            withAnimation(.easeInOut(duration: 1)) {
-                isAnimation = true
-            }
-            withAnimation(.easeInOut(duration: 1).delay(3)) {
-                getFirstBall = true
-            }
-        }
-        .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: backButton)
     }
 }
 
