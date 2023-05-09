@@ -13,6 +13,8 @@ struct StrawView: View {
     @State var wid = UIScreen.main.bounds.width
     @State var hei = UIScreen.main.bounds.height
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     var body: some View {
         ZStack {
             BottleView()
@@ -89,6 +91,20 @@ struct StrawView: View {
             withAnimation(.easeInOut(duration: 1).delay(3)) {
                 getFirstBall = true
             }
+        }
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: backButton)
+    }
+}
+
+extension StrawView {
+    
+    var backButton: some View {
+        Button {
+            mode.wrappedValue.dismiss()
+        } label: {
+            Image(systemName: "chevron.backward")
+                .foregroundColor(.white)
         }
     }
 }

@@ -175,7 +175,7 @@ extension AddMemberView {
         }
 
         return randomMember
-    }
+    } 
 }
 
 struct AddMemberView_Previews: PreviewProvider {
