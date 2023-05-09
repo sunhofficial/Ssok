@@ -155,11 +155,11 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         Cuphead.anchorPoint = CGPoint(x: 0.5, y: 1)
         addChild(Cuphead)
         
-        let Drink = SKSpriteNode(imageNamed: "onlydrinks")
-        Drink.alpha = 0.5
-        Drink.position = CGPoint(x: frame.midX, y:frame.maxY-308)
-        Drink.anchorPoint = CGPoint(x: 0.5, y: 1)
-        addChild(Drink)
+//        let Drink = SKSpriteNode(imageNamed: "onlydrinks")
+//        Drink.alpha = 0.5
+//        Drink.position = CGPoint(x: frame.midX, y:frame.maxY-308)
+//        Drink.anchorPoint = CGPoint(x: 0.5, y: 1)
+//        addChild(Drink)
 
         //Use CoreMotion
         motionmanager = CMMotionManager()

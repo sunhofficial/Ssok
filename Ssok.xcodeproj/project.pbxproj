@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
 		7C94D5532A02AB3B00AAC279 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */; };
 		7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D55B2A02ABA300AAC279 /* IntroView.swift */; };
 		7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */; };
-		7C94D5612A02AE4200AAC279 /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5602A02AE4200AAC279 /* StrawView.swift */; };
 		7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5622A02AE5E00AAC279 /* BallView.swift */; };
 		7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5642A02AE8A00AAC279 /* EndingView.swift */; };
 		7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */; };
@@ -20,7 +20,7 @@
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
-		ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView2.swift */; };
+		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
 		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
@@ -29,13 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BubblesApp.swift; sourceTree = "<group>"; };
 		7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7C94D55B2A02ABA300AAC279 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberView.swift; sourceTree = "<group>"; };
-		7C94D5602A02AE4200AAC279 /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		7C94D5622A02AE5E00AAC279 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		7C94D5642A02AE8A00AAC279 /* EndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingView.swift; sourceTree = "<group>"; };
 		7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
-		ABB019C42A07E4D30000556F /* StrawView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView2.swift; sourceTree = "<group>"; };
+		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -122,8 +122,7 @@
 				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
 				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
 				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
-				7C94D5602A02AE4200AAC279 /* StrawView.swift */,
-				ABB019C42A07E4D30000556F /* StrawView2.swift */,
+				ABB019C42A07E4D30000556F /* StrawView.swift */,
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
 			);
@@ -148,6 +147,7 @@
 				C74DD5462A065C2C00852B09 /* Member.swift */,
 				C74DD5482A065FDE00852B09 /* Where.swift */,
 				C74DD54A2A065FEB00852B09 /* What.swift */,
+				10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,10 +226,10 @@
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
-				ABB019C52A07E4D30000556F /* StrawView2.swift in Sources */,
+				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
+				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
-				7C94D5612A02AE4200AAC279 /* StrawView.swift in Sources */,
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
