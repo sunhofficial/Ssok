@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
 		7C94D5532A02AB3B00AAC279 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BubblesApp.swift; sourceTree = "<group>"; };
 		7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				C74DD5462A065C2C00852B09 /* Member.swift */,
 				C74DD5482A065FDE00852B09 /* Where.swift */,
 				C74DD54A2A065FEB00852B09 /* What.swift */,
+				10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
+				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,

@@ -17,11 +17,10 @@ struct StrawView: View {
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
     
-    @State var wid = UIScreen.main.bounds.width
-    @State var hei = UIScreen.main.bounds.height
-    
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
+    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         if !st{
@@ -126,10 +125,30 @@ struct StrawView: View {
         }else {
             EndingView(wheresentence : Where, whatsentence : What)
         }
-        
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 1)) {
+                isAnimation = true
+            }
+            withAnimation(.easeInOut(duration: 1).delay(3)) {
+                getFirstBall = true
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .navigationBarItems(leading: backButton)
     }
 }
 
+extension StrawView {
+    
+    var backButton: some View {
+        Button {
+            mode.wrappedValue.dismiss()
+        } label: {
+            Image(systemName: "chevron.backward")
+                .foregroundColor(.white)
+        }
+    }
+}
 
 struct StrawView_Previews: PreviewProvider {
     static var previews: some View {

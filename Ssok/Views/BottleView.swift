@@ -15,9 +15,6 @@ struct BottleView: View {
     
     var scene = Bottle(size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
-    @State var wid = UIScreen.main.bounds.width
-    @State var hei = UIScreen.main.bounds.height
-    
     
     var body: some View {
         ZStack{
