@@ -113,8 +113,6 @@ struct AddMemberView: View {
                 .simultaneousGesture(TapGesture().onEnded {
 //                    randomMember.randomMemberNames = setRandomMembers(members)
                     randomMember.randomMemberName = setRandomMember(members)
-//                    randomMember.randomMemberNames = setRandomMember(members)
-                    randomMember.randomMembername = setRandomNumber(members)
                 })
             }
             .navigationTitle("게임 인원")
