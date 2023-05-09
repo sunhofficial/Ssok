@@ -14,10 +14,12 @@ struct AddMemberView: View {
     // MARK: - Properties
     
     @State private var memberName: String = ""
-    @State private var isAlertShowing = false
+    @State private var isAlertShowing: Bool = false
     @State private var keyboardHeight: CGFloat = 0
-    @State private var isTextFieldEmtpy = true
+    @State private var isTextFieldEmtpy: Bool = true
     @State private var members: [Member] = []
+    @State private var isNextButtonDisabled: Bool = false
+     
     @FocusState private var isFocused: Bool
     @EnvironmentObject var randomMember: RandomMember
     
@@ -114,6 +116,7 @@ struct AddMemberView: View {
 //                    randomMember.randomMemberNames = setRandomMembers(members)
                     randomMember.randomMemberName = setRandomMember(members)
                 })
+                .disabled(isNextButtonDisabled)
             }
             .navigationTitle("게임 인원")
             .navigationBarTitleDisplayMode(.large)
@@ -127,6 +130,7 @@ struct AddMemberView: View {
         }
         .onAppear {
             setMemberData()
+            setNextButtonState()
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
@@ -148,11 +152,13 @@ extension AddMemberView {
     private func appendMembers(_ memberName: String) {
         members.append(Member(name: memberName))
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
+        setNextButtonState()
     }
     
     private func removeMembers(at offsets: IndexSet) {
         members.remove(atOffsets: offsets)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
+        setNextButtonState()
     }
     
     private func plusButtonDidTap() {
@@ -166,7 +172,13 @@ extension AddMemberView {
         memberName = ""
     }
     
-    //    private func setRandomMember(_ members: [Member]) -> [String] {
+    private func setNextButtonState() {
+        if members.count == 0 {
+            isNextButtonDisabled = true
+        } else { isNextButtonDisabled = false }
+    }
+    
+    //    private func setRandomMembers(_ members: [Member]) -> [String] {
     //        var randomMember: [String] = []
     //        let memberNum = (1...members.count).randomElement()!
     //
@@ -179,17 +191,6 @@ extension AddMemberView {
     //        return randomMember
     //    }
     //}
-    
-    private func setRandomNumber(_ members: [Member]) -> String {
-        let random = (1...2).randomElement()!
-        var member: String = ""
-        
-        if random == 1 {
-            member = members.randomElement()!.name
-        } else { member = "모두" }
-        
-        return member
-    }
     
     private func setRandomMember(_ members: [Member]) -> String {
         var randomMember: String = ""
