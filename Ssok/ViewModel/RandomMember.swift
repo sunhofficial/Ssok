@@ -9,4 +9,5 @@ import SwiftUI
 
 class RandomMember: ObservableObject {
     @Published var randomMemberNames: [String] = []
+    @Published var randomMemberName: String = ""
 }

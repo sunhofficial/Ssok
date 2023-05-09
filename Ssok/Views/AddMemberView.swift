@@ -14,10 +14,11 @@ struct AddMemberView: View {
     // MARK: - Properties
     
     @State private var memberName: String = ""
-    @State private var isAlertShowing = false
-    @State private var keyboardHeight: CGFloat = 0
-    @State private var isTextFieldEmtpy = true
+    @State private var isAlertShowing: Bool = false
+    @State private var isTextFieldEmtpy: Bool = true
     @State private var members: [Member] = []
+    @State private var isNextButtonDisabled: Bool = false
+     
     @FocusState private var isFocused: Bool
     @EnvironmentObject var randomMember: RandomMember
     
@@ -35,6 +36,7 @@ struct AddMemberView: View {
                                 .stroke(lineWidth: 1)
                                 .stroke(Color(.systemGray6))
                         }
+                        .accentColor(.orange)
                         .onSubmit {
                             if memberName == "" {
                                 isTextFieldEmtpy = true
@@ -110,8 +112,10 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    randomMember.randomMemberNames = setRandomMember(members)
+//                    randomMember.randomMemberNames = setRandomMembers(members)
+                    randomMember.randomMemberName = setRandomMember(members)
                 })
+                .disabled(isNextButtonDisabled)
             }
             .navigationTitle("게임 인원")
             .navigationBarTitleDisplayMode(.large)
@@ -125,6 +129,7 @@ struct AddMemberView: View {
         }
         .onAppear {
             setMemberData()
+            setNextButtonState()
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
@@ -146,34 +151,54 @@ extension AddMemberView {
     private func appendMembers(_ memberName: String) {
         members.append(Member(name: memberName))
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
+        setNextButtonState()
     }
     
     private func removeMembers(at offsets: IndexSet) {
         members.remove(atOffsets: offsets)
         UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
+        setNextButtonState()
     }
     
     private func plusButtonDidTap() {
         if members.count >= 6 {
             isAlertShowing = true
-            isFocused = false
         } else {
             appendMembers(memberName)
-            isFocused = true
         }
         memberName = ""
     }
     
-    private func setRandomMember(_ members: [Member]) -> [String] {
-        var randomMember: [String] = []
-        let memberNum = (1...members.count).randomElement()!
+    private func setNextButtonState() {
+        if members.count == 0 {
+            isNextButtonDisabled = true
+        } else { isNextButtonDisabled = false }
+    }
+    
+    //    private func setRandomMembers(_ members: [Member]) -> [String] {
+    //        var randomMember: [String] = []
+    //        let memberNum = (1...members.count).randomElement()!
+    //
+    //        while randomMember.count < memberNum {
+    //            let member = members.randomElement()!
+    //
+    //            if !randomMember.contains(member.name) { randomMember.append(member.name) }
+    //        }
+    //
+    //        return randomMember
+    //    }
+    //}
+    
+    private func setRandomMember(_ members: [Member]) -> String {
+        var randomMember: String = ""
+        let randomNum = (1...2).randomElement()!
         
-        while randomMember.count < memberNum {
-            let member = members.randomElement()!
-            
-            if !randomMember.contains(member.name) { randomMember.append(member.name) }
+        if randomNum == 1 {
+            randomMember = members.randomElement()!.name
+        } else {
+            randomMember = "모두"
         }
-
+        
         return randomMember
     }
 }
