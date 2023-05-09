@@ -35,6 +35,7 @@ struct AddMemberView: View {
                                 .stroke(lineWidth: 1)
                                 .stroke(Color(.systemGray6))
                         }
+                        .accentColor(.orange)
                         .onSubmit {
                             if memberName == "" {
                                 isTextFieldEmtpy = true
@@ -110,7 +111,7 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    randomMember.randomMemberNames = setRandomMember(members)
+                    randomMember.randomMemberNames = setRandomMembers(members)
                 })
             }
             .navigationTitle("게임 인원")
@@ -164,7 +165,7 @@ extension AddMemberView {
         memberName = ""
     }
     
-    private func setRandomMember(_ members: [Member]) -> [String] {
+    private func setRandomMembers(_ members: [Member]) -> [String] {
         var randomMember: [String] = []
         let memberNum = (1...members.count).randomElement()!
         
@@ -175,7 +176,20 @@ extension AddMemberView {
         }
 
         return randomMember
-    } 
+    }
+    
+    private func setRandomMember(_ members: [Member]) -> String {
+        var randomMember: String = ""
+        let randomNum = (1...2).randomElement()!
+        
+        if randomNum == 1 {
+            randomMember = members.randomElement()!.name
+        } else {
+            randomMember = "모두"
+        }
+        
+        return randomMember
+    }
 }
 
 struct AddMemberView_Previews: PreviewProvider {
