@@ -95,9 +95,11 @@ struct EndingView: View {
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Button"))
                     .cornerRadius(12).offset(y:363)
-            }.ignoresSafeArea(.all)
+            }
+            .ignoresSafeArea(.all)
+            .navigationBarHidden(true)
         } else {
-            StrawView2()
+            StrawView()
         }
     }
 }
