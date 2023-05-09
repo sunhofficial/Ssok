@@ -113,6 +113,8 @@ struct AddMemberView: View {
                 .simultaneousGesture(TapGesture().onEnded {
 //                    randomMember.randomMemberNames = setRandomMembers(members)
                     randomMember.randomMemberName = setRandomMember(members)
+//                    randomMember.randomMemberNames = setRandomMember(members)
+                    randomMember.randomMembername = setRandomNumber(members)
                 })
             }
             .navigationTitle("게임 인원")
@@ -166,17 +168,29 @@ extension AddMemberView {
         memberName = ""
     }
     
-    private func setRandomMembers(_ members: [Member]) -> [String] {
-        var randomMember: [String] = []
-        let memberNum = (1...members.count).randomElement()!
+    //    private func setRandomMember(_ members: [Member]) -> [String] {
+    //        var randomMember: [String] = []
+    //        let memberNum = (1...members.count).randomElement()!
+    //
+    //        while randomMember.count < memberNum {
+    //            let member = members.randomElement()!
+    //
+    //            if !randomMember.contains(member.name) { randomMember.append(member.name) }
+    //        }
+    //
+    //        return randomMember
+    //    }
+    //}
+    
+    private func setRandomNumber(_ members: [Member]) -> String {
+        let random = (1...2).randomElement()!
+        var member: String = ""
         
-        while randomMember.count < memberNum {
-            let member = members.randomElement()!
-            
-            if !randomMember.contains(member.name) { randomMember.append(member.name) }
-        }
-
-        return randomMember
+        if random == 1 {
+            member = members.randomElement()!.name
+        } else { member = "모두" }
+        
+        return member
     }
     
     private func setRandomMember(_ members: [Member]) -> String {
