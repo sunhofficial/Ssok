@@ -15,7 +15,6 @@ struct AddMemberView: View {
     
     @State private var memberName: String = ""
     @State private var isAlertShowing: Bool = false
-    @State private var keyboardHeight: CGFloat = 0
     @State private var isTextFieldEmtpy: Bool = true
     @State private var members: [Member] = []
     @State private var isNextButtonDisabled: Bool = false
@@ -164,10 +163,8 @@ extension AddMemberView {
     private func plusButtonDidTap() {
         if members.count >= 6 {
             isAlertShowing = true
-            isFocused = false
         } else {
             appendMembers(memberName)
-            isFocused = true
         }
         memberName = ""
     }
