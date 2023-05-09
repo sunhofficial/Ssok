@@ -19,13 +19,10 @@ struct EndingView: View {
     @State var moneDropping: CGFloat = -270
     @State var rotateMoney: CGFloat = 0
     @State var showingBall = false
-    @State var isAnimation: Bool = false
     
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
-    @State var wid = UIScreen.main.bounds.width
-    @State var hei = UIScreen.main.bounds.height
     
     
     var body: some View {
@@ -34,13 +31,13 @@ struct EndingView: View {
                 GeometryReader{proxy in
                     let size = proxy.size
                     ZStack{
-                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .center)).mask{WaterWave(progress: 0.90, waveHeight: 0.03, offset: startAnimation)}
+                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .center)).mask{WaterWave(progress: 0.90, waveHeight: 0.03, isreverse: false, offset: startAnimation)}
                         Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_center")]), startPoint: .top, endPoint: .center))
                             .mask{
-                                WaterWave2(progress: 0.625, waveHeight: 0.03, offset: startAnimation)
+                                WaterWave(progress: 0.625, waveHeight: 0.03, isreverse: true, offset: startAnimation)
                         }
                         Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .center, endPoint: .bottom)).mask{
-                            WaterWave(progress: 0.35, waveHeight: 0.03, offset: startAnimation)
+                            WaterWave(progress: 0.35, waveHeight: 0.03, isreverse: false, offset: startAnimation)
                         }
                     }.onAppear {
                         // Lopping Animation
@@ -59,7 +56,6 @@ struct EndingView: View {
                         .minimumScaleFactor(0.1)
                         .frame(width: wid, height: wid / 3)
                         .foregroundColor(.black)
-                    
                     
                     Text(wheresentence)
                         .font(.system(size: 75, weight: .bold))
@@ -102,58 +98,32 @@ struct EndingView_Previews: PreviewProvider {
 struct WaterWave: Shape{
     var progress: CGFloat
     var waveHeight: CGFloat
-
+    var isreverse: Bool
+    
     var offset: CGFloat
     // Enabling Animation
     var animatableData: CGFloat {
         get{offset}
         set{offset = newValue}
     }
-
+    
     func path(in rect: CGRect) -> Path {
         return Path{path in
-
+            
             path.move(to: .zero)
-
+            
             // MARK: Drawing Waves using
             let progressHeight: CGFloat = (1 - progress) * rect.height
             let height = waveHeight * rect.height
+            
             for value in stride(from: 0, to: rect.width+2, by: 2){
                 let x: CGFloat = value
-                let sine: CGFloat = sin(Angle(degrees: value + offset).radians)
-                let y: CGFloat = progressHeight + (height * sine)
-                path.addLine (to: CGPoint (x: x, y: y))
-            }
-
-            // Bottom Portion
-            path.addLine (to: CGPoint (x: rect.width, y: rect.height))
-            path.addLine (to: CGPoint (x: 0, y: rect.height))
-        }
-    }
-}
-
-struct WaterWave2: Shape{
-    var progress: CGFloat
-    var waveHeight: CGFloat
-    
-    var offset: CGFloat
-    // Enabling Animation
-    var animatableData: CGFloat {
-        get{offset}
-        set{offset = newValue}
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        return Path{path in
-            
-            path.move(to: .zero)
-            
-            // MARK: Drawing Waves using
-            let progressHeight: CGFloat = (1 - progress) * rect.height
-            let height = waveHeight * rect.height
-            for value in stride(from: 0, to: rect.width + 2, by: 2){
-                let x: CGFloat = value
-                let sine: CGFloat = cos(Angle(degrees: value - offset).radians)
+                var sine: CGFloat = 0
+                if !isreverse{
+                    sine = sin(Angle(degrees: value + offset).radians)
+                } else {
+                    sine = sin(Angle(degrees: value - offset).radians)
+                }
                 let y: CGFloat = progressHeight + (height * sine)
                 path.addLine (to: CGPoint (x: x, y: y))
             }

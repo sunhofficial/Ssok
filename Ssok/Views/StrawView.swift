@@ -17,9 +17,6 @@ struct StrawView: View {
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
     
-    @State var wid = UIScreen.main.bounds.width
-    @State var hei = UIScreen.main.bounds.height
-    
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
     
