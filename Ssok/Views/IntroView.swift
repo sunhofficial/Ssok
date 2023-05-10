@@ -22,7 +22,7 @@ struct IntroView: View {
                         .edgesIgnoringSafeArea(.all)
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("intro_pearl")
+                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 20))
                             Image("intro_wave")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
@@ -57,7 +57,8 @@ struct IntroView: View {
                             .frame(height: 160)
                     }
                     .tag(0)
-                    VStack(spacing: 40) {
+                    VStack(spacing: 10) {
+                        Spacer()
                         Text("미션이 담긴 펄이\n각각 랜덤으로 나와요")
                             .foregroundColor(.white)
                             .font(.system(size: 28, weight: .bold))
@@ -67,7 +68,7 @@ struct IntroView: View {
                             .frame(width: UIScreen.main.bounds.width-40)
                             .aspectRatio(contentMode: .fit)
                         Spacer()
-                            .frame(height: 160)
+                            .frame(height: 200)
                     }
                     .tag(1)
                     VStack(spacing: 40) {
@@ -81,12 +82,11 @@ struct IntroView: View {
                 NavigationLink(destination: AddMemberView()) {
                     Text("시작하기")
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color("BrownBlack"))
+                        .frame(width: 205, height: 50)
+                        .background(selectedPage == 2 ? Color("BrownBlack") : Color("Bg"))
                         .cornerRadius(12)
                         .padding(.horizontal, 20)
-                }
+                }.disabled(!(selectedPage == 2 ))
             }
         }
     }
