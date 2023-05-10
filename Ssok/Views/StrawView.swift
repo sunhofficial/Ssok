@@ -7,6 +7,41 @@
 
 import SwiftUI
 
+// The notification we'll send when a shake gesture happens.
+extension UIDevice {
+    static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
+}
+
+//  Override the default behavior of shake gestures to send our notification instead.
+extension UIWindow {
+     open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            NotificationCenter.default.post(name: UIDevice.deviceDidShakeNotification, object: nil)
+        }
+     }
+}
+
+// A view modifier that detects shaking and calls a function of our choosing.
+struct DeviceShakeViewModifier: ViewModifier {
+    let action: () -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear()
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
+                action()
+            }
+    }
+}
+
+// A View extension to make the modifier easier to use.
+extension View {
+    func onShake(perform action: @escaping () -> Void) -> some View {
+        self.modifier(DeviceShakeViewModifier(action: action))
+    }
+}
+
+
 struct StrawView: View {
     
     
@@ -17,6 +52,8 @@ struct StrawView: View {
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
     
+    @State var count: Int = 0
+    
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
     
@@ -26,15 +63,35 @@ struct StrawView: View {
         if !st{
             ZStack{
                 ZStack {
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
+                    
+                    if count < 2 {
+                        Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
+                    } else if (2 <= count) && (count < 5){
+                        Image("seconddrink").position(CGPoint(x:wid/2, y: 532.5))
+                    } else if (5 <= count) && (count < 8){
+                        Image("thirddrink").position(CGPoint(x:wid/2, y: 532.5))
+                    } else {
+                        Image("finaldrink").position(CGPoint(x:wid/2, y: 532.5))
+                    }
+                    
                     BottleView()
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
-                            Text("버블티를 흔들고\n화면을 터치해주세요")
-                                .foregroundColor(.white)
-                                .font(.system(size: 28, weight: .bold))
-                                .multilineTextAlignment(.center)
-                                .lineSpacing(4)
+                            if count >= 8 {
+                                Text("버블티를 흔들고\n화면을 터치해주세요")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 28, weight: .bold))
+                                    .multilineTextAlignment(.center)
+                                    .lineSpacing(4)
+                            } else {
+                                Text("빨대를 꼽고 펄을 뽑아주세요")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 28, weight: .bold))
+                                    .multilineTextAlignment(.center)
+                                    .lineSpacing(4)
+                            }
                             Image(systemName: "arrow.down")
                                 .resizable()
                                 .bold()
@@ -106,11 +163,13 @@ struct StrawView: View {
                     
                 }
                 .onTapGesture {
-                    withAnimation(.easeInOut(duration: 1)) {
-                        isAnimation = true
-                    }
-                    withAnimation(.easeInOut(duration: 1).delay(3)) {
-                        getFirstBall = true
+                    if count >= 8{
+                        withAnimation(.easeInOut(duration: 1)) {
+                            isAnimation = true
+                        }
+                        withAnimation(.easeInOut(duration: 1).delay(3)) {
+                            getFirstBall = true
+                        }
                     }
                     
                 }
@@ -130,6 +189,8 @@ struct StrawView: View {
                         Rectangle().fill(.opacity(0))
                     }.scaledToFit()
                 }
+            }.onShake {
+                count += 1
             }
             .offset(y: -44)
         }else {

@@ -18,8 +18,6 @@ struct BottleView: View {
     
     var body: some View {
         ZStack{
-            Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
-            
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
         }.ignoresSafeArea(.all)
@@ -68,6 +66,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         
         //Cup appearance Implementation
         let Cup = SKSpriteNode(imageNamed: "cupanddrinks")
+        Cup.alpha = 0
         
         Cup.position = CGPoint(x: frame.midX, y: 303)
 
