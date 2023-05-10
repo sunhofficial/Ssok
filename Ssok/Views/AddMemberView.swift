@@ -16,12 +16,14 @@ struct AddMemberView: View {
     @State private var memberName: String = ""
     @State private var isAlertShowing: Bool = false
     @State private var isTextFieldEmtpy: Bool = true
-    @State private var members: [Member] = []
+//    @State private var members: [Member] = []
     @State private var isNextButtonDisabled: Bool = false
      
     @FocusState private var isFocused: Bool
-    @EnvironmentObject var randomMember: RandomMember
-    
+
+    @State private var members: [Member] = []
+    @State private var randomName: String = ""
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -103,7 +105,7 @@ struct AddMemberView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: StrawView()) {
+                NavigationLink(destination: StrawView(members: $members, randomName: $randomName)) {
                     Text("다음")
                         .foregroundColor(.white)
                         .fontWeight(.medium)
@@ -112,8 +114,7 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-//                    randomMember.randomMemberNames = setRandomMembers(members)
-                    randomMember.randomMemberName = setRandomMember(members)
+                    randomName = setRandomMember(members)
                 })
                 .disabled(isNextButtonDisabled)
             }
@@ -175,31 +176,16 @@ extension AddMemberView {
         } else { isNextButtonDisabled = false }
     }
     
-    //    private func setRandomMembers(_ members: [Member]) -> [String] {
-    //        var randomMember: [String] = []
-    //        let memberNum = (1...members.count).randomElement()!
-    //
-    //        while randomMember.count < memberNum {
-    //            let member = members.randomElement()!
-    //
-    //            if !randomMember.contains(member.name) { randomMember.append(member.name) }
-    //        }
-    //
-    //        return randomMember
-    //    }
-    //}
-    
     private func setRandomMember(_ members: [Member]) -> String {
-        var randomMember: String = ""
+        var memberName: String = ""
         let randomNum = (1...2).randomElement()!
-        
+
         if randomNum == 1 {
-            randomMember = members.randomElement()!.name
+            memberName = members.randomElement()!.name
         } else {
-            randomMember = "모두"
+            memberName = "모두"
         }
-        
-        return randomMember
+        return memberName
     }
 }
 

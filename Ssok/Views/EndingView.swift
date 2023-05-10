@@ -23,75 +23,156 @@ struct EndingView: View {
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
-    
+    @Binding var members: [Member]
+    @Binding var randomName: String
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        if !st2{
-            ZStack{
-                GeometryReader{proxy in
-                    let size = proxy.size
-                    ZStack{
-                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .center)).mask{WaterWave(progress: 0.90, waveHeight: 0.03, isreverse: false, offset: startAnimation)}
-                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_center")]), startPoint: .top, endPoint: .center))
-                            .mask{
-                                WaterWave(progress: 0.625, waveHeight: 0.03, isreverse: true, offset: startAnimation)
-                        }
-                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .center, endPoint: .bottom)).mask{
-                            WaterWave(progress: 0.35, waveHeight: 0.03, isreverse: false, offset: startAnimation)
-                        }
-                    }.onAppear {
-                        // Lopping Animation
-                        withAnimation(
-                            .linear(duration: 3)
-                            .repeatForever(autoreverses: false)){
-                                // If you set value less than the rect width it will not finish completely
-                                startAnimation = size.width - 30
-                            }
+//        if !st2{
+//            ZStack{
+//                GeometryReader{proxy in
+//                    let size = proxy.size
+//                    ZStack{
+//                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .center)).mask{WaterWave(progress: 0.90, waveHeight: 0.03, isreverse: false, offset: startAnimation)}
+//                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_center")]), startPoint: .top, endPoint: .center))
+//                            .mask{
+//                                WaterWave(progress: 0.625, waveHeight: 0.03, isreverse: true, offset: startAnimation)
+//                        }
+//                        Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .center, endPoint: .bottom)).mask{
+//                            WaterWave(progress: 0.35, waveHeight: 0.03, isreverse: false, offset: startAnimation)
+//                        }
+//                    }.onAppear {
+//                        // Lopping Animation
+//                        withAnimation(
+//                            .linear(duration: 3)
+//                            .repeatForever(autoreverses: false)){
+//                                // If you set value less than the rect width it will not finish completely
+//                                startAnimation = size.width - 30
+//                            }
+//                    }
+//                }
+//                VStack(spacing:100){
+//                    Text(randomName)
+//                        .font(.system(size: 75, weight: .bold))
+//                        .multilineTextAlignment(.center)
+//                        .minimumScaleFactor(0.1)
+//                        .frame(width: wid, height: wid / 3)
+//                        .foregroundColor(.black)
+//
+//                    Text(wheresentence)
+//                        .font(.system(size: 75, weight: .bold))
+//                        .multilineTextAlignment(.center)
+//                        .minimumScaleFactor(0.1)
+//                        .frame(width: wid, height: wid / 3)
+//                        .foregroundColor(.black)
+//
+//                    Text(whatsentence)
+//                        .font(.system(size: 75, weight: .bold))
+//                        .multilineTextAlignment(.center)
+//                        .minimumScaleFactor(0.1)
+//                        .frame(width: wid, height: wid / 3)
+//                        .foregroundColor(.black)
+//                }
+//                Button(action: {
+//                    randomName = setRandomMember(members)
+//                    st2 = true
+//                }){
+//                    Text("다시하기")
+//                }.foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+//                    .background(Color("EndingButton"))
+//                    .cornerRadius(12)
+////                    .offset(y:363)
+//                    .position(x:wid/2, y:hei-75)
+//            }
+//            .ignoresSafeArea(.all)
+//            .navigationBarHidden(true)
+//        } else {
+//            StrawView(members: $members, randomName: $randomName)
+//        }
+        
+        ZStack{
+            GeometryReader{proxy in
+                let size = proxy.size
+                ZStack{
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .center)).mask{WaterWave(progress: 0.90, waveHeight: 0.03, isreverse: false, offset: startAnimation)}
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_center")]), startPoint: .top, endPoint: .center))
+                        .mask{
+                            WaterWave(progress: 0.625, waveHeight: 0.03, isreverse: true, offset: startAnimation)
                     }
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .center, endPoint: .bottom)).mask{
+                        WaterWave(progress: 0.35, waveHeight: 0.03, isreverse: false, offset: startAnimation)
+                    }
+                }.onAppear {
+                    // Lopping Animation
+                    withAnimation(
+                        .linear(duration: 3)
+                        .repeatForever(autoreverses: false)){
+                            // If you set value less than the rect width it will not finish completely
+                            startAnimation = size.width - 30
+                        }
                 }
-                VStack(spacing:100){
-                    Text("소다가")
-                        .font(.system(size: 75, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.1)
-                        .frame(width: wid, height: wid / 3)
-                        .foregroundColor(.black)
-                    
-                    Text(wheresentence)
-                        .font(.system(size: 75, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.1)
-                        .frame(width: wid, height: wid / 3)
-                        .foregroundColor(.black)
-                    
-                    Text(whatsentence)
-                        .font(.system(size: 75, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.1)
-                        .frame(width: wid, height: wid / 3)
-                        .foregroundColor(.black)
-                }
-                Button(action: {st2 = true}){
-                    Text("다시하기")
-                }.foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                    .background(Color("EndingButton"))
-                    .cornerRadius(12)
-//                    .offset(y:363)
-                    .position(x:wid/2, y:hei-75)
             }
-            .ignoresSafeArea(.all)
-            .navigationBarHidden(true)
-        } else {
-            StrawView()
+            VStack(spacing:100){
+                Text(randomName)
+                    .font(.system(size: 75, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 3)
+                    .foregroundColor(.black)
+                
+                Text(wheresentence)
+                    .font(.system(size: 75, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 3)
+                    .foregroundColor(.black)
+                
+                Text(whatsentence)
+                    .font(.system(size: 75, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: wid, height: wid / 3)
+                    .foregroundColor(.black)
+            }
+            Button(action: {
+                randomName = setRandomMember(members)
+//                st2 = true
+                self.mode.wrappedValue.dismiss()
+            }){
+                Text("다시하기")
+            }.foregroundColor(.white)
+                .fontWeight(.bold)
+                .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                .background(Color("EndingButton"))
+                .cornerRadius(12)
+//                    .offset(y:363)
+                .position(x:wid/2, y:hei-75)
         }
+        .ignoresSafeArea(.all)
+        .navigationBarHidden(true)
+    }
+}
+
+extension EndingView {
+    
+    private func setRandomMember(_ members: [Member]) -> String {
+        var memberName: String = ""
+        let randomNum = (1...2).randomElement()!
+
+        if randomNum == 1 {
+            memberName = members.randomElement()!.name
+        } else {
+            memberName = "모두"
+        }
+        return memberName
     }
 }
 
 struct EndingView_Previews: PreviewProvider {
     static var previews: some View {
-        EndingView()
+        EndingView(members: .constant([]), randomName: .constant(""))
     }
 }
 
