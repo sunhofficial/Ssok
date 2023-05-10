@@ -83,8 +83,16 @@ struct IntroView: View {
                         .background(selectedPage == 2 ? Color("BrownBlack") : Color("Bg"))
                         .cornerRadius(12)
                         .padding(.horizontal, 20)
-                }.disabled(!(selectedPage == 2 ))
+                }
+                .simultaneousGesture(TapGesture().onEnded {
+                    hideTutorialView()
+                })
+                .disabled(!(selectedPage == 2 ))
             }
+        }
+        .onAppear {
+            isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
+            if isTutorialHidden { selectedPage = 2 }
         }
     }
 }

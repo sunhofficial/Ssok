@@ -175,18 +175,6 @@ extension AddMemberView {
             isNextButtonDisabled = true
         } else { isNextButtonDisabled = false }
     }
-    
-    private func setRandomMember(_ members: [Member]) -> String {
-        var memberName: String = ""
-        let randomNum = (1...2).randomElement()!
-
-        if randomNum == 1 {
-            memberName = members.randomElement()!.name
-        } else {
-            memberName = "모두"
-        }
-        return memberName
-    }
 }
 
 struct AddMemberView_Previews: PreviewProvider {
