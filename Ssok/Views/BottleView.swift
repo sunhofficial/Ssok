@@ -18,8 +18,6 @@ struct BottleView: View {
     
     var body: some View {
         ZStack{
-            Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
-            
             SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
             
         }.ignoresSafeArea(.all)
@@ -68,6 +66,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         
         //Cup appearance Implementation
         let Cup = SKSpriteNode(imageNamed: "cupanddrinks")
+        Cup.alpha = 0
         
         Cup.position = CGPoint(x: frame.midX, y: 303)
 
@@ -166,7 +165,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
     //Update part
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionmanager?.accelerometerData {
-            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 30 , dy: accelerometerData.acceleration.y * 30)
+            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 20 , dy: accelerometerData.acceleration.y * 10)
 
             if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 {
                 motionstate = 1
