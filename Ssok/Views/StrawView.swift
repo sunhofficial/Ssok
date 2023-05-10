@@ -44,7 +44,6 @@ extension View {
 
 struct StrawView: View {
     
-    
     @State var st: Bool = false
     
     @State var isAnimation: Bool = false
@@ -56,9 +55,11 @@ struct StrawView: View {
     
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
-    
+     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    @EnvironmentObject var random: RandomMember
+     
     var body: some View {
         if !st{
             ZStack{
@@ -112,10 +113,10 @@ struct StrawView: View {
                                 Spacer()
                                 Image("Pearl1")
                                     .animation(.easeOut(duration: 1.5).delay(1.2),value: isAnimation)
-                                
+
                                 Image("Pearl2")
                                     .animation(.easeOut(duration: 1.5).delay(1.4),value: isAnimation)
-                                
+
                                 Image("Pearl1")
                                     .animation(.easeOut(duration: 1.5).delay(1.6),value: isAnimation)
                             }
@@ -128,27 +129,27 @@ struct StrawView: View {
                     }
                     // 빨대
                     if isAnimation {
-                        
+
                         Image("Straw").opacity(0.8).transition(.move(edge: .top))
-                        
                     }
                     Image("cutcup").position(x: wid/2 ,y:349.05)
-                    
+
 //                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
                     //Dim
                     Color(.white)
                         .edgesIgnoringSafeArea(.all)
                         .opacity(isAnimation ? 0.5 : 0)
-                        .animation(.easeInOut(duration: 1).delay(2.5), value:isAnimation)
+                        .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
+
                     //  첫 번째 볼
                     BallView(
                         getCurrentBall: $getFirstBall,
                         getNextBall: $getSecondBall,
                         ballTitle: "Who?",
-                        contents: "소다",
+                        contents: random.randomMemberName,
                         pearlImage: "Back_pearl1"
                     )
-                
+
                     // 두 번째 볼
                     BallView(
                         getCurrentBall: $getSecondBall,
@@ -157,7 +158,7 @@ struct StrawView: View {
                         contents: Where,
                         pearlImage: "Back_pearl2"
                     )
-                    
+
                     // 세 번째 볼
                     BallView(
                         getCurrentBall: $getThirdBall,
@@ -166,7 +167,6 @@ struct StrawView: View {
                         contents: What,
                         pearlImage: "Back_pearl1"
                     )
-                    
                 }
                 .onTapGesture {
                     if count >= 8{
@@ -177,19 +177,14 @@ struct StrawView: View {
                             getFirstBall = true
                         }
                     }
-                    
-                }
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 1)) {
-                        isAnimation = true
-                    }
                     withAnimation(.easeInOut(duration: 1).delay(3)) {
                         getFirstBall = true
                     }
+
                 }
                 .navigationBarBackButtonHidden()
                 .navigationBarItems(leading: backButton)
-                
+
                 if getThirdBall == true{
                     Button(action: {st = true}) {
                         Rectangle().fill(.opacity(0))
@@ -215,6 +210,18 @@ extension StrawView {
                 .foregroundColor(.white)
         }
     }
+    
+    private func setRandomMember(_ members: [Member]) -> String {
+        var memberName: String = ""
+        let randomNum = (1...2).randomElement()!
+
+        if randomNum == 1 {
+            memberName = members.randomElement()!.name
+        } else {
+            memberName = "모두"
+        }
+        return memberName
+    } 
 }
 
 struct StrawView_Previews: PreviewProvider {

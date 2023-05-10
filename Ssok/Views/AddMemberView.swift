@@ -16,12 +16,13 @@ struct AddMemberView: View {
     @State private var memberName: String = ""
     @State private var isAlertShowing: Bool = false
     @State private var isTextFieldEmtpy: Bool = true
-    @State private var members: [Member] = []
     @State private var isNextButtonDisabled: Bool = false
+    @State private var members: [Member] = []
      
     @FocusState private var isFocused: Bool
-    @EnvironmentObject var randomMember: RandomMember
     
+    @EnvironmentObject var random: RandomMember
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -112,8 +113,8 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-//                    randomMember.randomMemberNames = setRandomMembers(members)
-                    randomMember.randomMemberName = setRandomMember(members)
+                    random.members = members
+                    random.randomMemberName = setRandomMember(members)
                 })
                 .disabled(isNextButtonDisabled)
             }
@@ -173,33 +174,6 @@ extension AddMemberView {
         if members.count == 0 {
             isNextButtonDisabled = true
         } else { isNextButtonDisabled = false }
-    }
-    
-    //    private func setRandomMembers(_ members: [Member]) -> [String] {
-    //        var randomMember: [String] = []
-    //        let memberNum = (1...members.count).randomElement()!
-    //
-    //        while randomMember.count < memberNum {
-    //            let member = members.randomElement()!
-    //
-    //            if !randomMember.contains(member.name) { randomMember.append(member.name) }
-    //        }
-    //
-    //        return randomMember
-    //    }
-    //}
-    
-    private func setRandomMember(_ members: [Member]) -> String {
-        var randomMember: String = ""
-        let randomNum = (1...2).randomElement()!
-        
-        if randomNum == 1 {
-            randomMember = members.randomElement()!.name
-        } else {
-            randomMember = "모두"
-        }
-        
-        return randomMember
     }
 }
 

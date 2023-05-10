@@ -23,7 +23,9 @@ struct EndingView: View {
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
+    @EnvironmentObject var random: RandomMember
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         if !st2{
@@ -50,20 +52,20 @@ struct EndingView: View {
                     }
                 }
                 VStack(spacing:100){
-                    Text("소다가")
+                    Text(random.randomMemberName)
                         .font(.system(size: 75, weight: .bold))
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.1)
                         .frame(width: wid, height: wid / 3)
                         .foregroundColor(.black)
-                    
+
                     Text(wheresentence)
                         .font(.system(size: 75, weight: .bold))
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.1)
                         .frame(width: wid, height: wid / 3)
                         .foregroundColor(.black)
-                    
+
                     Text(whatsentence)
                         .font(.system(size: 75, weight: .bold))
                         .multilineTextAlignment(.center)
@@ -71,7 +73,10 @@ struct EndingView: View {
                         .frame(width: wid, height: wid / 3)
                         .foregroundColor(.black)
                 }
-                Button(action: {st2 = true}){
+                Button(action: {
+                    random.randomMemberName = setRandomMember(random.members)
+                    st2 = true
+                }){
                     Text("다시하기")
                 }.foregroundColor(.white)
                     .fontWeight(.bold)
