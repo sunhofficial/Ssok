@@ -12,6 +12,7 @@ import SwiftUI
 struct IntroView: View {
     
     @State var selectedPage: Int = 0
+    @State var isTutorialHidden: Bool = false
     
     var body: some View {
         NavigationView {

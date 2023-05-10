@@ -16,11 +16,12 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
+    @EnvironmentObject var randomMember: RandomMember
     
     var body: some View {
         if !st{
@@ -82,7 +83,7 @@ struct StrawView: View {
                         getCurrentBall: $getFirstBall,
                         getNextBall: $getSecondBall,
                         ballTitle: "Who?",
-                        contents: "소다",
+                        contents: randomMember.randomMemberName,
                         pearlImage: "Back_pearl1"
                     )
                 
