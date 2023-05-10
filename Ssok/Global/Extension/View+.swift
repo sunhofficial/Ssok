@@ -15,12 +15,12 @@ extension View {
     
     func setRandomMember(_ members: [Member]) -> String {
         var memberName: String = ""
-        let randomNum = (1...2).randomElement()!
+        let randomNum = (0...members.count).randomElement()!
 
-        if randomNum == 1 {
-            memberName = members.randomElement()!.name
-        } else {
+        if randomNum == 0 {
             memberName = "모두"
+        } else {
+            memberName = members.randomElement()!.name
         }
         return memberName
     }
