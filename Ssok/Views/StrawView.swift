@@ -80,13 +80,13 @@ struct StrawView: View {
                         // 가이드
                         VStack(spacing: 24) {
                             if count >= 8 {
-                                Text("버블티를 흔들고\n화면을 터치해주세요")
+                                Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 28, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
                             } else {
-                                Text("빨대를 꼽고 펄을 뽑아주세요")
+                                Text("버블티를 흔들고\n화면을 터치해주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 28, weight: .bold))
                                     .multilineTextAlignment(.center)
