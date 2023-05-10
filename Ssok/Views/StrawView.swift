@@ -20,8 +20,7 @@ struct StrawView: View {
      
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    @Binding var members: [Member]
-    @Binding var randomName: String
+    @EnvironmentObject var random: RandomMember
      
     var body: some View {
         if !st{
@@ -83,7 +82,7 @@ struct StrawView: View {
                         getCurrentBall: $getFirstBall,
                         getNextBall: $getSecondBall,
                         ballTitle: "Who?",
-                        contents: randomName,
+                        contents: random.randomMemberName,
                         pearlImage: "Back_pearl1"
                     )
 
@@ -125,7 +124,7 @@ struct StrawView: View {
             }
             .offset(y: -44)
         }else {
-            EndingView(wheresentence : Where, whatsentence : What, members: $members, randomName: $randomName)
+            EndingView(wheresentence : Where, whatsentence : What)
         }
     }
 }
@@ -156,6 +155,6 @@ extension StrawView {
 
 struct StrawView_Previews: PreviewProvider {
     static var previews: some View {
-        StrawView(members: .constant([]), randomName: .constant(""))
+        StrawView()
     }
 }

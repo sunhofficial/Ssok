@@ -16,13 +16,12 @@ struct AddMemberView: View {
     @State private var memberName: String = ""
     @State private var isAlertShowing: Bool = false
     @State private var isTextFieldEmtpy: Bool = true
-//    @State private var members: [Member] = []
     @State private var isNextButtonDisabled: Bool = false
+    @State private var members: [Member] = []
      
     @FocusState private var isFocused: Bool
-
-    @State private var members: [Member] = []
-    @State private var randomName: String = ""
+    
+    @EnvironmentObject var random: RandomMember
 
     var body: some View {
         GeometryReader { geometry in
@@ -105,7 +104,7 @@ struct AddMemberView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: StrawView(members: $members, randomName: $randomName)) {
+                NavigationLink(destination: StrawView()) {
                     Text("다음")
                         .foregroundColor(.white)
                         .fontWeight(.medium)
@@ -114,7 +113,8 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    randomName = setRandomMember(members)
+                    random.members = members
+                    random.randomMemberName = setRandomMember(members)
                 })
                 .disabled(isNextButtonDisabled)
             }
