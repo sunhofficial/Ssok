@@ -63,7 +63,7 @@ struct StrawView: View {
         if !st{
             ZStack{
                 ZStack {
-                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_bottom"), Color("Bg_top")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
+                    Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
                     if count < 2 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
@@ -82,21 +82,27 @@ struct StrawView: View {
                             if count >= 8 {
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 28, weight: .bold))
+                                    .font(.system(size: 24, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
-                            } else {
-                                Text("버블티를 흔들고\n화면을 터치해주세요")
+                                Image(systemName: "arrow.down")
+                                    .resizable()
+                                    .bold()
                                     .foregroundColor(.white)
-                                    .font(.system(size: 28, weight: .bold))
+                                    .frame(width: 24, height: 24)
+                            } else {
+                                Text("컵을 흔들어서 버블티를 섞어주세요")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 24, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
+                                Image("shakearrow")
+                                    .resizable()
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .frame(width: 73, height: 18)
+                                    
                             }
-                            Image(systemName: "arrow.down")
-                                .resizable()
-                                .bold()
-                                .foregroundColor(.white)
-                                .frame(width: 24, height: 24)
                         }
                         .opacity(isAnimation ? 0 : 1)
                         // 컵 & 버블
