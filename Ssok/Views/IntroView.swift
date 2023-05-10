@@ -45,30 +45,26 @@ struct IntroView: View {
                 .edgesIgnoringSafeArea(.all)
                 TabView(selection: $selectedPage) {
                     VStack(spacing: 40) {
-                        Text("컵을 흔들어\n내용물을 섞어주세요")
-                            .foregroundColor(.white)
-                            .font(.system(size: 28, weight: .bold))
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(4)
-                        Image("intro_cup")
-                            .frame(width: UIScreen.main.bounds.width-40)
+                        Image("intro_cup").resizable()
                             .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.width - 40)
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(0)
-                    VStack(spacing: 10) {
-                        Spacer()
-                        Text("미션이 담긴 펄이\n각각 랜덤으로 나와요")
-                            .foregroundColor(.white)
-                            .font(.system(size: 28, weight: .bold))
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(4)
+                    VStack(spacing: 40) {
+//                        Text("미션이 담긴 펄이\n각각 랜덤으로 나와요")
+//                            .foregroundColor(.white)
+//                            .font(.system(size: 28, weight: .bold))
+//                            .multilineTextAlignment(.center)
+//                            .lineSpacing(4)
                         Image("intro_balls")
-                            .frame(width: UIScreen.main.bounds.width-40)
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.width - 40)
+                           
                         Spacer()
-                            .frame(height: 200)
+                            .frame(height: 160)
                     }
                     .tag(1)
                     VStack(spacing: 40) {
