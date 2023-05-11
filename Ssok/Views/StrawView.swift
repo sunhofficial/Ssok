@@ -110,7 +110,7 @@ struct StrawView: View {
                                     .padding([.leading, .trailing], 85)
                                 
                                 Button {
-                                    count = 2
+                                    count = 3
                                 } label: {
                                     Text("바로 빨대꼽기")
                                         .foregroundColor(.white)
