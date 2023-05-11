@@ -66,9 +66,9 @@ struct StrawView: View {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
                     if count < 3 {
-                        Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
+                        Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
-                        Image("finaldrink").position(CGPoint(x:wid/2, y: 532.5))
+                        Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                     }
                     
                     BottleView()
@@ -89,18 +89,24 @@ struct StrawView: View {
                                     .frame(width: 24, height: 24)
                             } else {
                                 // 초기화면
+                                Image("ShakeIcon")
+                                    .padding(.bottom, -10)
+                                    .rotationEffect(Angle(degrees: 10.21))
                                 Text("버블티를 흔들어주세요!")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
                                 
-                                Text("팀원들, 장소 그리고 벌틱들이\n섞이는 중이에요")
+                                Text("팀원들, 장소 그리고 벌칙들이\n섞이는 중이에요")
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
-                                    .font(.system(size: 15))
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .padding([.top, .bottom], -10)
                                 
                                 ProgressView(value: progress)
                                     .tint(Color("Bg_bottom2"))
-                                    .background(Color("Bg"))
+                                    .background(.white)
+                                    .cornerRadius(8)
+                                    .scaleEffect(x: 1, y: 2)
                                     .padding([.leading, .trailing], 85)
                                 
                                 Button {
@@ -108,7 +114,7 @@ struct StrawView: View {
                                 } label: {
                                     Text("바로 빨대꼽기")
                                         .foregroundColor(.white)
-                                        .font(.system(size: 13))
+                                        .font(.system(size: 13, weight: .bold))
                                         .underline(true, color: .white)
                                 }
                             }
@@ -130,7 +136,7 @@ struct StrawView: View {
                             }
                             .frame(width: 28)
                             .opacity(isAnimation ? 1 : 0)
-                            .offset(y: isAnimation ? -UIScreen.main.bounds.height : 0)
+                            .offset(y: isAnimation ? -hei+20 : 20)
                             .animation(.easeInOut.delay(0.5), value: isAnimation)
                         }
                         .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
@@ -138,9 +144,9 @@ struct StrawView: View {
                     // 빨대
                     if isAnimation {
 
-                        Image("Straw").opacity(0.8).transition(.move(edge: .top))
+                        Image("Straw").opacity(0.8).offset(y:20).transition(.move(edge: .top))
                     }
-                    Image("cutcup").position(x: wid/2 ,y:349.05)
+                    Image("cutcup").position(x: wid/2 ,y:374.05)
 
 //                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
                     //Dim
