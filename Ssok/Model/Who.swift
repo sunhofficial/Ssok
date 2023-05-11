@@ -7,6 +7,8 @@
 
 import Foundation
 
+let whoArray = Array(whoList.keys) + Array(whoList.values)
+
 let whoList: [String : String] = [
     "Junyoo":"준유",
     "Jay":"제이",
