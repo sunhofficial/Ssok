@@ -50,9 +50,8 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    
     @State var count: Int = 0
-    
+    @State var progress = 0.5
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
      
@@ -76,7 +75,9 @@ struct StrawView: View {
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
+                            
                             if count >= 2 {
+                                // 뭔가 모션을 했을 때 여기로 옴
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
@@ -88,17 +89,29 @@ struct StrawView: View {
                                     .foregroundColor(.white)
                                     .frame(width: 24, height: 24)
                             } else {
-                                Text("컵을 흔들어서 버블티를 섞어주세요")
+                                // 요기는 초기화면
+                                Text("버블티를 흔들어주세요!")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
+                                
+                                Text("팀원들, 장소 그리고 벌틱들이\n섞이는 중이에요")
                                     .multilineTextAlignment(.center)
-                                    .lineSpacing(4)
-                                Image("shakearrow")
-                                    .resizable()
-                                    .bold()
                                     .foregroundColor(.white)
-                                    .frame(width: 73, height: 18)
-                                    
+                                    .font(.system(size: 15))
+                                
+                                ProgressView(value: progress)
+                                    .tint(Color("Bg_bottom2"))
+                                    .background(Color("Bg"))
+                                    .padding([.leading, .trailing], 85)
+                                
+                                Button {
+                                    print("빨대 tap!")
+                                } label: {
+                                    Text("바로 빨대꼽기")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 13))
+                                        .underline(true, color: .white)
+                                }
                             }
                         }
                         .opacity(isAnimation ? 0 : 1)
