@@ -220,6 +220,7 @@ extension StrawView {
         } label: {
             Image(systemName: "chevron.backward")
                 .foregroundColor(.white)
+                .bold()
         }
     }
     
