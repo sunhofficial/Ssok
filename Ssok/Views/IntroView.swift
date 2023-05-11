@@ -62,13 +62,10 @@ struct IntroView: View {
                     
                         Spacer()
                             .frame(height: 160)
+
                     }
                     .tag(0)
-                    .onAppear{
-                        
-                        isfirst = true
-                        
-                    }
+
                     
                     VStack(spacing: 40) {
                         Image("Intro2")
@@ -92,7 +89,11 @@ struct IntroView: View {
                     .tag(2)
                     
                 }
+                .onChange(of: selectedPage, perform:  { index in
+                        isfirst = true
+                })
                 .tabViewStyle(.page(indexDisplayMode: .never))
+       
                 if selectedPage == 2{
                     NavigationLink(destination: AddMemberView()) {
                         Text("시작하기").foregroundColor(.white)
@@ -122,6 +123,7 @@ extension IntroView {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "hideTutorial")
     }
+    
     
 }
 
