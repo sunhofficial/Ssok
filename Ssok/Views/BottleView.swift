@@ -167,7 +167,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         if let accelerometerData = motionmanager?.accelerometerData {
             physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 20 , dy: accelerometerData.acceleration.y * 10)
 
-            if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 {
+            if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 || accelerometerData.acceleration.y > 0.2 {
                 motionstate = 1
 
             } else {
