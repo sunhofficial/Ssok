@@ -225,7 +225,10 @@ extension StrawView {
 }
 
 struct StrawView_Previews: PreviewProvider {
+    static let random = RandomMember()
+    
     static var previews: some View {
         StrawView()
+            .environmentObject(random)
     }
 }
