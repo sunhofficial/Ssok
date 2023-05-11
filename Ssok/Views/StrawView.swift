@@ -51,7 +51,7 @@ struct StrawView: View {
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
     @State var count: Int = 0
-    @State var progress = 0.5
+    @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
      
@@ -65,7 +65,7 @@ struct StrawView: View {
                 ZStack {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
-                    if count < 2 {
+                    if count < 3 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 532.5))
@@ -75,9 +75,8 @@ struct StrawView: View {
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
-                            
-                            if count >= 2 {
-                                // 뭔가 모션을 했을 때 여기로 옴
+                            if count >= 3 {
+                                // 흔들기 완료 후 여기
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
@@ -89,7 +88,7 @@ struct StrawView: View {
                                     .foregroundColor(.white)
                                     .frame(width: 24, height: 24)
                             } else {
-                                // 요기는 초기화면
+                                // 초기화면
                                 Text("버블티를 흔들어주세요!")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
@@ -198,6 +197,7 @@ struct StrawView: View {
                 }
             }.onShake {
                 count += 1
+                progress += 0.334
             }
             .offset(y: -44)
         }else {
