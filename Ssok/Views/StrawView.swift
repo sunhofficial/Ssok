@@ -68,10 +68,6 @@ struct StrawView: View {
                     
                     if count < 2 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
-                    } else if (2 <= count) && (count < 5){
-                        Image("seconddrink").position(CGPoint(x:wid/2, y: 532.5))
-                    } else if (5 <= count) && (count < 8){
-                        Image("thirddrink").position(CGPoint(x:wid/2, y: 532.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 532.5))
                     }
@@ -80,7 +76,7 @@ struct StrawView: View {
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
-                            if count >= 8 {
+                            if count >= 2 {
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
@@ -169,16 +165,13 @@ struct StrawView: View {
                     )
                 }
                 .onTapGesture {
-                    if count >= 8{
+                    if count >= 2{
                         withAnimation(.easeInOut(duration: 1)) {
                             isAnimation = true
                         }
                         withAnimation(.easeInOut(duration: 1).delay(3)) {
                             getFirstBall = true
                         }
-                    }
-                    withAnimation(.easeInOut(duration: 1).delay(3)) {
-                        getFirstBall = true
                     }
 
                 }
