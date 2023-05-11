@@ -95,8 +95,11 @@ struct EndingView: View {
 }
 
 struct EndingView_Previews: PreviewProvider {
+    static let random = RandomMember()
+    
     static var previews: some View {
         EndingView()
+            .environmentObject(random)
     }
 }
 
