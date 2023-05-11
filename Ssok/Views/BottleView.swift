@@ -42,7 +42,6 @@ struct ColType {
 class Pearls : SKSpriteNode {}
 
 class Bottle: SKScene, SKPhysicsContactDelegate {
-
     var motionstate = 0
     //Declare CoreMotion
     var motionmanager : CMMotionManager?

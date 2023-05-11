@@ -65,7 +65,7 @@ struct StrawView: View {
                 ZStack {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
-                    if count < 3 {
+                    if count < 2 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -100,7 +100,7 @@ struct StrawView: View {
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.white)
                                     .font(.system(size: 15, weight: .semibold))
-                                    .padding([.top, .bottom], -10)
+                                    .padding(.top, -10)
                                 
                                 ProgressView(value: progress)
                                     .tint(Color("Bg_bottom2"))
@@ -110,7 +110,7 @@ struct StrawView: View {
                                     .padding([.leading, .trailing], 85)
                                 
                                 Button {
-                                    count = 3
+                                    count = 2
                                 } label: {
                                     Text("바로 빨대꼽기")
                                         .foregroundColor(.white)
@@ -201,7 +201,8 @@ struct StrawView: View {
                         Rectangle().fill(.opacity(0))
                     }.scaledToFit()
                 }
-            }.onShake {
+            }
+            .onShake {
                 count += 1
                 progress += 0.334
             }
