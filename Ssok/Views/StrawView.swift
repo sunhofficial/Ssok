@@ -113,15 +113,6 @@ struct StrawView: View {
                                     .cornerRadius(8)
                                     .scaleEffect(x: 1, y: 2)
                                     .padding([.leading, .trailing], 85)
-                                
-                                Button {
-                                    count = 3
-                                } label: {
-                                    Text("바로 빨대꼽기")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 13, weight: .bold))
-                                        .underline(true, color: .white)
-                                }
                             }
                         }
                         .opacity(isAnimation ? 0 : 1)
@@ -206,7 +197,7 @@ struct StrawView: View {
                     )
                 }
                 .onTapGesture {
-                    if count >= 2{
+                    if count > 2 {
                         withAnimation(.easeInOut(duration: 1)) {
                             isAnimation = true
                         }
