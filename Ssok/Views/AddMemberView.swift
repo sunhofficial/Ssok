@@ -35,7 +35,7 @@ struct AddMemberView: View {
                         .frame(height: 40)
                         .overlay {
                             RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                                .stroke(lineWidth: 1)
+                                .stroke(lineWidth: 0.5)
                                 .stroke(Color(.systemGray6))
                         }
                         .accentColor(.orange)
