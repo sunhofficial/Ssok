@@ -13,12 +13,7 @@ struct AddMemberView: View {
     
     // MARK: - Properties
     
-    @State private var memberName: String = ""
-    @State private var isAlertShowing: Bool = false
-    @State private var isTextFieldEmtpy: Bool = true
-    @State private var isNextButtonDisabled: Bool = false
-    @State private var members: [Member] = []
-    @State private var filteredData: [String] = []
+    @StateObject private var viewModel  = AddMemberViewModel()
     
     @FocusState private var isFocused: Bool
     
@@ -29,7 +24,7 @@ struct AddMemberView: View {
             VStack {
                 // 추가 textField
                 HStack {
-                    TextField("게임 인원을 입력해 주세요", text: $memberName)
+                    TextField("닉네임을 입력해주세요.", text: $viewModel.memberName)
                         .focused($isFocused)
                         .padding(.leading, 10)
                         .frame(height: 40)
@@ -40,41 +35,41 @@ struct AddMemberView: View {
                         }
                         .accentColor(.orange)
                         .onSubmit {
-                            if memberName == "" {
-                                isTextFieldEmtpy = true
+                            if viewModel.memberName == "" {
+                                viewModel.isTextFieldEmtpy = true
                             } else {
-                                isTextFieldEmtpy = false
-                                plusButtonDidTap()
+                                viewModel.isTextFieldEmtpy = false
+                                viewModel.plusButtonDidTap()
                             }
                         }
-                        .onChange(of: memberName) { newValue in
+                        .onChange(of: viewModel.memberName) { newValue in
                             if newValue == "" {
-                                isTextFieldEmtpy = true
+                                viewModel.isTextFieldEmtpy = true
                             } else {
-                                isTextFieldEmtpy = false
+                                viewModel.isTextFieldEmtpy = false
                             }
-                            filterData()
+                            viewModel.filterData()
                         }
                         .padding(.leading, 15)
                     Button {
-                        plusButtonDidTap()
+                        viewModel.plusButtonDidTap()
                     } label: {
-                        if isTextFieldEmtpy {
+                        if viewModel.isTextFieldEmtpy {
                             Image(systemName: "plus.circle.fill")
                                 .imageScale(.large)
                                 .foregroundColor(Color(.systemGray5))
                         } else {
                             Image(systemName: "plus.circle.fill")
                                 .imageScale(.large)
-                                .foregroundColor(Color("Bg_bottom2"))
+                                .foregroundColor(.orange)
                             
                         }
                     }
                     .padding(.trailing, 15)
-                    .disabled(isTextFieldEmtpy)
-                    .alert("인원은 최대 6명까지 가능합니다.", isPresented: $isAlertShowing) {
+                    .disabled(viewModel.isTextFieldEmtpy)
+                    .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isAlertShowing) {
                         Button("OK") {
-                            isAlertShowing = false
+                            viewModel.isAlertShowing = false
                             isFocused = false
                         }
                     } message: {
@@ -85,15 +80,15 @@ struct AddMemberView: View {
                 
                 List {
                     Section {
-                        if filteredData.isEmpty {
+                        if $viewModel.filteredData.isEmpty {
                             Text("추천 아카데미 러너가 없습니다.")
                                 .font(.system(size: 14))
                                 .foregroundColor(Color(.lightGray))
                         } else {
-                            ForEach(filteredData.prefix(members.isEmpty ? 5 : 3), id: \.self) { data in
+                            ForEach(viewModel.filteredData.prefix($viewModel.members.isEmpty ? 5 : 3), id: \.self) { data in
                                 Button(action: {
-                                    memberName = data
-                                    plusButtonDidTap()
+                                    viewModel.memberName = data
+                                    viewModel.plusButtonDidTap()
                                 }) {
                                     Text(data)
                                 }
@@ -104,17 +99,17 @@ struct AddMemberView: View {
                             .font(.system(size: 13))
                             .foregroundColor(Color(.darkGray))
                     }
-                    if !members.isEmpty {
+                    if !$viewModel.members.isEmpty {
                         Section {
-                            ForEach(members) { member in
+                            ForEach(viewModel.members) { member in
                                 HStack {
                                     Text("🧋")
                                     Text(member.name)
                                 }
                             }
-                            .onDelete(perform: removeMembers)
+                            .onDelete(perform: viewModel.removeMembers)
                         } header: {
-                            Text("게임 인원")
+                            Text("같이 할 사람들")
                                 .font(.system(size: 13))
                                 .foregroundColor(Color(.darkGray))
                         } footer: {
@@ -138,12 +133,12 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    random.members = members
-                    random.randomMemberName = setRandomMember(members)
+                    random.members = viewModel.members
+                    random.randomMemberName = setRandomMember(viewModel.members)
                 })
-                .disabled(isNextButtonDisabled)
+                .disabled(viewModel.isNextButtonDisabled)
             }
-            .navigationTitle("게임 인원")
+            .navigationTitle("같이 할 사람들")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarBackButtonHidden()
             .ignoresSafeArea(.keyboard)
@@ -155,62 +150,11 @@ struct AddMemberView: View {
             }
         }
         .onAppear {
-            setMemberData()
-            setNextButtonState()
+            viewModel.setMemberData()
+            viewModel.setNextButtonState()
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
         }
-    }
-}
-
-extension AddMemberView {
-    
-    // MARK: - Custom Methods
-    
-    private func setMemberData() {
-        if let data = UserDefaults.standard.value(forKey: "members") as? Data {
-            let decodedData = try? PropertyListDecoder().decode(Array<Member>.self, from: data)
-            members = decodedData ?? []
-        }
-    }
-    
-    private func appendMembers(_ memberName: String) {
-        members.append(Member(name: memberName))
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-        setNextButtonState()
-    }
-    
-    private func removeMembers(at offsets: IndexSet) {
-        members.remove(atOffsets: offsets)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(members), forKey: "members")
-        setNextButtonState()
-    }
-    
-    private func plusButtonDidTap() {
-        if members.count >= 6 {
-            isAlertShowing = true
-        } else {
-            appendMembers(memberName)
-        }
-        memberName = ""
-    }
-    
-    private func setNextButtonState() {
-        if members.count == 0 {
-            isNextButtonDisabled = true
-        } else { isNextButtonDisabled = false }
-    }
-    
-    private func filterData() {
-        filteredData = whoArray.filter { data in
-            data.localizedCaseInsensitiveContains(memberName)
-        }
-    }
-}
-
-struct AddMemberView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMemberView()
     }
 }
