@@ -77,16 +77,13 @@ struct StrawView: View {
                         VStack(spacing: 24) {
                             if count >= 3 {
                                 // 흔들기 완료 후 여기
+                                Image("PutStrawIcon")
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
-                                Image(systemName: "arrow.down")
-                                    .resizable()
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .frame(width: 24, height: 24)
+                                    .padding(.top, -10)
                             } else {
                                 // 초기화면
                                 Image("ShakeIcon")
