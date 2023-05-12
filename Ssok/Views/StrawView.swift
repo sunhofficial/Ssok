@@ -72,7 +72,7 @@ struct StrawView: View {
                     }
                     
                     BottleView()
-                    if count >= 3{
+                    if count > 2 {
                         Image("Straw").opacity(0.8).offset(y:20)
                         //                        .transition(.move(edge: .bottom))
                             .offset(y: isAnimation ? hei/2-425 : -hei+345)
