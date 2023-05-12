@@ -72,12 +72,20 @@ struct StrawView: View {
                     }
                     
                     BottleView()
+                    if count >= 3{
+                        Image("Straw").opacity(0.8).offset(y:20)
+                        //                        .transition(.move(edge: .bottom))
+                            .offset(y: isAnimation ? hei/2-425 : -hei+345)
+                            .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+                    }
                     VStack(spacing: 24) {
                         // 가이드
+                        
                         VStack(spacing: 24) {
                             if count >= 3 {
                                 // 흔들기 완료 후 여기
                                 Image("PutStrawIcon")
+                                    .padding(.top, 100)
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
@@ -134,15 +142,18 @@ struct StrawView: View {
                             .frame(width: 28)
                             .opacity(isAnimation ? 1 : 0)
                             .offset(y: isAnimation ? -hei+20 : 20)
-                            .animation(.easeInOut.delay(0.5), value: isAnimation)
+                            .animation(.easeInOut.delay(1.5), value: isAnimation)
                         }
                         .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
                     }
                     // 빨대
-                    if isAnimation {
-
-                        Image("Straw").opacity(0.8).offset(y:20).transition(.move(edge: .top))
-                    }
+//                    if isAnimation {
+                    
+//                    Image("Straw").opacity(0.8).offset(y:20)
+////                        .transition(.move(edge: .bottom))
+//                        .offset(y: isAnimation ? hei/2-425 : -hei+345)
+//                        .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+//                    }
                     Image("cutcup").position(x: wid/2 ,y:374.05)
 
 //                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
