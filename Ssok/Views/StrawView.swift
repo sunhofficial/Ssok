@@ -169,7 +169,12 @@ struct StrawView: View {
                         getNextBall: $getSecondBall,
                         ballTitle: "Who?",
                         contents: random.randomMemberName,
-                        pearlImage: "Back_pearl1"
+                        pearlImage: "Back_pearl1",
+                        c0x: 0.25,
+                        c0y: 0,
+                        c1x: 0.75,
+                        c1y: 1,
+                        duration: 1
                     )
 
                     // 두 번째 볼
@@ -178,7 +183,12 @@ struct StrawView: View {
                         getNextBall: $getThirdBall,
                         ballTitle: "Where?",
                         contents: Where,
-                        pearlImage: "Back_pearl2"
+                        pearlImage: "Back_pearl2",
+                        c0x: 0,
+                        c0y: 1,
+                        c1x: 1,
+                        c1y: 0,
+                        duration: 2
                     )
 
                     // 세 번째 볼
@@ -187,7 +197,12 @@ struct StrawView: View {
                         getNextBall: $getThirdBall,
                         ballTitle: "What?",
                         contents: What,
-                        pearlImage: "Back_pearl1"
+                        pearlImage: "Back_pearl1",
+                        c0x: 0,
+                        c0y: 1,
+                        c1x: 1,
+                        c1y: 0,
+                        duration: 2
                     )
                 }
                 .onTapGesture {
@@ -195,7 +210,7 @@ struct StrawView: View {
                         withAnimation(.easeInOut(duration: 1)) {
                             isAnimation = true
                         }
-                        withAnimation(.easeInOut(duration: 1).delay(3)) {
+                        withAnimation(.timingCurve(0.25, 0, 0.75, 1, duration: 1).delay(3)) {
                             getFirstBall = true
                         }
                     }

@@ -13,6 +13,7 @@ struct IntroView: View {
     
     @State var selectedPage: Int = 0
     @State var isTutorialHidden: Bool = false
+    @State var isfirst: Bool = false
     
     var body: some View {
         NavigationView {
@@ -45,54 +46,73 @@ struct IntroView: View {
                 }
                 .edgesIgnoringSafeArea(.all)
                 TabView(selection: $selectedPage) {
-                    VStack(spacing: 40) {
-                        Image("intro_cup").resizable()
+                    VStack(spacing: 25) {
+                        Image("Introtext1").resizable().aspectRatio(contentMode: .fit
+                        ).frame(width: wid,height: 186.5)
+                        
+                        Image("sign").resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width - 40)
+                            .frame(width: wid - 190)
+                            .rotationEffect(
+                                Angle(
+                                    degrees: isfirst ? -30 : 30
+                                )
+                            )
+                            .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
+                    
                         Spacer()
                             .frame(height: 160)
+
                     }
                     .tag(0)
+
+                    
                     VStack(spacing: 40) {
-//                        Text("미션이 담긴 펄이\n각각 랜덤으로 나와요")
-//                            .foregroundColor(.white)
-//                            .font(.system(size: 28, weight: .bold))
-//                            .multilineTextAlignment(.center)
-//                            .lineSpacing(4)
-                        Image("intro_balls")
+                        Image("Intro2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width - 40)
+                            .frame(width: UIScreen.main.bounds.width - 74)
                            
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(1)
+                    
                     VStack(spacing: 40) {
-                        Image("intro_last")
+                        Image("Intro3")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.width - 32)
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(2)
+                    
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                NavigationLink(destination: AddMemberView()) {
-                    Text("시작하기")
-                        .foregroundColor(.white)
-                        .frame(width: 205, height: 50)
-                        .background(selectedPage == 2 ? Color("BrownBlack") : Color("Bg"))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 20)
-                }
-                .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView()
+                .onChange(of: selectedPage, perform:  { index in
+                        isfirst = true
                 })
-                .disabled(!(selectedPage == 2 ))
+                .tabViewStyle(.page(indexDisplayMode: .never))
+       
+                if selectedPage == 2{
+                    NavigationLink(destination: AddMemberView()) {
+                        Text("시작하기").foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                            .background(Color("Bg_bottom2"))
+                            .cornerRadius(12)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        hideTutorialView()
+                    })
+                }
             }
         }
         .onAppear {
             isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
-            if isTutorialHidden { selectedPage = 2 }
+            if isTutorialHidden {
+                selectedPage = 2
+            }
         }
     }
 }
@@ -103,6 +123,7 @@ extension IntroView {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "hideTutorial")
     }
+    
     
 }
 

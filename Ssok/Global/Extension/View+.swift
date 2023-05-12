@@ -23,21 +23,22 @@ extension View {
             memberName = members.randomElement()!.name
         }
         
-//        // 한글 조사 입력
-//        guard let text = memberName.last else { return memberName }
-//
-//        let val = UnicodeScalar(String(text))?.value
-//        guard let value = val else { return memberName }
-//        // 종성 인덱스 계산
-//        let index = (value - 0xac00) % 28
-//        // 조사 판별 후 리턴
-//        if index == 0 {
-//            return memberName + "가"
-//        } else {
-//            return memberName + "이"
-//        }
+        // 영어 이름 바꾸기
+        if let name = whoList[memberName] {
+            memberName = name
+        }
         
-        return memberName
+        // 한글 조사 입력
+        guard let text = memberName.last else { return memberName }
         
+        let val = UnicodeScalar(String(text))?.value
+        guard let value = val else { return memberName }
+        
+        let index = (value - 0xac00) % 28
+        if index == 0 {
+            return memberName + "가"
+        } else {
+            return memberName + "이"
+        }
     }
 }
