@@ -146,6 +146,7 @@ struct AddMemberView: View {
             .navigationTitle("게임 인원")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarBackButtonHidden()
+            .ignoresSafeArea(.keyboard)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
