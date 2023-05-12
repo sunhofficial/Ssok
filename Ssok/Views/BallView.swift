@@ -7,6 +7,8 @@ struct BallView: View {
     
     @Binding var getCurrentBall: Bool
     @Binding var getNextBall: Bool
+    @Binding var st: Bool
+    @State var stBool: Bool
     @State var ballTitle: String
     @State var contents: String
     @State var pearlImage: String = "Back_pearl1"
@@ -40,6 +42,9 @@ struct BallView: View {
                 withAnimation(.easeInOut(duration: 1)) {
                     getCurrentBall = false
                     getNextBall = true
+                }
+                withAnimation(.linear) {
+                    st = stBool
                 }
             }
         }
