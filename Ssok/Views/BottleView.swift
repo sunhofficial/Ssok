@@ -18,8 +18,7 @@ struct BottleView: View {
     
     var body: some View {
         ZStack{
-            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit)
-            
+            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit).offset(y:20)
         }.ignoresSafeArea(.all)
         
     }
@@ -43,7 +42,6 @@ struct ColType {
 class Pearls : SKSpriteNode {}
 
 class Bottle: SKScene, SKPhysicsContactDelegate {
-
     var motionstate = 0
     //Declare CoreMotion
     var motionmanager : CMMotionManager?
@@ -147,7 +145,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
         //Cuphead appearance
         let Cuphead = SKSpriteNode(imageNamed: "Cuphead")
-        Cuphead.position = CGPoint(x: frame.midX, y:frame.maxY-303)
+        Cuphead.position = CGPoint(x: frame.midX, y:frame.maxY-323)
         Cuphead.anchorPoint = CGPoint(x: 0.5, y: 1)
         addChild(Cuphead)
         

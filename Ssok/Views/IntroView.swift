@@ -59,6 +59,9 @@ struct IntroView: View {
                                 )
                             )
                             .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
+                            .onAppear{
+                                isfirst = true
+                            }
                     
                         Spacer()
                             .frame(height: 160)

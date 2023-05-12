@@ -50,9 +50,8 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    
     @State var count: Int = 0
-    
+    @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
      
@@ -67,38 +66,62 @@ struct StrawView: View {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
                     if count < 2 {
-                        Image("firstdrink").position(CGPoint(x:wid/2, y: 532.5))
+                        Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
-                        Image("finaldrink").position(CGPoint(x:wid/2, y: 532.5))
+                        Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                     }
                     
                     BottleView()
+                    if count > 2 {
+                        Image("Straw").opacity(0.8).offset(y:20)
+                        //                        .transition(.move(edge: .bottom))
+                            .offset(y: isAnimation ? hei/2-425 : -hei+345)
+                            .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+                    }
                     VStack(spacing: 24) {
                         // 가이드
+                        
                         VStack(spacing: 24) {
-                            if count >= 2 {
+                            if count >= 3 {
+                                // 흔들기 완료 후 여기
+                                Image("PutStrawIcon")
+                                    .padding(.top, 100)
                                 Text("빨대를 꼽고 펄을 뽑아주세요")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
-                                Image(systemName: "arrow.down")
-                                    .resizable()
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .frame(width: 24, height: 24)
+                                    .padding(.top, -10)
                             } else {
-                                Text("컵을 흔들어서 버블티를 섞어주세요")
+                                // 초기화면
+                                Image("ShakeIcon")
+                                    .padding(.bottom, -10)
+                                    .rotationEffect(Angle(degrees: 10.21))
+                                Text("버블티를 흔들어주세요!")
                                     .foregroundColor(.white)
                                     .font(.system(size: 24, weight: .bold))
+                                
+                                Text("팀원들, 장소 그리고 벌칙들이\n섞이는 중이에요")
                                     .multilineTextAlignment(.center)
-                                    .lineSpacing(4)
-                                Image("shakearrow")
-                                    .resizable()
-                                    .bold()
                                     .foregroundColor(.white)
-                                    .frame(width: 73, height: 18)
-                                    
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .padding(.top, -10)
+                                
+                                ProgressView(value: progress)
+                                    .tint(Color("Bg_bottom2"))
+                                    .background(.white)
+                                    .cornerRadius(8)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding([.leading, .trailing], 85)
+                                
+                                Button {
+                                    count = 3
+                                } label: {
+                                    Text("바로 빨대꼽기")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 13, weight: .bold))
+                                        .underline(true, color: .white)
+                                }
                             }
                         }
                         .opacity(isAnimation ? 0 : 1)
@@ -118,17 +141,20 @@ struct StrawView: View {
                             }
                             .frame(width: 28)
                             .opacity(isAnimation ? 1 : 0)
-                            .offset(y: isAnimation ? -UIScreen.main.bounds.height : 0)
-                            .animation(.easeInOut.delay(0.5), value: isAnimation)
+                            .offset(y: isAnimation ? -hei+20 : 20)
+                            .animation(.easeInOut.delay(1.5), value: isAnimation)
                         }
                         .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
                     }
                     // 빨대
-                    if isAnimation {
-
-                        Image("Straw").opacity(0.8).transition(.move(edge: .top))
-                    }
-                    Image("cutcup").position(x: wid/2 ,y:349.05)
+//                    if isAnimation {
+                    
+//                    Image("Straw").opacity(0.8).offset(y:20)
+////                        .transition(.move(edge: .bottom))
+//                        .offset(y: isAnimation ? hei/2-425 : -hei+345)
+//                        .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+//                    }
+                    Image("cutcup").position(x: wid/2 ,y:374.05)
 
 //                    Image("cutdrinks").position(x: wid/2, y: 534.6).opacity(0.4)
                     //Dim
@@ -198,8 +224,10 @@ struct StrawView: View {
                         Rectangle().fill(.opacity(0))
                     }.scaledToFit()
                 }
-            }.onShake {
+            }
+            .onShake {
                 count += 1
+                progress += 0.334
             }
             .offset(y: -44)
         }else {
@@ -216,6 +244,7 @@ extension StrawView {
         } label: {
             Image(systemName: "chevron.backward")
                 .foregroundColor(.white)
+                .bold()
         }
     }
     
