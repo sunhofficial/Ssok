@@ -66,7 +66,7 @@ struct AddMemberView: View {
                         } else {
                             Image(systemName: "plus.circle.fill")
                                 .imageScale(.large)
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color("Bg_bottom2"))
                             
                         }
                     }
@@ -134,7 +134,7 @@ struct AddMemberView: View {
                         .foregroundColor(.white)
                         .fontWeight(.medium)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                        .background(Color.orange)
+                        .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
@@ -150,7 +150,7 @@ struct AddMemberView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color("Bg_bottom2"))
             }
         }
         .onAppear {
