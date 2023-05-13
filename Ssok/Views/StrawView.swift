@@ -19,6 +19,8 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
+    @State var currentgravity = 0
+    @State var previousgravity = 0
     @State var detec: Int = 0
     @State var gravityx: Double = 0
     @State var progress = 0.0
@@ -35,14 +37,14 @@ struct StrawView: View {
                 ZStack {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
-                    if detec < 50 {
+                    if detec < 25 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                     }
                     
                     BottleView()
-                    if detec >= 50 {
+                    if detec >= 25 {
                         Image("Straw").opacity(0.8).offset(y:20)
                         //                        .transition(.move(edge: .bottom))
                             .offset(y: isAnimation ? hei/2-425 : -hei+345)
@@ -52,7 +54,7 @@ struct StrawView: View {
                         // 가이드
                         
                         VStack(spacing: 24) {
-                            if detec >= 50 {
+                            if detec >= 25 {
                                 // 흔들기 완료 후 여기
                                 Image("PutStrawIcon")
                                     .padding(.top, 100)
@@ -85,7 +87,7 @@ struct StrawView: View {
                                     .padding([.leading, .trailing], 85)
                                 
                                 Button {
-                                    detec = 50
+                                    detec = 25
                                 } label: {
                                     Text("바로 빨대꼽기")
                                         .foregroundColor(.white)
@@ -176,7 +178,7 @@ struct StrawView: View {
                     )
                 }
                 .onTapGesture {
-                    if detec >= 50{
+                    if detec >= 25{
                         withAnimation(.easeInOut(duration: 1)) {
                             isAnimation = true
                         }
@@ -200,15 +202,28 @@ struct StrawView: View {
                     motionmanager.deviceMotionUpdateInterval = 0.2
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
                         gravityx = data?.gravity.x ?? 0
-                        if gravityx > 0.3 || gravityx < -0.3 {
-                            if detec != 50 {
+                        
+                        if gravityx > 0.3 {
+                            currentgravity = 1
+                        } else if gravityx <= 0.3 && gravityx >= -0.3 {
+                            currentgravity = 0
+                        } else if gravityx < -0.3 {
+                            currentgravity = 2
+                        }
+                        
+                        if currentgravity == previousgravity && previousgravity != 0 {
+                            previousgravity = currentgravity
+                        } else if currentgravity != previousgravity{
+                            if detec != 25 {
                                 detec += 1
                                 print(detec)
-                                progress += 0.02
+                                progress += 0.04
                                 print(progress)
                             }
+                            previousgravity = currentgravity
                         }
                     }
+                    
                 }
             }
             .offset(y: -44)

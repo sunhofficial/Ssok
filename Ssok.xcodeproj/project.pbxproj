@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1001C4602A0F311000F8DBDD /* WalkingCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1001C45F2A0F311000F8DBDD /* WalkingCountView.swift */; };
+		10A3072A2A0FE20A00B85D4E /* WalkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A307292A0FE20900B85D4E /* WalkingView.swift */; };
 		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		1001C45F2A0F311000F8DBDD /* WalkingCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingCountView.swift; sourceTree = "<group>"; };
+		10A307292A0FE20900B85D4E /* WalkingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingView.swift; sourceTree = "<group>"; };
 		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BubblesApp.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		C74982A52A0394DF00228FD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				10A307292A0FE20900B85D4E /* WalkingView.swift */,
 				1001C45F2A0F311000F8DBDD /* WalkingCountView.swift */,
 				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
 				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
@@ -244,6 +247,7 @@
 				7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */,
 				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
+				10A3072A2A0FE20A00B85D4E /* WalkingView.swift in Sources */,
 				7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
 				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
@@ -378,6 +382,7 @@
 				DEVELOPMENT_TEAM = 6AGS8HZN55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -407,6 +412,7 @@
 				DEVELOPMENT_TEAM = 6AGS8HZN55;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

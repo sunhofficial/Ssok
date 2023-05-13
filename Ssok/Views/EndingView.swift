@@ -19,7 +19,7 @@ struct EndingView: View {
     @State var moneDropping: CGFloat = -270
     @State var rotateMoney: CGFloat = 0
     @State var showingBall = false
-    
+    @State var next = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
@@ -28,7 +28,10 @@ struct EndingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        if !st2{
+        if next {
+            WalkingView()
+        }
+        else if !st2{
             ZStack{
                 GeometryReader{proxy in
                     let size = proxy.size
@@ -85,10 +88,21 @@ struct EndingView: View {
                     .cornerRadius(12)
 //                    .offset(y:363)
                     .position(x:wid/2, y:hei-75)
+                Button(action: {
+                    next = true
+                }){
+                    Text("다음으로")
+                }.foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                    .background(Color("EndingButton"))
+                    .cornerRadius(12)
+//                    .offset(y:363)
+                    .position(x:wid/2, y:hei-135)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-        } else {
+        } else if st2 {
             StrawView()
         }
     }

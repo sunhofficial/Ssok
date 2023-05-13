@@ -181,7 +181,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
         if contact.bodyA.node?.name == "ball" {
             if motionstate == 1{
-                HapticManager.instance.impact(style: .light)
+                HapticManager.instance.impact(style: .medium)
             }
         }
     }
