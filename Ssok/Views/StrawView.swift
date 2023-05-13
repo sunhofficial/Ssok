@@ -6,51 +6,21 @@
 //
 
 import SwiftUI
-
-// The notification we'll send when a shake gesture happens.
-extension UIDevice {
-    static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
-}
-
-//  Override the default behavior of shake gestures to send our notification instead.
-extension UIWindow {
-     open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            NotificationCenter.default.post(name: UIDevice.deviceDidShakeNotification, object: nil)
-        }
-     }
-}
-
-// A view modifier that detects shaking and calls a function of our choosing.
-struct DeviceShakeViewModifier: ViewModifier {
-    let action: () -> Void
-
-    func body(content: Content) -> some View {
-        content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
-                action()
-            }
-    }
-}
-
-// A View extension to make the modifier easier to use.
-extension View {
-    func onShake(perform action: @escaping () -> Void) -> some View {
-        self.modifier(DeviceShakeViewModifier(action: action))
-    }
-}
-
+import CoreMotion
+let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
 struct StrawView: View {
     
     @State var st: Bool = false
     
+    let motionmanager = CMMotionManager()
+    
     @State var isAnimation: Bool = false
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var count: Int = 0
+    @State var detec: Int = 0
+    @State var gravityx: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
@@ -65,14 +35,14 @@ struct StrawView: View {
                 ZStack {
                     Rectangle().fill(LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom)).ignoresSafeArea()
                     
-                    if count < 2 {
+                    if detec < 50 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                     }
                     
                     BottleView()
-                    if count > 2 {
+                    if detec >= 50 {
                         Image("Straw").opacity(0.8).offset(y:20)
                         //                        .transition(.move(edge: .bottom))
                             .offset(y: isAnimation ? hei/2-425 : -hei+345)
@@ -82,7 +52,7 @@ struct StrawView: View {
                         // 가이드
                         
                         VStack(spacing: 24) {
-                            if count >= 3 {
+                            if detec >= 50 {
                                 // 흔들기 완료 후 여기
                                 Image("PutStrawIcon")
                                     .padding(.top, 100)
@@ -115,7 +85,7 @@ struct StrawView: View {
                                     .padding([.leading, .trailing], 85)
                                 
                                 Button {
-                                    count = 3
+                                    detec = 50
                                 } label: {
                                     Text("바로 빨대꼽기")
                                         .foregroundColor(.white)
@@ -206,7 +176,7 @@ struct StrawView: View {
                     )
                 }
                 .onTapGesture {
-                    if count >= 2{
+                    if detec >= 50{
                         withAnimation(.easeInOut(duration: 1)) {
                             isAnimation = true
                         }
@@ -224,10 +194,22 @@ struct StrawView: View {
                         Rectangle().fill(.opacity(0))
                     }.scaledToFit()
                 }
-            }
-            .onShake {
-                count += 1
-                progress += 0.334
+            }.onReceive(timer) { input in
+                
+                if motionmanager.isDeviceMotionAvailable {
+                    motionmanager.deviceMotionUpdateInterval = 0.2
+                    motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
+                        gravityx = data?.gravity.x ?? 0
+                        if gravityx > 0.3 || gravityx < -0.3 {
+                            if detec != 50 {
+                                detec += 1
+                                print(detec)
+                                progress += 0.02
+                                print(progress)
+                            }
+                        }
+                    }
+                }
             }
             .offset(y: -44)
         }else {
