@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct SpeechView: View {
+struct ContentView: View {
     @ObservedObject var speechRecognizer = SpeechRecognizer()
     @State var whattosay : String = ""
     var answer = "This is water"
+    var timer : Double = 5.0
     @State var aaanswer = "FALESe"
     var body: some View {
         VStack {
@@ -21,36 +22,26 @@ struct SpeechView: View {
             
         }
         .padding()
-//        .onReceive(speechRecognizer.transcript, perform: {
-//            newthing in
-//            whattosay = newthing
-//        })
         .onAppear{
-            speechRecognizer.resetTranscript()
+            speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
             speechRecognizer.startTranscribing()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
+            let timer = Timer.scheduledTimer(withTimeInterval: timer, repeats: true){
+                timer in
+                
                 if(answer == speechRecognizer.transcript){
                     aaanswer = "미션성공"
+                    timer.invalidate()
                 }
-                speechRecognizer.stopTranscribing()
-                
-                
-                     }
-//            isRecording = true
-     
-        }
-        
-        .onDisappear{
+                else{
+                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                    speechRecognizer.startTranscribing()
+                }
+            }
+            RunLoop.main.add(timer, forMode: .common)
             
-//            isRecording = false
         }
-       
-      
+        .onDisappear{
+            speechRecognizer.stopTranscript()
+        }
     }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

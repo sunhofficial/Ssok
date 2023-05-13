@@ -66,13 +66,7 @@ actor SpeechRecognizer: ObservableObject {
         }
     }
     
-    @MainActor func resetTranscript() {
-        Task {
-            await reset()
-        }
-    }
-    
-    @MainActor func stopTranscribing() {
+    @MainActor func stopTranscript() {
         Task {
             await reset()
         }
