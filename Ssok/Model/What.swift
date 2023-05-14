@@ -8,25 +8,9 @@
 import Foundation
 import SwiftUI
 
-let whatList = ["하늘보기","춤추기","팔굽혀펴기하기","노래틀기","신발벗기","커피 타오기","새삥춤추기","셀카찍기","틱톡찍기","물구나무서기","플랭크하기(1분)","앞머리까기","마이크로 노래하기","소리지르기","틴트바르기","입술닦아주기","틴트발라주기","큰절하기","정수리냄새 맡아주기","대자로눕기"]
-
-
 enum MissionType {
     case decibel, shake, voice, face
 }
-
-//struct Mission {
-//    let missionType: MissionType
-//    let title: String
-//    let description: String
-//    let goal: String
-//    let timer: Double?
-//    let smileRight: Float?
-//    let smileLeft: Float?
-//    let blinkLeft: Float?
-//    let blinkRight: Float?
-//    let mainColor: Color
-//}
 
 protocol MissionProtocol {
     var missionType: MissionType { get }
