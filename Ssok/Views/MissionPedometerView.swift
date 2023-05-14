@@ -22,7 +22,7 @@ struct MissionPedometerView: View {
     @State var backstate: Bool = false
 
     @State var limit: Float = 100.0
-    @State var progressColor: Color = Color("Bg_bottom2")
+    @State var progressColor: Color = Color("Progress_first")
     
     var body: some View {
         
@@ -83,6 +83,14 @@ struct MissionPedometerView: View {
                         }
                     }
                     
+                }
+                
+                if stepcount <= 50 && stepcount > 25 {
+                    progressColor = Color("Progress_second")
+                } else if stepcount <= 75 && stepcount > 50 {
+                    progressColor = Color("Progress_third")
+                } else if stepcount <= 100 && stepcount > 75 {
+                    progressColor = Color("Progress_final")
                 }
             }
             if stepcount == 100 {
