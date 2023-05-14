@@ -238,7 +238,7 @@ struct StrawView: View {
             case .shake:
                 CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!, timer: What.timer!)
             case .face:
                 CameraEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             }
