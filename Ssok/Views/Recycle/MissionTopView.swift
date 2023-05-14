@@ -14,16 +14,18 @@ struct MissionTopView: View {
     @State var title: String
     @State var description: String
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     var body: some View {
         VStack {
             ZStack {
                 Image("Ellipse")
                     .resizable()
-                    .frame(width: wid, height: 147)
+                    .frame(width: wid, height: 180)
                 VStack(spacing: 4) {
                     HStack {
                         Button {
-                            
+                            mode.wrappedValue.dismiss()
                         } label: {
                             Image(systemName: "chevron.backward")
                                 .resizable()
@@ -49,7 +51,7 @@ struct MissionTopView: View {
                         }
                     }
                     .padding(.horizontal, 16)
-                    .padding(.top, 8)
+                    .padding(.top, 56)
                     Text(description)
                         .foregroundColor(.white)
                         .font(.system(size: 13, weight: .semibold))
