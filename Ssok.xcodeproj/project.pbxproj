@@ -22,6 +22,8 @@
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
 		AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C482A108E1800EE808B /* WhiteRectangleView.swift */; };
 		AB031C4B2A10A30A00EE808B /* MissonTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4A2A10A30A00EE808B /* MissonTopView.swift */; };
+		AB031C502A10D59A00EE808B /* MissonDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissonDecibelView.swift */; };
+		AB031C522A10D6B300EE808B /* MissonTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissonTitleView.swift */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
@@ -48,6 +50,8 @@
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
 		AB031C482A108E1800EE808B /* WhiteRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteRectangleView.swift; sourceTree = "<group>"; };
 		AB031C4A2A10A30A00EE808B /* MissonTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissonTopView.swift; sourceTree = "<group>"; };
+		AB031C4F2A10D59A00EE808B /* MissonDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissonDecibelView.swift; sourceTree = "<group>"; };
+		AB031C512A10D6B300EE808B /* MissonTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissonTitleView.swift; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 			children = (
 				AB031C482A108E1800EE808B /* WhiteRectangleView.swift */,
 				AB031C4A2A10A30A00EE808B /* MissonTopView.swift */,
+				AB031C512A10D6B300EE808B /* MissonTitleView.swift */,
 			);
 			path = Recycle;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				ABB019C42A07E4D30000556F /* StrawView.swift */,
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
+				AB031C4F2A10D59A00EE808B /* MissonDecibelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
+				AB031C502A10D59A00EE808B /* MissonDecibelView.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
 				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
@@ -252,6 +259,7 @@
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,
 				AB031C4B2A10A30A00EE808B /* MissonTopView.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
+				AB031C522A10D6B300EE808B /* MissonTitleView.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
 				7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */,
 				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
