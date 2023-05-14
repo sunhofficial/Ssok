@@ -28,20 +28,17 @@ struct MissionCompleteView: View {
                         
                         MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                         
-                        Button(action: {
-                            random.randomMemberName = setRandomMember(random.members)
-                            state1 = true
-                        }){
+                        
+                        NavigationLink(destination: StrawView()) {
                             Text("새로운 미션하기")
                                 .font(.system(size: 20, weight: .bold))
-                                .underline()
-                                .foregroundColor(Color("Bg_bottom2"))
+                                .foregroundColor(Color("Bg_bottom2")).underline()
                         }
                     }.offset(y:90)
                     
                 }
             }.ignoresSafeArea()
-                .navigationBarHidden(true)
+            .navigationBarHidden(true)
         } else {
             StrawView()
         }

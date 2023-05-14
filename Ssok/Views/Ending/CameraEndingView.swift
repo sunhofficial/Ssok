@@ -1,17 +1,13 @@
-// ResultView
-// 009
-
 //
-//  EndingView.swift
-//  MC2
+//  CameraEndingView.swift
+//  Ssok
 //
-//  Created by 김용주 on 2023/05/05.
+//  Created by 김용주 on 2023/05/14.
 //
 
 import SwiftUI
 
-
-struct EndingView: View {
+struct CameraEndingView: View {
     
     @State var st2: Bool = false
     @State var next = false
@@ -22,11 +18,13 @@ struct EndingView: View {
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    @State var missionTitle: String
+    @State var missionTip: String
+    @State var missionColor: Color
+    
+    
     var body: some View {
-        if next {
-            WalkingView()
-        }
-        else if !st2{
+        if !st2{
             ZStack{
                 Image("endingtop").resizable()
                     .aspectRatio(contentMode: .fit)
@@ -60,19 +58,20 @@ struct EndingView: View {
                         .frame(width: 85, height: 85)
                         .position(x:wid/1.155, y:210)
                 }
-                
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 50, height: 50)
-                    .shadow(color: Color("Bg_bottom2"), radius: 2)
-                    Text("📢")
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
                         .frame(width: 50, height: 50)
+                        .shadow(color: Color("Bg_bottom2"), radius: 2)
+                    Text("📷")
+                        .frame(width: 50, height: 50)
+                }
                 
                 VStack(spacing: 8){
-                    Text("데시벨 측정기")
+                    Text("얼굴 인식 카메라")
                         .font(.system(size: 24, weight: .black))
                     
-                    Text("미션을 성공하려면 데시벨을 충족시켜야해요")
+                    Text("미션을 성공하려면 얼굴을 인식해야해요")
                         .font(.system(size:13, weight: .light))
                     ZStack{
                         RoundedRectangle(cornerRadius: 20)
@@ -84,9 +83,9 @@ struct EndingView: View {
                             .foregroundColor(Color("Bg_bottom2"))
                         
                         VStack(spacing: 50){
-                            MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
+                            MissionTitleView(missionTitle: missionTitle, backgroundColor: missionColor.opacity(0.35), borderColor: missionColor.opacity(0.71))
                             
-                            Text("장소로 이동해서 미션하기 버튼을 누르고\n 소리를 질러 목표 데시벨을 채우세요")
+                            Text(missionTip)
                                 .font(.system(size: 13, weight: .medium))
                                 .multilineTextAlignment(.center)
                         }
@@ -112,20 +111,29 @@ struct EndingView: View {
                 }){
                     Image("retry")
                 }.position(x: wid - 57, y:73)
+                
+                NavigationLink(destination: MissionPedometerView()) {
+                    Text("미션하기").foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color("Bg_bottom2"))
+                        .cornerRadius(12)
+                }.position(x:wid/2, y:hei-59)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-        } else if st2 {
+            
+        } else {
             StrawView()
         }
     }
 }
 
-struct EndingView_Previews: PreviewProvider {
+struct CameraEndingView_Previews: PreviewProvider {
     static let random = RandomMember()
     
     static var previews: some View {
-        EndingView()
+        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
             .environmentObject(random)
     }
 }
