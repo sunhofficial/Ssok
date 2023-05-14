@@ -13,7 +13,6 @@ struct MissionPedometerView: View {
     let motionmanager = CMMotionManager()
     let activityManager = CMMotionActivityManager()
     
-    
     @State var stepcount: Float = 0
     
     @State var currentgravity = 0

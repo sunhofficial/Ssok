@@ -234,7 +234,7 @@ struct StrawView: View {
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: What.title, goal: What.goal!, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                DecibelEndingView(wheresentence: Where, whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!)
             case .shake:
                 CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:

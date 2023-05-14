@@ -9,36 +9,90 @@ import SwiftUI
 
 struct MissionDecibelView: View {
     
+    // MARK: - Properties
+    
+    @StateObject private var soundMeter = SoundMeter()
+    @State var title: String
+    @State var missionColor: Color
+    @State var goal: String
+    @State private var isCompleted = false
+    @State private var more: String = "더"
+    @State var ismore: Int = 0
+    
     var body: some View {
         
-        VStack(spacing: 64) {
-            MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요", iconImage: "📢")
-            
-            MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
-            
-            ZStack {
-                CircularProgressView(progress: 10)
-                    .frame(width: 308, height: 308)
+        ZStack {
+            VStack(spacing: 64) {
+                MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요", iconImage: "📢")
                 
-                VStack {
-                    Text("15").font(.system(size: 60, weight: .bold)) + Text("dB").font(.system(size: 40, weight: .bold))
-                    Text("목표 데시벨\n30dB")
-                        .font(.system(size: 18))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color("GoalRed"))
+                MissionTitleView(missionTitle: title, backgroundColor: missionColor, borderColor: missionColor)
+                
+                ZStack {
+                    ZStack {
+                        Circle()
+                            .stroke(style: StrokeStyle(lineWidth: 25.0, lineCap: .round, lineJoin: .round))
+                            .foregroundColor(Color("Gray"))
+                            .shadow(color: Color.black.opacity(0.25), radius: 2, x: 0, y: -2)
+                        Circle()
+                            .trim(from: 0.0, to: CGFloat(soundMeter.decibels/Float(goal)!))
+                            .stroke(style: StrokeStyle(lineWidth: 25.0, lineCap: .round, lineJoin: .round))
+                            .foregroundColor(Color("Bg_bottom2"))
+                            .rotationEffect(.degrees(270))
+                            .animation(.linear, value: soundMeter.decibels/Float(goal)!)
+                            .onReceive(soundMeter.$decibels) { decibels in
+                                if decibels >= Float(goal)! {
+                                    withAnimation {
+                                        isCompleted = true
+                                        soundMeter.stop()
+                                    }
+                                }
+                            }
+                            .onChange(of: soundMeter.decibels/Float(goal)!) { value in
+                                if soundMeter.decibels/Float(goal)! <= 0.25 {
+                                    ismore = 0
+                                } else if soundMeter.decibels/Float(goal)! > 0.25 && soundMeter.decibels/Float(goal)! <= 0.5 {
+                                    ismore = 1
+                                } else if soundMeter.decibels/Float(goal)! > 0.5 && soundMeter.decibels/Float(goal)! <= 0.75 {
+                                    ismore = 2
+                                } else {
+                                    ismore = 3
+                                }
+                            }
+                    }
+                    .frame(width: 308, height: 308)
+
+                    VStack {
+                        Text( String(format: "%.f", soundMeter.decibels)
+                        ).font(.system(size: 60, weight: .bold)) + Text("dB").font(.system(size: 40, weight: .bold))
+                        Text("목표 데시벨\n\(goal)dB")
+                            .font(.system(size: 18))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color("GoalRed"))
+                    }
                 }
+
+                HStack{
+                    Text(more).foregroundColor(Color.black)
+                    Text(more).foregroundColor(ismore>=1 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore>=2 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore>=3 ? Color.black : Color("Gray"))
+                }.font(.system(size: 48, weight: .bold))
+                    .padding(.bottom, 94)
+                
+                Spacer()
             }
             
-            Text("더더더더더더")
-                .font(.system(size: 48, weight: .bold))
-                .foregroundColor(Color("Gray"))
-                .padding(.bottom, 94)
+            if isCompleted {
+                MissionCompleteView(Title: title, background: missionColor)
+            }
+        }
+        .onAppear {
+            try? soundMeter.start()
+        }
+        .onDisappear {
+            soundMeter.stop()
+            soundMeter.decibels = 0.0
         }
     }
 }
 
-struct MissionDecibelView_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionDecibelView()
-    }
-}
