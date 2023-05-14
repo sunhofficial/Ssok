@@ -112,13 +112,13 @@ struct CameraEndingView: View {
                     Image("retry")
                 }.position(x: wid - 57, y:73)
                 
-                NavigationLink(destination: MissionPedometerView()) {
-                    Text("미션하기").foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                        .background(Color("Bg_bottom2"))
-                        .cornerRadius(12)
-                }.position(x:wid/2, y:hei-59)
+//                NavigationLink(destination: MissionPedometerView(Title: missionTitle, TitleColor: missionColor)) {
+//                    Text("미션하기").foregroundColor(.white)
+//                        .fontWeight(.bold)
+//                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+//                        .background(Color("Bg_bottom2"))
+//                        .cornerRadius(12)
+//                }.position(x:wid/2, y:hei-59)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
