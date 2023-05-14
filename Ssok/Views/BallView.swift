@@ -7,17 +7,11 @@ struct BallView: View {
     
     @Binding var getCurrentBall: Bool
     @Binding var getNextBall: Bool
+    @Binding var st: Bool
+    @State var stBool: Bool
     @State var ballTitle: String
     @State var contents: String
     @State var pearlImage: String = "Back_pearl1"
-    @State var c0x: Double
-    @State var c0y: Double
-    @State var c1x: Double
-    @State var c1y: Double
-    @State var duration: Double
-    
-    @State var wid: CGFloat = UIScreen.main.bounds.width
-    @State var hei: CGFloat = UIScreen.main.bounds.height
     
     var body: some View {
         if getCurrentBall {
@@ -45,9 +39,12 @@ struct BallView: View {
             .transition(.asymmetric(insertion: .offset(y: -hei), removal: .offset(y: hei)))
             .zIndex(1)
             .onTapGesture {
-                withAnimation(.timingCurve(c0x, c0y, c1x, c1y, duration: duration)) {
+                withAnimation(.easeInOut(duration: 1)) {
                     getCurrentBall = false
                     getNextBall = true
+                }
+                withAnimation(.linear) {
+                    st = stBool
                 }
             }
         }

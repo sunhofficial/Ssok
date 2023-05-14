@@ -8,6 +8,7 @@ class AddMemberViewModel : ObservableObject {
     @Published var isNextButtonDisabled: Bool = false
     @Published var members: [Member] = []
     @Published var filteredData: [String] = []
+    
     func setMemberData() {
         if let data = UserDefaults.standard.value(forKey: "members") as? Data {
             let decodedData = try? PropertyListDecoder().decode(Array<Member>.self, from: data)
