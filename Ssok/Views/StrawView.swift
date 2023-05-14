@@ -21,7 +21,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 100
+    @State var detec: Int = 0
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
