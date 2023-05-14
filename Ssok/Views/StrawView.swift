@@ -195,7 +195,7 @@ struct StrawView: View {
                         st: $st,
                         stBool: true,
                         ballTitle: "What?",
-                        contents: What.title,
+                        contents: String(What.title.dropLast()),
                         pearlImage: "Back_pearl1"
                     )
                 }
