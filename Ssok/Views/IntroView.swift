@@ -30,25 +30,26 @@ struct IntroView: View {
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 6) {
+                        HStack(spacing: 17) {
                             Circle()
                                 .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 6, height: 6)
+                                .frame(width: 8, height: 8)
                             Circle()
                                 .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 6, height: 6)
+                                .frame(width: 8, height: 8)
                             Circle()
                                 .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 6, height: 6)
+                                .frame(width: 8, height: 8)
                         }
-                        .padding(.bottom, 48)
+                        .padding(.bottom, 81)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
                 TabView(selection: $selectedPage) {
-                    VStack(spacing: 25) {
-                        Image("Introtext1").resizable().aspectRatio(contentMode: .fit
-                        ).frame(width: wid,height: 186.5)
+                    VStack(spacing: 85) {
+                        
+                        Image("Introtext").resizable().aspectRatio(contentMode: .fit
+                        ).frame(width: 200,height: 58)
                         
                         Image("sign").resizable()
                             .aspectRatio(contentMode: .fit)
@@ -74,7 +75,7 @@ struct IntroView: View {
                         Image("Intro2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width - 74)
+                            .frame(width: wid - 74)
                            
                         Spacer()
                             .frame(height: 160)
@@ -85,7 +86,7 @@ struct IntroView: View {
                         Image("Intro3")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.main.bounds.width - 32)
+                            .frame(width: wid - 32)
                         Spacer()
                             .frame(height: 160)
                     }
@@ -104,6 +105,19 @@ struct IntroView: View {
                             .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                             .background(Color("Bg_bottom2"))
                             .cornerRadius(12)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        hideTutorialView()
+                    })
+                } else {
+                    NavigationLink(destination: AddMemberView()) {
+                        Text("SKIP")
+                            .font(.system(size: 20))
+                            .foregroundColor(Color("Bg_bottom2"))
+                            .underline()
+                            .frame(maxHeight: 50, alignment: .center)
+                            .fontWeight(.bold)
+                            
                     }
                     .simultaneousGesture(TapGesture().onEnded {
                         hideTutorialView()
