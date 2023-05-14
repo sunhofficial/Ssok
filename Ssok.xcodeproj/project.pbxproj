@@ -24,7 +24,7 @@
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
 		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5742A02B1D100AAC279 /* BottleView.swift */; };
-		7CF764172A117D3F007E2C3A /* SmileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764162A117D3F007E2C3A /* SmileView.swift */; };
+		7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764162A117D3F007E2C3A /* MissionSmileView.swift */; };
 		7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764182A117D58007E2C3A /* ARViewModel.swift */; };
 		7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641A2A117D6B007E2C3A /* ARModel.swift */; };
 		7CF7641D2A117E08007E2C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641C2A117E08007E2C3A /* AppDelegate.swift */; };
@@ -64,7 +64,7 @@
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
 		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C94D5742A02B1D100AAC279 /* BottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleView.swift; sourceTree = "<group>"; };
-		7CF764162A117D3F007E2C3A /* SmileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileView.swift; sourceTree = "<group>"; };
+		7CF764162A117D3F007E2C3A /* MissionSmileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSmileView.swift; sourceTree = "<group>"; };
 		7CF764182A117D58007E2C3A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		7CF7641A2A117D6B007E2C3A /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
 		7CF7641C2A117E08007E2C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
 				AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */,
 				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
+				7CF764162A117D3F007E2C3A /* MissionSmileView.swift */,
 				C77F772A2A0FF77300C59882 /* SpeechView.swift */,
-				7CF764162A117D3F007E2C3A /* SmileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
-				7CF764172A117D3F007E2C3A /* SmileView.swift in Sources */,
+				7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */,
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
