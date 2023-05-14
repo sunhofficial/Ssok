@@ -18,7 +18,7 @@ struct Mission {
     var description: String
     var mainColor: Color
     var goal: String?
-    var timer: Float?
+    var timer: Double?
     var smileRight: Float?
     var smileLeft: Float?
     var blinkRight: Float?
