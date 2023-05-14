@@ -12,12 +12,13 @@ struct SpeechView: View {
     @ObservedObject var speechRecognizer = SpeechRecognizer()
     @State var userSay : String = ""
     @State var answerText = "나는 바보다"
+    @State var speechTime: Float = 0.0
     
     var answer = "This is water"
     var timer : Double = 5.0
     
     var body: some View {
-        VStack {
+        VStack(spacing: 40) {
             ZStack(alignment: .top) {
                 Image("speech_top")
                     .edgesIgnoringSafeArea(.all)
@@ -41,18 +42,17 @@ struct SpeechView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
             }
-            Spacer()
-            Text("바보 되기 🤪")
-                .font(.system(size: 20, weight: .semibold))
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-                .background(
-                    Color("LightBlue_fill")
-                        .cornerRadius(15)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color("LightBlue_stroke"), lineWidth: 1.5)
+                Text("바보 되기 🤪")
+                    .font(.system(size: 20, weight: .semibold))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(
+                        Color("LightBlue_fill")
+                            .cornerRadius(15)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color("LightBlue_stroke"), lineWidth: 1.5)
                 )
             VStack(spacing: 30) {
                 ZStack {
@@ -92,6 +92,7 @@ struct SpeechView: View {
                 }
                 ZStack {
                     Image("SpeechButton")
+                        .shadow(radius: 4, y: 4)
                     VStack(spacing: 25) {
                         Text("말하기")
                             .underline()
@@ -103,6 +104,17 @@ struct SpeechView: View {
                     }
                     .padding(.top)
                 }
+            }
+            ZStack {
+                Image("progress")
+                    .tint(Color("Orange_Progress"))
+                    .shadow(color: Color(.black).opacity(0.25),radius: 4)
+                    .overlay(
+                        ProgressView(value: speechTime)
+                            .padding(.horizontal, 40)
+                            .padding(.top, 8)
+                            .scaleEffect(y: 2)
+                    )
             }
         }
         //        VStack {
