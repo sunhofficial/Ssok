@@ -98,31 +98,16 @@ struct IntroView: View {
                 })
                 .tabViewStyle(.page(indexDisplayMode: .never))
        
-                if selectedPage == 2{
-                    NavigationLink(destination: AddMemberView()) {
-                        Text("시작하기").foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                            .background(Color("Bg_bottom2"))
-                            .cornerRadius(12)
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        hideTutorialView()
-                    })
-                } else {
-                    NavigationLink(destination: AddMemberView()) {
-                        Text("SKIP")
-                            .font(.system(size: 20))
-                            .foregroundColor(Color("Bg_bottom2"))
-                            .underline()
-                            .frame(maxHeight: 50, alignment: .center)
-                            .fontWeight(.bold)
-                            
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        hideTutorialView()
-                    })
+                NavigationLink(destination: AddMemberView()) {
+                    Text("시작하기").foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color("Bg_bottom2"))
+                        .cornerRadius(12)
                 }
+                .simultaneousGesture(TapGesture().onEnded {
+                    hideTutorialView()
+                })
             }
         }
         .onAppear {

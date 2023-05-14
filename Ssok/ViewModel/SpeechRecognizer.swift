@@ -28,6 +28,7 @@ actor SpeechRecognizer: ObservableObject {
     
     
     @MainActor @Published var transcript: String = ""
+    @Published var Langague : Bool = true
     
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
@@ -40,6 +41,7 @@ actor SpeechRecognizer: ObservableObject {
      */
     init() {
 //        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US")) //이게 언어설정
+
         recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
         guard recognizer != nil else {
             transcribe(RecognizerError.nilRecognizer)
