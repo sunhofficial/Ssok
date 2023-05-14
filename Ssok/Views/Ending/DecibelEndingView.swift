@@ -13,6 +13,7 @@ struct DecibelEndingView: View {
     @State var next = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
+    @State var goal: String = ""
     
     @EnvironmentObject var random: RandomMember
     
