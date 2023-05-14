@@ -6,43 +6,12 @@
 //
 
 import SwiftUI
-
-// The notification we'll send when a shake gesture happens.
-extension UIDevice {
-    static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
-}
-
-//  Override the default behavior of shake gestures to send our notification instead.
-extension UIWindow {
-    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            NotificationCenter.default.post(name: UIDevice.deviceDidShakeNotification, object: nil)
-        }
-    }
-}
-
-// A view modifier that detects shaking and calls a function of our choosing.
-struct DeviceShakeViewModifier: ViewModifier {
-    let action: () -> Void
-    
-    func body(content: Content) -> some View {
-        content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
-                action()
-            }
-    }
-}
-
-// A View extension to make the modifier easier to use.
-extension View {
-    func onShake(perform action: @escaping () -> Void) -> some View {
-        self.modifier(DeviceShakeViewModifier(action: action))
-    }
-}
-
+import CoreMotion
+let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
 struct StrawView: View {
+    
+    let motionmanager = CMMotionManager()
     
     @State var st: Bool = false
     @State var isAnimation: Bool = false
@@ -50,7 +19,10 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var count: Int = 0
+    @State var currentgravity = 0
+    @State var previousgravity = 0
+    @State var detec: Int = 0
+    @State var gravityx: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
@@ -67,7 +39,7 @@ struct StrawView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                     
-                    if count < 3 {
+                    if detec < 25 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -78,37 +50,51 @@ struct StrawView: View {
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
-                            if count >= 3 {
+                            if detec >= 25 {
                                 // 흔들기 완료 후 여기
-                                Image("PutStrawIcon")
-                                    .padding(.top, 100)
-                                Text("빨대를 꼽고 펄을 뽑아주세요")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 24, weight: .bold))
-                                    .multilineTextAlignment(.center)
-                                    .lineSpacing(4)
-                                    .padding(.top, -10)
+                                ZStack {
+                                    WhiteRectangleView()
+                                        .frame(width: 300, height: 106)
+                                        .padding(.top, 100)
+                                    VStack {
+                                        ZStack {
+                                            Image("PhoneIcon")
+                                                .padding(.top, 50)
+                                            Image("HandIcon")
+                                                .padding(.top, 70)
+                                                .padding(.leading, 30)
+                                        }
+                                        Text("스트로우를 꼽아주세요!")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .padding(.bottom, 1)
+                                        Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
+                                            .font(.system(size: 13, weight: .semibold))
+                                    }
+                                }
                             } else {
-                                // 초기화면
-                                Image("ShakeIcon")
-                                    .padding(.bottom, -10)
-                                    .rotationEffect(Angle(degrees: 10.21))
-                                Text("버블티를 흔들어주세요!")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 24, weight: .bold))
-                                
-                                Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .padding(.top, -10)
-                                
-                                ProgressView(value: progress)
-                                    .tint(Color("Bg_bottom2"))
-                                    .background(.white)
-                                    .cornerRadius(8)
-                                    .scaleEffect(x: 1, y: 2)
-                                    .padding([.leading, .trailing], 85)
+                                ZStack {
+                                    WhiteRectangleView()
+                                        .frame(width: 300, height: 153)
+                                    VStack {
+                                        Image("ShakeIcon")
+                                            .padding(.top, -60)
+                                            .padding(.bottom, 0)
+                                        Text("버블티를 흔들어주세요!")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .padding(.bottom, 5)
+                                        Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
+                                            .multilineTextAlignment(.center)
+                                            .font(.system(size: 13, weight: .semibold))
+                                            .padding(.bottom, 10)
+                                        ProgressView(value: progress)
+                                            .tint(Color("Bg_bottom2"))
+                                            .background(.black)
+                                            .cornerRadius(8)
+                                            .scaleEffect(x: 1, y: 2)
+                                            .padding([.leading, .trailing], 85)
+                                    }
+                                }
+                                .padding(.top, 30)
                             }
                         }
                         .opacity(isDisplay ? 0 : 1)
@@ -135,7 +121,7 @@ struct StrawView: View {
                     }
                     
                     // 빨대
-                    if count > 2 {
+                    if detec >= 25 {
                         Image("Straw")
                             .opacity(0.8)
                             .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
@@ -215,9 +201,35 @@ struct StrawView: View {
                 .navigationBarHidden(true)
                 
             }
-            .onShake {
-                count += 1
-                progress += 0.334
+            .onReceive(timer) { input in
+                
+                if motionmanager.isDeviceMotionAvailable {
+                    motionmanager.deviceMotionUpdateInterval = 0.2
+                    motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
+                        gravityx = data?.gravity.x ?? 0
+                        
+                        if gravityx > 0.3 {
+                            currentgravity = 1
+                        } else if gravityx <= 0.3 && gravityx >= -0.3 {
+                            currentgravity = 0
+                        } else if gravityx < -0.3 {
+                            currentgravity = 2
+                        }
+                        
+                        if currentgravity == previousgravity && previousgravity != 0 {
+                            previousgravity = currentgravity
+                        } else if currentgravity != previousgravity{
+                            if detec != 25 {
+                                detec += 1
+                                print(detec)
+                                progress += 0.04
+                                print(progress)
+                            }
+                            previousgravity = currentgravity
+                        }
+                    }
+                    
+                }
             }
         } else {
             EndingView(wheresentence : Where, whatsentence : What)

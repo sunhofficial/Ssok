@@ -13,6 +13,7 @@ struct _BubblesApp: App {
         WindowGroup {
             SpeechView()
                 .environmentObject(RandomMember())
+
         }
     }
 }
