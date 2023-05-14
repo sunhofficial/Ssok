@@ -8,7 +8,7 @@
 import SwiftUI
 import RealityKit
 
-struct SmileView : View {
+struct MissionSmileView : View {
     @ObservedObject var arViewModel : ARViewModel = ARViewModel()
     
     let date = Date()

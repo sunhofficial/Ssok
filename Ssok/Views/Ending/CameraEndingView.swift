@@ -112,7 +112,7 @@ struct CameraEndingView: View {
                     Image("retry")
                 }.position(x: wid - 57, y:73)
                 
-                NavigationLink(destination: MissionPedometerView()) {
+                NavigationLink(destination: MissionSmileView()) {
                     Text("미션하기").foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
