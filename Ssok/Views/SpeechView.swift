@@ -149,7 +149,11 @@ struct SpeechView: View {
                         .frame(height: 50)
                         .onAppear {
                             speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                            speechRecognizer.startTranscribing()
+                            if(missionTitle == "영국 신사 되기"){
+                                speechRecognizer.englishTranscribing()
+                            }
+                            else{
+                                speechRecognizer.startTranscribing()}
                             let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
                                 timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
