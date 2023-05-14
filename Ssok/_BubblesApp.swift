@@ -11,7 +11,7 @@ import SwiftUI
 struct _BubblesApp: App {
     var body: some Scene {
         WindowGroup {
-            IntroView()
+            SpeechView()
                 .environmentObject(RandomMember())
         }
     }
