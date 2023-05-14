@@ -22,6 +22,8 @@ struct MissionPedometerView: View {
     @State var currentgravity = 0
     @State var previousgravity = 0
     @State var gravityx: Double = 0
+    @State var gravityy: Double = 0
+    @State var gravityz: Double = 0
     @State var backstate: Bool = false
 
     @State var limit: Float = 100.0
@@ -81,11 +83,11 @@ struct MissionPedometerView: View {
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
                         gravityx = data?.gravity.x ?? 0
                         
-                        if gravityx > 0.15 {
+                        if gravityx > 0.2 || gravityy > 0.2 || gravityz > 0.2 {
                             currentgravity = 1
-                        } else if gravityx <= 0.15 && gravityx >= -0.15 {
+                        } else if gravityx <= 0.2 && gravityx >= -0.2 && gravityy <= 0.2 && gravityy >= -0.2 && gravityz <= 0.2 && gravityz >= -0.2 {
                             currentgravity = 0
-                        } else if gravityx < -0.15 {
+                        } else if gravityx < -0.2 || gravityy < -0.2 || gravityz < 0.2 {
                             currentgravity = 2
                         }
                         
