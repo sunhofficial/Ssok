@@ -11,7 +11,7 @@ import SwiftUI
 
 struct IntroView: View {
     
-    @StateObject var permissionManager = PermissionManager()
+//    @StateObject var permissionManager = PermissionManager()
     @State var selectedPage: Int = 0
     @State var isTutorialHidden: Bool = false
     @State var isfirst: Bool = false
@@ -127,7 +127,6 @@ struct IntroView: View {
             }
         }
         .onAppear {
-            permissionManager.requestAudioPermission()
             isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
             if isTutorialHidden {
                 selectedPage = 2
