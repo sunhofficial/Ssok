@@ -14,7 +14,7 @@ import SwiftUI
 struct EndingView: View {
     
     @State var st2: Bool = false
-    @State var next = false
+//    @State var next = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
@@ -23,10 +23,7 @@ struct EndingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        if next {
-            WalkingView()
-        }
-        else if !st2{
+        if !st2{
             ZStack{
                 Image("endingtop").resizable()
                     .aspectRatio(contentMode: .fit)
@@ -95,27 +92,23 @@ struct EndingView: View {
                 }.offset(y:150)
                 
                 Button(action: {
-                    next = true
-                }){
-                    Text("미션하기")
-                }.foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                    .background(Color("Bg_bottom2"))
-                    .cornerRadius(12)
-//                    .offset(y:363)
-                    .position(x:wid/2, y:hei-59)
-                
-                Button(action: {
                     random.randomMemberName = setRandomMember(random.members)
                     st2 = true
                 }){
                     Image("retry")
                 }.position(x: wid - 57, y:73)
+                
+                NavigationLink(destination: MissionPedometerView()) {
+                    Text("미션하기").foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color("Bg_bottom2"))
+                        .cornerRadius(12)
+                }.position(x:wid/2, y:hei-59)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-        } else if st2 {
+        } else{
             StrawView()
         }
     }
