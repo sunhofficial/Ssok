@@ -18,7 +18,7 @@ struct BottleView: View {
     
     var body: some View {
         ZStack{
-            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit).offset(y:20)
+            SpriteView(scene: scene, options: [.allowsTransparency], shouldRender: {_ in return true}).ignoresSafeArea().frame(width: wid, height: hei).aspectRatio(contentMode: .fit).offset(y:17)
         }.ignoresSafeArea(.all)
         
     }
