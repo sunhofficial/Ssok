@@ -13,34 +13,47 @@ struct MissionTopView: View {
     
     @State var title: String
     @State var description: String
-    @State var iconImage: String
     
     var body: some View {
         VStack {
             ZStack {
                 Image("Ellipse")
                     .resizable()
-                    .frame(width: wid, height: 168)
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
+                    .frame(width: wid, height: 147)
+                VStack(spacing: 4) {
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                                .bold()
+                                .frame(width: 20, height: 20)
+                        }
+                        Spacer()
                         Text(title)
                             .foregroundColor(.white)
                             .font(.system(size: 24, weight: .bold))
-                        
-                        Text(description)
-                            .foregroundColor(.white)
-                            .font(.system(size: 13, weight: .semibold))
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "chevron.backward")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.clear)
+                                .bold()
+                                .frame(width: 20, height: 20)
+                        }
                     }
-                    Spacer()
-                    ZStack {
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 50, height: 50)
-                        Text(iconImage)
-                            .font(.system(size: 24))
-                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                    Text(description)
+                        .foregroundColor(.white)
+                        .font(.system(size: 13, weight: .semibold))
                 }
-                .padding([.leading, .trailing], 20)
             }
             .ignoresSafeArea()
             
@@ -51,6 +64,6 @@ struct MissionTopView: View {
 
 struct MissionTopView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야해요", iconImage: "📢")
+        MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
     }
 }
