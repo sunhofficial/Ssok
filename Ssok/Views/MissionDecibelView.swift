@@ -17,7 +17,7 @@ struct MissionDecibelView: View {
             MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
             
             ZStack {
-                CircularProgressView()
+                CircularProgressView(progress: 10)
                     .frame(width: 308, height: 308)
                 
                 VStack {
