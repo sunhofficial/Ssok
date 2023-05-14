@@ -33,6 +33,7 @@
 		AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */; };
 		AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissionTitleView.swift */; };
 		AB031C542A10E19100EE808B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C532A10E19100EE808B /* CircularProgressView.swift */; };
+		AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionPedometerView.swift */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
@@ -40,6 +41,8 @@
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
+		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
+		C77F772B2A0FF77300C59882 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* SpeechView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,7 @@
 		AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelView.swift; sourceTree = "<group>"; };
 		AB031C512A10D6B300EE808B /* MissionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTitleView.swift; sourceTree = "<group>"; };
 		AB031C532A10E19100EE808B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
+		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		C77F772A2A0FF77300C59882 /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +187,9 @@
 				7C94D5742A02B1D100AAC279 /* BottleView.swift */,
 				ABB019C42A07E4D30000556F /* StrawView.swift */,
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
+				C77F772A2A0FF77300C59882 /* SpeechView.swift */,
 				AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */,
+				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomMember.swift */,
+				C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -280,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
@@ -288,6 +298,7 @@
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
 				1001C4602A0F311000F8DBDD /* WalkingCountView.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
+				AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
 				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
@@ -309,6 +320,7 @@
 				102949302A10833F00048F5B /* ProgressbarView.swift in Sources */,
 				7C94D5652A02AE8B00AAC279 /* EndingView.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
+				C77F772B2A0FF77300C59882 /* SpeechView.swift in Sources */,
 				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
 				10BCD2E32A11149700303334 /* MissionCompleteView.swift in Sources */,
 			);
@@ -443,6 +455,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = mic;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = speech;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,10 +483,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = 6AGS8HZN55;
+				DEVELOPMENT_TEAM = NG2NLR2Z86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = mic;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = speech;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -483,7 +499,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pin.SSoktest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwansiknam.Ssokk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
