@@ -52,35 +52,49 @@ struct StrawView: View {
                         VStack(spacing: 24) {
                             if detec >= 25 {
                                 // 흔들기 완료 후 여기
-                                Image("PutStrawIcon")
-                                    .padding(.top, 100)
-                                Text("빨대를 꼽고 펄을 뽑아주세요")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 24, weight: .bold))
-                                    .multilineTextAlignment(.center)
-                                    .lineSpacing(4)
-                                    .padding(.top, -10)
+                                ZStack {
+                                    WhiteRectangleView()
+                                        .frame(width: 300, height: 106)
+                                        .padding(.top, 100)
+                                    VStack {
+                                        ZStack {
+                                            Image("PhoneIcon")
+                                                .padding(.top, 50)
+                                            Image("HandIcon")
+                                                .padding(.top, 70)
+                                                .padding(.leading, 30)
+                                        }
+                                        Text("스트로우를 꼽아주세요!")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .padding(.bottom, 1)
+                                        Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
+                                            .font(.system(size: 13, weight: .semibold))
+                                    }
+                                }
                             } else {
-                                // 초기화면
-                                Image("ShakeIcon")
-                                    .padding(.bottom, -10)
-                                    .rotationEffect(Angle(degrees: 10.21))
-                                Text("버블티를 흔들어주세요!")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 24, weight: .bold))
-                                
-                                Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .padding(.top, -10)
-                                
-                                ProgressView(value: progress)
-                                    .tint(Color("Bg_bottom2"))
-                                    .background(.white)
-                                    .cornerRadius(8)
-                                    .scaleEffect(x: 1, y: 2)
-                                    .padding([.leading, .trailing], 85)
+                                ZStack {
+                                    WhiteRectangleView()
+                                        .frame(width: 300, height: 153)
+                                    VStack {
+                                        Image("ShakeIcon")
+                                            .padding(.top, -60)
+                                            .padding(.bottom, 0)
+                                        Text("버블티를 흔들어주세요!")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .padding(.bottom, 5)
+                                        Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
+                                            .multilineTextAlignment(.center)
+                                            .font(.system(size: 13, weight: .semibold))
+                                            .padding(.bottom, 10)
+                                        ProgressView(value: progress)
+                                            .tint(Color("Bg_bottom2"))
+                                            .background(.black)
+                                            .cornerRadius(8)
+                                            .scaleEffect(x: 1, y: 2)
+                                            .padding([.leading, .trailing], 85)
+                                    }
+                                }
+                                .padding(.top, 30)
                             }
                         }
                         .opacity(isDisplay ? 0 : 1)
