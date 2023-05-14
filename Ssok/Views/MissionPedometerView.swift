@@ -1,5 +1,5 @@
 //
-//  MissonDecibelView.swift
+//  MissionPedometerView.swift
 //  Ssok
 //
 //  Created by 김민 on 2023/05/14.
@@ -7,22 +7,21 @@
 
 import SwiftUI
 
-struct MissionDecibelView: View {
+struct MissionPedometerView: View {
     
     var body: some View {
-        
         VStack(spacing: 64) {
-            MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요", iconImage: "📢")
+            MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요", iconImage: "🪩")
             
-            MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
+            MissionTitleView(missionTitle: "춤추기 💃🕺🏻", backgroundColor: Color("MissionPurple").opacity(0.28), borderColor: Color("MissionPurple"))
             
             ZStack {
                 CircularProgressView()
                     .frame(width: 308, height: 308)
                 
                 VStack {
-                    Text("15").font(.system(size: 60, weight: .bold)) + Text("dB").font(.system(size: 40, weight: .bold))
-                    Text("목표 데시벨\n30dB")
+                    Text("15").font(.system(size: 60, weight: .bold)) + Text("회").font(.system(size: 40, weight: .bold))
+                    Text("목표 진동수\n100회")
                         .font(.system(size: 18))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color("GoalRed"))
@@ -37,8 +36,8 @@ struct MissionDecibelView: View {
     }
 }
 
-struct MissionDecibelView_Previews: PreviewProvider {
+struct MissionPedometerView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionDecibelView()
+        MissionPedometerView()
     }
 }

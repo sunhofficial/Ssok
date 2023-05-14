@@ -25,6 +25,7 @@
 		AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */; };
 		AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissionTitleView.swift */; };
 		AB031C542A10E19100EE808B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C532A10E19100EE808B /* CircularProgressView.swift */; };
+		AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionPedometerView.swift */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
@@ -54,6 +55,7 @@
 		AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelView.swift; sourceTree = "<group>"; };
 		AB031C512A10D6B300EE808B /* MissionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTitleView.swift; sourceTree = "<group>"; };
 		AB031C532A10E19100EE808B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
 				7C94D5642A02AE8A00AAC279 /* EndingView.swift */,
 				AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */,
+				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
+				AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
 				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
