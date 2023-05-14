@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var speechRecognizer = SpeechRecognizer()
     @State var whattosay : String = ""
-    var answer = "This is water"
+    var answer = "can i getawater?"
     var timer : Double = 5.0
     @State var aaanswer = "FALESe"
     var body: some View {
@@ -27,12 +27,14 @@ struct ContentView: View {
             speechRecognizer.startTranscribing()
             let timer = Timer.scheduledTimer(withTimeInterval: timer, repeats: true){
                 timer in
-                
-                if(answer == speechRecognizer.transcript){
+                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
+                //영소문자 바꾸는 거 해야함.
+              
+                if(answer.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript){
                     aaanswer = "미션성공"
                     timer.invalidate()
                 }
-                else{
+                else{ //미션실패면 다시 하도록
                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
                     speechRecognizer.startTranscribing()
                 }

@@ -96,7 +96,7 @@ actor SpeechRecognizer: ObservableObject {
             self.transcribe(error)
         }
     }
-    
+
     /// Reset the speech recognizer.
     private func reset() {
         task?.cancel()
