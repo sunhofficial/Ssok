@@ -11,9 +11,8 @@ import SwiftUI
 struct _BubblesApp: App {
     var body: some Scene {
         WindowGroup {
-//            IntroView()
-//                .environmentObject(RandomMember())
-            MissionDecibelView()
+            IntroView()
+                .environmentObject(RandomMember())
         }
     }
 }
