@@ -21,11 +21,12 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 0
+    @State var detec: Int = 100
     @State var gravityx: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
+//    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
+    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     
@@ -194,12 +195,11 @@ struct StrawView: View {
                         st: $st,
                         stBool: true,
                         ballTitle: "What?",
-                        contents: What,
+                        contents: What.title,
                         pearlImage: "Back_pearl1"
                     )
                 }
                 .navigationBarHidden(true)
-                
             }
             .onReceive(timer) { input in
                 
@@ -232,7 +232,16 @@ struct StrawView: View {
                 }
             }
         } else {
-            EndingView(wheresentence : Where, whatsentence : What)
+            switch What.missionType {
+            case .decibel:
+                DecibelEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            case .shake:
+                CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            case .voice:
+                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            case .face:
+                CameraEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            }
         }
     }
 }
