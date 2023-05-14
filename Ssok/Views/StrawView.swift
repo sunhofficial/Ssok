@@ -41,7 +41,7 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if detec < 25 {
+                if detec < 20 {
                     Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -52,7 +52,7 @@ struct StrawView: View {
                 VStack(spacing: 24) {
                     // 가이드
                     VStack(spacing: 24) {
-                        if detec >= 25 {
+                        if detec >= 20 {
                             // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
@@ -123,7 +123,7 @@ struct StrawView: View {
                 }
                 
                 // 빨대
-                if detec >= 25 {
+                if detec >= 20 {
                     Image("Straw")
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
