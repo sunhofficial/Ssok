@@ -15,13 +15,7 @@ extension View {
     
     func setRandomMember(_ members: [Member]) -> String {
         var memberName: String = ""
-        let randomNum = (0...members.count).randomElement()!
-        
-        if randomNum == 0 {
-            memberName = "모두"
-        } else {
-            memberName = members.randomElement()!.name
-        }
+        memberName = members.randomElement()!.name
         
         // 영어 이름 바꾸기
         if let name = whoList[memberName] {
