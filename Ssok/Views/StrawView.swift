@@ -6,43 +6,12 @@
 //
 
 import SwiftUI
-
-// The notification we'll send when a shake gesture happens.
-extension UIDevice {
-    static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
-}
-
-//  Override the default behavior of shake gestures to send our notification instead.
-extension UIWindow {
-    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            NotificationCenter.default.post(name: UIDevice.deviceDidShakeNotification, object: nil)
-        }
-    }
-}
-
-// A view modifier that detects shaking and calls a function of our choosing.
-struct DeviceShakeViewModifier: ViewModifier {
-    let action: () -> Void
-    
-    func body(content: Content) -> some View {
-        content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
-                action()
-            }
-    }
-}
-
-// A View extension to make the modifier easier to use.
-extension View {
-    func onShake(perform action: @escaping () -> Void) -> some View {
-        self.modifier(DeviceShakeViewModifier(action: action))
-    }
-}
-
+import CoreMotion
+let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
 struct StrawView: View {
+    
+    let motionmanager = CMMotionManager()
     
     @State var st: Bool = false
     @State var isAnimation: Bool = false
@@ -50,7 +19,10 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var count: Int = 0
+    @State var currentgravity = 0
+    @State var previousgravity = 0
+    @State var detec: Int = 0
+    @State var gravityx: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
@@ -67,7 +39,7 @@ struct StrawView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                     
-                    if count < 3 {
+                    if detec < 25 {
                         Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                     } else {
                         Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -78,7 +50,7 @@ struct StrawView: View {
                     VStack(spacing: 24) {
                         // 가이드
                         VStack(spacing: 24) {
-                            if count >= 3 {
+                            if detec >= 25 {
                                 // 흔들기 완료 후 여기
                                 Image("PutStrawIcon")
                                     .padding(.top, 100)
@@ -135,7 +107,7 @@ struct StrawView: View {
                     }
                     
                     // 빨대
-                    if count > 2 {
+                    if detec >= 25 {
                         Image("Straw")
                             .opacity(0.8)
                             .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
@@ -215,9 +187,35 @@ struct StrawView: View {
                 .navigationBarHidden(true)
                 
             }
-            .onShake {
-                count += 1
-                progress += 0.334
+            .onReceive(timer) { input in
+                
+                if motionmanager.isDeviceMotionAvailable {
+                    motionmanager.deviceMotionUpdateInterval = 0.2
+                    motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
+                        gravityx = data?.gravity.x ?? 0
+                        
+                        if gravityx > 0.3 {
+                            currentgravity = 1
+                        } else if gravityx <= 0.3 && gravityx >= -0.3 {
+                            currentgravity = 0
+                        } else if gravityx < -0.3 {
+                            currentgravity = 2
+                        }
+                        
+                        if currentgravity == previousgravity && previousgravity != 0 {
+                            previousgravity = currentgravity
+                        } else if currentgravity != previousgravity{
+                            if detec != 25 {
+                                detec += 1
+                                print(detec)
+                                progress += 0.04
+                                print(progress)
+                            }
+                            previousgravity = currentgravity
+                        }
+                    }
+                    
+                }
             }
         } else {
             EndingView(wheresentence : Where, whatsentence : What)
