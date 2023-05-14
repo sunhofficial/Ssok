@@ -18,6 +18,7 @@ struct MissionDecibelView: View {
     @State private var isCompleted = false
     @State private var more: String = "더"
     @State var ismore: Int = 0
+    @State var progressTintColor = Color(.orange)
     
     var body: some View {
         
@@ -36,7 +37,7 @@ struct MissionDecibelView: View {
                         Circle()
                             .trim(from: 0.0, to: CGFloat(soundMeter.decibels/Float(goal)!))
                             .stroke(style: StrokeStyle(lineWidth: 25.0, lineCap: .round, lineJoin: .round))
-                            .foregroundColor(Color("Bg_bottom2"))
+                            .foregroundColor(self.progressTintColor)
                             .rotationEffect(.degrees(270))
                             .animation(.linear, value: soundMeter.decibels/Float(goal)!)
                             .onReceive(soundMeter.$decibels) { decibels in
@@ -50,12 +51,16 @@ struct MissionDecibelView: View {
                             .onChange(of: soundMeter.decibels/Float(goal)!) { value in
                                 if soundMeter.decibels/Float(goal)! <= 0.25 {
                                     ismore = 0
+                                    progressTintColor = Color("Progress1")
                                 } else if soundMeter.decibels/Float(goal)! > 0.25 && soundMeter.decibels/Float(goal)! <= 0.5 {
                                     ismore = 1
+                                    progressTintColor = Color("Progress2")
                                 } else if soundMeter.decibels/Float(goal)! > 0.5 && soundMeter.decibels/Float(goal)! <= 0.75 {
                                     ismore = 2
+                                    progressTintColor = Color("Progress3")
                                 } else {
                                     ismore = 3
+                                    progressTintColor = Color("Progress4")
                                 }
                             }
                     }
@@ -73,9 +78,9 @@ struct MissionDecibelView: View {
 
                 HStack{
                     Text(more).foregroundColor(Color.black)
-                    Text(more).foregroundColor(ismore>=1 ? Color.black : Color("Gray"))
-                    Text(more).foregroundColor(ismore>=2 ? Color.black : Color("Gray"))
-                    Text(more).foregroundColor(ismore>=3 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore >= 1 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore >= 2 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore >= 3 ? Color.black : Color("Gray"))
                 }.font(.system(size: 48, weight: .bold))
                     .padding(.bottom, 94)
                 
