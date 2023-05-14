@@ -13,7 +13,6 @@ struct MissionPedometerView: View {
     let motionmanager = CMMotionManager()
     let activityManager = CMMotionActivityManager()
     
-    
     @State var stepcount: Float = 0
     
     @State var currentgravity = 0
@@ -30,7 +29,7 @@ struct MissionPedometerView: View {
             VStack(spacing: 64) {
                 MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요")
                 
-                MissionTitleView(missionTitle: "춤추기 💃🕺🏻", backgroundColor: Color("MissionPurple").opacity(0.28), borderColor: Color("MissionPurple"))
+                MissionTitleView(missionTitle: "춤추기 💃🕺🏻", backgroundColor: Color("MissionShake").opacity(0.28), borderColor: Color("MissionShake").opacity(0.71))
                 
                 ZStack {
                     ZStack {
@@ -86,7 +85,7 @@ struct MissionPedometerView: View {
                 }
             }
             if stepcount == 100 {
-                MissionCompleteView(Title: "춤추기 💃🕺🏻", background: Color("MissionPurple"))
+                MissionCompleteView(Title: "춤추기", background: Color("MissionShake"))
             }
         }.navigationBarHidden(true)
     }

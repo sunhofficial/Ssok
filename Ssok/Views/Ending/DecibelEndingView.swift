@@ -13,7 +13,6 @@ struct DecibelEndingView: View {
     @State var next = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
-    @State var goal: String = ""
     
     @EnvironmentObject var random: RandomMember
     
@@ -22,7 +21,7 @@ struct DecibelEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
-    
+    @State var goal: String = ""
     
     var body: some View {
         if !st2{
@@ -113,7 +112,7 @@ struct DecibelEndingView: View {
                     Image("retry")
                 }.position(x: wid - 57, y:73)
                 
-                NavigationLink(destination: MissionPedometerView()) {
+                NavigationLink(destination: MissionDecibelView(title: missionTitle, missionColor: missionColor, goal: goal)) {
                     Text("미션하기").foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)

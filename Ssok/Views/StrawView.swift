@@ -21,7 +21,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 100
+    @State var detec: Int = 0
     @State var gravityx: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
@@ -194,7 +194,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: What.title,
+                    contents: String(What.missionTitle.dropLast()),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -241,13 +241,13 @@ struct StrawView: View {
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: What.title, goal: What.goal!, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                CountEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!, timer: What.timer!)
+                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
             case .face:
-                CameraEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                CameraEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             }
         }
     }
