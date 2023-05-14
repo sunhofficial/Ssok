@@ -21,7 +21,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 0
+    @State var detec: Int = 100
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
@@ -238,7 +238,7 @@ struct StrawView: View {
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                DecibelEndingView(wheresentence: Where, whatsentence: What.title, goal: What.goal!, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .shake:
                 CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:
