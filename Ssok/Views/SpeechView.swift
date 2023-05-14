@@ -49,18 +49,7 @@ struct SpeechView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
                 }
-                Text("바보 되기 🤪")
-                    .font(.system(size: 20, weight: .semibold))
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(
-                        Color("LightBlue_fill")
-                            .cornerRadius(15)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("LightBlue_stroke"), lineWidth: 1.5)
-                    )
+                MissionTitleView(missionTitle: missionTitle, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.71))
                 // 카드 둘
                 VStack(spacing: 30) {
                     // 제시어 카드
