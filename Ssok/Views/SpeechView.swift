@@ -131,15 +131,22 @@ struct SpeechView: View {
                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                 //영소문자 바꾸는 거 해야함.
               
-                if(answer.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript){
-                    answerText = "미션성공"
-                    timer.invalidate()
-                }
-                else{ //미션실패면 다시 하도록
+                if(answer.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
                     speechRecognizer.startTranscribing()
+                    print("틀렷으니 다시해라")
                 }
             }
+            let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
+                timer in
+                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
+                //영소문자 바꾸는 거 해야함.
+                
+                if(answer.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript){
+                    timer.invalidate()
+                    print("끝이 났어요")
+                }}
+            RunLoop.main.add(checktimer, forMode: .common)
             RunLoop.main.add(timer, forMode: .common)
         }
         .onDisappear{
