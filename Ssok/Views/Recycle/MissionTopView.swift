@@ -19,7 +19,8 @@ struct MissionTopView: View {
         VStack {
             ZStack {
                 Image("Ellipse")
-                    .frame(width: 390, height: 168)
+                    .resizable()
+                    .frame(width: wid, height: 168)
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(title)

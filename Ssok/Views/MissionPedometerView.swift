@@ -65,11 +65,11 @@ struct MissionPedometerView: View {
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
                         gravityx = data?.gravity.x ?? 0
                         
-                        if gravityx > 0.3 {
+                        if gravityx > 0.15 {
                             currentgravity = 1
-                        } else if gravityx <= 0.3 && gravityx >= -0.3 {
+                        } else if gravityx <= 0.15 && gravityx >= -0.15 {
                             currentgravity = 0
-                        } else if gravityx < -0.3 {
+                        } else if gravityx < -0.15 {
                             currentgravity = 2
                         }
                         
