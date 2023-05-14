@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissonTitleView: View {
+struct MissionTitleView: View {
     
     @State var missonTitle: String
     @State var backgroundColor: Color
@@ -27,8 +27,8 @@ struct MissonTitleView: View {
     }
 }
 
-struct MissonTitleView_Previews: PreviewProvider {
+struct MissionTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        MissonTitleView(missonTitle: "소리 지르기 💥", backgroundColor: Color("MissonOrange"), borderColor: Color("MissonOrangeBorder"))
+        MissionTitleView(missonTitle: "소리 지르기 💥", backgroundColor: Color("MissonOrange"), borderColor: Color("MissonOrangeBorder"))
     }
 }
