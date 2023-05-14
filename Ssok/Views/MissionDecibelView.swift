@@ -25,7 +25,7 @@ struct MissionDecibelView: View {
             VStack(spacing: 64) {
                 MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요", iconImage: "📢")
                 
-                MissionTitleView(missionTitle: title, backgroundColor: missionColor, borderColor: missionColor)
+                MissionTitleView(missionTitle: title, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.7))
                 
                 ZStack {
                     ZStack {

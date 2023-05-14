@@ -234,13 +234,13 @@ struct StrawView: View {
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!)
+                DecibelEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                CountEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                SpeakEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .face:
-                CameraEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+                CameraEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             }
         }
     }
