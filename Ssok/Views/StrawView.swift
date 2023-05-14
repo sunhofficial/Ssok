@@ -194,7 +194,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: What.title,
+                    contents: String(What.title.dropLast()),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -245,7 +245,7 @@ struct StrawView: View {
             case .shake:
                 CountEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!, timer: What.timer!)
+                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, goal: What.goal!, timer: Double(What.timer!))
             case .face:
                 CameraEndingView(wheresentence: Where, whatsentence: String(What.title.dropLast()), missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             }
