@@ -34,10 +34,13 @@ struct MissionPedometerView: View {
     var body: some View {
         
         ZStack {
+            VStack {
+                MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요.")
+                Spacer()
+            }
             VStack(spacing: 64) {
-                MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요")
-                
-                MissionTitleView(missionTitle: Title, backgroundColor: TitleColor.opacity(0.35), borderColor: TitleColor.opacity(0.71))
+
+                MissionTitleView(missionTitle: "춤추기 💃🕺🏻", backgroundColor: Color("MissionShake").opacity(0.28), borderColor: Color("MissionShake").opacity(0.71))
                 
                 ZStack {
                     ZStack {
@@ -65,7 +68,6 @@ struct MissionPedometerView: View {
                     Text(more).foregroundColor(ismore>=2 ? Color.black : Color("Gray"))
                     Text(more).foregroundColor(ismore>=3 ? Color.black : Color("Gray"))
                 }.font(.system(size: 48, weight: .bold))
-                .padding(.bottom, 94)
                 .onChange(of: stepcount) { value in
                     if stepcount == 25{
                         ismore += 1
@@ -76,6 +78,7 @@ struct MissionPedometerView: View {
                     }
                 }
             }
+            .padding(.top, 80)
             .onReceive(timer) { input in
                 
                 if motionmanager.isDeviceMotionAvailable {
