@@ -88,15 +88,15 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         //Implementation of cup interior details
         leftborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
         leftborder.physicsBody?.affectedByGravity = false
-        leftborder.zRotation = .pi/50
-        leftborder.position = CGPoint(x: frame.midX/2.9, y: frame.midY)
+        leftborder.zRotation = .pi/52
+        leftborder.position = CGPoint(x: frame.midX/3.0, y: frame.midY)
         leftborder.physicsBody?.isDynamic = false
         
         addChild(leftborder)
         
         leftbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
         leftbottom.physicsBody?.affectedByGravity = false
-        leftbottom.zRotation = .pi/3.1
+        leftbottom.zRotation = .pi/3.0
         leftbottom.position = CGPoint(x: frame.midX, y: frame.height/15)
         leftbottom.physicsBody?.isDynamic = false
         
@@ -104,7 +104,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         
         rightborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
         rightborder.physicsBody?.affectedByGravity = false
-        rightborder.zRotation = -.pi/40
+        rightborder.zRotation = -.pi/45
         rightborder.position = CGPoint(x:( frame.maxX-frame.midX/3), y: frame.midY)
         rightborder.physicsBody?.isDynamic = false
         
@@ -112,7 +112,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         
         rightbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
         rightbottom.physicsBody?.affectedByGravity = false
-        rightbottom.zRotation = -.pi/3.1
+        rightbottom.zRotation = -.pi/3.0
         rightbottom.position = CGPoint(x:( frame.maxX-frame.midX), y: frame.height/15)
         rightbottom.physicsBody?.isDynamic = false
         

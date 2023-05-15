@@ -31,7 +31,7 @@ struct IntroView: View {
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 17) {
+                        HStack(spacing: 12) {
                             Circle()
                                 .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
                                 .frame(width: 8, height: 8)

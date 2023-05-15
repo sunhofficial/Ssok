@@ -32,9 +32,27 @@ struct CameraEndingView: View {
             StrawView()
         default:
             ZStack{
-                Image("endingtop").resizable()
-                    .aspectRatio(contentMode: .fit)
+                ZStack(alignment: .top) {
+                    Image("endingtop").resizable()
+                        .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Image("retry")
+                            Text("다시뽑기")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            random.randomMemberName = setRandomMember(random.members)
+                            st2 = true
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 56)
+                        
+                    }
+                }
                 
                 ZStack{
                     Text(random.randomMemberName)
@@ -108,16 +126,8 @@ struct CameraEndingView: View {
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
-//                    .offset(y:363)
                     .position(x:wid/2, y:hei-59)
-                
-                Button(action: {
-                    random.randomMemberName = setRandomMember(random.members)
-                    viewControl = "retry"
-                }){
-                    Image("retry")
-                }.position(x: wid - 57, y:73)
-                
+
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
