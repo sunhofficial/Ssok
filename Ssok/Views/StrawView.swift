@@ -116,7 +116,7 @@ struct StrawView: View {
                         }
                         .frame(width: 28)
                         .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -hei : 0)
+                        .offset(y: isAnimation ? -hei : -10)
                         .animation(.easeInOut.delay(1), value: isAnimation)
                     }
                     .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
