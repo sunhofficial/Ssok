@@ -10,6 +10,7 @@ import Foundation
 let whoArray = Array(whoList.keys) + Array(whoList.values)
 
 let whoList: [String : String] = [
+    "Poodle":"푸들",
     "Junyoo":"준유",
     "Jay":"제이",
     "Snack":"스낵",
@@ -109,5 +110,21 @@ let whoList: [String : String] = [
     "Musk":"머스크",
     "Miya":"미야",
     "Juju":"쥬쥬",
-    "Lorenzo":"로렌조"
+    "Lorenzo":"로렌조",
+    "Isaac":"아이작",
+    "Rinda":"린다",
+    "Daisy":"데이지",
+    "Young":"영",
+    "Leeo":"리이오",
+    "Jiku":"지쿠",
+    "Gwen":"그웬",
+    "Saya":"사야",
+    "Judy":"주디",
+    "Dora":"도라",
+    "Gommin":"곰민",
+    "Ian":"이안",
+    "Jason":"제이슨",
+    "Lingo":"링고",
+    "Sup":"섭",
+    "Soo":"수"
 ]

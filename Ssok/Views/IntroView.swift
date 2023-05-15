@@ -95,7 +95,7 @@ struct IntroView: View {
                     
                 }
                 .onChange(of: selectedPage, perform:  { index in
-                        isfirst = true
+                    isfirst.toggle()
                 })
                 .tabViewStyle(.page(indexDisplayMode: .never))
        
@@ -107,7 +107,7 @@ struct IntroView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView()
+                    hideTutorialView() 
                 })
             }
         }
