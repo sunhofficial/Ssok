@@ -43,7 +43,7 @@
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
 		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
-		C77F772B2A0FF77300C59882 /* SpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* SpeechView.swift */; };
+		C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +77,6 @@
 		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
-		AB98FFA42A1172EA00B95643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -85,7 +84,8 @@
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
-		C77F772A2A0FF77300C59882 /* SpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechView.swift; sourceTree = "<group>"; };
+		C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSpeechView.swift; sourceTree = "<group>"; };
+		FD389F9C2A11FB6C00BC779F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../Downloads/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +129,7 @@
 		7C94D54A2A02AB3A00AAC279 /* Ssok */ = {
 			isa = PBXGroup;
 			children = (
-				AB98FFA42A1172EA00B95643 /* Info.plist */,
+				FD389F9C2A11FB6C00BC779F /* Info.plist */,
 				ABB019BE2A07CD840000556F /* Global */,
 				C74DD5452A065C2000852B09 /* Model */,
 				C74982A72A03960B00228FD5 /* ViewModel */,
@@ -191,7 +191,7 @@
 				AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */,
 				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
 				7CF764162A117D3F007E2C3A /* MissionSmileView.swift */,
-				C77F772A2A0FF77300C59882 /* SpeechView.swift */,
+				C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
-				C77F772B2A0FF77300C59882 /* SpeechView.swift in Sources */,
+				C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */,
 				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
 				7CF7641D2A117E08007E2C3A /* AppDelegate.swift in Sources */,
 				10BCD2E32A11149700303334 /* MissionCompleteView.swift in Sources */,

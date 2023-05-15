@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpeechView: View {
+struct MissionSpeechView: View {
     
     @ObservedObject var speechRecognizer = SpeechRecognizer()
     @State var isSpeech: Bool = false
@@ -26,29 +26,7 @@ struct SpeechView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 24) {
-                ZStack(alignment: .top) {
-                    Image("speech_top")
-                        .edgesIgnoringSafeArea(.all)
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("따라읽기")
-                                .font(.system(size: 24, weight: .heavy))
-                            Text("주어진 문장을 정확하게 따라 읽어서 인식시켜요")
-                                .font(.system(size: 13, weight: .semibold))
-                        }
-                        .foregroundColor(.white)
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(.white)
-                            Text("📖")
-                                .font(.system(size: 24, weight: .heavy))
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 20)
-                }
+                MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 MissionTitleView(missionTitle: missionTitle, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.71))
                 // 카드 둘
                 VStack(spacing: 30) {
@@ -204,8 +182,8 @@ struct SpeechView: View {
     }
 }
 
-struct SpeechView_Previews: PreviewProvider {
+struct MissionSpeechView_Previews: PreviewProvider {
     static var previews: some View {
-        SpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
+        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
     }
 }
