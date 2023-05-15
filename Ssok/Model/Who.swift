@@ -10,6 +10,8 @@ import Foundation
 let whoArray = Array(whoList.keys) + Array(whoList.values)
 
 let whoList: [String : String] = [
+    "Noah":"노아",
+    "Poodle":"푸들",
     "Junyoo":"준유",
     "Jay":"제이",
     "Snack":"스낵",
@@ -22,7 +24,7 @@ let whoList: [String : String] = [
     "Benny":"베니",
     "Ceaser":"시저",
     "Jake":"제이크",
-    "Sunday":"선데이",
+    "Sunday":"썬데이",
     "Ruby":"루비",
     "Byo":"뵤",
     "Ollie":"올리",
@@ -44,7 +46,7 @@ let whoList: [String : String] = [
     "Liv":"리브",
     "Joy":"조이",
     "Oling":"올링",
-    "Jinne":"지니",
+    "Jinnie":"지니",
     "Demian":"데미안",
     "May":"메이",
     "Don":"돈",
@@ -109,5 +111,22 @@ let whoList: [String : String] = [
     "Musk":"머스크",
     "Miya":"미야",
     "Juju":"쥬쥬",
-    "Lorenzo":"로렌조"
+    "Lorenzo":"로렌조",
+    "Isaac":"아이작",
+    "Rinda":"린다",
+    "Daisy":"데이지",
+    "Young":"영",
+    "Leeo":"리이오",
+    "Jiku":"지쿠",
+    "Gwen":"그웬",
+    "Saya":"사야",
+    "Judy":"주디",
+    "Dora":"도라",
+    "Gommin":"곰민",
+    "Ian":"이안",
+    "Jason":"제이슨",
+    "Lingo":"링고",
+    "Sup":"섭",
+    "Soo":"수",
+    "SunP":"성피"
 ]

@@ -11,6 +11,7 @@ import SwiftUI
 
 struct IntroView: View {
     
+//    @StateObject var permissionManager = PermissionManager()
     @State var selectedPage: Int = 0
     @State var isTutorialHidden: Bool = false
     @State var isfirst: Bool = false
@@ -30,7 +31,7 @@ struct IntroView: View {
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 17) {
+                        HStack(spacing: 12) {
                             Circle()
                                 .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
                                 .frame(width: 8, height: 8)
@@ -94,35 +95,20 @@ struct IntroView: View {
                     
                 }
                 .onChange(of: selectedPage, perform:  { index in
-                        isfirst = true
+                    isfirst.toggle()
                 })
                 .tabViewStyle(.page(indexDisplayMode: .never))
        
-                if selectedPage == 2{
-                    NavigationLink(destination: AddMemberView()) {
-                        Text("시작하기").foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                            .background(Color("Bg_bottom2"))
-                            .cornerRadius(12)
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        hideTutorialView()
-                    })
-                } else {
-                    NavigationLink(destination: AddMemberView()) {
-                        Text("SKIP")
-                            .font(.system(size: 20))
-                            .foregroundColor(Color("Bg_bottom2"))
-                            .underline()
-                            .frame(maxHeight: 50, alignment: .center)
-                            .fontWeight(.bold)
-                            
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        hideTutorialView()
-                    })
+                NavigationLink(destination: AddMemberView()) {
+                    Text("시작하기").foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color("Bg_bottom2"))
+                        .cornerRadius(12)
                 }
+                .simultaneousGesture(TapGesture().onEnded {
+                    hideTutorialView() 
+                })
             }
         }
         .onAppear {

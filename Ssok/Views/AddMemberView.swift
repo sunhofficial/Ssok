@@ -38,6 +38,8 @@ struct AddMemberView: View {
                             .onSubmit {
                                 if viewModel.memberName == "" {
                                     viewModel.isTextFieldEmtpy = true
+                                } else if !whoArray.contains(viewModel.memberName) {
+                                    viewModel.isExistAlertShowing = true
                                 } else {
                                     viewModel.isTextFieldEmtpy = false
                                     viewModel.plusButtonDidTap()
@@ -52,32 +54,23 @@ struct AddMemberView: View {
                                 }
                                 viewModel.filterData()
                             }
-                            .padding(.leading, 15)
-                        Button {
-                            viewModel.plusButtonDidTap()
-                            isFocused = false
-                        } label: {
-                            if viewModel.isTextFieldEmtpy {
-                                Image(systemName: "plus.circle.fill")
-                                    .imageScale(.large)
-                                    .foregroundColor(Color(.systemGray5))
-                            } else {
-                                Image(systemName: "plus.circle.fill")
-                                    .imageScale(.large)
-                                    .foregroundColor(.orange)
-                                
+                            .padding(.horizontal, 15)
+                            .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isTotalAlertShowing) {
+                                Button("OK") {
+                                    viewModel.isTotalAlertShowing = false
+                                    isFocused = false
+                                }
+                            } message: {
+                                Text("팀원 선택은 최대 6명까지만\n선택 가능합니다")
                             }
-                        }
-                        .padding(.trailing, 15)
-                        .disabled(viewModel.isTextFieldEmtpy)
-                        .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isAlertShowing) {
-                            Button("OK") {
-                                viewModel.isAlertShowing = false
-                                isFocused = false
+                            .alert("아카데미에 존재하지 않는 인간입니다.", isPresented: $viewModel.isExistAlertShowing) {
+                                Button("OK") {
+                                    viewModel.isExistAlertShowing = false
+                                    isFocused = false
+                                }
+                            } message: {
+                                Text("아카데미의 러너 혹은 멘토만 참여할 수 있습니다.")
                             }
-                        } message: {
-                            Text("팀원 선택은 최대 6명까지만\n선택 가능합니다")
-                        }
                     }
                     .padding(.top, 7)
                     

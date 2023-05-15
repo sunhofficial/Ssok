@@ -21,14 +21,33 @@ struct CountEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    @State var GoalCount: String
     
     
     var body: some View {
         if !st2{
             ZStack{
-                Image("endingtop").resizable()
-                    .aspectRatio(contentMode: .fit)
+                ZStack(alignment: .top) {
+                    Image("endingtop").resizable()
+                        .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Image("retry")
+                            Text("다시뽑기")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            random.randomMemberName = setRandomMember(random.members)
+                            st2 = true
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 56)
+                        
+                    }
+                }
                 
                 ZStack{
                     Text(random.randomMemberName)
@@ -105,14 +124,7 @@ struct CountEndingView: View {
 //                    .offset(y:363)
                     .position(x:wid/2, y:hei-59)
                 
-                Button(action: {
-                    random.randomMemberName = setRandomMember(random.members)
-                    st2 = true
-                }){
-                    Image("retry")
-                }.position(x: wid - 57, y:73)
-                
-                NavigationLink(destination: MissionPedometerView()) {
+                NavigationLink(destination: MissionPedometerView(Title: missionTitle, TitleColor: missionColor, GoalCount: GoalCount)) {
                     Text("미션하기").foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
@@ -132,7 +144,7 @@ struct CountEndingView_Previews: PreviewProvider {
     static let random = RandomMember()
     
     static var previews: some View {
-        CountEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 춤을 열심히 춰서 진동 횟수를 채워요!", missionColor: Color("MissionOrange"))
+        CountEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 춤을 열심히 춰서 진동 횟수를 채워요!", missionColor: Color("MissionOrange"), GoalCount: "100")
             .environmentObject(random)
     }
 }
