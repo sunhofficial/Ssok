@@ -46,7 +46,7 @@ struct CameraEndingView: View {
                         }
                         .onTapGesture {
                             random.randomMemberName = setRandomMember(random.members)
-                            st2 = true
+                            viewControl = "retry"
                         }
                         .padding(.trailing, 20)
                         .padding(.top, 56)
@@ -127,7 +127,6 @@ struct CameraEndingView: View {
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
                     .position(x:wid/2, y:hei-59)
-
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
