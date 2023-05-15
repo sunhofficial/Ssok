@@ -48,6 +48,7 @@ struct MissionPedometerView: View {
                         Circle()
                             .trim(from: 0.0, to: CGFloat(stepcount/100.0))
                             .stroke(style: StrokeStyle(lineWidth: 25.0, lineCap: .round, lineJoin: .round))
+                            .rotationEffect(.degrees(270))
                             .foregroundColor(progressColor)
                     }.frame(width: 308, height: 308)
                     
