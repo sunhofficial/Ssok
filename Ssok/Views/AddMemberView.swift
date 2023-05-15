@@ -36,13 +36,6 @@ struct AddMemberView: View {
                             }
                             .accentColor(.orange)
                             .onSubmit {
-//                                if viewModel.memberName == "" {
-//                                    viewModel.isTextFieldEmtpy = true
-//                                } else {
-//                                    viewModel.isTextFieldEmtpy = false
-//                                    viewModel.plusButtonDidTap()
-//                                    isFocused = false
-//                                }
                                 if viewModel.memberName == "" {
                                     viewModel.isTextFieldEmtpy = true
                                 } else if !whoArray.contains(viewModel.memberName) {
