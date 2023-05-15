@@ -1,9 +1,11 @@
 
-
 import Foundation
+
 class AddMemberViewModel : ObservableObject {
+    
     @Published var memberName : String = ""
-    @Published var isAlertShowing: Bool = false
+    @Published var isTotalAlertShowing: Bool = false
+    @Published var isExistAlertShowing: Bool = false
     @Published var isTextFieldEmtpy: Bool = true
     @Published var isNextButtonDisabled: Bool = false
     @Published var members: [Member] = []
@@ -30,7 +32,7 @@ class AddMemberViewModel : ObservableObject {
     
     func plusButtonDidTap() {
         if members.count >= 6 {
-            isAlertShowing = true
+            isTotalAlertShowing = true
         } else {
             appendMembers(memberName)
         }
