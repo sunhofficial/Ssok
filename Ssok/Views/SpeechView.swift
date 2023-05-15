@@ -164,7 +164,6 @@ struct SpeechView: View {
                                     speechRecognizer.startTranscribing()
                                     isWrong = true
                                     isSpeech = false
-                                    print(speechRecognizer.transcript)
                                 }
                             }
                             let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
@@ -176,7 +175,6 @@ struct SpeechView: View {
                                     timer.invalidate()
                                     isComplete = true
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    print("정답")
                                 }}
                             RunLoop.main.add(checktimer, forMode: .common)
                             RunLoop.main.add(timer, forMode: .common)
