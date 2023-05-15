@@ -78,33 +78,6 @@ struct AddMemberView: View {
                             } message: {
                                 Text("아카데미의 러너 혹은 멘토만 참여할 수 있습니다.")
                             }
-
-                        
-//                        Button {
-//                            viewModel.plusButtonDidTap()
-//                            isFocused = false
-//                        } label: {
-//                            if viewModel.isTextFieldEmtpy {
-//                                Image(systemName: "plus.circle.fill")
-//                                    .imageScale(.large)
-//                                    .foregroundColor(Color(.systemGray5))
-//                            } else {
-//                                Image(systemName: "plus.circle.fill")
-//                                    .imageScale(.large)
-//                                    .foregroundColor(.orange)
-//
-//                            }
-//                        }
-//                        .padding(.trailing, 15)
-//                        .disabled(viewModel.isTextFieldEmtpy)
-//                        .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isAlertShowing) {
-//                            Button("OK") {
-//                                viewModel.isAlertShowing = false
-//                                isFocused = false
-//                            }
-//                        } message: {
-//                            Text("팀원 선택은 최대 6명까지만\n선택 가능합니다")
-//                        }
                     }
                     .padding(.top, 7)
                     
