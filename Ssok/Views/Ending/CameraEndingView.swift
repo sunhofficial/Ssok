@@ -127,6 +127,14 @@ struct CameraEndingView: View {
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
                     .position(x:wid/2, y:hei-59)
+                
+                Button(action: {
+                    random.randomMemberName = setRandomMember(random.members)
+                    viewControl = "retry"
+                }){
+                    Image("retry")
+                }.position(x: wid - 57, y:73)
+                
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)

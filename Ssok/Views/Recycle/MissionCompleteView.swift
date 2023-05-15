@@ -35,9 +35,9 @@ struct MissionCompleteView: View {
                                 .foregroundColor(Color("Bg_bottom2")).underline()
                         }
                     }.offset(y:90)
-                        .onAppear{
-                            random.randomMemberName = setRandomMember(random.members)
-                        }
+//                        .onAppear{
+//                            random.randomMemberName = setRandomMember(random.members)
+//                        }
                     
                 }
             }.ignoresSafeArea()
