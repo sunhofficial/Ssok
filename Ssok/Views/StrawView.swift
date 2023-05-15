@@ -90,10 +90,10 @@ struct StrawView: View {
                                         .padding(.bottom, 10)
                                     ProgressView(value: progress)
                                         .tint(Color("Bg_bottom2"))
-                                        .background(.black)
-                                        .cornerRadius(8)
+                                        .background(Color(.systemGray6))
+                                        .frame(width: 240, height: 8)
                                         .scaleEffect(x: 1, y: 2)
-                                        .padding([.leading, .trailing], 85)
+                                        .clipShape(RoundedRectangle(cornerRadius: 4))
                                 }
                             }
                             .padding(.top, 30)
