@@ -34,10 +34,12 @@ struct MissionSpeechView: View {
                         .shadow(color: Color(.black).opacity(0.25),radius: 4)
                         .overlay(
                             ProgressView(value: progressTime, total: 100)
-                                .tint(Color("Orange_Progress"))
-                                .padding(.horizontal, 40)
-                                .padding(.top, 8)
-                                .scaleEffect(y: 2)
+                                .tint(Color("Bg_bottom2"))
+                                .background(Color(.systemGray6))
+                                .frame(width: 260, height: 8)
+                                .scaleEffect(x: 1, y: 2)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .padding(.top, 17)
                                 .onReceive(progressTimer) { _ in
                                     withAnimation(.linear(duration: 1)) {
                                         if progressTime > 0 {

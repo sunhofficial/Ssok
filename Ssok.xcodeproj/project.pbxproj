@@ -32,7 +32,6 @@
 		AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4A2A10A30A00EE808B /* MissionTopView.swift */; };
 		AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */; };
 		AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissionTitleView.swift */; };
-		AB031C542A10E19100EE808B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C532A10E19100EE808B /* CircularProgressView.swift */; };
 		AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionPedometerView.swift */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
@@ -73,7 +72,6 @@
 		AB031C4A2A10A30A00EE808B /* MissionTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTopView.swift; sourceTree = "<group>"; };
 		AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelView.swift; sourceTree = "<group>"; };
 		AB031C512A10D6B300EE808B /* MissionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTitleView.swift; sourceTree = "<group>"; };
-		AB031C532A10E19100EE808B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				AB031C4A2A10A30A00EE808B /* MissionTopView.swift */,
 				AB031C512A10D6B300EE808B /* MissionTitleView.swift */,
 				10BCD2E22A11149700303334 /* MissionCompleteView.swift */,
-				AB031C532A10E19100EE808B /* CircularProgressView.swift */,
 			);
 			path = Recycle;
 			sourceTree = "<group>";
@@ -316,7 +313,6 @@
 				10BCD2E62A1124A600303334 /* DecibelEndingView.swift in Sources */,
 				AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */,
 				10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */,
-				AB031C542A10E19100EE808B /* CircularProgressView.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
 				AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
