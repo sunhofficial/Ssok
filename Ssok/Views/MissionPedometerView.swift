@@ -35,7 +35,7 @@ struct MissionPedometerView: View {
         
         ZStack {
             VStack(spacing: 64) {
-                MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요", iconImage: "🪩")
+                MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요")
                 
                 MissionTitleView(missionTitle: Title, backgroundColor: TitleColor.opacity(0.35), borderColor: TitleColor.opacity(0.71))
                 

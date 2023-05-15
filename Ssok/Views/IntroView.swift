@@ -11,6 +11,7 @@ import SwiftUI
 
 struct IntroView: View {
     
+//    @StateObject var permissionManager = PermissionManager()
     @State var selectedPage: Int = 0
     @State var isTutorialHidden: Bool = false
     @State var isfirst: Bool = false
