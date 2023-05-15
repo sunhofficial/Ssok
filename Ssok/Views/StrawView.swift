@@ -41,7 +41,7 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if detec < 20 {
+                if detec < 10 {
                     Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -52,7 +52,7 @@ struct StrawView: View {
                 VStack(spacing: 24) {
                     // 가이드
                     VStack(spacing: 24) {
-                        if detec >= 20 {
+                        if detec >= 10 {
                             // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
@@ -123,7 +123,7 @@ struct StrawView: View {
                 }
                 
                 // 빨대
-                if detec >= 20 {
+                if detec >= 10 {
                     Image("Straw")
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
@@ -219,21 +219,21 @@ struct StrawView: View {
                         gravityy = data?.gravity.y ?? 0
                         gravityz = data?.gravity.z ?? 0
                         
-                        if gravityx > 0.2 || gravityy > 0.2 || gravityz > 0.2 {
+                        if gravityx > 0.15 || gravityy > 0.15 || gravityz > 0.15 {
                             currentgravity = 1
-                        } else if gravityx <= 0.2 && gravityx >= -0.2 && gravityy <= 0.2 && gravityy >= -0.2 && gravityz <= 0.2 && gravityz >= -0.2 {
+                        } else if gravityx <= 0.15 && gravityx >= -0.15 && gravityy <= 0.15 && gravityy >= -0.15 && gravityz <= 0.15 && gravityz >= -0.15 {
                             currentgravity = 0
-                        } else if gravityx < -0.2 || gravityy < -0.2 || gravityz < 0.2 {
+                        } else if gravityx < -0.15 || gravityy < -0.15 || gravityz < 0.15 {
                             currentgravity = 2
                         }
                         
                         if currentgravity == previousgravity && previousgravity != 0 {
                             previousgravity = currentgravity
                         } else if currentgravity != previousgravity{
-                            if detec != 20 {
+                            if detec != 10 {
                                 detec += 1
                                 print(detec)
-                                progress += 0.05
+                                progress += 0.1
                                 print(progress)
                             }
                             previousgravity = currentgravity
@@ -262,13 +262,14 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            if (What.missionType == .blink || What.missionType == .smile) {
-                NavigationLink(destination: AddMemberView()){
-                    
-                }
-            } else {
-                mode.wrappedValue.dismiss()
-            }
+//            if (What.missionType == .blink || What.missionType == .smile) {
+//                NavigationLink(destination: AddMemberView()){
+//
+//                }
+//            } else {
+//                mode.wrappedValue.dismiss()
+//            }
+            mode.wrappedValue.dismiss()
         } label: {
             Image(systemName: "chevron.backward")
                 .resizable()
