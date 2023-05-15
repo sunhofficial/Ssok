@@ -68,7 +68,6 @@ struct MissionPedometerView: View {
                     Text(more).foregroundColor(ismore>=2 ? Color.black : Color("Gray"))
                     Text(more).foregroundColor(ismore>=3 ? Color.black : Color("Gray"))
                 }.font(.system(size: 48, weight: .bold))
-                .padding(.bottom, 94)
                 .onChange(of: stepcount) { value in
                     if stepcount == 25{
                         ismore += 1
