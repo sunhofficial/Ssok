@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Cuphead.png",
+      "filename" : "Cuphead@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cup@2x.png",
+      "filename" : "Cuphead@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cup@3x.png",
+      "filename" : "Cuphead@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

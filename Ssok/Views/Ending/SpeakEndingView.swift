@@ -28,9 +28,27 @@ struct SpeakEndingView: View {
     var body: some View {
         if !st2{
             ZStack{
-                Image("endingtop").resizable()
-                    .aspectRatio(contentMode: .fit)
+                ZStack(alignment: .top) {
+                    Image("endingtop").resizable()
+                        .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Image("retry")
+                            Text("다시뽑기")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            random.randomMemberName = setRandomMember(random.members)
+                            st2 = true
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 56)
+                        
+                    }
+                }
                 
                 ZStack{
                     Text(random.randomMemberName)
@@ -92,27 +110,7 @@ struct SpeakEndingView: View {
                                 .multilineTextAlignment(.center)
                         }
                     }.offset(y:32)
-                    
                 }.offset(y:150)
-                
-//                Button(action: {
-//                    next = true
-//                }){
-//                    Text("미션하기")
-//                }.foregroundColor(.white)
-//                    .fontWeight(.bold)
-//                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-//                    .background(Color("Bg_bottom2"))
-//                    .cornerRadius(12)
-////                    .offset(y:363)
-//                    .position(x:wid/2, y: hei - 59)
-                
-                Button(action: {
-                    random.randomMemberName = setRandomMember(random.members)
-                    st2 = true
-                }){
-                    Image("retry")
-                }.position(x: wid - 57, y:73)
                 
                 NavigationLink(destination: MissionSpeechView(missionTitle: missionTitle, missionTip: missionTip, missionColor: missionColor, answerText: goal, speechTime: timer)) {
                     Text("미션하기").foregroundColor(.white)
