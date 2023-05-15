@@ -23,11 +23,12 @@ struct MissionDecibelView: View {
     var body: some View {
         
         ZStack {
-            VStack(spacing: 64) {
+            VStack {
                 MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요.")
-                
+                Spacer()
+            }
+            VStack(spacing: 64) {
                 MissionTitleView(missionTitle: title, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.7))
-                
                 ZStack {
                     ZStack {
                         Circle()
@@ -75,17 +76,14 @@ struct MissionDecibelView: View {
                             .foregroundColor(Color("GoalRed"))
                     }
                 }
-
                 HStack{
                     Text(more).foregroundColor(Color.black)
                     Text(more).foregroundColor(ismore >= 1 ? Color.black : Color("Gray"))
                     Text(more).foregroundColor(ismore >= 2 ? Color.black : Color("Gray"))
                     Text(more).foregroundColor(ismore >= 3 ? Color.black : Color("Gray"))
                 }.font(.system(size: 48, weight: .bold))
-                    .padding(.bottom, 94)
-                
-                Spacer()
             }
+            .padding(.top, 80)
             .navigationBarHidden(true)
             
             if isCompleted {

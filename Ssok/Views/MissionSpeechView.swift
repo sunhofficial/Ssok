@@ -25,11 +25,82 @@ struct MissionSpeechView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 24) {
+            VStack {
                 MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
+                Spacer()
+                // 버튼 & 프로그레스
+                if isSpeech {
+                    Image("progress")
+                        .shadow(color: Color(.black).opacity(0.25),radius: 4)
+                        .overlay(
+                            ProgressView(value: progressTime, total: 100)
+                                .tint(Color("Orange_Progress"))
+                                .padding(.horizontal, 40)
+                                .padding(.top, 8)
+                                .scaleEffect(y: 2)
+                                .onReceive(progressTimer) { _ in
+                                    withAnimation(.linear(duration: 1)) {
+                                        if progressTime > 0 {
+                                            progressTime -= 100/speechTime
+                                        }
+                                    }
+                                }
+                        )
+                        .frame(height: 50)
+                        .onAppear {
+                            speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                            speechRecognizer.startTranscribing()
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
+                                timer in
+                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
+                                //영소문자 바꾸는 거 해야함.
+                                
+                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
+                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                                    speechRecognizer.startTranscribing()
+                                    isWrong = true
+                                    isSpeech = false
+                                    print(speechRecognizer.transcript)
+                                }
+                            }
+                            let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
+                                timer in
+                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
+                                //영소문자 바꾸는 거 해야함.
+                                
+                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
+                                    timer.invalidate()
+                                    isComplete = true
+                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                                    print("정답")
+                                }}
+                            RunLoop.main.add(checktimer, forMode: .common)
+                            RunLoop.main.add(timer, forMode: .common)
+                        }
+                        .onDisappear{
+                            speechRecognizer.stopTranscript()
+                        }
+                } else {
+                    Button {
+                        isSpeech = true
+                        speechRecognizer.transcript = ""
+                        progressTime = 100
+                        isWrong = false
+                    } label: {
+                        Text("눌러서 말하기")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: 350, alignment: .center)
+                            .frame(height: 50)
+                            .background(Color("Bg_bottom2"))
+                            .cornerRadius(12)
+                    }
+                }
+            }
+            VStack(spacing: 40) {
                 MissionTitleView(missionTitle: missionTitle, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.71))
                 // 카드 둘
-                VStack(spacing: 30) {
+                VStack(spacing: 44) {
                     // 제시어 카드
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
@@ -107,78 +178,13 @@ struct MissionSpeechView: View {
                     }
                     .padding(.top, 3)
                 }
-                if isSpeech {
-                    Image("progress")
-                        .shadow(color: Color(.black).opacity(0.25),radius: 4)
-                        .overlay(
-                            ProgressView(value: progressTime, total: 100)
-                                .tint(Color("Orange_Progress"))
-                                .padding(.horizontal, 40)
-                                .padding(.top, 8)
-                                .scaleEffect(y: 2)
-                                .onReceive(progressTimer) { _ in
-                                    withAnimation(.linear(duration: 1)) {
-                                        if progressTime > 0 {
-                                            progressTime -= 100/speechTime
-                                        }
-                                    }
-                                }
-                        )
-                        .frame(height: 50)
-                        .onAppear {
-                            speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                            speechRecognizer.startTranscribing()
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
-                                timer in
-                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
-                                //영소문자 바꾸는 거 해야함.
-                                
-                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    speechRecognizer.startTranscribing()
-                                    isWrong = true
-                                    isSpeech = false
-                                    print(speechRecognizer.transcript)
-                                }
-                            }
-                            let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
-                                timer in
-                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
-                                //영소문자 바꾸는 거 해야함.
-                                
-                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
-                                    timer.invalidate()
-                                    isComplete = true
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    print("정답")
-                                }}
-                            RunLoop.main.add(checktimer, forMode: .common)
-                            RunLoop.main.add(timer, forMode: .common)
-                        }
-                        .onDisappear{
-                            speechRecognizer.stopTranscript()
-                        }
-                } else {
-                    Button {
-                        isSpeech = true
-                        speechRecognizer.transcript = ""
-                        progressTime = 100
-                        isWrong = false
-                    } label: {
-                        Text("눌러서 말하기")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: 350, alignment: .center)
-                            .frame(height: 50)
-                            .background(Color("Bg_bottom2"))
-                            .cornerRadius(12)
-                    }
-                }
             }
+            .padding(.top, 40)
             if isComplete {
                 MissionCompleteView(Title: missionTitle, background: missionColor)
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
