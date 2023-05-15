@@ -250,8 +250,10 @@ struct StrawView: View {
                 CountEndingView(wheresentence: Where ,whatsentence: What.missionTitle, missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
             case .voice:
                 SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
-            case .face:
-                CameraEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+            case .smile:
+                CameraEndingView(wheresentence: Where ,whatsentence: What.missionTitle, arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+            case .blink:
+                CameraEndingView(wheresentence: Where ,whatsentence: What.missionTitle, arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             }
         }
     }
@@ -260,7 +262,13 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            mode.wrappedValue.dismiss()
+            if (What.missionType == .blink || What.missionType == .smile) {
+                NavigationLink(destination: AddMemberView()){
+                    
+                }
+            } else {
+                mode.wrappedValue.dismiss()
+            }
         } label: {
             Image(systemName: "chevron.backward")
                 .resizable()
