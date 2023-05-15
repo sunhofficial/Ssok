@@ -247,7 +247,7 @@ struct StrawView: View {
             case .decibel:
                 DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor, GoalCount: What.goal!)
+                CountEndingView(wheresentence: Where ,whatsentence: What.missionTitle, missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
             case .voice:
                 SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
             case .face:
