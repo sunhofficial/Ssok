@@ -33,7 +33,4 @@ let missions = [
     Mission(missionType: .voice, missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n나는 바보다라고 말할 준비가 되면\n말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: Color("MissionVoice"), goal: "나는 바보다", timer: 5.0),
     Mission(missionType: .blink, missionTitle: "플러팅하기 😉", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요!", missionColor: .mint, arstate: "blink"),
     Mission(missionType: .smile, missionTitle: "팀원웃기기　😄", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 웃으세요!", missionColor: .mint, arstate: "smile")
-
-//    Mission(missionType: .face, title: "플러팅하기", description: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요!", mainColor: .mint, arstate: "blink"),
-//    Mission(missionType: .face, title: "팀원웃기기", description: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 웃으세요!", mainColor: .mint, arstate: "smile")
 ]
