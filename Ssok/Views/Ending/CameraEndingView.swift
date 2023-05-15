@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CameraEndingView: View {
     
-    @State var st2: Bool = false
-    @State var next = false
+    @State var viewControl: String = "default"
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
+    @State var arstate: String = ""
     
     @EnvironmentObject var random: RandomMember
     
@@ -24,7 +24,13 @@ struct CameraEndingView: View {
     
     
     var body: some View {
-        if !st2{
+        
+        switch viewControl{
+        case arstate:
+            MissionSmileView(ARstate: arstate)
+        case "retry":
+            StrawView()
+        default:
             ZStack{
                 Image("endingtop").resizable()
                     .aspectRatio(contentMode: .fit)
@@ -94,7 +100,7 @@ struct CameraEndingView: View {
                 }.offset(y:150)
                 
                 Button(action: {
-                    next = true
+                    viewControl = arstate
                 }){
                     Text("미션하기")
                 }.foregroundColor(.white)
@@ -107,24 +113,14 @@ struct CameraEndingView: View {
                 
                 Button(action: {
                     random.randomMemberName = setRandomMember(random.members)
-                    st2 = true
+                    viewControl = "retry"
                 }){
                     Image("retry")
                 }.position(x: wid - 57, y:73)
                 
-                NavigationLink(destination: MissionSmileView()) {
-                    Text("미션하기").foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                        .background(Color("Bg_bottom2"))
-                        .cornerRadius(12)
-                }.position(x:wid/2, y:hei-59)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-            
-        } else {
-            StrawView()
         }
     }
 }

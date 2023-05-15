@@ -239,8 +239,10 @@ struct StrawView: View {
                 CountEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             case .voice:
                 SpeakEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
-            case .face:
-                CameraEndingView(wheresentence: Where ,whatsentence: What.title, missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            case .smile:
+                CameraEndingView(wheresentence: Where ,whatsentence: What.title, arstate: "smile", missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
+            case .blink:
+                CameraEndingView(wheresentence: Where ,whatsentence: What.title, arstate: "blink", missionTitle: What.title, missionTip: What.description, missionColor: What.mainColor)
             }
         }
     }
