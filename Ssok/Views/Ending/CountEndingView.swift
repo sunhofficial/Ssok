@@ -21,6 +21,7 @@ struct CountEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    @State var GoalCount: String
     
     
     var body: some View {
@@ -112,7 +113,7 @@ struct CountEndingView: View {
                     Image("retry")
                 }.position(x: wid - 57, y:73)
                 
-                NavigationLink(destination: MissionPedometerView()) {
+                NavigationLink(destination: MissionPedometerView(Title: missionTitle, TitleColor: missionColor, GoalCount: GoalCount)) {
                     Text("미션하기").foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
@@ -132,7 +133,7 @@ struct CountEndingView_Previews: PreviewProvider {
     static let random = RandomMember()
     
     static var previews: some View {
-        CountEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 춤을 열심히 춰서 진동 횟수를 채워요!", missionColor: Color("MissionOrange"))
+        CountEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 춤을 열심히 춰서 진동 횟수를 채워요!", missionColor: Color("MissionOrange"), GoalCount: "100")
             .environmentObject(random)
     }
 }
