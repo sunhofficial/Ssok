@@ -23,6 +23,8 @@ struct StrawView: View {
     @State var previousgravity = 0
     @State var detec: Int = 0
     @State var gravityx: Double = 0
+    @State var gravityy: Double = 0
+    @State var gravityz: Double = 0
     @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
@@ -39,7 +41,7 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if detec < 25 {
+                if detec < 20 {
                     Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -50,7 +52,7 @@ struct StrawView: View {
                 VStack(spacing: 24) {
                     // 가이드
                     VStack(spacing: 24) {
-                        if detec >= 25 {
+                        if detec >= 20 {
                             // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
@@ -114,14 +116,14 @@ struct StrawView: View {
                         }
                         .frame(width: 28)
                         .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -hei : 0)
+                        .offset(y: isAnimation ? -hei : -10)
                         .animation(.easeInOut.delay(1), value: isAnimation)
                     }
                     .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
                 }
                 
                 // 빨대
-                if detec >= 25 {
+                if detec >= 20 {
                     Image("Straw")
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
@@ -214,22 +216,24 @@ struct StrawView: View {
                     motionmanager.deviceMotionUpdateInterval = 0.2
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
                         gravityx = data?.gravity.x ?? 0
+                        gravityy = data?.gravity.y ?? 0
+                        gravityz = data?.gravity.z ?? 0
                         
-                        if gravityx > 0.2 {
+                        if gravityx > 0.2 || gravityy > 0.2 || gravityz > 0.2 {
                             currentgravity = 1
-                        } else if gravityx <= 0.15 && gravityx >= -0.15 {
+                        } else if gravityx <= 0.2 && gravityx >= -0.2 && gravityy <= 0.2 && gravityy >= -0.2 && gravityz <= 0.2 && gravityz >= -0.2 {
                             currentgravity = 0
-                        } else if gravityx < -0.15 {
+                        } else if gravityx < -0.2 || gravityy < -0.2 || gravityz < 0.2 {
                             currentgravity = 2
                         }
                         
                         if currentgravity == previousgravity && previousgravity != 0 {
                             previousgravity = currentgravity
                         } else if currentgravity != previousgravity{
-                            if detec != 25 {
+                            if detec != 20 {
                                 detec += 1
                                 print(detec)
-                                progress += 0.04
+                                progress += 0.05
                                 print(progress)
                             }
                             previousgravity = currentgravity
@@ -243,7 +247,7 @@ struct StrawView: View {
             case .decibel:
                 DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CountEndingView(wheresentence: Where ,whatsentence: What.missionTitle, missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
             case .voice:
                 SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
             case .face:

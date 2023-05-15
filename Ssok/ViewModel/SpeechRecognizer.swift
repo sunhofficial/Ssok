@@ -28,12 +28,12 @@ actor SpeechRecognizer: ObservableObject {
     
     
     @MainActor @Published var transcript: String = ""
-    @Published var Langague : Bool = true
+    @Published var Langague : String = "Korean"
     
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
-    private let recognizer: SFSpeechRecognizer?
+    private var recognizer: SFSpeechRecognizer?
     
     /**
      Initializes a new speech recognizer. If this is the first time you've used the class, it
@@ -67,6 +67,11 @@ actor SpeechRecognizer: ObservableObject {
             await transcribe()
         }
     }
+    @MainActor func englishTranscribing(){
+        Task{
+            await englishtranscribe()
+        }
+    }
     
     @MainActor func stopTranscript() {
         Task {
@@ -80,7 +85,28 @@ actor SpeechRecognizer: ObservableObject {
      Creates a `SFSpeechRecognitionTask` that transcribes speech to text until you call `stopTranscribing()`.
      The resulting transcription is continuously written to the published `transcript` property.
      */
+    private func englishtranscribe() {
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+//        guard let recognizer, recognizer.isAvailable else {
+//            self.transcribe(RecognizerError.recognizerIsUnavailable)
+//            return
+//        }
+//
+//        do {
+//            let (audioEngine, request) = try Self.prepareEngine()
+//            self.audioEngine = audioEngine
+//            self.request = request
+//            self.task = recognizer.recognitionTask(with: request, resultHandler: { [weak self] result, error in
+//                 self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
+//            })
+//        } catch {
+//            self.reset()
+//            self.transcribe(error)
+//        }
+        transcribe()
+    }
     private func transcribe() {
+//        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
         guard let recognizer, recognizer.isAvailable else {
             self.transcribe(RecognizerError.recognizerIsUnavailable)
             return
