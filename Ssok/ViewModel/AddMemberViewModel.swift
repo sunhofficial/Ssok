@@ -1,8 +1,6 @@
 
 import Foundation
-
 class AddMemberViewModel : ObservableObject {
-    
     @Published var memberName : String = ""
     @Published var isTotalAlertShowing: Bool = false
     @Published var isExistAlertShowing: Bool = false
