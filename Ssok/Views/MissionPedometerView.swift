@@ -13,15 +13,23 @@ struct MissionPedometerView: View {
     let motionmanager = CMMotionManager()
     let activityManager = CMMotionActivityManager()
     
+    @State var Title: String
+    @State var TitleColor: Color
+    @State var GoalCount: String
+    
     @State var stepcount: Float = 0
     
     @State var currentgravity = 0
     @State var previousgravity = 0
     @State var gravityx: Double = 0
+    @State var gravityy: Double = 0
+    @State var gravityz: Double = 0
     @State var backstate: Bool = false
 
     @State var limit: Float = 100.0
-    @State var progressColor: Color = Color("Bg_bottom2")
+    @State var progressColor: Color = Color("Progress_first")
+    let more: String = "더"
+    @State var ismore: Int = 0
     
     var body: some View {
         
@@ -29,7 +37,7 @@ struct MissionPedometerView: View {
             VStack(spacing: 64) {
                 MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요")
                 
-                MissionTitleView(missionTitle: "춤추기 💃🕺🏻", backgroundColor: Color("MissionShake").opacity(0.28), borderColor: Color("MissionShake").opacity(0.71))
+                MissionTitleView(missionTitle: Title, backgroundColor: TitleColor.opacity(0.35), borderColor: TitleColor.opacity(0.71))
                 
                 ZStack {
                     ZStack {
@@ -51,11 +59,22 @@ struct MissionPedometerView: View {
                             .foregroundColor(Color("GoalRed"))
                     }
                 }
-                
-                Text("더더더더더더")
-                    .font(.system(size: 48, weight: .bold))
-                    .foregroundColor(Color("Gray"))
-                    .padding(.bottom, 94)
+                HStack{
+                    Text(more).foregroundColor(Color.black)
+                    Text(more).foregroundColor(ismore>=1 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore>=2 ? Color.black : Color("Gray"))
+                    Text(more).foregroundColor(ismore>=3 ? Color.black : Color("Gray"))
+                }.font(.system(size: 48, weight: .bold))
+                .padding(.bottom, 94)
+                .onChange(of: stepcount) { value in
+                    if stepcount == 25{
+                        ismore += 1
+                    } else if stepcount == 50 {
+                        ismore += 1
+                    } else if stepcount == 75 {
+                        ismore += 1
+                    }
+                }
             }
             .onReceive(timer) { input in
                 
@@ -64,11 +83,11 @@ struct MissionPedometerView: View {
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
                         gravityx = data?.gravity.x ?? 0
                         
-                        if gravityx > 0.15 {
+                        if gravityx > 0.2 || gravityy > 0.2 || gravityz > 0.2 {
                             currentgravity = 1
-                        } else if gravityx <= 0.15 && gravityx >= -0.15 {
+                        } else if gravityx <= 0.2 && gravityx >= -0.2 && gravityy <= 0.2 && gravityy >= -0.2 && gravityz <= 0.2 && gravityz >= -0.2 {
                             currentgravity = 0
-                        } else if gravityx < -0.15 {
+                        } else if gravityx < -0.2 || gravityy < -0.2 || gravityz < 0.2 {
                             currentgravity = 2
                         }
                         
@@ -83,9 +102,17 @@ struct MissionPedometerView: View {
                     }
                     
                 }
+                
+                if stepcount <= 50 && stepcount > 25 {
+                    progressColor = Color("Progress_second")
+                } else if stepcount <= 75 && stepcount > 50 {
+                    progressColor = Color("Progress_third")
+                } else if stepcount <= 100 && stepcount > 75 {
+                    progressColor = Color("Progress_final")
+                }
             }
-            if stepcount == 100 {
-                MissionCompleteView(Title: "춤추기", background: Color("MissionShake"))
+            if String(stepcount) == GoalCount {
+                MissionCompleteView(Title: Title, background: TitleColor)
             }
         }.navigationBarHidden(true)
     }
@@ -93,6 +120,6 @@ struct MissionPedometerView: View {
 
 struct MissionPedometerView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionPedometerView()
+        MissionPedometerView(Title: "춤추기 💃🕺🏻", TitleColor: Color("MissionPurple"), GoalCount: "100.0")
     }
 }
