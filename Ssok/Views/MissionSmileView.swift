@@ -5,6 +5,7 @@
 //  Created by CHANG JIN LEE on 2023/05/13.
 //
 
+import UIKit
 import SwiftUI
 import RealityKit
 
@@ -15,14 +16,18 @@ struct MissionSmileView : View {
     let date = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+//    @State var Title: String
+//    @State var TitleColor: Color
+    
     @State var isSmile: Bool = false
     @State var isBlink: Bool = false
     
     @State var timeRemaining : Int = 100
     @State var blinkCount: Int = 0
-    @State var ARstate: String = ""
     @State var camerast: Bool = false
-    @State var cst: Bool = false
+    
+    @Binding var st: Bool
+    @State var ARstate: String
     
     
     @Environment(\.presentationMode) var mode
@@ -55,7 +60,7 @@ struct MissionSmileView : View {
                                 }
                         }
                         else{
-//                            MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint)
+                            MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint, st: $st)
                             
                         }
                     } else if ARstate == "blink"{
@@ -81,7 +86,7 @@ struct MissionSmileView : View {
                         }
                         else
                         {
-//                            MissionCompleteView(Title: "플러팅하기😘", background: Color.mint)
+                            MissionCompleteView(Title: "플러팅하기😘", background: Color.mint, st: $st)
                         }
                     }
                     
@@ -90,10 +95,10 @@ struct MissionSmileView : View {
                 .onAppear {
                     calcRemain()
                 }
-                .onDisappear{
-                    mode.wrappedValue.dismiss()
-                    //            }
-                }
+//                .onDisappear{
+//                    mode.wrappedValue.dismiss()
+//                    //            }
+//                }
             }
         }.navigationBarHidden(true)
     }
@@ -117,9 +122,11 @@ struct MissionSmileView : View {
 
 struct ARViewContainer: UIViewRepresentable {
     var arViewModel: ARViewModel
+    
     func makeUIView(context: Context) -> ARView {
         arViewModel.startSessionDelegate()
         return arViewModel.arView
     }
     func updateUIView(_ uiView: ARView, context: Context) {}
 }
+

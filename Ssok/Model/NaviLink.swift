@@ -7,5 +7,4 @@
 
 import Foundation
 
-var isShowingDestination = false
-
+var isShowingDestination: Bool = false

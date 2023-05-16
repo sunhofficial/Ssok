@@ -9,10 +9,8 @@ import SwiftUI
 
 struct CameraEndingView: View {
     
-    @State var viewControl: String = "default"
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
-    @State var arstate: String = ""
     
     @EnvironmentObject var random: RandomMember
     @StateObject var permissionManager = PermissionManager()
@@ -22,21 +20,18 @@ struct CameraEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    
     @Binding var st: Bool
+    @State var arstate: String
     
     var body: some View {
-        
-        switch viewControl{
-        case arstate:
-            MissionSmileView(ARstate: arstate)
-        default:
+
             ZStack{
                 ZStack(alignment: .top) {
                     Image("endingtop").resizable()
                         .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
-                    HStack {
-                        Spacer()
+                    
                         HStack {
                             Spacer()
                             HStack {
@@ -46,23 +41,15 @@ struct CameraEndingView: View {
                                     .foregroundColor(.white)
                             }
                             .onTapGesture {
-                                random.randomMemberName = setRandomMember(random.members)
-                                viewControl = "retry"
+                                random.randomWho = setRandomMember(random.members)
+                                random.randomWhat = setRandomMission(missions)
+                                random.randomWhere = setRandomWhere(whereList)
+                                st = false
                             }
                             .padding(.trailing, 20)
                             .padding(.top, 56)
                             
                         }
-                        .onTapGesture {
-                            random.randomWho = setRandomMember(random.members)
-                            random.randomWhat = setRandomMission(missions)
-                            random.randomWhere = setRandomWhere(whereList)
-                            st = false
-                        }
-                        .padding(.trailing, 20)
-                        .padding(.top, 56)
-                        
-                    }
                 }
                 
                 ZStack{
@@ -109,7 +96,7 @@ struct CameraEndingView: View {
                     Text("미션을 성공하려면 얼굴을 인식해야해요")
                         .font(.system(size:13, weight: .light))
                     ZStack{
-                        Text(random.randomMemberName)
+                        Text(random.randomWho)
                             .font(.system(size: 18, weight: .bold))
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
@@ -118,7 +105,7 @@ struct CameraEndingView: View {
                             .frame(width: 85, height: 85)
                             .position(x:wid/2.9, y:210)
                         
-                        Text(wheresentence)
+                        Text(random.randomWhere)
                             .font(.system(size: 18, weight: .bold))
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
@@ -127,7 +114,7 @@ struct CameraEndingView: View {
                             .frame(width: 85, height: 85)
                             .position(x:wid/1.81, y:210)
                         
-                        Text(whatsentence)
+                        Text(String(random.randomWhat.missionTitle.dropLast(2)))
                             .font(.system(size: 18, weight: .bold))
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
@@ -173,22 +160,31 @@ struct CameraEndingView: View {
                     
                 }.offset(y:150)
                 
-                Button(action: {
-                    viewControl = arstate
-                }){
+//                Button(action: {
+//                    viewControl = arstate
+//                }){
+//                    Text("미션하기")
+//                }.foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+//                    .background(Color("Bg_bottom2"))
+//                    .cornerRadius(12)
+//                    .position(x:wid/2, y:hei-59)
+                
+                NavigationLink(destination: MissionSmileView(st: $st, ARstate: arstate)){
                     Text("미션하기")
-                }.foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                    .background(Color("Bg_bottom2"))
-                    .cornerRadius(12)
-                    .position(x:wid/2, y:hei-59)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .background(Color("Bg_bottom2"))
+                        .cornerRadius(12)
+                }.position(x:wid/2, y:hei-95)
+                
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
         }
     }
-}
 //
 //struct CameraEndingView_Previews: PreviewProvider {
 //    static let random = RandomMember()
