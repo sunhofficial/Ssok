@@ -251,12 +251,17 @@ extension StrawView {
         Button {
             mode.wrappedValue.dismiss()
         } label: {
-            Image(systemName: "chevron.backward")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-                .bold()
-                .frame(width: 20, height: 20)
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.clear)
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .bold()
+            }
         }
     }
     
