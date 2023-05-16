@@ -26,16 +26,14 @@ struct StrawView: View {
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
     @State var progress = 0.0
-    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
-    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
-    @State private var isShowingDestination = false
+    @State var previousview: Bool = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @EnvironmentObject var random: RandomMember
+    
     
     var body: some View {
         if !st{
@@ -48,7 +46,9 @@ struct StrawView: View {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                 }
                 
+                
                 BottleView()
+                
                 
                 VStack(spacing: 24) {
                     // 가이드
@@ -126,13 +126,15 @@ struct StrawView: View {
                 // 빨대
                 if detec >= 10 {
                     Image("Straw")
+                        .frame(width: 200)
+                        .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+                        .animation(.easeInOut(duration: 1), value: isAnimation)
                         .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    if gesture.translation.height > 0 && gesture.translation.height < 170 {
+                                    if gesture.translation.height > 0 && gesture.translation.height < 240 {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
                                             isDisplay = true
@@ -145,6 +147,18 @@ struct StrawView: View {
                                     if isPlug {
                                         withAnimation(.easeInOut(duration: 1)) {
                                             isAnimation = true
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
                                             getFirstBall = true
@@ -175,7 +189,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Who?",
-                    contents: random.randomMemberName,
+                    contents: random.randomWho,
                     pearlImage: "Back_pearl1"
                 )
                 
@@ -186,7 +200,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Where?",
-                    contents: Where,
+                    contents: random.randomWhere,
                     pearlImage: "Back_pearl2"
                 )
                 
@@ -197,7 +211,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: String(What.missionTitle.dropLast(2)),
+                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -212,7 +226,6 @@ struct StrawView: View {
             }
             .navigationBarHidden(true)
             .onReceive(timer) { input in
-                
                 if motionmanager.isDeviceMotionAvailable {
                     motionmanager.deviceMotionUpdateInterval = 0.2
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
@@ -240,21 +253,32 @@ struct StrawView: View {
                             previousgravity = currentgravity
                         }
                     }
-                    
                 }
             }
+            .onDisappear {
+                isAnimation = false
+                isDisplay = false
+                getFirstBall = false
+                getSecondBall = false
+                getThirdBall = false
+                currentgravity = 0
+                previousgravity = 0
+                detec = 0
+                progress = 0.0
+
+            }
         } else {
-            switch What.missionType {
+            switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
+                CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
+                SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
             case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "smile", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "blink", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             }
         }
     }
@@ -263,13 +287,13 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            //            if (What.missionType == .blink || What.missionType == .smile) {
-            //                NavigationLink(destination: AddMemberView()){
-            //
-            //                }
-            //            } else {
-            //                mode.wrappedValue.dismiss()
-            //            }
+//            if (What.missionType == .blink || What.missionType == .smile) {
+//                NavigationLink(destination: AddMemberView()){
+//
+//                }
+//            } else {
+//                mode.wrappedValue.dismiss()
+//            }
             mode.wrappedValue.dismiss()
         } label: {
             ZStack {

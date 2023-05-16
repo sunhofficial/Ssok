@@ -22,36 +22,21 @@ struct CameraEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
-    @State private var showARView = false
+    @Binding var st: Bool
     
     var body: some View {
         
-        NavigationView{
-            
-            switch viewControl{
-            case arstate:
-                
-                //            NavigationLink{
-                //                MissionSmileView(ARstate: arstate)
-                //            } label:{
-                //
-                //            }
-                
-                //            NavigationView(){
-                MissionSmileView(ARstate: arstate)
-                //                NavigationLink(destination: MissionSmileView(ARstate: arstate)){
-                //
-                //                }
-                //            }
-                    .navigationBarHidden(true)
-            case "retry":
-                StrawView()
-            default:
-                ZStack{
-                    ZStack(alignment: .top) {
-                        Image("endingtop").resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: wid).position(x:wid/2, y:190)
+        switch viewControl{
+        case arstate:
+            MissionSmileView(ARstate: arstate)
+        default:
+            ZStack{
+                ZStack(alignment: .top) {
+                    Image("endingtop").resizable()
+                        .aspectRatio(contentMode: .fit)
+                    .frame(width: wid).position(x:wid/2, y:190)
+                    HStack {
+                        Spacer()
                         HStack {
                             Spacer()
                             HStack {
@@ -68,8 +53,61 @@ struct CameraEndingView: View {
                             .padding(.top, 56)
                             
                         }
+                        .onTapGesture {
+                            random.randomWho = setRandomMember(random.members)
+                            random.randomWhat = setRandomMission(missions)
+                            random.randomWhere = setRandomWhere(whereList)
+                            st = false
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 56)
+                        
                     }
+                }
+                
+                ZStack{
+                    Text(random.randomWho)
+                        .font(.system(size: 18, weight: .bold))
+                        .rotationEffect(Angle(degrees: -30))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.1)
+                        .frame(width: 85, height: 85)
+                        .position(x:wid/2.9, y:210)
                     
+                    Text(random.randomWhere)
+                        .font(.system(size: 18, weight: .bold))
+                        .rotationEffect(Angle(degrees: -30))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.1)
+                        .frame(width: 85, height: 85)
+                        .position(x:wid/1.81, y:210)
+                    
+                    Text(String(random.randomWhat.missionTitle.dropLast(2)))
+                        .font(.system(size: 18, weight: .bold))
+                        .rotationEffect(Angle(degrees: -30))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.1)
+                        .frame(width: 85, height: 85)
+                        .position(x:wid/1.155, y:210)
+                }
+                ZStack{
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 50, height: 50)
+                        .shadow(color: Color("Bg_bottom2"), radius: 2)
+                    Text("📷")
+                        .frame(width: 50, height: 50)
+                }
+                
+                VStack(spacing: 8){
+                    Text("얼굴 인식 카메라")
+                        .font(.system(size: 24, weight: .black))
+                    
+                    Text("미션을 성공하려면 얼굴을 인식해야해요")
+                        .font(.system(size:13, weight: .light))
                     ZStack{
                         Text(random.randomMemberName)
                             .font(.system(size: 18, weight: .bold))
@@ -133,53 +171,25 @@ struct CameraEndingView: View {
                         
                     }.offset(y:150)
                     
-                    Button(action: {
-                        viewControl = arstate
-                    }){
-                        Text("미션하기")
-                    }.foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                        .background(Color("Bg_bottom2"))
-                        .cornerRadius(12)
-                        .position(x:wid/2, y:hei-59)
-                    //                    .sheet(isPresented: $showARView) {
-                    //                        MissionSmileView(ARstate: arstate)
-                    //                    }
-                    
-                    //                    NavigationLink(destination: MissionSmileView(ARstate: arstate)){
-                    //                        Text("시작하기")
-                    //                    }
-//                    NavigationLink{
-//                        MissionSmileView(ARstate: arstate)
-//                    } label:{
-//                        Text("text")
-//                    }
-//
-                    
-                    Button(action: {
-                        random.randomMemberName = setRandomMember(random.members)
-                        viewControl = "retry"
-                    }){
-                        Image("retry")
-                    }.position(x: wid - 57, y:73)
-                    
-                }
-                .ignoresSafeArea(.all)
-                .navigationBarHidden(true)
-                .onReceive(permissionManager.$permissionGranted, perform: { (granted) in
-                    if granted {
-                        //show image picker controller
-                    }
-                })
-                .onAppear{
-                    permissionManager.requestCameraPermission()
-                }
+                }.offset(y:150)
+                
+                Button(action: {
+                    viewControl = arstate
+                }){
+                    Text("미션하기")
+                }.foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                    .background(Color("Bg_bottom2"))
+                    .cornerRadius(12)
+                    .position(x:wid/2, y:hei-59)
             }
+            .ignoresSafeArea(.all)
+            .navigationBarHidden(true)
         }
     }
 }
-
+//
 //struct CameraEndingView_Previews: PreviewProvider {
 //    static let random = RandomMember()
 //

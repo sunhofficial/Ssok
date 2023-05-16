@@ -55,7 +55,8 @@ struct MissionSmileView : View {
                                 }
                         }
                         else{
-                            MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint)
+//                            MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint)
+                            
                         }
                     } else if ARstate == "blink"{
                         if(!self.isBlink){
@@ -80,7 +81,7 @@ struct MissionSmileView : View {
                         }
                         else
                         {
-                            MissionCompleteView(Title: "플러팅하기😘", background: Color.mint)
+//                            MissionCompleteView(Title: "플러팅하기😘", background: Color.mint)
                         }
                     }
                     
