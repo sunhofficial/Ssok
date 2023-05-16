@@ -43,6 +43,7 @@ struct MissionSpeechView: View {
                                 .padding(.top, 17)
                                 .onReceive(progressTimer) { _ in
                                     withAnimation(.linear(duration: 1)) {
+                                        print("1초")
                                         if progressTime > 0 {
                                             progressTime -= 100/speechTime
                                         }
@@ -93,7 +94,7 @@ struct MissionSpeechView: View {
                         progressTime = 100
                         isWrong = false
                     } label: {
-                        Text("눌러서 말하기")
+                        Text("다시 말하기")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .frame(maxWidth: 350, alignment: .center)
@@ -174,10 +175,10 @@ struct MissionSpeechView: View {
                             }
                             if isWrong {
                                 Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
-                                .font(.system(size: 13, weight: .semibold))
-                                .padding(.vertical, 2)
-                                .background(Color("LightRed"))
-                                .foregroundColor(Color("Red"))
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .padding(.vertical, 2)
+                                    .background(Color("LightRed"))
+                                    .foregroundColor(Color("Red"))
                             }
                         }
                         .padding(.top)
@@ -191,12 +192,16 @@ struct MissionSpeechView: View {
             }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            isSpeech = true
+            progressTime = 100
+        }
         .onDisappear{
-                  speechRecognizer.stopTranscript()
-                  checkTimer?.invalidate()
-                checkTimer = nil
-
-              }
+            speechRecognizer.stopTranscript()
+            checkTimer?.invalidate()
+            checkTimer = nil
+            
+        }
     }
 }
 
