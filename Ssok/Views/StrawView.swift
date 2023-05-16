@@ -271,10 +271,10 @@ struct StrawView: View {
                 CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!, st: $st)
             case .voice:
                 SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!), st: $st)
-            case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+//            case .smile:
+//                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+//                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             }
         }
     }
