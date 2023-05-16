@@ -21,6 +21,7 @@ struct CameraEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    @Binding var st: Bool
     
     
     var body: some View {
@@ -28,8 +29,6 @@ struct CameraEndingView: View {
         switch viewControl{
         case arstate:
             MissionSmileView(ARstate: arstate)
-        case "retry":
-            StrawView()
         default:
             ZStack{
                 ZStack(alignment: .top) {
@@ -46,7 +45,7 @@ struct CameraEndingView: View {
                         }
                         .onTapGesture {
                             random.randomMemberName = setRandomMember(random.members)
-                            viewControl = "retry"
+                            st = false
                         }
                         .padding(.trailing, 20)
                         .padding(.top, 56)
@@ -133,12 +132,12 @@ struct CameraEndingView: View {
         }
     }
 }
-
-struct CameraEndingView_Previews: PreviewProvider {
-    static let random = RandomMember()
-    
-    static var previews: some View {
-        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
-            .environmentObject(random)
-    }
-}
+//
+//struct CameraEndingView_Previews: PreviewProvider {
+//    static let random = RandomMember()
+//
+//    static var previews: some View {
+//        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
+//            .environmentObject(random)
+//    }
+//}

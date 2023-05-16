@@ -21,7 +21,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 0
+    @State var detec: Int = 10
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
@@ -31,10 +31,12 @@ struct StrawView: View {
     @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
+    @State var previousview: Bool = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @EnvironmentObject var random: RandomMember
+    
     
     var body: some View {
         if !st{
@@ -47,7 +49,9 @@ struct StrawView: View {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                 }
                 
+                
                 BottleView()
+                
                 
                 VStack(spacing: 24) {
                     // 가이드
@@ -206,8 +210,8 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 12)
-                .padding(.top, 56)
+                .padding(.leading, 8)
+                .padding(.top, 48)
             }
             .navigationBarHidden(true)
             .onReceive(timer) { input in
@@ -239,8 +243,25 @@ struct StrawView: View {
                             previousgravity = currentgravity
                         }
                     }
-                    
                 }
+            }
+//            .onAppear{
+//                if st == false{
+//                    Where = "\(whereList[Int.random(in:0..<whereList.count)])"
+//                    What = missions[Int.random(in:0..<missions.count)]
+//                }
+//            }
+            .onDisappear {
+                isAnimation = false
+                isDisplay = false
+                getFirstBall = false
+                getSecondBall = false
+                getThirdBall = false
+                currentgravity = 0
+                previousgravity = 0
+                detec = 10
+                progress = 0.0
+
             }
         } else {
             switch What.missionType {
@@ -271,22 +292,18 @@ extension StrawView {
 //            }
             mode.wrappedValue.dismiss()
         } label: {
-            Image(systemName: "chevron.backward")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-                .bold()
-                .frame(width: 20, height: 20)
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.clear)
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .bold()
+            }
         }
-    }
-    
-}
-
-struct StrawView_Previews: PreviewProvider {
-    static let random = RandomMember()
-    
-    static var previews: some View {
-        StrawView()
-            .environmentObject(random)
+        
     }
 }

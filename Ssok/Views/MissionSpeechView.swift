@@ -20,6 +20,8 @@ struct MissionSpeechView: View {
     @State var answerText: String
     @State var speechTime: Double
     @State var progressTime: Double = 0.0
+    @State var checkTimer : Timer?
+    @Binding var st: Bool
     
     let progressTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -68,7 +70,7 @@ struct MissionSpeechView: View {
                                     print(speechRecognizer.transcript)
                                 }
                             }
-                            let checktimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
+                            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
                                 timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
@@ -77,9 +79,9 @@ struct MissionSpeechView: View {
                                     timer.invalidate()
                                     isComplete = true
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    print("정답")
+                                    
                                 }}
-                            RunLoop.main.add(checktimer, forMode: .common)
+                            RunLoop.main.add(checkTimer!, forMode: .common)
                             RunLoop.main.add(timer, forMode: .common)
                         }
                         .onDisappear{
@@ -186,15 +188,21 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(Title: missionTitle, background: missionColor)
+                MissionCompleteView(Title: missionTitle, background: missionColor, st: $st)
             }
         }
         .navigationBarHidden(true)
-    }
-}
+        .onDisappear{
+                  speechRecognizer.stopTranscript()
+                  checkTimer?.invalidate()
+                checkTimer = nil
 
-struct MissionSpeechView_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
+              }
     }
 }
+//
+//struct MissionSpeechView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
+//    }
+//}

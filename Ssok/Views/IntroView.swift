@@ -17,7 +17,7 @@ struct IntroView: View {
     @State var isfirst: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack(){
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("intro_bg")
