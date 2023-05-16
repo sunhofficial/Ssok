@@ -37,7 +37,7 @@ struct MissionSpeechView: View {
                         .overlay(
                             ProgressView(value: progressTime, total: 100)
                                 .tint(Color("Bg_bottom2"))
-                                .background(Color(.systemGray6))
+                                .background(Color("LightGray"))
                                 .frame(width: 260, height: 8)
                                 .scaleEffect(x: 1, y: 2)
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
@@ -194,9 +194,3 @@ struct MissionSpeechView: View {
         }
     }
 }
-//
-//struct MissionSpeechView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
-//    }
-//}

@@ -19,8 +19,6 @@ struct StrawView: View {
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -85,11 +83,11 @@ struct StrawView: View {
                                         .font(.system(size: 13, weight: .semibold))
                                         .padding(.bottom, 10)
                                     ProgressView(value: viewModel.maxProgress)
-                                        .tint(Color("Bg_bottom2"))
-                                        .background(.black)
-                                        .cornerRadius(8)
+                                        .tint(Color("Orange_Progress"))
+                                        .background(Color("LightGray"))
+                                        .frame(width: 240, height: 8)
                                         .scaleEffect(x: 1, y: 2)
-                                        .padding([.leading, .trailing], 85)
+                                        .clipShape(RoundedRectangle(cornerRadius: 4))
                                 }
                             }
                             .padding(.top, 30)
@@ -216,12 +214,21 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 12)
-                .padding(.top, 56)
-            }.onAppear{
+                .padding(.leading, 8)
+                .padding(.top, 48)
+                
+            }.navigationBarHidden(true)
+            .onAppear{
                 viewModel.startupdatingMotion()
             }
-            .navigationBarHidden(true)
+            .onDisappear{
+                isAnimation = false
+                isDisplay = false
+                getFirstBall = false
+                getSecondBall = false
+                getThirdBall = false
+                viewModel.progress = 0.0
+            }
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
