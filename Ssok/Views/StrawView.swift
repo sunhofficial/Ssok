@@ -7,27 +7,19 @@
 
 import SwiftUI
 import CoreMotion
-let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+
 
 struct StrawView: View {
     
     let motionmanager = CMMotionManager()
-    
+    @StateObject private var viewModel = StrawViewModel()
     @State var st: Bool = false
     @State var isAnimation: Bool = false
     @State var isDisplay: Bool = false
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var currentgravity = 0
-    @State var previousgravity = 0
-    @State var detec: Int = 0
-    @State var gravityx: Double = 0
-    @State var gravityy: Double = 0
-    @State var gravityz: Double = 0
-    @State var progress = 0.0
     @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
     @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
@@ -41,7 +33,7 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if detec < 10 {
+                if viewModel.maxProgress != 1 {
                     Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -52,7 +44,7 @@ struct StrawView: View {
                 VStack(spacing: 24) {
                     // 가이드
                     VStack(spacing: 24) {
-                        if detec >= 10 {
+                        if viewModel.maxProgress == 1 {
                             // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
@@ -88,12 +80,12 @@ struct StrawView: View {
                                         .multilineTextAlignment(.center)
                                         .font(.system(size: 13, weight: .semibold))
                                         .padding(.bottom, 10)
-                                    ProgressView(value: progress)
+                                    ProgressView(value: viewModel.maxProgress)
                                         .tint(Color("Bg_bottom2"))
-                                        .background(Color(.systemGray6))
-                                        .frame(width: 240, height: 8)
+                                        .background(.black)
+                                        .cornerRadius(8)
                                         .scaleEffect(x: 1, y: 2)
-                                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                                        .padding([.leading, .trailing], 85)
                                 }
                             }
                             .padding(.top, 30)
@@ -123,8 +115,9 @@ struct StrawView: View {
                 }
                 
                 // 빨대
-                if detec >= 10 {
+                if viewModel.maxProgress == 1 {
                     Image("Straw")
+                        .frame(width: 200).contentShape(Rectangle())
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
                         .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
@@ -196,7 +189,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: String(What.missionTitle.dropLast(2)),
+                    contents: String(What.missionTitle.dropLast()),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -206,54 +199,26 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 8)
-                .padding(.top, 48)
+                .padding(.leading, 12)
+                .padding(.top, 56)
+            }.onAppear{
+                viewModel.startupdatingMotion()
             }
             .navigationBarHidden(true)
-            .onReceive(timer) { input in
-                
-                if motionmanager.isDeviceMotionAvailable {
-                    motionmanager.deviceMotionUpdateInterval = 0.2
-                    motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
-                        gravityx = data?.gravity.x ?? 0
-                        gravityy = data?.gravity.y ?? 0
-                        gravityz = data?.gravity.z ?? 0
-                        
-                        if gravityx > 0.15 || gravityy > 0.15 || gravityz > 0.15 {
-                            currentgravity = 1
-                        } else if gravityx <= 0.15 && gravityx >= -0.15 && gravityy <= 0.15 && gravityy >= -0.15 && gravityz <= 0.15 && gravityz >= -0.15 {
-                            currentgravity = 0
-                        } else if gravityx < -0.15 || gravityy < -0.15 || gravityz < 0.15 {
-                            currentgravity = 2
-                        }
-                        
-                        if currentgravity == previousgravity && previousgravity != 0 {
-                            previousgravity = currentgravity
-                        } else if currentgravity != previousgravity{
-                            if detec != 10 {
-                                detec += 1
-                                print(detec)
-                                progress += 0.1
-                                print(progress)
-                            }
-                            previousgravity = currentgravity
-                        }
-                    }
-                    
-                }
-            }
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
+                CountEndingView(wheresentence: Where ,whatsentence: What.missionTitle, missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
+                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
+//            case .face:
+//                CameraEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast()), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
             }
         }
     }
@@ -262,27 +227,23 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            //            if (What.missionType == .blink || What.missionType == .smile) {
-            //                NavigationLink(destination: AddMemberView()){
-            //
-            //                }
-            //            } else {
-            //                mode.wrappedValue.dismiss()
-            //            }
             mode.wrappedValue.dismiss()
         } label: {
-            ZStack {
-                Rectangle()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(.clear)
-                Image(systemName: "chevron.backward")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.white)
-                    .bold()
-            }
+            Image(systemName: "chevron.backward")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+                .bold()
+                .frame(width: 20, height: 20)
         }
-        
+    }
+    
+}
+
+struct StrawView_Previews: PreviewProvider {
+    static let random = RandomMember()
+    static var previews: some View {
+        StrawView()
+            .environmentObject(random)
     }
 }
