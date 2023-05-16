@@ -178,7 +178,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Who?",
-                    contents: random.randomMemberName,
+                    contents: random.randomWho,
                     pearlImage: "Back_pearl1"
                 )
                 
@@ -189,7 +189,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Where?",
-                    contents: Where,
+                    contents: random.randomWhere,
                     pearlImage: "Back_pearl2"
                 )
                 
@@ -200,7 +200,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: String(What.missionTitle.dropLast(2)),
+                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -266,15 +266,15 @@ struct StrawView: View {
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(st: $st, wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
+                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!, st: $st)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
+                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!), st: $st)
             case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             }
         }
     }

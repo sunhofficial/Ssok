@@ -35,4 +35,12 @@ extension View {
             return memberName + "이"
         }
     }
+    
+    func setRandomMission(_ missions: [Mission]) -> Mission {
+        return missions.randomElement()!
+    }
+    
+    func setRandomWhere(_ places: [String]) -> String {
+        return places.randomElement()!
+    }
 }

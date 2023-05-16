@@ -29,7 +29,9 @@ struct MissionCompleteView: View {
                     MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                     
                     Button("새로운 미션하기"){
-                        random.randomMemberName = setRandomMember(random.members)
+                        random.randomWho = setRandomMember(random.members)
+                        random.randomWhat = setRandomMission(missions)
+                        random.randomWhere = setRandomWhere(whereList)
                         mode.wrappedValue.dismiss()
                         st = false
 //                        mode.wrappedValue.dismiss()

@@ -44,7 +44,9 @@ struct CameraEndingView: View {
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            random.randomMemberName = setRandomMember(random.members)
+                            random.randomWho = setRandomMember(random.members)
+                            random.randomWhat = setRandomMission(missions)
+                            random.randomWhere = setRandomWhere(whereList)
                             st = false
                         }
                         .padding(.trailing, 20)
@@ -54,7 +56,7 @@ struct CameraEndingView: View {
                 }
                 
                 ZStack{
-                    Text(random.randomMemberName)
+                    Text(random.randomWho)
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
                         .foregroundColor(.white)
