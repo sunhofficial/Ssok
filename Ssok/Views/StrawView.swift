@@ -21,14 +21,11 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 10
+    @State var detec: Int = 0
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
     @State var progress = 0.0
-//    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
-//    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -256,12 +253,6 @@ struct StrawView: View {
                     }
                 }
             }
-//            .onAppear{
-//                if st == false{
-//                    Where = "\(whereList[Int.random(in:0..<whereList.count)])"
-//                    What = missions[Int.random(in:0..<missions.count)]
-//                }
-//            }
             .onDisappear {
                 isAnimation = false
                 isDisplay = false
@@ -270,7 +261,7 @@ struct StrawView: View {
                 getThirdBall = false
                 currentgravity = 0
                 previousgravity = 0
-                detec = 10
+                detec = 0
                 progress = 0.0
 
             }

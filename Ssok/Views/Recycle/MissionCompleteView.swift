@@ -28,14 +28,20 @@ struct MissionCompleteView: View {
                     
                     MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                     
-                    Button("새로운 미션하기"){
+                    Button {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
                         mode.wrappedValue.dismiss()
                         st = false
-//                        mode.wrappedValue.dismiss()
+                    } label: {
+                      Text("새로운 미션하기")
+                        .underline()
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color("Bg_center"))
+                        .underline()
                     }
+                    
                 }.offset(y:90)
 
                 
@@ -44,23 +50,12 @@ struct MissionCompleteView: View {
             .navigationBarHidden(true)
     }
 }
-//
-//struct MissionCompleteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MissionCompleteView(Title: "소리 지르기 💥", background: Color("MissionOrange"))
-//    }
-//}
+
 
 extension MissionCompleteView {
     var back: some View {
         Button {
-            //            if (What.missionType == .blink || What.missionType == .smile) {
-            //                NavigationLink(destination: AddMemberView()){
-            //
-            //                }
-            //            } else {
-            //                mode.wrappedValue.dismiss()
-            //            }
+
             mode.wrappedValue.dismiss()
         } label: {
             ZStack {
