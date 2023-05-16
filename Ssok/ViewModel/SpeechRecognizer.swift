@@ -110,10 +110,9 @@ actor SpeechRecognizer: ObservableObject {
 
     /// Reset the speech recognizer.
     private func reset() {
-        task?.cancel()
+//        task?.cancel()
         audioEngine?.stop()
         audioEngine = nil
-        print(request)
         request = nil
         task = nil
     }

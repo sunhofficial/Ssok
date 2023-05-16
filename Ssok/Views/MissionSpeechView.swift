@@ -9,17 +9,17 @@ import SwiftUI
 
 struct MissionSpeechView: View {
     
-    @ObservedObject var speechRecognizer = SpeechRecognizer()
-    @State var isSpeech: Bool = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
+    @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
     @State var isComplete: Bool = false
-    
+    @State var havetext : Bool = false
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
     @State var answerText: String
     @State var speechTime: Double
-    @State var progressTime: Double = 0.0
+    @State var progressTime: Double = 100.0
     @State var checkTimer : Timer?
     
     let progressTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -42,7 +42,7 @@ struct MissionSpeechView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
                                 .padding(.top, 17)
                                 .onReceive(progressTimer) { _ in
-                                    withAnimation(.linear(duration: 1)) {
+                                    withAnimation(.linear(duration: 0)) {
                                         if progressTime > 0 {
                                             progressTime -= 100/speechTime
                                         }
@@ -56,12 +56,12 @@ struct MissionSpeechView: View {
                             } else {
                                 speechRecognizer.startTranscribing()
                             }
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in //정답체크
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
+                                //정답체크를 했는데ㅐ 틀리면 이게 됨
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    speechRecognizer.startTranscribing()
+//         
                                     isWrong = true
                                     isSpeech = false
                                 }
@@ -70,16 +70,16 @@ struct MissionSpeechView: View {
                                 timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
-                                
+                        
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
                                     timer.invalidate()
                                     isComplete = true
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    
                                 }}
                             RunLoop.main.add(checkTimer!, forMode: .common)
                             RunLoop.main.add(timer, forMode: .common)
                         }
+
                         .onDisappear{
                             speechRecognizer.stopTranscript()
                         }
@@ -188,11 +188,6 @@ struct MissionSpeechView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
-            isSpeech = true
-            speechRecognizer.transcript = ""
-            progressTime = 100
-        }
         .onDisappear{
             speechRecognizer.stopTranscript()
             checkTimer?.invalidate()
