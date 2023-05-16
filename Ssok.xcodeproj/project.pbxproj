@@ -13,6 +13,7 @@
 		10BCD2EA2A1124DE00303334 /* CountEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E92A1124DE00303334 /* CountEndingView.swift */; };
 		10BCD2EC2A1124F000303334 /* SpeakEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */; };
 		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
+		10EED21D2A13CB33008939B3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EED21C2A13CB33008939B3 /* CameraView.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
 		7C94D5532A02AB3B00AAC279 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D5522A02AB3B00AAC279 /* Preview Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		10BCD2E92A1124DE00303334 /* CountEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountEndingView.swift; sourceTree = "<group>"; };
 		10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakEndingView.swift; sourceTree = "<group>"; };
 		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		10EED21C2A13CB33008939B3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _BubblesApp.swift; sourceTree = "<group>"; };
 		7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
 				7CF764162A117D3F007E2C3A /* MissionSmileView.swift */,
 				C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */,
+				10EED21C2A13CB33008939B3 /* CameraView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */,
 				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* _BubblesApp.swift in Sources */,
+				10EED21D2A13CB33008939B3 /* CameraView.swift in Sources */,
 				10BCD2EC2A1124F000303334 /* SpeakEndingView.swift in Sources */,
 				7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */,
 				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
@@ -469,7 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = DD63847N69;
+				DEVELOPMENT_TEAM = AZDJLQL538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -486,7 +490,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Sso";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pin.Ssok22;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

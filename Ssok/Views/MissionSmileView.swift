@@ -5,7 +5,6 @@
 //  Created by CHANG JIN LEE on 2023/05/13.
 //
 
-import UIKit
 import SwiftUI
 import RealityKit
 
@@ -25,9 +24,9 @@ struct MissionSmileView : View {
     @State var timeRemaining : Int = 100
     @State var blinkCount: Int = 0
     @State var camerast: Bool = false
-    
+    @State var ARstate: String = ""
+    @State var CameraState: Bool = false
     @Binding var st: Bool
-    @State var ARstate: String
     
     
     @Environment(\.presentationMode) var mode
@@ -40,9 +39,9 @@ struct MissionSmileView : View {
         NavigationView{
             ZStack {
                 ARViewContainer(arViewModel: arViewModel).edgesIgnoringSafeArea(.all)
-//                    .onDisappear{
-//                        mode.wrappedValue.dismiss()
-//                    }
+                //                    .onDisappear{
+                //                        mode.wrappedValue.dismiss()
+                //                    }
                 VStack {
                     
                     
@@ -60,7 +59,7 @@ struct MissionSmileView : View {
                                 }
                         }
                         else{
-                            MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint, st: $st)
+                            MissionCameraCompleteView(Title: "팀원들웃기기😘", background: Color.mint, st: $st)
                             
                         }
                     } else if ARstate == "blink"{
@@ -86,7 +85,7 @@ struct MissionSmileView : View {
                         }
                         else
                         {
-                            MissionCompleteView(Title: "플러팅하기😘", background: Color.mint, st: $st)
+                            MissionCameraCompleteView(Title: "플러팅하기😘", background: Color.mint, st: $st)
                         }
                     }
                     
@@ -95,12 +94,14 @@ struct MissionSmileView : View {
                 .onAppear {
                     calcRemain()
                 }
-//                .onDisappear{
-//                    mode.wrappedValue.dismiss()
-//                    //            }
-//                }
+//                .onChange(of: CameraState){ value in
+//                    if CameraState == true {
+//                        sta = false
+//                        mode.wrappedValue.dismiss()
+//                    }
+                }
             }
-        }.navigationBarHidden(true)
+        }
     }
     
     

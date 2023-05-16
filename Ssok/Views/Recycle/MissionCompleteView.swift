@@ -29,6 +29,7 @@ struct MissionCompleteView: View {
                     MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                     
                     Button {
+                        print("HI")
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
