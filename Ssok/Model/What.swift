@@ -23,8 +23,8 @@ struct Mission {
 }
 
 let missions = [
-    Mission(missionType: .decibel, missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n소리를 질러 목표 데시벨을 채우세요.", missionColor: Color("MissionDecibel"), goal: "30"),
-    Mission(missionType: .decibel, missionTitle: "콧바람 장풍 불기 💨", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n콧바람을 불어서 목표 데시벨을 채우세요.", missionColor: Color("MissionDecibel"), goal: "30"),
+    Mission(missionType: .decibel, missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n소리를 질러 목표 데시벨을 채우세요.", missionColor: Color("MissionDecibel"), goal: "60"),
+    Mission(missionType: .decibel, missionTitle: "콧바람 장풍 불기 💨", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n콧바람을 불어서 목표 데시벨을 채우세요.", missionColor: Color("MissionDecibel"), goal: "50"),
     Mission(missionType: .decibel, missionTitle: "크게 노래 부르기 🎵", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 노래를 크게 불러 목표 데시벨을 채우세요.", missionColor: Color("MissionDecibel"), goal: "50"),
     Mission(missionType: .shake, missionTitle: "춤추기 💃🏻", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n자신있는 춤을 열심히 춰서 진동 횟수를 채워요!", missionColor: Color("MissionShake"), goal: "40.0"),
     Mission(missionType: .shake, missionTitle: "손 흔들기 👋🏻", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n주변 사람들에게 손을 흔들어 인사해요!", missionColor: Color("MissionShake"), goal: "10.0"),

@@ -126,13 +126,15 @@ struct StrawView: View {
                 // 빨대
                 if detec >= 10 {
                     Image("Straw")
+                        .frame(width: 200)
+                        .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+                        .animation(.easeInOut(duration: 1), value: isAnimation)
                         .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    if gesture.translation.height > 0 && gesture.translation.height < 170 {
+                                    if gesture.translation.height > 0 && gesture.translation.height < 240 {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
                                             isDisplay = true

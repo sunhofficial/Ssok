@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MissionSpeechView: View {
     
-    @ObservedObject var speechRecognizer = SpeechRecognizer()
-    @State var isSpeech: Bool = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
+    @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
     @State var isComplete: Bool = false
     
@@ -19,11 +19,11 @@ struct MissionSpeechView: View {
     @State var missionColor: Color
     @State var answerText: String
     @State var speechTime: Double
-    @State var progressTime: Double = 0.0
+    @State var progressTime: Double = 100.0
     @State var checkTimer : Timer?
     @Binding var st: Bool
     
-    let progressTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let progressTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -43,49 +43,38 @@ struct MissionSpeechView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
                                 .padding(.top, 17)
                                 .onReceive(progressTimer) { _ in
-                                    withAnimation(.linear(duration: 1)) {
+                                    withAnimation(.easeInOut(duration: 0.1)) {
                                         if progressTime > 0 {
-                                            progressTime -= 100/speechTime
+                                            progressTime -= 0.1 * (100 / speechTime)
                                         }
                                     }
                                 }
                         )
                         .frame(height: 50)
                         .onAppear {
-                            speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
                             if(missionTitle == "영국 신사 되기 💂🏻‍♀️"){
                                 speechRecognizer.englishTranscribing()
-                            }else{
-                                speechRecognizer.startTranscribing()}
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
-                                timer in
+                            } else {
+                                speechRecognizer.startTranscribing()
+                            }
+                            Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { _ in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
-                                
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    speechRecognizer.startTranscribing()
                                     isWrong = true
                                     isSpeech = false
-                                    print(speechRecognizer.transcript)
                                 }
                             }
-                            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
-                                timer in
+                            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
-                                
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
                                     timer.invalidate()
                                     isComplete = true
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                    
-                                }}
-                            RunLoop.main.add(checkTimer!, forMode: .common)
-                            RunLoop.main.add(timer, forMode: .common)
-                        }
-                        .onDisappear{
-                            speechRecognizer.stopTranscript()
+                                }
+                            }
                         }
                 } else {
                     Button {
@@ -94,7 +83,7 @@ struct MissionSpeechView: View {
                         progressTime = 100
                         isWrong = false
                     } label: {
-                        Text("눌러서 말하기")
+                        Text("다시 말하기")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .frame(maxWidth: 350, alignment: .center)
@@ -175,10 +164,10 @@ struct MissionSpeechView: View {
                             }
                             if isWrong {
                                 Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
-                                .font(.system(size: 13, weight: .semibold))
-                                .padding(.vertical, 2)
-                                .background(Color("LightRed"))
-                                .foregroundColor(Color("Red"))
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .padding(.vertical, 2)
+                                    .background(Color("LightRed"))
+                                    .foregroundColor(Color("Red"))
                             }
                         }
                         .padding(.top)
@@ -193,11 +182,10 @@ struct MissionSpeechView: View {
         }
         .navigationBarHidden(true)
         .onDisappear{
-                  speechRecognizer.stopTranscript()
-                  checkTimer?.invalidate()
-                checkTimer = nil
-
-              }
+            speechRecognizer.stopTranscript()
+            checkTimer?.invalidate()
+            checkTimer = nil
+        }
     }
 }
 //
