@@ -133,7 +133,7 @@ struct StrawView: View {
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    if gesture.translation.height > 0 && gesture.translation.height < 170 {
+                                    if gesture.translation.height > 0 && gesture.translation.height < 240 {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
                                             isDisplay = true
