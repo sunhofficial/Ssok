@@ -96,7 +96,6 @@ struct MissionSmileView : View {
                 }
                 .onChange(of: CameraState){ value in
                     if CameraState == true {
-                        CameraState = false
                         mode.wrappedValue.dismiss()
                     }
                 }

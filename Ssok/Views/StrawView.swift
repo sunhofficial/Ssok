@@ -266,7 +266,6 @@ struct StrawView: View {
                 detec = 10
                 progress = 0.0
                 previousview = true
-                print(previousview)
             }
             
         } else {

@@ -125,9 +125,14 @@ struct CameraEndingView: View {
                     .cornerRadius(12)
             }.position(x:wid/2, y:hei-95)
             
-        }.onChange(of: sta){ value in
+        }
+        .onDisappear{
             st = false
         }
+//        .onChange(of: sta){ value in
+//            st = false
+//
+//        }
         .ignoresSafeArea(.all)
         .navigationBarHidden(true)
     }
