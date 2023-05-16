@@ -21,6 +21,7 @@ struct MissionSpeechView: View {
     @State var speechTime: Double
     @State var progressTime: Double = 100.0
     @State var checkTimer : Timer?
+    @Binding var st: Bool
     
     let progressTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
@@ -176,7 +177,7 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(Title: missionTitle, background: missionColor)
+                MissionCompleteView(Title: missionTitle, background: missionColor, st: $st)
             }
         }
         .navigationBarHidden(true)
@@ -187,9 +188,9 @@ struct MissionSpeechView: View {
         }
     }
 }
-
-struct MissionSpeechView_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
-    }
-}
+//
+//struct MissionSpeechView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
+//    }
+//}
