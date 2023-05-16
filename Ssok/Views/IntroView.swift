@@ -17,7 +17,7 @@ struct IntroView: View {
     @State var isfirst: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack(){
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("intro_bg")
@@ -31,7 +31,7 @@ struct IntroView: View {
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 17) {
+                        HStack(spacing: 12) {
                             Circle()
                                 .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
                                 .frame(width: 8, height: 8)
@@ -95,7 +95,7 @@ struct IntroView: View {
                     
                 }
                 .onChange(of: selectedPage, perform:  { index in
-                        isfirst = true
+                    isfirst.toggle()
                 })
                 .tabViewStyle(.page(indexDisplayMode: .never))
        

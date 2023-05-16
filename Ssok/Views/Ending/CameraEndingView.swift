@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CameraEndingView: View {
     
-    @State var st2: Bool = false
-    @State var next = false
+    @State var viewControl: String = "default"
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
+    @State var arstate: String = ""
     
     @EnvironmentObject var random: RandomMember
     
@@ -21,14 +21,37 @@ struct CameraEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    @Binding var st: Bool
     
     
     var body: some View {
-        if !st2{
+        
+        switch viewControl{
+        case arstate:
+            MissionSmileView(ARstate: arstate)
+        default:
             ZStack{
-                Image("endingtop").resizable()
-                    .aspectRatio(contentMode: .fit)
+                ZStack(alignment: .top) {
+                    Image("endingtop").resizable()
+                        .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Image("retry")
+                            Text("다시뽑기")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            random.randomMemberName = setRandomMember(random.members)
+                            st = false
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 56)
+                        
+                    }
+                }
                 
                 ZStack{
                     Text(random.randomMemberName)
@@ -94,7 +117,7 @@ struct CameraEndingView: View {
                 }.offset(y:150)
                 
                 Button(action: {
-                    next = true
+                    viewControl = arstate
                 }){
                     Text("미션하기")
                 }.foregroundColor(.white)
@@ -102,38 +125,19 @@ struct CameraEndingView: View {
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
-//                    .offset(y:363)
                     .position(x:wid/2, y:hei-59)
-                
-                Button(action: {
-                    random.randomMemberName = setRandomMember(random.members)
-                    st2 = true
-                }){
-                    Image("retry")
-                }.position(x: wid - 57, y:73)
-                
-//                NavigationLink(destination: MissionPedometerView(Title: missionTitle, TitleColor: missionColor)) {
-//                    Text("미션하기").foregroundColor(.white)
-//                        .fontWeight(.bold)
-//                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-//                        .background(Color("Bg_bottom2"))
-//                        .cornerRadius(12)
-//                }.position(x:wid/2, y:hei-59)
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-            
-        } else {
-            StrawView()
         }
     }
 }
-
-struct CameraEndingView_Previews: PreviewProvider {
-    static let random = RandomMember()
-    
-    static var previews: some View {
-        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
-            .environmentObject(random)
-    }
-}
+//
+//struct CameraEndingView_Previews: PreviewProvider {
+//    static let random = RandomMember()
+//
+//    static var previews: some View {
+//        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
+//            .environmentObject(random)
+//    }
+//}
