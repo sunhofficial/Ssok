@@ -15,6 +15,7 @@ struct CameraEndingView: View {
     @State var arstate: String = ""
     
     @EnvironmentObject var random: RandomMember
+    @StateObject var permissionManager = PermissionManager()
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -138,15 +139,23 @@ struct CameraEndingView: View {
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
+            .onReceive(permissionManager.$permissionGranted, perform: { (granted) in
+                        if granted {
+                            //show image picker controller
+                        }
+                    })
+            .onAppear{
+                permissionManager.requestCameraPermission()
+            }
         }
     }
 }
 
-struct CameraEndingView_Previews: PreviewProvider {
-    static let random = RandomMember()
-    
-    static var previews: some View {
-        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
-            .environmentObject(random)
-    }
-}
+//struct CameraEndingView_Previews: PreviewProvider {
+//    static let random = RandomMember()
+//
+//    static var previews: some View {
+//        CameraEndingView(missionTitle: "소리 지르기 💥", missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요 ", missionColor: Color("MissionOrange"))
+//            .environmentObject(random)
+//    }
+//}

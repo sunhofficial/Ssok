@@ -21,6 +21,10 @@ struct MissionSmileView : View {
     @State var blinkCount: Int = 0
     @State var ARstate: String = ""
     
+    func viewDidLoad(){
+            
+        }
+    
     var body: some View {
         NavigationView{
             ZStack {
