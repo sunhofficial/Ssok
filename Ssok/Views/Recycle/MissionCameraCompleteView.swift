@@ -13,7 +13,7 @@ struct MissionCameraCompleteView: View {
     @State var background: Color
     @State var state1: Bool = false
     @EnvironmentObject var random: RandomMember
-    @Binding var st: Bool
+    @Binding var CameraState: Bool
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -32,8 +32,7 @@ struct MissionCameraCompleteView: View {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
-                        mode.wrappedValue.dismiss()
-                        st = false
+                        CameraState = true
                         
                     } label: {
                       Text("새로운 미션하기")

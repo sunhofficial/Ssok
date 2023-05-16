@@ -126,9 +126,9 @@ struct CameraEndingView: View {
             }.position(x:wid/2, y:hei-95)
             
         }
-//        .onChange(of: sta){ value in
-//            st = false
-//        }
+        .onChange(of: sta){ value in
+            st = false
+        }
         .ignoresSafeArea(.all)
         .navigationBarHidden(true)
     }

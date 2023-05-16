@@ -14,11 +14,11 @@ struct CameraView: View {
     
     var body: some View {
         ZStack{
-            MissionSmileView(ARstate: arstate, sta: $sta)
+            MissionSmileView(ARstate: arstate, sta: sta)
         }
     }
 }
-//
+
 //struct CameraView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CameraView()
