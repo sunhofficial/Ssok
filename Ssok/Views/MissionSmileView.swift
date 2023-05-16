@@ -39,9 +39,9 @@ struct MissionSmileView : View {
         NavigationView{
             ZStack {
                 ARViewContainer(arViewModel: arViewModel).edgesIgnoringSafeArea(.all)
-//                                    .onDisappear{
-//                                        mode.wrappedValue.dismiss()
-//                                    }
+                //                    .onDisappear{
+                //                        mode.wrappedValue.dismiss()
+                //                    }
                 VStack {
                     
                     

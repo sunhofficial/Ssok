@@ -14,7 +14,10 @@ struct CameraView: View {
     
     var body: some View {
         ZStack{
-            MissionSmileView(ARstate: arstate, sta: sta)
+            MissionSmileView(ARstate: arstate)
+                .onDisappear{
+                    sta = true
+                }
         }
     }
 }
