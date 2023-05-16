@@ -15,6 +15,7 @@ struct CameraEndingView: View {
     @State var arstate: String = ""
     
     @EnvironmentObject var random: RandomMember
+    @StateObject var permissionManager = PermissionManager()
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
