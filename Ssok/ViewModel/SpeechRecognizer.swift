@@ -87,26 +87,9 @@ actor SpeechRecognizer: ObservableObject {
      */
     private func englishtranscribe() {
         recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-//        guard let recognizer, recognizer.isAvailable else {
-//            self.transcribe(RecognizerError.recognizerIsUnavailable)
-//            return
-//        }
-//
-//        do {
-//            let (audioEngine, request) = try Self.prepareEngine()
-//            self.audioEngine = audioEngine
-//            self.request = request
-//            self.task = recognizer.recognitionTask(with: request, resultHandler: { [weak self] result, error in
-//                 self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
-//            })
-//        } catch {
-//            self.reset()
-//            self.transcribe(error)
-//        }
         transcribe()
     }
     private func transcribe() {
-//        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
         guard let recognizer, recognizer.isAvailable else {
             self.transcribe(RecognizerError.recognizerIsUnavailable)
             return
@@ -130,6 +113,7 @@ actor SpeechRecognizer: ObservableObject {
         task?.cancel()
         audioEngine?.stop()
         audioEngine = nil
+        print(request)
         request = nil
         task = nil
     }

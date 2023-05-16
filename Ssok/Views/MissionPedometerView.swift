@@ -9,7 +9,7 @@ import SwiftUI
 import CoreMotion
 
 struct MissionPedometerView: View {
-    
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let motionmanager = CMMotionManager()
     let activityManager = CMMotionActivityManager()
     
