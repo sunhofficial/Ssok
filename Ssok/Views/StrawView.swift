@@ -21,7 +21,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 0
+    @State var detec: Int = 10
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
@@ -31,10 +31,12 @@ struct StrawView: View {
     @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
+    @State var previousview: Bool = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @EnvironmentObject var random: RandomMember
+    
     
     var body: some View {
         if !st{
@@ -47,7 +49,9 @@ struct StrawView: View {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                 }
                 
+                
                 BottleView()
+                
                 
                 VStack(spacing: 24) {
                     // 가이드
@@ -251,21 +255,38 @@ struct StrawView: View {
                             previousgravity = currentgravity
                         }
                     }
-                    
                 }
+            }
+//            .onAppear{
+//                if st == false{
+//                    Where = "\(whereList[Int.random(in:0..<whereList.count)])"
+//                    What = missions[Int.random(in:0..<missions.count)]
+//                }
+//            }
+            .onDisappear {
+                isAnimation = false
+                isDisplay = false
+                getFirstBall = false
+                getSecondBall = false
+                getThirdBall = false
+                currentgravity = 0
+                previousgravity = 0
+                detec = 10
+                progress = 0.0
+
             }
         } else {
             switch What.missionType {
             case .decibel:
-                DecibelEndingView(wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(st: $st, wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!)
+                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!, st: $st)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!))
+                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!), st: $st)
             case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor)
+                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
             }
         }
     }

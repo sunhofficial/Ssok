@@ -29,6 +29,7 @@ struct MissionPedometerView: View {
     @State var progressColor: Color = Color("Progress_first")
     let more: String = "더"
     @State var ismore: Int = 0
+    @Binding var st: Bool
     
     var body: some View {
         
@@ -146,14 +147,14 @@ struct MissionPedometerView: View {
                 }
             }
             if String(stepcount) == GoalCount  {
-                MissionCompleteView(Title: Title, background: TitleColor)
+                MissionCompleteView(Title: Title, background: TitleColor, st: $st)
             }
         }.navigationBarHidden(true)
     }
 }
 
-struct MissionPedometerView_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionPedometerView(Title: "춤추기 💃🕺🏻", TitleColor: Color("MissionPurple"), GoalCount: "100.0")
-    }
-}
+//struct MissionPedometerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MissionPedometerView(Title: "춤추기 💃🕺🏻", TitleColor: Color("MissionPurple"), GoalCount: "100.0")
+//    }
+//}

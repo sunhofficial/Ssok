@@ -22,6 +22,7 @@ struct CameraEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
+    @Binding var st: Bool
     
     
     var body: some View {
@@ -29,8 +30,6 @@ struct CameraEndingView: View {
         switch viewControl{
         case arstate:
             MissionSmileView(ARstate: arstate)
-        case "retry":
-            StrawView()
         default:
             ZStack{
                 ZStack(alignment: .top) {
@@ -47,7 +46,7 @@ struct CameraEndingView: View {
                         }
                         .onTapGesture {
                             random.randomMemberName = setRandomMember(random.members)
-                            viewControl = "retry"
+                            st = false
                         }
                         .padding(.trailing, 20)
                         .padding(.top, 56)
@@ -128,29 +127,13 @@ struct CameraEndingView: View {
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
                     .position(x:wid/2, y:hei-59)
-                
-                Button(action: {
-                    random.randomMemberName = setRandomMember(random.members)
-                    viewControl = "retry"
-                }){
-                    Image("retry")
-                }.position(x: wid - 57, y:73)
-                
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-            .onReceive(permissionManager.$permissionGranted, perform: { (granted) in
-                        if granted {
-                            //show image picker controller
-                        }
-                    })
-            .onAppear{
-                permissionManager.requestCameraPermission()
-            }
         }
     }
 }
-
+//
 //struct CameraEndingView_Previews: PreviewProvider {
 //    static let random = RandomMember()
 //
