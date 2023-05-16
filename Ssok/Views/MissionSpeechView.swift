@@ -43,7 +43,6 @@ struct MissionSpeechView: View {
                                 .padding(.top, 17)
                                 .onReceive(progressTimer) { _ in
                                     withAnimation(.linear(duration: 1)) {
-                                        print("1초")
                                         if progressTime > 0 {
                                             progressTime -= 100/speechTime
                                         }
@@ -52,22 +51,21 @@ struct MissionSpeechView: View {
                         )
                         .frame(height: 50)
                         .onAppear {
-                            speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+                            speechRecognizer.stopTranscript()
+                            speechRecognizer.startTranscribing()
                             if(missionTitle == "영국 신사 되기 💂🏻‍♀️"){
                                 speechRecognizer.englishTranscribing()
-                            }else{
-                                speechRecognizer.startTranscribing()}
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
-                                timer in
+                            } else {
+                                speechRecognizer.startTranscribing()
+                            }
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
-                                
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
                                     speechRecognizer.startTranscribing()
                                     isWrong = true
                                     isSpeech = false
-                                    print(speechRecognizer.transcript)
                                 }
                             }
                             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
@@ -194,6 +192,7 @@ struct MissionSpeechView: View {
         .navigationBarHidden(true)
         .onAppear {
             isSpeech = true
+            speechRecognizer.transcript = ""
             progressTime = 100
         }
         .onDisappear{
