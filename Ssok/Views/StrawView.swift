@@ -21,14 +21,11 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var currentgravity = 0
     @State var previousgravity = 0
-    @State var detec: Int = 10
+    @State var detec: Int = 0
     @State var gravityx: Double = 0
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
     @State var progress = 0.0
-    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
-    //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
-    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -190,7 +187,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Who?",
-                    contents: random.randomMemberName,
+                    contents: random.randomWho,
                     pearlImage: "Back_pearl1"
                 )
                 
@@ -201,7 +198,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: false,
                     ballTitle: "Where?",
-                    contents: Where,
+                    contents: random.randomWhere,
                     pearlImage: "Back_pearl2"
                 )
                 
@@ -212,7 +209,7 @@ struct StrawView: View {
                     st: $st,
                     stBool: true,
                     ballTitle: "What?",
-                    contents: String(What.missionTitle.dropLast(2)),
+                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
                     pearlImage: "Back_pearl1"
                 )
                 HStack {
@@ -227,7 +224,6 @@ struct StrawView: View {
             }
             .navigationBarHidden(true)
             .onReceive(timer) { input in
-                
                 if motionmanager.isDeviceMotionAvailable {
                     motionmanager.deviceMotionUpdateInterval = 0.2
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
@@ -257,12 +253,6 @@ struct StrawView: View {
                     }
                 }
             }
-//            .onAppear{
-//                if st == false{
-//                    Where = "\(whereList[Int.random(in:0..<whereList.count)])"
-//                    What = missions[Int.random(in:0..<missions.count)]
-//                }
-//            }
             .onDisappear {
                 isAnimation = false
                 isDisplay = false
@@ -271,22 +261,22 @@ struct StrawView: View {
                 getThirdBall = false
                 currentgravity = 0
                 previousgravity = 0
-                detec = 10
+                detec = 0
                 progress = 0.0
 
             }
         } else {
-            switch What.missionType {
+            switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(st: $st, wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!, st: $st)
+                CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!), st: $st)
-//            case .smile:
-//                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+                SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
+            case .smile:
+                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "smile", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             case .blink:
-//                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "blink", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             }
         }
     }
@@ -295,13 +285,13 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-            //            if (What.missionType == .blink || What.missionType == .smile) {
-            //                NavigationLink(destination: AddMemberView()){
-            //
-            //                }
-            //            } else {
-            //                mode.wrappedValue.dismiss()
-            //            }
+//            if (What.missionType == .blink || What.missionType == .smile) {
+//                NavigationLink(destination: AddMemberView()){
+//
+//                }
+//            } else {
+//                mode.wrappedValue.dismiss()
+//            }
             mode.wrappedValue.dismiss()
         } label: {
             ZStack {

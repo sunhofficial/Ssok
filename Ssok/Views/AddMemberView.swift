@@ -131,7 +131,9 @@ struct AddMemberView: View {
                     }
                     .simultaneousGesture(TapGesture().onEnded {
                         random.members = viewModel.members
-                        random.randomMemberName = setRandomMember(viewModel.members)
+                        random.randomWho = setRandomMember(viewModel.members)
+                        random.randomWhat = setRandomMission(missions)
+                        random.randomWhere = setRandomWhere(whereList)
                     })
                     .disabled(viewModel.isNextButtonDisabled)
                 }
