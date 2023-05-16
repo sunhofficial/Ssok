@@ -31,6 +31,7 @@ struct StrawView: View {
     @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
+    @State private var isShowingDestination = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     

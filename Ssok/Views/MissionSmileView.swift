@@ -10,6 +10,7 @@ import RealityKit
 
 struct MissionSmileView : View {
     @ObservedObject var arViewModel : ARViewModel = ARViewModel()
+   
     
     let date = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -20,16 +21,25 @@ struct MissionSmileView : View {
     @State var timeRemaining : Int = 100
     @State var blinkCount: Int = 0
     @State var ARstate: String = ""
+    @State var camerast: Bool = false
+    @State var cst: Bool = false
+    
+    
+    @Environment(\.presentationMode) var mode
+    @StateObject var navi = NaviObservableObject()
     
     func viewDidLoad(){
-            
         }
     
     var body: some View {
         NavigationView{
             ZStack {
                 ARViewContainer(arViewModel: arViewModel).edgesIgnoringSafeArea(.all)
+//                    .onDisappear{
+//                        mode.wrappedValue.dismiss()
+//                    }
                 VStack {
+                    
                     
                     if ARstate == "smile"
                     {
@@ -46,7 +56,6 @@ struct MissionSmileView : View {
                         }
                         else{
                             MissionCompleteView(Title: "팀원들웃기기😘", background: Color.mint)
-                            
                         }
                     } else if ARstate == "blink"{
                         if(!self.isBlink){
@@ -80,9 +89,12 @@ struct MissionSmileView : View {
                 .onAppear {
                     calcRemain()
                 }
+                .onDisappear{
+                    mode.wrappedValue.dismiss()
+                    //            }
+                }
             }
-        }
-        .navigationBarHidden(true)
+        }.navigationBarHidden(true)
     }
     
     
