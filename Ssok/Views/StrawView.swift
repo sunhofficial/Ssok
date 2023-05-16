@@ -145,6 +145,18 @@ struct StrawView: View {
                                         withAnimation(.easeInOut(duration: 1)) {
                                             isAnimation = true
                                         }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
+                                            HapticManager.instance.impact(style: .heavy)
+                                            HapticManager.instance.impact(style: .heavy)
+                                        }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
                                             getFirstBall = true
                                         }
