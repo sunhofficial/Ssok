@@ -53,19 +53,17 @@ struct MissionSpeechView: View {
                         .onAppear {
                             if(missionTitle == "영국 신사 되기 💂🏻‍♀️"){
                                 speechRecognizer.englishTranscribing()
-                            }else{
-                                speechRecognizer.startTranscribing()}
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false){
-                                timer in
+                            } else {
+                                speechRecognizer.startTranscribing()
+                            }
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
-                                
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
                                     speechRecognizer.startTranscribing()
                                     isWrong = true
                                     isSpeech = false
-                                    print(speechRecognizer.transcript)
                                 }
                             }
                             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){
@@ -92,7 +90,7 @@ struct MissionSpeechView: View {
                         progressTime = 100
                         isWrong = false
                     } label: {
-                        Text("눌러서 말하기")
+                        Text("다시 말하기")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .frame(maxWidth: 350, alignment: .center)
@@ -173,10 +171,10 @@ struct MissionSpeechView: View {
                             }
                             if isWrong {
                                 Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
-                                .font(.system(size: 13, weight: .semibold))
-                                .padding(.vertical, 2)
-                                .background(Color("LightRed"))
-                                .foregroundColor(Color("Red"))
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .padding(.vertical, 2)
+                                    .background(Color("LightRed"))
+                                    .foregroundColor(Color("Red"))
                             }
                         }
                         .padding(.top)
@@ -190,12 +188,17 @@ struct MissionSpeechView: View {
             }
         }
         .navigationBarHidden(true)
+        .onAppear {
+            isSpeech = true
+            speechRecognizer.transcript = ""
+            progressTime = 100
+        }
         .onDisappear{
-                  speechRecognizer.stopTranscript()
-                  checkTimer?.invalidate()
-                checkTimer = nil
-
-              }
+            speechRecognizer.stopTranscript()
+            checkTimer?.invalidate()
+            checkTimer = nil
+            
+        }
     }
 }
 

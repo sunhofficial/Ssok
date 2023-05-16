@@ -117,9 +117,10 @@ struct StrawView: View {
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("Straw")
-                        .frame(width: 200).contentShape(Rectangle())
+                        .frame(width: 200)
+                        .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1).delay(0.5), value: isAnimation)
+                        .animation(.easeInOut(duration: 1), value: isAnimation)
                         .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
                         .gesture(
                             DragGesture()
