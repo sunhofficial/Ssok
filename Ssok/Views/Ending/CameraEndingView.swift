@@ -65,7 +65,7 @@ struct CameraEndingView: View {
                         .frame(width: 85, height: 85)
                         .position(x:wid/2.9, y:210)
                     
-                    Text(wheresentence)
+                    Text(random.randomWhere)
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
                         .foregroundColor(.white)
@@ -74,7 +74,7 @@ struct CameraEndingView: View {
                         .frame(width: 85, height: 85)
                         .position(x:wid/1.81, y:210)
                     
-                    Text(whatsentence)
+                    Text(String(random.randomWhat.missionTitle.dropLast(2)))
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
                         .foregroundColor(.white)

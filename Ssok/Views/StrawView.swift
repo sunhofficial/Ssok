@@ -26,9 +26,9 @@ struct StrawView: View {
     @State var gravityy: Double = 0
     @State var gravityz: Double = 0
     @State var progress = 0.0
-    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
+//    @State var Where: String = "\(whereList[Int.random(in:0..<whereList.count)])"
     //    @State var What: String = "\(whatList[Int.random(in:0..<whatList.count)])"
-    @State var What = missions[Int.random(in:0..<missions.count)]
+//    @State var What = missions[Int.random(in:0..<missions.count)]
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -215,7 +215,6 @@ struct StrawView: View {
             }
             .navigationBarHidden(true)
             .onReceive(timer) { input in
-                
                 if motionmanager.isDeviceMotionAvailable {
                     motionmanager.deviceMotionUpdateInterval = 0.2
                     motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
@@ -264,17 +263,17 @@ struct StrawView: View {
 
             }
         } else {
-            switch What.missionType {
+            switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(st: $st, wheresentence: Where, whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!)
+                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, GoalCount: What.goal!, st: $st)
+                CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
             case .voice:
-                SpeakEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, goal: What.goal!, timer: Double(What.timer!), st: $st)
+                SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
             case .smile:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "smile", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "smile", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             case .blink:
-                CameraEndingView(wheresentence: Where ,whatsentence: String(What.missionTitle.dropLast(2)), arstate: "blink", missionTitle: What.missionTitle, missionTip: What.missionTip, missionColor: What.missionColor, st: $st)
+                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "blink", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
             }
         }
     }
