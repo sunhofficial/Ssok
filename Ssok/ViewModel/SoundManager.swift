@@ -12,8 +12,10 @@ class SoundManager {
     static let shared = SoundManager()
     private var audioPlayer: AVAudioPlayer?
     
+    let musics = ["DingDingMusic", "TocaTocaMusic"]
+    
     func playMusic() {
-        guard let path = Bundle.main.path(forResource: "DanceMusic", ofType: "mp3") else {
+        guard let path = Bundle.main.path(forResource: musics.randomElement()!, ofType: "mp3") else {
             return
         }
         

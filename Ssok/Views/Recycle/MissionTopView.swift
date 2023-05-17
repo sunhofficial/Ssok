@@ -26,7 +26,6 @@ struct MissionTopView: View {
             VStack(spacing: 4) {
                 HStack {
                     Button {
-                        arViewModel.ARFrame = false
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.backward")
