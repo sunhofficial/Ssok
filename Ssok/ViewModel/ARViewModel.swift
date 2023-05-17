@@ -16,6 +16,7 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
     
     var blinkCount: Int = 0
     var blinkStatus: Bool = false
+    var smileStatus: Bool = false
     
     var cameraControl: Bool = false
     
@@ -25,7 +26,9 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
     
     var isSmiling: Bool {
         var tempSmile = false
+        smileStatus = false
         if model.smileLeft > 0.3 || model.smileRight > 0.3 {
+            smileStatus = true
             tempSmile = true
         }
         return tempSmile

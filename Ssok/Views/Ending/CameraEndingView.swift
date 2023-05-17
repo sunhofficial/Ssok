@@ -123,10 +123,13 @@ struct CameraEndingView: View {
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
-            }.position(x:wid/2, y:hei-95)
+            }.position(x:wid/2, y:hei-59)
             
         }
         .onDisappear{
+            random.randomWho = setRandomMember(random.members)
+            random.randomWhat = setRandomMission(missions)
+            random.randomWhere = setRandomWhere(whereList)
             st = false
         }
 //        .onChange(of: sta){ value in
