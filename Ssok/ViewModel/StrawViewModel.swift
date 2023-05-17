@@ -53,7 +53,6 @@ class StrawViewModel : ObservableObject{
         }
         else if currentGravity != previousgravity {
             progress += 0.1
-            print(progress)
             previousgravity = currentGravity
         }
     }
