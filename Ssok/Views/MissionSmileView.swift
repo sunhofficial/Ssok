@@ -61,7 +61,8 @@ struct MissionSmileView : View {
                         if(!arViewModel.asyncissmileCount){
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
 //                            Text(arViewModel.isSmiling ? " 웃는중 😄\n \(smileCount) / 2 초\n" + convertSecondsToTime(timeInSeconds:timeRemaining)  : " 웃으세요 😐")
-                            Text(arViewModel.isSmiling ? "한 번 더 스마일!😄 \(smCount())" : "화면을 보고 웃으세요" + flushCount())
+//                            Text(arViewModel.isSmiling ? "한 번 더 스마일!😄 \(smCount())" : "화면을 보고 웃으세요" + flushCount())
+                            Text(arViewModel.isSmiling ? "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount())
                                 .padding()
                                 .foregroundColor(arViewModel.isSmiling ? .green : .red)
                                 .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
@@ -69,8 +70,8 @@ struct MissionSmileView : View {
                                 .position(x: wid / 2 , y: hei / 1.5)
                         }
                         else{
-                            MissionCameraCompleteView(Title: "팀원웃기기 😄", background: Color.mint, CameraState: $CameraState)
-                            
+//                            MissionCameraCompleteView(Title: "팀원웃기기 😝", background: Color.mint, CameraState: $CameraState)
+                            MissionCameraCompleteView(Title: "혀내밀기 😝", background: Color.mint, CameraState: $CameraState)
                         }
                     } else if ARstate == "blink"{
                         if(!arViewModel.asyncisblinkCount){

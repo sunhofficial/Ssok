@@ -149,10 +149,10 @@ struct CameraEndingView: View {
             
         }
         .onDisappear{
-            random.randomWho = setRandomMember(random.members)
-            random.randomWhat = setRandomMission(missions)
-            random.randomWhere = setRandomWhere(whereList)
-            st = false
+//            random.randomWho = setRandomMember(random.members)
+//            random.randomWhat = setRandomMission(missions)
+//            random.randomWhere = setRandomWhere(whereList)
+//            st = false
         }
         //        .onChange(of: sta){ value in
         //            st = false

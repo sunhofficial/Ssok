@@ -35,6 +35,12 @@ struct MissionCameraCompleteView: View {
                           .font(.system(size: 20, weight: .bold))
                           .foregroundColor(Color("Bg_center"))
                           .underline()
+//                          .simultaneousGesture(TapGesture().onEnded {
+//                              ARview.pauseSession()
+//                            })
+//                          .simultaneousGesture(TapGesture().onEnded {
+//                              ARview.ARFrame = false
+//                          })
 //                        Button {
 //                            
 //    //                        ARview.ARFrame = false
