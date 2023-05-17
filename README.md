@@ -20,6 +20,10 @@
 
 ### 💻 Skills & Tech Stack
 * SwiftUI
+* ARkit
+* RealityKit
+* Speech
+* UIkit
 * Github
 * Github Action
 * SpriteKit
@@ -49,19 +53,57 @@ hotfix/71-update-to-adapt-color-extension
 
 ### 🗂 Folder Structure
 ```
-a
+Ssok
 │ 
-├── b
-│   ├── c
-│   └── d
+├── Global
+│   ├── Extension
+│       └── View+
 │ 
-├── e
-└── f
-    ├── g
-    └── h
-        ├── i
-        ├── jm
-        └── k
+├── Model
+    ├── Member.swift
+    ├── Where.swift
+    ├── What.swift
+    ├── ScreenSize.swift
+    ├── Who.swift
+    ├── ARModel.swift
+    ├── NavLink.swift
+└── ViewModel
+    ├── StrawViewModel.swift
+    └── GatchaViewModel.swift
+    └── IntroViewModel.swift
+    └── AddMemberViewModel.swift
+    └── RandomMember.swift
+    └── SpeechRecognizer.swift
+    └── SoundMeter.swift
+    └── SoundManger.swift
+    └── ARViewModel.swift
+    └── Permission.swift
+    └── NaviViewModel.swift
+├── Views
+    ├── Ending
+        └── DecibelEndingView.swift
+        └── CameraEndingView.swift
+        └── CountEndingView.swift
+        └── SpeakEndingView.swift
+    └── Recycle
+        └── WhiteRectangleView.swift
+        └── MissionTopView.swift
+        └── MissionTitleView.swift
+        └── MissionCompleteView.swift
+        └── MissionCameraCompleteView
+    └── IntroView.swift
+    └── AddMemberView.swift
+    └── BottleView.swift
+    └── StrawView.swift
+    └── BallView.swift
+    └── MissionDecibelView.swift
+    └── MissionPedometerView.swift
+    └── MissionSmileView.swift
+    └── MissionSpeechView.swift
+    └── CameraView.swift
+└── _BubblesApp.swift
+└── AppDelegate.swift
+
 
 ```
 
