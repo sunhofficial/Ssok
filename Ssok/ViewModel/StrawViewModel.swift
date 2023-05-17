@@ -19,7 +19,10 @@ class StrawViewModel : ObservableObject{
     @Published var nextView : Bool = false
     @Published var progress : Double = 0.0
     var maxProgress : Double {
-        min(max(progress, 0.0), 1.0)
+        if(progress > 0.99){
+            return 1
+        }
+        return min(max(progress, 0.0), 1.0) //왜 0.3이랑 0.7에서는 1씩 안더해질까
     }
   
     func startupdatingMotion(){
@@ -50,6 +53,7 @@ class StrawViewModel : ObservableObject{
         }
         else if currentGravity != previousgravity {
             progress += 0.1
+            print(progress)
             previousgravity = currentGravity
         }
     }

@@ -25,7 +25,7 @@ struct IntroView: View {
                         .edgesIgnoringSafeArea(.all)
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 20))
+                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("intro_wave")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width, height: 200)
@@ -41,20 +41,25 @@ struct IntroView: View {
                             Circle()
                                 .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
                                 .frame(width: 8, height: 8)
+                            Circle()
+                                .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
+                                .frame(width: 8, height: 8)
                         }
                         .padding(.bottom, 81)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
                 TabView(selection: $selectedPage) {
-                    VStack(spacing: 85) {
+                    VStack(spacing: 66) {
                         
-                        Image("Introtext").resizable().aspectRatio(contentMode: .fit
-                        ).frame(width: 200,height: 58)
+                        Text("쉬는시간이 지루할때,\n쏘옥~")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
                         
                         Image("sign").resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 190)
+                            .frame(width: wid - 173)
                             .rotationEffect(
                                 Angle(
                                     degrees: isfirst ? -30 : 30
@@ -72,7 +77,13 @@ struct IntroView: View {
                     .tag(0)
 
                     
-                    VStack(spacing: 40) {
+                    VStack(spacing: 38) {
+                        
+                        Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        
                         Image("Intro2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -83,15 +94,31 @@ struct IntroView: View {
                     }
                     .tag(1)
                     
-                    VStack(spacing: 40) {
+                    VStack(spacing: 109) {
+                        
+                        Text("미션 수행 후\n완료 카드를 받으면 성공!")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                        
                         Image("Intro3")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: wid - 22)
+                        Spacer()
+                            .frame(height: 160)
+                    }
+                    .tag(2)
+                    
+                    VStack(spacing: 40) {
+                        Image("Intro4")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 32)
                         Spacer()
                             .frame(height: 160)
                     }
-                    .tag(2)
+                    .tag(3)
                     
                 }
                 .onChange(of: selectedPage, perform:  { index in
@@ -114,7 +141,7 @@ struct IntroView: View {
         .onAppear {
             isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
             if isTutorialHidden {
-                selectedPage = 2
+                selectedPage = 3
             }
         }
     }
