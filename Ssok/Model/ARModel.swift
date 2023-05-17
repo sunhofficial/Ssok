@@ -16,6 +16,7 @@ struct ARModel {
     var smileLeft: Float = 0
     var blinkRight: Float = 0
     var blinkLeft: Float = 0
+    var tongueOut: Float = 0
     
     init() {
         arView = ARView(frame: .zero)
@@ -27,5 +28,6 @@ struct ARModel {
         smileLeft = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .mouthSmileLeft})?.value ?? 0)
         blinkRight = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkRight})?.value ?? 0)
         blinkLeft = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkLeft})?.value ?? 0)
+        tongueOut = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .tongueOut})?.value ?? 0)
     }
 }
