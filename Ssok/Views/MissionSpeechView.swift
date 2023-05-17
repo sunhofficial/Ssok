@@ -154,12 +154,15 @@ struct MissionSpeechView: View {
                                 .cornerRadius(15)
                                 .foregroundColor(.white)
                             if speechRecognizer.transcript == "" {
-                                Text("버튼을 눌러 말해주세요")
-                                    .opacity(0.25)
-                                    .font(.system(size: 48, weight: .heavy))
-                                    .frame(width: 240, height: 64)
-                                    .minimumScaleFactor(0.1)
-                                    .lineLimit(1)
+                          
+                           
+                                    Text("문장을 따라 읽어주세요")
+                                        .opacity(0.25)
+                                        .font(.system(size: 48, weight: .heavy))
+                                        .frame(width: 240, height: 64)
+                                        .minimumScaleFactor(0.1)
+                                        .lineLimit(1)
+                                
                             } else {
                                 Text(speechRecognizer.transcript)
                                     .font(.system(size: 48, weight: .heavy))
