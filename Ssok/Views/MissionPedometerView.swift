@@ -149,7 +149,14 @@ struct MissionPedometerView: View {
             if String(stepcount) == GoalCount  {
                 MissionCompleteView(Title: Title, background: TitleColor, st: $st)
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
+        .onAppear {
+            if Title.count == 5 { SoundManager.shared.playMusic() }
+        }
+        .onDisappear {
+            if Title.count == 5 { SoundManager.shared.pauseMusic() }
+        }
     }
 }
 
