@@ -30,6 +30,7 @@ struct CountEndingView: View {
                 Image("endingtop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
+                
                 HStack {
                     Spacer()
                     HStack {

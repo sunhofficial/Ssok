@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct MissionCompleteView: View {
+struct MissionCameraCompleteView: View {
     
     @State var Title: String
     @State var background: Color
     @State var state1: Bool = false
     @EnvironmentObject var random: RandomMember
-    @Binding var st: Bool
+    @Binding var CameraState: Bool
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -29,12 +29,8 @@ struct MissionCompleteView: View {
                     MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                     
                     Button {
-                        print("HI")
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(whereList)
-                        mode.wrappedValue.dismiss()
-                        st = false
+                        CameraState = true
+                        
                     } label: {
                       Text("새로운 미션하기")
                         .underline()
@@ -48,12 +44,11 @@ struct MissionCompleteView: View {
                 
             }
         }.ignoresSafeArea()
-            .navigationBarHidden(true)
     }
 }
 
 
-extension MissionCompleteView {
+extension MissionCameraCompleteView {
     var back: some View {
         Button {
 

@@ -229,6 +229,7 @@ struct StrawView: View {
                 getThirdBall = false
                 viewModel.progress = 0.0
             }
+            
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
@@ -238,9 +239,9 @@ struct StrawView: View {
             case .voice:
                 SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
             case .smile:
-                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "smile", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
+                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "smile")
             case .blink:
-                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), arstate: "blink", missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st)
+                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "blink")
             }
         }
     }
