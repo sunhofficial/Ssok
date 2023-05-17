@@ -35,22 +35,12 @@ struct MissionCameraCompleteView: View {
                           .font(.system(size: 20, weight: .bold))
                           .foregroundColor(Color("Bg_center"))
                           .underline()
-//                        Button {
-//                            
-//    //                        ARview.ARFrame = false
-//    //                        ARview.ARtoStarw = true
-//    //                        CameraState = true
-//    //                        mode.wrappedValue.dismiss()
-//                            
-//                        } label: {
-//                          Text("새로운 미션하기")
-//                            .underline()
-//                            .font(.system(size: 20, weight: .bold))
-//                            .foregroundColor(Color("Bg_center"))
-//                            .underline()
-//                        }
                     }
-                    
+                    .simultaneousGesture(TapGesture().onEnded {
+                        random.randomWho = setRandomMember(random.members)
+                        random.randomWhat = setRandomMission(missions)
+                        random.randomWhere = setRandomWhere(whereList)
+                    })
                 }.offset(y:90)
 
                 
