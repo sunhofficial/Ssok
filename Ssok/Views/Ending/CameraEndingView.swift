@@ -13,6 +13,8 @@ struct CameraEndingView: View {
     @State var whatsentence: String = ""
     
     @EnvironmentObject var random: RandomMember
+    @ObservedObject var ARview : ARViewModel = ARViewModel()
+//    @EnvironmentObject var ARview: ARViewModel
     @StateObject var permissionManager = PermissionManager()
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -55,30 +57,33 @@ struct CameraEndingView: View {
             
             ZStack{
                 Text(random.randomWho)
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: 85, height: 85)
+                    .frame(width: 75, height: 75)
+                    .lineLimit(2)
                     .position(x:wid/2.9, y:210)
                 
                 Text(random.randomWhere)
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: 85, height: 85)
+                    .frame(width: 75, height: 75)
+                    .lineLimit(2)
                     .position(x:wid/1.81, y:210)
                 
                 Text(String(random.randomWhat.missionTitle.dropLast(2)))
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: 85, height: 85)
+                    .frame(width: 75, height: 75)
+                    .lineLimit(2)
                     .position(x:wid/1.155, y:210)
             }
             ZStack{
@@ -116,14 +121,29 @@ struct CameraEndingView: View {
             }.offset(y:150)
             
 //            NavigationLink(destination: MissionSmileView(ARstate: arstate)){
-            NavigationLink(destination: CameraView(arstate: arstate, sta: $sta)){
-                Text("미션하기")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                    .background(Color("Bg_bottom2"))
-                    .cornerRadius(12)
-            }.position(x:wid/2, y:hei-59)
+//            NavigationLink(destination: CameraView(arstate: arstate, sta: $sta)){
+//                Text("미션하기")
+//                    .foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+//                    .background(Color("Bg_bottom2"))
+//                    .cornerRadius(12)
+//            }.position(x:wid/2, y:hei-59)
+            
+            Button(action: {
+                // 첫 번째 액션
+                ARview.ARFrame = true
+            }) {
+                VStack {
+                    Text("Button Label 1")
+                    Text("Button Label 2")
+                }
+            }
+            
+            
+            if ARview.ARFrame == true{
+                CameraView(arstate: arstate, sta: $sta).environmentObject(ARview)
+            }
             
         }
         .onDisappear{
@@ -141,3 +161,25 @@ struct CameraEndingView: View {
     }
 }
     
+
+
+extension CameraEndingView {
+    var backButton: some View {
+        Button {
+            mode.wrappedValue.dismiss()
+        } label: {
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.clear)
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .bold()
+            }
+        }
+    }
+    
+}

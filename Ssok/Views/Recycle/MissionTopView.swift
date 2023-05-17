@@ -13,6 +13,7 @@ struct MissionTopView: View {
     
     @State var title: String
     @State var description: String
+    @EnvironmentObject var arViewModel : ARViewModel
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -25,6 +26,7 @@ struct MissionTopView: View {
             VStack(spacing: 4) {
                 HStack {
                     Button {
+                        arViewModel.ARFrame = false
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.backward")

@@ -9,14 +9,12 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView : View {
-    @ObservedObject var arViewModel : ARViewModel = ARViewModel()
-    
+//    @ObservedObject var arViewModel : ARViewModel = ARViewModel()
+    @State private var currentTime = Date()
     
     let date = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    //    @State var Title: String
-    //    @State var TitleColor: Color
     
     @State var isSmile: Bool = false
     @State var isBlink: Bool = false
@@ -28,16 +26,19 @@ struct MissionSmileView : View {
     @State var ARstate: String = ""
     @State var CameraState: Bool = false
     @State var sta: Bool = false
-    
+    @State private var isLoading = false
+    @State var delay: Int = 2
+    @State var count: Int = 0
     
     @Environment(\.presentationMode) var mode
+    @EnvironmentObject var arViewModel : ARViewModel
     @StateObject var navi = NaviObservableObject()
     
     func viewDidLoad(){
     }
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             ZStack {
                 ARViewContainer(arViewModel: arViewModel).edgesIgnoringSafeArea(.all)
                 //                    .onDisappear{
@@ -45,56 +46,42 @@ struct MissionSmileView : View {
                 //                    }
                 VStack {
                     
+//                    Button(action: {
+//                        // 첫 번째 액션
+//                        arViewModel.ARFrame = false
+//                    }) {
+//                            Text("뒤로 돌아가기")
+//                    }
+//                    .position(x: wid, y: hei / 5)
+
                     
                     if ARstate == "smile"
                     {
-                        if(!self.isSmile){
-                            Text(arViewModel.isSmiling ? " 웃는중 😄\n \(smileCount) / 2 초\n" + convertSecondsToTime(timeInSeconds:timeRemaining)  : " 웃으세요 😐")
+                        if(!arViewModel.asyncissmileCount){
+                            MissionTopView(title: "웃기", description: "웃어요")
+//                            Text(arViewModel.isSmiling ? " 웃는중 😄\n \(smileCount) / 2 초\n" + convertSecondsToTime(timeInSeconds:timeRemaining)  : " 웃으세요 😐")
+                            Text(arViewModel.isSmiling ? " 웃는중 😄\n \(smCount()) / 3 초\n" : " 웃으세요 😐" + flushCount())
                                 .padding()
                                 .foregroundColor(arViewModel.isSmiling ? .green : .red)
                                 .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                                 .font(.system(size: 18, weight: .semibold))
                                 .position(x: wid / 2 , y: hei / 6)
-                                .onReceive(timer) { _ in
-                                    if smileCount >= 2{
-                                        smileCount = 2
-                                        self.isSmile = true
-                                    }
-                                    if arViewModel.smileStatus == true{
-                                        timeRemaining -= 1
-                                    }
-                                    if timeRemaining < 0{
-                                        timeRemaining = 1
-                                        smileCount += 1
-                                    }
-                                }
                         }
                         else{
                             MissionCameraCompleteView(Title: "팀원들웃기기😘", background: Color.mint, CameraState: $CameraState)
                             
                         }
                     } else if ARstate == "blink"{
-                        if(!self.isBlink){
-                            Text(arViewModel.isBlinking ? " 윙크중 😉\n \(blinkCount) / 2 초\n" +  convertSecondsToTime(timeInSeconds:timeRemaining) : " 윙크하세요 😐")
+                        if(!arViewModel.asyncisblinkCount){
+                            MissionTopView(title: "윙크", description: "윙크해요")
+//                            Text(arViewModel.isBlinking ? " 윙크중 😉\n \(blinkCount) / 2 초\n" +  convertSecondsToTime(timeInSeconds:timeRemaining) : " 윙크하세요 😐")
+                            Text(arViewModel.isBlinking ? " 윙크중 😉\n \(smCount()) / 3 초\n" : " 윙크하세요 😐" + flushCount())
                                 .padding()
                                 .foregroundColor(arViewModel.isBlinking ? .green : .red)
                                 .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                                 .font(.system(size: 18, weight: .semibold))
                                 .position(x: wid / 2 , y: hei / 6)
-                                .onReceive(timer) { _ in
-                                    
-                                    if blinkCount >= 2 {
-                                        blinkCount = 2
-                                        self.isBlink = true
-                                    }
-                                    if arViewModel.blinkStatus == true{
-                                        timeRemaining -= 1
-                                    }
-                                    if timeRemaining < 0{
-                                        timeRemaining = 1
-                                        blinkCount += 1
-                                    }
-                                }
+                            
                         }
                         else
                         {
@@ -103,19 +90,53 @@ struct MissionSmileView : View {
                     }
                     
                 }
-                .onAppear {
+//                .onAppear {
+//                    calcRemain()
+//                }
+                .onChange(of: arViewModel.isSmiling) { newValue in
                     calcRemain()
                 }
-                .onChange(of: CameraState){ value in
-                    if CameraState == true {
-                        mode.wrappedValue.dismiss()
-                    }
+                .onChange(of: arViewModel.isBlinking) { newValue in
+                    calcRemain()
                 }
             }
-        }
-        .navigationBarHidden(true)
+//        }
+//        .navigationBarHidden(true)
     }
     
+    
+    func smCount() -> String{
+//        Thread.sleep(forTimeInterval: 1)
+        arViewModel.smileCount += 1
+        if(arViewModel.smileCount > 100){
+            arViewModel.asyncsmileCount += 1
+            arViewModel.smileCount = 0
+        }
+        if(arViewModel.asyncsmileCount >= 3){
+            arViewModel.asyncsmileCount = 3
+            arViewModel.asyncissmileCount = true
+        }
+        return "\(arViewModel.asyncsmileCount)"
+    }
+    func blCount() -> String{
+//        Thread.sleep(forTimeInterval: 1)
+        arViewModel.blinkCount += 1
+        if(arViewModel.smileCount > 100){
+            arViewModel.asyncblinkCount += 1
+            arViewModel.blinkCount = 0
+        }
+        if(arViewModel.asyncblinkCount >= 3){
+            arViewModel.asyncblinkCount = 3
+            arViewModel.asyncisblinkCount = true
+        }
+        return "\(arViewModel.asyncsmileCount)"
+    }
+    
+    func flushCount() -> String{
+        arViewModel.smileCount = 0
+        arViewModel.blinkCount = 0
+        return ""
+    }
     
     
     func convertSecondsToTime(timeInSeconds: Int) -> String {
@@ -130,6 +151,17 @@ struct MissionSmileView : View {
         let targetTime : Date = calendar.date(byAdding: .second, value: 2, to: date, wrappingComponents: false) ?? Date()
         let remainSeconds = Int(targetTime.timeIntervalSince(date))
         self.timeRemaining = remainSeconds
+    }
+    
+    func getFormattedTime() -> String {
+        updateTime()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .long
+        return formatter.string(from: currentTime)
+        }
+    
+    func updateTime() {
+            currentTime = Date()
     }
     
 }

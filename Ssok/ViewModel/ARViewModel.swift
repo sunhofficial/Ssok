@@ -11,12 +11,20 @@ import ARKit
 
 class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
     @Published private var model : ARModel = ARModel()
+    @Published var ARFrame: Bool = false
+    @Published var ARtoStarw: Bool = false
     
     var processedblinks: Set<Int> = []
     
     var blinkCount: Int = 0
+    var smileCount: Int = 0
     var blinkStatus: Bool = false
     var smileStatus: Bool = false
+    
+    var asyncblinkCount: Int = 0
+    var asyncsmileCount: Int = 0
+    var asyncisblinkCount: Bool = false
+    var asyncissmileCount: Bool = false
     
     var cameraControl: Bool = false
     
