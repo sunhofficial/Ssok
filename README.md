@@ -2,7 +2,8 @@
 
 <div align="center"> 
 
-<img width="1512" alt="image" src="">
+<!-- <img width="1512" alt="image" src=""> -->
+<img src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-5YearsOldGap/assets/54494793/f740ffb4-ba44-4c9b-b66b-0035a4bd55b5" height="400">
 
 <br/><br/>
     
@@ -17,7 +18,7 @@
 
 <br/>
 
-### :sparkles: Skills & Tech Stack
+### 💻 Skills & Tech Stack
 * SwiftUI
 * Github
 * Github Action
@@ -80,6 +81,6 @@ a
 
 <br/>
 
-### 📖 lock_with_ink_pen: License
+### 🔒 License
 
 [MIT](https://choosealicense.com/licenses/mit/)
