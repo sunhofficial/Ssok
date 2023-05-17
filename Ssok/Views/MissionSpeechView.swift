@@ -13,7 +13,7 @@ struct MissionSpeechView: View {
     @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
     @State var isComplete: Bool = false
-    
+    @State var havetext : Bool = false
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
@@ -37,7 +37,7 @@ struct MissionSpeechView: View {
                         .overlay(
                             ProgressView(value: progressTime, total: 100)
                                 .tint(Color("Bg_bottom2"))
-                                .background(Color(.systemGray6))
+                                .background(Color("LightGray"))
                                 .frame(width: 260, height: 8)
                                 .scaleEffect(x: 1, y: 2)
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
@@ -57,11 +57,12 @@ struct MissionSpeechView: View {
                             } else {
                                 speechRecognizer.startTranscribing()
                             }
-                            Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { _ in
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in //정답체크
                                 let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
                                 //영소문자 바꾸는 거 해야함.
+                                //정답체크를 했는데ㅐ 틀리면 이게 됨
                                 if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
+//         
                                     isWrong = true
                                     isSpeech = false
                                 }
@@ -73,8 +74,13 @@ struct MissionSpeechView: View {
                                     timer.invalidate()
                                     isComplete = true
                                     speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                }
-                            }
+                                }}
+                            RunLoop.main.add(checkTimer!, forMode: .common)
+                            RunLoop.main.add(timer, forMode: .common)
+                        }
+
+                        .onDisappear{
+                            speechRecognizer.stopTranscript()
                         }
                 } else {
                     Button {
@@ -188,9 +194,3 @@ struct MissionSpeechView: View {
         }
     }
 }
-//
-//struct MissionSpeechView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MissionSpeechView(missionTitle: "바보 되기 🤪", missionTip: "장소로 이동해서 미션하기 버튼을 누르고 나는 바보다 라고 말할 준비가 되면 말하기 버튼을 누르고 크게 외쳐주세요!", missionColor: .blue, answerText: "나는 바보다", speechTime: 5.0)
-//    }
-//}

@@ -7,25 +7,18 @@
 
 import SwiftUI
 import CoreMotion
-let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+
 
 struct StrawView: View {
     
     let motionmanager = CMMotionManager()
-    
+    @StateObject private var viewModel = StrawViewModel()
     @State var st: Bool = false
     @State var isAnimation: Bool = false
     @State var isDisplay: Bool = false
     @State var getFirstBall: Bool = false
     @State var getSecondBall: Bool = false
     @State var getThirdBall: Bool = false
-    @State var currentgravity = 0
-    @State var previousgravity = 0
-    @State var detec: Int = 10
-    @State var gravityx: Double = 0
-    @State var gravityy: Double = 0
-    @State var gravityz: Double = 0
-    @State var progress = 0.0
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -40,7 +33,7 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if detec < 10 {
+                if viewModel.maxProgress != 1 {
                     Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
@@ -53,7 +46,7 @@ struct StrawView: View {
                 VStack(spacing: 24) {
                     // 가이드
                     VStack(spacing: 24) {
-                        if detec >= 10 {
+                        if viewModel.maxProgress == 1 {
                             // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
@@ -89,9 +82,9 @@ struct StrawView: View {
                                         .multilineTextAlignment(.center)
                                         .font(.system(size: 13, weight: .semibold))
                                         .padding(.bottom, 10)
-                                    ProgressView(value: progress)
-                                        .tint(Color("Bg_bottom2"))
-                                        .background(Color(.systemGray6))
+                                    ProgressView(value: viewModel.maxProgress)
+                                        .tint(Color("Orange_Progress"))
+                                        .background(Color("LightGray"))
                                         .frame(width: 240, height: 8)
                                         .scaleEffect(x: 1, y: 2)
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
@@ -124,7 +117,7 @@ struct StrawView: View {
                 }
                 
                 // 빨대
-                if detec >= 10 {
+                if viewModel.maxProgress == 1 {
                     Image("Straw")
                         .frame(width: 200)
                         .contentShape(Rectangle())
@@ -223,49 +216,18 @@ struct StrawView: View {
                 }
                 .padding(.leading, 8)
                 .padding(.top, 48)
+                
+            }.navigationBarHidden(true)
+            .onAppear{
+                viewModel.startupdatingMotion()
             }
-            .navigationBarHidden(true)
-            .onReceive(timer) { input in
-                if motionmanager.isDeviceMotionAvailable {
-                    motionmanager.deviceMotionUpdateInterval = 0.2
-                    motionmanager.startDeviceMotionUpdates(to: OperationQueue.main) { data,error in
-                        gravityx = data?.gravity.x ?? 0
-                        gravityy = data?.gravity.y ?? 0
-                        gravityz = data?.gravity.z ?? 0
-                        
-                        if gravityx > 0.15 || gravityy > 0.15 || gravityz > 0.15 {
-                            currentgravity = 1
-                        } else if gravityx <= 0.15 && gravityx >= -0.15 && gravityy <= 0.15 && gravityy >= -0.15 && gravityz <= 0.15 && gravityz >= -0.15 {
-                            currentgravity = 0
-                        } else if gravityx < -0.15 || gravityy < -0.15 || gravityz < 0.15 {
-                            currentgravity = 2
-                        }
-                        
-                        if currentgravity == previousgravity && previousgravity != 0 {
-                            previousgravity = currentgravity
-                        } else if currentgravity != previousgravity{
-                            if detec != 10 {
-                                detec += 1
-                                print(detec)
-                                progress += 0.1
-                                print(progress)
-                            }
-                            previousgravity = currentgravity
-                        }
-                    }
-                }
-            }
-            .onDisappear {
+            .onDisappear{
                 isAnimation = false
                 isDisplay = false
                 getFirstBall = false
                 getSecondBall = false
                 getThirdBall = false
-                currentgravity = 0
-                previousgravity = 0
-                detec = 10
-                progress = 0.0
-                previousview = true
+                viewModel.progress = 0.0
             }
             
         } else {
@@ -288,13 +250,6 @@ struct StrawView: View {
 extension StrawView {
     var backButton: some View {
         Button {
-//            if (What.missionType == .blink || What.missionType == .smile) {
-//                NavigationLink(destination: AddMemberView()){
-//
-//                }
-//            } else {
-//                mode.wrappedValue.dismiss()
-//            }
             mode.wrappedValue.dismiss()
         } label: {
             ZStack {
@@ -309,6 +264,14 @@ extension StrawView {
                     .bold()
             }
         }
-        
+    }
+    
+}
+
+struct StrawView_Previews: PreviewProvider {
+    static let random = RandomMember()
+    static var previews: some View {
+        StrawView()
+            .environmentObject(random)
     }
 }
