@@ -120,16 +120,6 @@ struct CameraEndingView: View {
                 
             }.offset(y:150)
             
-            //            NavigationLink(destination: MissionSmileView(ARstate: arstate)){
-            //            NavigationLink(destination: CameraView(arstate: arstate, sta: $sta)){
-            //                Text("미션하기")
-            //                    .foregroundColor(.white)
-            //                    .fontWeight(.bold)
-            //                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-            //                    .background(Color("Bg_bottom2"))
-            //                    .cornerRadius(12)
-            //            }.position(x:wid/2, y:hei-59)
-            
             Button {
                 // 첫 번째 액션
                 ARview.ARFrame = true
@@ -146,18 +136,7 @@ struct CameraEndingView: View {
             if ARview.ARFrame == true{
                 CameraView(arstate: arstate, sta: $sta).environmentObject(ARview)
             }
-            
         }
-        .onDisappear{
-//            random.randomWho = setRandomMember(random.members)
-//            random.randomWhat = setRandomMission(missions)
-//            random.randomWhere = setRandomWhere(whereList)
-//            st = false
-        }
-        //        .onChange(of: sta){ value in
-        //            st = false
-        //
-        //        }
         .navigationBarHidden(true)
     }
 }
