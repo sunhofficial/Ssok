@@ -38,6 +38,8 @@
 		AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */; };
 		AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissionTitleView.swift */; };
 		AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionPedometerView.swift */; };
+		AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3129E52A14D6EF00204C55 /* SoundManager.swift */; };
+		AB3129EE2A14DC6100204C55 /* DanceMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129ED2A14DC6100204C55 /* DanceMusic.mp3 */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
@@ -83,6 +85,8 @@
 		AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelView.swift; sourceTree = "<group>"; };
 		AB031C512A10D6B300EE808B /* MissionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTitleView.swift; sourceTree = "<group>"; };
 		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
+		AB3129E52A14D6EF00204C55 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		AB3129ED2A14DC6100204C55 /* DanceMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DanceMusic.mp3; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				AB98FFAA2A11FBDF00B95643 /* Info.plist */,
+				AB3129ED2A14DC6100204C55 /* DanceMusic.mp3 */,
 				ABB019BE2A07CD840000556F /* Global */,
 				C74DD5452A065C2000852B09 /* Model */,
 				C74982A72A03960B00228FD5 /* ViewModel */,
@@ -215,6 +220,7 @@
 				ABB019CA2A07FB900000556F /* RandomMember.swift */,
 				C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */,
 				AB98FFA22A11704200B95643 /* SoundMeter.swift */,
+				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
 				7C9654C42A133BDB00779750 /* Permission.swift */,
 				7C9654CE2A13A38900779750 /* NaviViewModel.swift */,
@@ -296,6 +302,7 @@
 			files = (
 				7C94D5532A02AB3B00AAC279 /* Preview Assets.xcassets in Resources */,
 				7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */,
+				AB3129EE2A14DC6100204C55 /* DanceMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +322,7 @@
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
 				ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */,
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
+				AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */,
 				ABB019C52A07E4D30000556F /* StrawView.swift in Sources */,
@@ -473,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = AZDJLQL538;
+				DEVELOPMENT_TEAM = N3H5YNSQ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -490,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pin.Ssok22;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kwansiknam.-Ssok";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
