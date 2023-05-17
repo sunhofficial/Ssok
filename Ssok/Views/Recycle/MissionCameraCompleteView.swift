@@ -16,6 +16,7 @@ struct MissionCameraCompleteView: View {
     @Binding var CameraState: Bool
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @EnvironmentObject var ARview: ARViewModel
     
     var body: some View {
         ZStack{
@@ -28,15 +29,26 @@ struct MissionCameraCompleteView: View {
                     
                     MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
                     
-                    Button {
-                        CameraState = true
-                        
-                    } label: {
-                      Text("새로운 미션하기")
-                        .underline()
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(Color("Bg_center"))
-                        .underline()
+                    NavigationLink(destination: StrawView()){
+                        Text("새로운 미션하기")
+                          .underline()
+                          .font(.system(size: 20, weight: .bold))
+                          .foregroundColor(Color("Bg_center"))
+                          .underline()
+//                        Button {
+//                            
+//    //                        ARview.ARFrame = false
+//    //                        ARview.ARtoStarw = true
+//    //                        CameraState = true
+//    //                        mode.wrappedValue.dismiss()
+//                            
+//                        } label: {
+//                          Text("새로운 미션하기")
+//                            .underline()
+//                            .font(.system(size: 20, weight: .bold))
+//                            .foregroundColor(Color("Bg_center"))
+//                            .underline()
+//                        }
                     }
                     
                 }.offset(y:90)

@@ -13,6 +13,8 @@ struct CameraEndingView: View {
     @State var whatsentence: String = ""
     
     @EnvironmentObject var random: RandomMember
+    @ObservedObject var ARview : ARViewModel = ARViewModel()
+    //    @EnvironmentObject var ARview: ARViewModel
     @StateObject var permissionManager = PermissionManager()
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -29,10 +31,10 @@ struct CameraEndingView: View {
         
         ZStack{
             ZStack(alignment: .top) {
-                Image("endingtop").resizable()
+                Image("endingtop")
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
-                
                 HStack {
                     Spacer()
                     HStack {
@@ -49,9 +51,9 @@ struct CameraEndingView: View {
                     }
                     .padding(.trailing, 20)
                     .padding(.top, 56)
-                    
                 }
             }
+            .edgesIgnoringSafeArea(.top)
             
             ZStack{
                 Text(random.randomWho)
@@ -62,7 +64,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x:wid/2.9, y:210)
+                    .position(x:wid/2.9, y:166)
                 
                 Text(random.randomWhere)
                     .font(.system(size: 20, weight: .bold))
@@ -72,7 +74,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x:wid/1.81, y:210)
+                    .position(x:wid/1.81, y:166)
                 
                 Text(String(random.randomWhat.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
@@ -82,7 +84,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x:wid/1.155, y:210)
+                    .position(x:wid/1.155, y:166)
             }
             ZStack{
                 Circle()
@@ -93,10 +95,10 @@ struct CameraEndingView: View {
                     .frame(width: 50, height: 50)
             }
             VStack(spacing: 8){
-                Text("얼굴 인식 카메라")
+                Text("얼굴 인식")
                     .font(.system(size: 24, weight: .black))
                 
-                Text("미션을 성공하려면 얼굴을 인식해야해요")
+                Text("미션을 성공하려면 얼굴을 인식해야해요.")
                     .font(.system(size:13, weight: .light))
                 ZStack{
                     RoundedRectangle(cornerRadius: 20)
@@ -118,15 +120,32 @@ struct CameraEndingView: View {
                 
             }.offset(y:150)
             
-//            NavigationLink(destination: MissionSmileView(ARstate: arstate)){
-            NavigationLink(destination: CameraView(arstate: arstate, sta: $sta)){
+            //            NavigationLink(destination: MissionSmileView(ARstate: arstate)){
+            //            NavigationLink(destination: CameraView(arstate: arstate, sta: $sta)){
+            //                Text("미션하기")
+            //                    .foregroundColor(.white)
+            //                    .fontWeight(.bold)
+            //                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+            //                    .background(Color("Bg_bottom2"))
+            //                    .cornerRadius(12)
+            //            }.position(x:wid/2, y:hei-59)
+            
+            Button {
+                // 첫 번째 액션
+                ARview.ARFrame = true
+            } label: {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
-            }.position(x:wid/2, y:hei-59)
+            }
+            .position(x:wid/2, y:hei-103)
+            
+            if ARview.ARFrame == true{
+                CameraView(arstate: arstate, sta: $sta).environmentObject(ARview)
+            }
             
         }
         .onDisappear{
@@ -135,12 +154,33 @@ struct CameraEndingView: View {
             random.randomWhere = setRandomWhere(whereList)
             st = false
         }
-//        .onChange(of: sta){ value in
-//            st = false
-//
-//        }
-        .ignoresSafeArea(.all)
+        //        .onChange(of: sta){ value in
+        //            st = false
+        //
+        //        }
         .navigationBarHidden(true)
     }
 }
+
+
+
+extension CameraEndingView {
+    var backButton: some View {
+        Button {
+            mode.wrappedValue.dismiss()
+        } label: {
+            ZStack {
+                Rectangle()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.clear)
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.white)
+                    .bold()
+            }
+        }
+    }
     
+}

@@ -118,7 +118,8 @@ struct CountEndingView: View {
             }.offset(y:150)
             
             NavigationLink(destination: MissionPedometerView(Title: missionTitle, TitleColor: missionColor, GoalCount: GoalCount, st: $st)) {
-                Text("미션하기").foregroundColor(.white)
+                Text("미션하기")
+                    .foregroundColor(.white)
                     .fontWeight(.bold)
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))

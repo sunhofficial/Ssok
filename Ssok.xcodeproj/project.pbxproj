@@ -50,6 +50,7 @@
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
 		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
 		C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */; };
+		FDA87B402A14FCE00032D0BB /* MissionCameraTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA87B3F2A14FCE00032D0BB /* MissionCameraTopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSpeechView.swift; sourceTree = "<group>"; };
+		FDA87B3F2A14FCE00032D0BB /* MissionCameraTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCameraTopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			children = (
 				AB031C482A108E1800EE808B /* WhiteRectangleView.swift */,
 				AB031C4A2A10A30A00EE808B /* MissionTopView.swift */,
+				FDA87B3F2A14FCE00032D0BB /* MissionCameraTopView.swift */,
 				AB031C512A10D6B300EE808B /* MissionTitleView.swift */,
 				10BCD2E22A11149700303334 /* MissionCompleteView.swift */,
 				7C9654C82A1389DB00779750 /* MissionCameraCompleteView.swift */,
@@ -344,6 +347,7 @@
 				7C94D5752A02B1D100AAC279 /* BottleView.swift in Sources */,
 				10BCD2EA2A1124DE00303334 /* CountEndingView.swift in Sources */,
 				C74DD5472A065C2C00852B09 /* Member.swift in Sources */,
+				FDA87B402A14FCE00032D0BB /* MissionCameraTopView.swift in Sources */,
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				7C9654C92A1389DB00779750 /* MissionCameraCompleteView.swift in Sources */,
 				7C9654D12A13B0E800779750 /* NaviLink.swift in Sources */,
@@ -481,7 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = N3H5YNSQ64;
+				DEVELOPMENT_TEAM = Q535Z3S7Z3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -498,7 +502,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kwansiknam.-Ssok";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwansiknam.Ssok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

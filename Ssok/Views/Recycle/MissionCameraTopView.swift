@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissionTopView: View {
+struct MissionCameraTopView: View {
     
     // MARK: - Properties
     
@@ -27,7 +27,6 @@ struct MissionTopView: View {
                 HStack {
                     Button {
                         arViewModel.ARFrame = false
-                        mode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.backward")
                             .resizable()
@@ -62,7 +61,7 @@ struct MissionTopView: View {
     }
 }
 
-struct MissionTopView_Previews: PreviewProvider {
+struct MissionCameraTopView_Previews: PreviewProvider {
     static var previews: some View {
         MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
     }
