@@ -9,7 +9,6 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView : View {
-//    @ObservedObject var arViewModel : ARViewModel = ARViewModel()
     @State private var currentTime = Date()
     
     let date = Date()
@@ -34,34 +33,20 @@ struct MissionSmileView : View {
     @EnvironmentObject var arViewModel : ARViewModel
     @StateObject var navi = NaviObservableObject()
     
+    
     func viewDidLoad(){
     }
     
     var body: some View {
-//        NavigationView{
             ZStack {
                 ARViewContainer(arViewModel: arViewModel)
                     .edgesIgnoringSafeArea(.all)
-                //                    .onDisappear{
-                //                        mode.wrappedValue.dismiss()
-                //                    }
                 VStack {
-                    
-//                    Button(action: {
-//                        // 첫 번째 액션
-//                        arViewModel.ARFrame = false
-//                    }) {
-//                            Text("뒤로 돌아가기")
-//                    }
-//                    .position(x: wid, y: hei / 5)
-
                     
                     if ARstate == "smile"
                     {
                         if(!arViewModel.asyncissmileCount){
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
-//                            Text(arViewModel.isSmiling ? " 웃는중 😄\n \(smileCount) / 2 초\n" + convertSecondsToTime(timeInSeconds:timeRemaining)  : " 웃으세요 😐")
-//                            Text(arViewModel.isSmiling ? "한 번 더 스마일!😄 \(smCount())" : "화면을 보고 웃으세요" + flushCount())
                             Text(arViewModel.isSmiling ? "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount())
                                 .padding()
                                 .foregroundColor(arViewModel.isSmiling ? .green : .red)
@@ -70,13 +55,11 @@ struct MissionSmileView : View {
                                 .position(x: wid / 2 , y: hei / 1.5)
                         }
                         else{
-//                            MissionCameraCompleteView(Title: "팀원웃기기 😝", background: Color.mint, CameraState: $CameraState)
                             MissionCameraCompleteView(Title: "혀내밀기 😝", background: Color.mint, CameraState: $CameraState)
                         }
                     } else if ARstate == "blink"{
                         if(!arViewModel.asyncisblinkCount){
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
-//                            Text(arViewModel.isBlinking ? " 윙크중 😉\n \(blinkCount) / 2 초\n" +  convertSecondsToTime(timeInSeconds:timeRemaining) : " 윙크하세요 😐")
                             Text(arViewModel.isBlinking ? "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount())
                                 .padding()
                                 .foregroundColor(arViewModel.isBlinking ? .green : .red)
@@ -91,9 +74,6 @@ struct MissionSmileView : View {
                     }
                     
                 }
-//                .onAppear {
-//                    calcRemain()
-//                }
                 .onChange(of: arViewModel.isSmiling) { newValue in
                     calcRemain()
                 }
@@ -101,13 +81,10 @@ struct MissionSmileView : View {
                     calcRemain()
                 }
             }
-//        }
-//        .navigationBarHidden(true)
     }
     
     
     func smCount() -> String{
-//        Thread.sleep(forTimeInterval: 1)
         arViewModel.smileCount += 1
         if(arViewModel.smileCount > 30){
             arViewModel.asyncsmileCount += 1
@@ -117,11 +94,9 @@ struct MissionSmileView : View {
             arViewModel.asyncsmileCount = 2
             arViewModel.asyncissmileCount = true
         }
-//        return "\(arViewModel.asyncsmileCount)"
         return ""
     }
     func blCount() -> String{
-//        Thread.sleep(forTimeInterval: 1)
         arViewModel.blinkCount += 1
         if(arViewModel.blinkCount > 30){
             arViewModel.asyncblinkCount += 1
@@ -131,7 +106,6 @@ struct MissionSmileView : View {
             arViewModel.asyncblinkCount = 2
             arViewModel.asyncisblinkCount = true
         }
-//        return "\(arViewModel.asyncblinkCount)"
         return ""
     }
     
@@ -176,6 +150,8 @@ struct ARViewContainer: UIViewRepresentable {
         arViewModel.startSessionDelegate()
         return arViewModel.arView
     }
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    
+    func updateUIView(_ uiView: ARView, context: Context) {
+    }
 }
 

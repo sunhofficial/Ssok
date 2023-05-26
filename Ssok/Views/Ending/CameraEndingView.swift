@@ -14,7 +14,6 @@ struct CameraEndingView: View {
     
     @EnvironmentObject var random: RandomMember
     @ObservedObject var ARview : ARViewModel = ARViewModel()
-    //    @EnvironmentObject var ARview: ARViewModel
     @StateObject var permissionManager = PermissionManager()
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
