@@ -32,20 +32,9 @@ struct IntroView: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
-                            Circle()
-                                .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
+                            StepIndicatorView(selectedPage: selectedPage)
+                                .padding(.bottom, 81)
                         }
-                        .padding(.bottom, 81)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
@@ -144,6 +133,25 @@ struct IntroView: View {
                 selectedPage = 3
             }
         }
+    }
+}
+
+struct StepIndicatorView: View{
+    var selectedPage: Int
+    
+    var body: some View{
+        Circle()
+            .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
+            .frame(width: 8, height: 8)
+        Circle()
+            .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
+            .frame(width: 8, height: 8)
+        Circle()
+            .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
+            .frame(width: 8, height: 8)
+        Circle()
+            .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
+            .frame(width: 8, height: 8)
     }
 }
 
