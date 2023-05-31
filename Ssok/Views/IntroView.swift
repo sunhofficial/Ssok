@@ -11,9 +11,9 @@ import SwiftUI
 
 struct IntroView: View {
     
-    @State var selectedPage = 0
-    @State var isTutorialHidden = false
-    @State var isfirst = false
+    @State private var selectedPage = 0
+    @State private var isTutorialHidden = false
+    @State private var isfirst = false
     
     var body: some View {
         NavigationStack {
@@ -31,18 +31,11 @@ struct IntroView: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
-                            Circle()
-                                .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
+                            ForEach(0..<4) { pageNumber in
+                                Circle()
+                                    .fill(selectedPage == pageNumber ? Color("Bg_top") : Color("Bg"))
+                                    .frame(width: 8, height: 8)
+                            }
                         }
                         .padding(.bottom, 81)
                     }
@@ -95,7 +88,6 @@ struct IntroView: View {
                     .tag(1)
                     
                     VStack(spacing: 109) {
-                        
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
