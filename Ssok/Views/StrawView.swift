@@ -21,7 +21,6 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
-    @State var previousview: Bool = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
