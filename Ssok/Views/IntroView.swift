@@ -27,7 +27,7 @@ struct IntroView: View {
                             Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("intro_wave")
                                 .resizable()
-                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .frame(width: wid, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
@@ -44,22 +44,20 @@ struct IntroView: View {
                 
                 TabView(selection: $selectedPage) {
                     VStack(spacing: 66) {
-                        
                         Text("쉬는시간이 지루할때,\n쏘옥~")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                         
-                        Image("HandWithPhone").resizable()
+                        Image("HandWithPhone")
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 173)
                             .rotationEffect(
-                                Angle(
-                                    degrees: isfirst ? -30 : 30
-                                )
+                                Angle(degrees: isfirst ? -30 : 30)
                             )
                             .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
-                            .onAppear{
+                            .onAppear {
                                 isfirst = true
                             }
                     
@@ -68,10 +66,8 @@ struct IntroView: View {
 
                     }
                     .tag(0)
-
                     
                     VStack(spacing: 38) {
-                        
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
@@ -111,11 +107,10 @@ struct IntroView: View {
                             .frame(height: 160)
                     }
                     .tag(3)
-                    
                 }
-                .onChange(of: selectedPage, perform:  { index in
+                .onChange(of: selectedPage) { _ in
                     isfirst.toggle()
-                })
+                }
                 .tabViewStyle(.page(indexDisplayMode: .never))
        
                 NavigationLink(destination: AddMemberView()) {
@@ -126,15 +121,13 @@ struct IntroView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView() 
+                    hideTutorialView()
                 })
             }
         }
         .onAppear {
             isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
-            if isTutorialHidden {
-                selectedPage = 3
-            }
+            if isTutorialHidden { selectedPage = 3 }
         }
     }
 }
