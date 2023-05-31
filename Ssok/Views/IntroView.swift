@@ -11,13 +11,12 @@ import SwiftUI
 
 struct IntroView: View {
     
-//    @StateObject var permissionManager = PermissionManager()
-    @State var selectedPage: Int = 0
-    @State var isTutorialHidden: Bool = false
-    @State var isfirst: Bool = false
+    @State var selectedPage = 0
+    @State var isTutorialHidden = false
+    @State var isfirst = false
     
     var body: some View {
-        NavigationStack(){
+        NavigationStack {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("intro_bg")
@@ -49,6 +48,7 @@ struct IntroView: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
+                
                 TabView(selection: $selectedPage) {
                     VStack(spacing: 66) {
                         
