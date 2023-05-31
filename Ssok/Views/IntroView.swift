@@ -57,7 +57,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                         
-                        Image("sign").resizable()
+                        Image("HandWithPhone").resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 173)
                             .rotationEffect(
