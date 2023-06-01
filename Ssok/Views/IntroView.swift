@@ -14,6 +14,7 @@ struct IntroView: View {
     @State private var selectedPage = 0
     @State private var isTutorialHidden = false
     @State private var isfirst = false
+    @AppStorage("Tutorial") var isIntroActive = true
     
     var body: some View {
         NavigationStack {
@@ -37,7 +38,7 @@ struct IntroView: View {
                                     .frame(width: 8, height: 8)
                             }
                         }
-                        .padding(.bottom, 81)
+                        .padding(.bottom, 80)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
@@ -63,7 +64,6 @@ struct IntroView: View {
                     
                         Spacer()
                             .frame(height: 160)
-
                     }
                     .tag(0)
                     
@@ -93,6 +93,7 @@ struct IntroView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 22)
+                        
                         Spacer()
                             .frame(height: 160)
                     }
@@ -103,6 +104,7 @@ struct IntroView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 32)
+                        
                         Spacer()
                             .frame(height: 160)
                     }
@@ -121,25 +123,14 @@ struct IntroView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView()
+                   isIntroActive = false
                 })
             }
         }
         .onAppear {
-            isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
-            if isTutorialHidden { selectedPage = 3 }
+            if !isIntroActive { selectedPage = 3 }
         }
     }
-}
-
-extension IntroView {
-    
-    private func hideTutorialView() {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "hideTutorial")
-    }
-    
-    
 }
 
 struct IntroView_Previews: PreviewProvider {
