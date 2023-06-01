@@ -6,12 +6,8 @@
 //
 
 import SwiftUI
-import CoreMotion
-
 
 struct StrawView: View {
-    
-    let motionmanager = CMMotionManager()
     @StateObject private var viewModel = StrawViewModel()
     @State var st: Bool = false
     @State var isAnimation: Bool = false
@@ -21,9 +17,7 @@ struct StrawView: View {
     @State var getThirdBall: Bool = false
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
-    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
     @EnvironmentObject var random: RandomMember
     
     
@@ -37,8 +31,6 @@ struct StrawView: View {
                 } else {
                     Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
                 }
-                
-                
                 BottleView()
                 
                 
@@ -217,9 +209,6 @@ struct StrawView: View {
                 .padding(.top, 48)
                 
             }.navigationBarHidden(true)
-            .onAppear{
-                viewModel.startupdatingMotion()
-            }
             .onDisappear{
                 isAnimation = false
                 isDisplay = false
