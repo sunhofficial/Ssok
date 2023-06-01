@@ -12,7 +12,6 @@ import SwiftUI
 struct IntroView: View {
     
     @State private var selectedPage = 0
-    @State private var isTutorialHidden = false
     @State private var isfirst = false
     @AppStorage("Tutorial") var isIntroActive = true
     
