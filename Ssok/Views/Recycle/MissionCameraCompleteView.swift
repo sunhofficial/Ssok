@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct MissionCameraCompleteView: View {
-    
-    @State var Title: String
+    @State var title: String
     @State var background: Color
     @State var state1: Bool = false
     @EnvironmentObject var random: RandomMember
     @Binding var CameraState: Bool
-    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var ARview: ARViewModel
-    
     var body: some View {
         ZStack{
             Rectangle().opacity(0.62)

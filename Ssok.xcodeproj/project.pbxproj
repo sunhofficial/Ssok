@@ -45,6 +45,7 @@
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019C52A07E4D30000556F /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019C42A07E4D30000556F /* StrawView.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
+		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
 		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
@@ -95,6 +96,7 @@
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019C42A07E4D30000556F /* StrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
+		C74C18862A2859D500D69345 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		7C94D53F2A02AB3900AAC279 = {
 			isa = PBXGroup;
 			children = (
+				C74C18862A2859D500D69345 /* .swiftlint.yml */,
 				7C94D54A2A02AB3A00AAC279 /* Ssok */,
 				7C94D5492A02AB3A00AAC279 /* Products */,
 			);
@@ -258,6 +261,7 @@
 				7C94D5442A02AB3A00AAC279 /* Sources */,
 				7C94D5452A02AB3A00AAC279 /* Frameworks */,
 				7C94D5462A02AB3A00AAC279 /* Resources */,
+				C74C18842A28596500D69345 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -306,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */,
 				7C94D5532A02AB3B00AAC279 /* Preview Assets.xcassets in Resources */,
 				7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */,
 				AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */,
@@ -314,6 +319,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C74C18842A28596500D69345 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C94D5442A02AB3A00AAC279 /* Sources */ = {
@@ -489,7 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = N3H5YNSQ64;
+				DEVELOPMENT_TEAM = NG2NLR2Z86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -506,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssok";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrol-statement";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
