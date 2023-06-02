@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DecibelEndingView: View {
 
-    @Binding var st: Bool
+    @Binding var state: Bool
     @State var next = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
@@ -38,7 +38,7 @@ struct DecibelEndingView: View {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
-                        st = false
+                        state = false
                     }
                     .padding(.trailing, 20)
                     .padding(.top, 56)
@@ -112,7 +112,7 @@ struct DecibelEndingView: View {
                                 title: missionTitle,
                                 missionColor: missionColor,
                                 goal: goal,
-                                st: $st)) {
+                                state: $state)) {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)

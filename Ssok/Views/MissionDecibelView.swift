@@ -17,7 +17,7 @@ struct MissionDecibelView: View {
     @State private var more: String = "더"
     @State var ismore: Int = 0
     @State var progressTintColor = Color(.orange)
-    @Binding var st: Bool
+    @Binding var state: Bool
 
     var body: some View {
         ZStack {
@@ -90,7 +90,7 @@ struct MissionDecibelView: View {
             .navigationBarHidden(true)
 
             if isCompleted {
-                MissionCompleteView(Title: title, background: missionColor, st: $st)
+                MissionCompleteView(Title: title, background: missionColor, st: $state)
             }
         }
         .onAppear {

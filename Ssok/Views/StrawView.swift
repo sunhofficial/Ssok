@@ -233,7 +233,7 @@ struct StrawView: View {
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
+                DecibelEndingView(state: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
             case .shake:
                 CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
             case .voice:
