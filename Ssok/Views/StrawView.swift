@@ -8,12 +8,11 @@
 import SwiftUI
 import CoreMotion
 
-
 struct StrawView: View {
-    
+
     let motionmanager = CMMotionManager()
     @StateObject private var viewModel = StrawViewModel()
-    @State var st: Bool = false
+    @State var state: Bool = false
     @State var isAnimation: Bool = false
     @State var isDisplay: Bool = false
     @State var getFirstBall: Bool = false
@@ -22,32 +21,25 @@ struct StrawView: View {
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
-    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
     @EnvironmentObject var random: RandomMember
-    
-    
+
     var body: some View {
-        if !st{
+        if !state {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
-                
+                LinearGradient(gradient:
+                                Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
+                               startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
                 if viewModel.maxProgress != 1 {
-                    Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
+                    Image("firstdrink").position(CGPoint(x: wid/2, y: 552.5))
                 } else {
-                    Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
+                    Image("finaldrink").position(CGPoint(x: wid/2, y: 552.5))
                 }
-                
-                
                 BottleView()
-                
-                
                 VStack(spacing: 24) {
-                    // 가이드
                     VStack(spacing: 24) {
                         if viewModel.maxProgress == 1 {
-                            // 흔들기 완료 후 여기
                             ZStack {
                                 WhiteRectangleView()
                                     .frame(width: 300, height: 106)
@@ -94,28 +86,23 @@ struct StrawView: View {
                         }
                     }
                     .opacity(isDisplay ? 0 : 1)
-                    // 컵 & 버블
                     ZStack {
-                        // 버블
                         VStack {
                             Spacer()
                             Image("Pearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.4),value: isAnimation)
-                            
+                                .animation(.easeOut(duration: 1.5).delay(1.4), value: isAnimation)
                             Image("Pearl2")
-                                .animation(.easeOut(duration: 1.5).delay(1.6),value: isAnimation)
-                            
+                                .animation(.easeOut(duration: 1.5).delay(1.6), value: isAnimation)
                             Image("Pearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.8),value: isAnimation)
+                                .animation(.easeOut(duration: 1.5).delay(1.8), value: isAnimation)
                         }
                         .frame(width: 28)
                         .opacity(isAnimation ? 1 : 0)
                         .offset(y: isAnimation ? -hei : -10)
                         .animation(.easeInOut.delay(1), value: isAnimation)
                     }
-                    .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
+                    .frame(width: UIScreen.main.bounds.width / 1.3, height: UIScreen.main.bounds.height / 1.8)
                 }
-                
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("Straw")
@@ -134,7 +121,6 @@ struct StrawView: View {
                                         }
                                     }
                                     isPlug = gesture.translation.height > 150
-                                    
                                 }
                                 .onEnded { _ in
                                     if isPlug {
@@ -166,42 +152,34 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutcup").position(x: wid/2 ,y:377)
+                    Image("cutcup").position(x: wid/2, y: 377)
                 }
-                
-                //Dim
                 Color(.white)
                     .edgesIgnoringSafeArea(.all)
                     .opacity(isAnimation ? 0.5 : 0)
                     .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
-                
-                //  첫 번째 볼
                 BallView(
                     getCurrentBall: $getFirstBall,
                     getNextBall: $getSecondBall,
-                    st: $st,
+                    st: $state,
                     stBool: false,
                     ballTitle: "Who?",
                     contents: random.randomWho,
                     pearlImage: "Back_pearl1"
                 )
-                
-                // 두 번째 볼
                 BallView(
                     getCurrentBall: $getSecondBall,
                     getNextBall: $getThirdBall,
-                    st: $st,
+                    st: $state,
                     stBool: false,
                     ballTitle: "Where?",
                     contents: random.randomWhere,
                     pearlImage: "Back_pearl2"
                 )
-                
-                // 세 번째 볼
                 BallView(
                     getCurrentBall: $getThirdBall,
                     getNextBall: $getThirdBall,
-                    st: $st,
+                    st: $state,
                     stBool: true,
                     ballTitle: "What?",
                     contents: String(random.randomWhat.missionTitle.dropLast(2)),
@@ -216,37 +194,65 @@ struct StrawView: View {
                 }
                 .padding(.leading, 8)
                 .padding(.top, 48)
-                
             }.navigationBarHidden(true)
-            .onAppear{
-                viewModel.startupdatingMotion()
-            }
-            .onDisappear{
-                isAnimation = false
-                isDisplay = false
-                getFirstBall = false
-                getSecondBall = false
-                getThirdBall = false
-                viewModel.progress = 0.0
-            }
-            
+                .onAppear {
+                    viewModel.startupdatingMotion()
+                }
+                .onDisappear {
+                    isAnimation = false
+                    isDisplay = false
+                    getFirstBall = false
+                    getSecondBall = false
+                    getThirdBall = false
+                    viewModel.progress = 0.0
+                }
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
+                DecibelEndingView(st: $state,
+                                  wheresentence: random.randomWhere,
+                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                  missionTitle: random.randomWhat.missionTitle,
+                                  missionTip: random.randomWhat.missionTip,
+                                  missionColor: random.randomWhat.missionColor,
+                                  goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
+                CountEndingView(wheresentence: random.randomWhere,
+                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                missionTitle: random.randomWhat.missionTitle,
+                                missionTip: random.randomWhat.missionTip,
+                                missionColor: random.randomWhat.missionColor,
+                                GoalCount: random.randomWhat.goal!,
+                                st: $state)
             case .voice:
-                SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
+                SpeakEndingView(wheresentence: random.randomWhere,
+                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                missionTitle: random.randomWhat.missionTitle,
+                                missionTip: random.randomWhat.missionTip,
+                                missionColor: random.randomWhat.missionColor,
+                                goal: random.randomWhat.goal!,
+                                timer: Double(random.randomWhat.timer!),
+                                st: $state)
             case .smile:
-                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "smile")
+                CameraEndingView(wheresentence: random.randomWhere,
+                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                 missionTitle: random.randomWhat.missionTitle,
+                                 missionTip: random.randomWhat.missionTip,
+                                 missionColor: random.randomWhat.missionColor,
+                                 st: $state,
+                                 arstate: "smile")
             case .blink:
-                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "blink")
+                CameraEndingView(wheresentence: random.randomWhere,
+                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                 missionTitle: random.randomWhat.missionTitle,
+                                 missionTip: random.randomWhat.missionTip,
+                                 missionColor: random.randomWhat.missionColor,
+                                 st: $state,
+                                 arstate: "blink")
             }
         }
     }
 }
-
 extension StrawView {
     var backButton: some View {
         Button {
@@ -265,7 +271,6 @@ extension StrawView {
             }
         }
     }
-    
 }
 
 struct StrawView_Previews: PreviewProvider {
