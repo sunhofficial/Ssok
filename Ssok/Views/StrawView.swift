@@ -161,7 +161,7 @@ struct StrawView: View {
                 BallView(
                     getCurrentBall: $getFirstBall,
                     getNextBall: $getSecondBall,
-                    st: $state,
+                    state: $state,
                     stBool: false,
                     ballTitle: "Who?",
                     contents: random.randomWho,
@@ -170,7 +170,7 @@ struct StrawView: View {
                 BallView(
                     getCurrentBall: $getSecondBall,
                     getNextBall: $getThirdBall,
-                    st: $state,
+                    state: $state,
                     stBool: false,
                     ballTitle: "Where?",
                     contents: random.randomWhere,
@@ -179,7 +179,7 @@ struct StrawView: View {
                 BallView(
                     getCurrentBall: $getThirdBall,
                     getNextBall: $getThirdBall,
-                    st: $state,
+                    state: $state,
                     stBool: true,
                     ballTitle: "What?",
                     contents: String(random.randomWhat.missionTitle.dropLast(2)),

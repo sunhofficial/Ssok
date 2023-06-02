@@ -116,7 +116,7 @@ struct SpeakEndingView: View {
                 }.offset(y:32)
             }.offset(y:150)
             
-            NavigationLink(destination: MissionSpeechView(missionTitle: missionTitle, missionTip: missionTip, missionColor: missionColor, answerText: goal, speechTime: timer, st: $st)) {
+            NavigationLink(destination: MissionSpeechView(missionTitle: missionTitle, missionTip: missionTip, missionColor: missionColor, answerText: goal, speechTime: timer, state: $st)) {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
