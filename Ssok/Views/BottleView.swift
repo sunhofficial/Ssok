@@ -38,27 +38,20 @@ struct ColType {
     static let wall: UInt32 = 0x1 << 1
 }
 
-class Pearls: SKSpriteNode {}
-
 class Bottle: SKScene, SKPhysicsContactDelegate {
 
-    var motionstate = 0
-    var motionmanager: CMMotionManager?
-    var pearls = ["Pearl1", "Pearl2"]
-    let leftborder = SKShapeNode()
-    let leftbottom = SKShapeNode()
-    let rightborder = SKShapeNode()
-    let rightbottom = SKShapeNode()
+    private var motionState = 0
+    private var motionManager: CMMotionManager?
+    private var pearls = ["Pearl1", "Pearl2"]
+    private let leftBorder = SKShapeNode()
+    private let leftBottom = SKShapeNode()
+    private let rightBorder = SKShapeNode()
+    private let rightBottom = SKShapeNode()
 
     override func didMove(to view: SKView) {
         self.backgroundColor = .clear
         view.allowsTransparency = true
         physicsWorld.contactDelegate = self
-
-        let cup = SKSpriteNode(imageNamed: "cupanddrinks")
-        cup.alpha = 0
-        cup.position = CGPoint(x: frame.midX, y: 303)
-        addChild(cup)
 
         let vector = SKSpriteNode(imageNamed: "Vector 7")
         vector.alpha = 0
@@ -71,42 +64,34 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         vector.physicsBody?.isDynamic = false
         addChild(vector)
 
-        leftborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
-        leftborder.physicsBody?.affectedByGravity = false
-        leftborder.zRotation = .pi/52
-        leftborder.position = CGPoint(x: frame.midX/3.0, y: frame.midY)
-        leftborder.physicsBody?.isDynamic = false
-        addChild(leftborder)
+        setPhysicsBody(setNode: leftBorder)
+        leftBorder.zRotation = .pi/45
+        leftBorder.position = CGPoint(x: frame.midX-120, y: frame.midY)
+        addChild(leftBorder)
 
-        leftbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
-        leftbottom.physicsBody?.affectedByGravity = false
-        leftbottom.zRotation = .pi/3.0
-        leftbottom.position = CGPoint(x: frame.midX, y: frame.height/15)
-        leftbottom.physicsBody?.isDynamic = false
-        addChild(leftbottom)
+        setPhysicsBody(setNode: leftBorder)
+        leftBottom.zRotation = .pi/3.0
+        leftBottom.position = CGPoint(x: frame.midX, y: frame.midY-243)
+        addChild(leftBottom)
 
-        rightborder.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
-        rightborder.physicsBody?.affectedByGravity = false
-        rightborder.zRotation = -.pi/45
-        rightborder.position = CGPoint(x: ( frame.maxX-frame.midX/3), y: frame.midY)
-        rightborder.physicsBody?.isDynamic = false
-        addChild(rightborder)
+        setPhysicsBody(setNode: leftBorder)
+        rightBorder.zRotation = -.pi/45
+        rightBorder.position = CGPoint(x: frame.midX + 120, y: frame.midY)
+        addChild(rightBorder)
 
-        rightbottom.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
-        rightbottom.physicsBody?.affectedByGravity = false
-        rightbottom.zRotation = -.pi/3.0
-        rightbottom.position = CGPoint(x: (frame.maxX-frame.midX), y: frame.height/15)
-        rightbottom.physicsBody?.isDynamic = false
-        addChild(rightbottom)
+        setPhysicsBody(setNode: leftBorder)
+        rightBottom.zRotation = -.pi/3.0
+        rightBottom.position = CGPoint(x: frame.midX, y: frame.midY-243)
+        addChild(rightBottom)
 
         let pearlRadius = 20.0
 
-        for i in stride(from: 200, to: 300, by: pearlRadius) {
-            for j in stride(from: 150, to: 200, by: pearlRadius) {
-
+        for xRange in stride(from: 200, to: 300, by: pearlRadius) {
+            for yRange in stride(from: 150, to: 200, by: pearlRadius) {
                 let pearlType = pearls.randomElement()!
-                let pearl = Pearls(imageNamed: pearlType)
-                pearl.position = CGPoint(x: i, y: j)
+//                let pearl = Pearls(imageNamed: pearlType)
+                let pearl = SKSpriteNode(imageNamed: pearlType)
+                pearl.position = CGPoint(x: xRange, y: yRange)
                 pearl.name = "ball"
                 pearl.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearlRadius)
@@ -119,35 +104,36 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
             }
         }
-
-        let cuphead = SKSpriteNode(imageNamed: "Cuphead")
-        cuphead.position = CGPoint(x: frame.midX, y: frame.maxY-323)
-        cuphead.anchorPoint = CGPoint(x: 0.5, y: 1)
-        addChild(cuphead)
-
-        motionmanager = CMMotionManager()
-        motionmanager?.startAccelerometerUpdates()
+        motionManager = CMMotionManager()
+        motionManager?.startAccelerometerUpdates()
     }
-_
     override func update(_ currentTime: TimeInterval) {
-        if let accelerometerData = motionmanager?.accelerometerData {
-            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 20, dy: accelerometerData.acceleration.y * 10)
+        if let accelerometerData = motionManager?.accelerometerData {
+            physicsWorld.gravity = CGVector(
+                dx: accelerometerData.acceleration.x,
+                dy: accelerometerData.acceleration.y * 10)
 
-            if accelerometerData.acceleration.x > 0.5 || accelerometerData.acceleration.x < -0.5 || accelerometerData.acceleration.y > 0.2 {
-                motionstate = 1
+            if accelerometerData.acceleration.x > 0.5
+                || accelerometerData.acceleration.x < -0.5
+                || accelerometerData.acceleration.y > 0.2 {
+                motionState = 1
             } else {
-                motionstate = 0
+                motionState = 0
             }
         }
 
     }
-
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "ball" {
-            if motionstate == 1 {
+            if motionState == 1 {
                 HapticManager.instance.impact(style: .medium)
             }
         }
+    }
+    func setPhysicsBody(setNode: SKShapeNode) {
+        setNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
+        setNode.physicsBody?.affectedByGravity = false
+        setNode.physicsBody?.isDynamic = false
     }
 }
 
