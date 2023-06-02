@@ -11,13 +11,12 @@ import SwiftUI
 
 struct IntroView: View {
     
-//    @StateObject var permissionManager = PermissionManager()
-    @State var selectedPage: Int = 0
-    @State var isTutorialHidden: Bool = false
-    @State var isfirst: Bool = false
+    @State private var selectedPage = 0
+    @State private var isfirst = false
+    @AppStorage("Tutorial") private var isIntroActive = true
     
     var body: some View {
-        NavigationStack(){
+        NavigationStack {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("intro_bg")
@@ -28,57 +27,46 @@ struct IntroView: View {
                             Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("intro_wave")
                                 .resizable()
-                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .frame(width: wid, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
-                            Circle()
-                                .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
+                            ForEach(0..<4) { pageNumber in
+                                Circle()
+                                    .fill(selectedPage == pageNumber ? Color("Bg_top") : Color("Bg"))
+                                    .frame(width: 8, height: 8)
+                            }
                         }
-                        .padding(.bottom, 81)
+                        .padding(.bottom, 80)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
+                
                 TabView(selection: $selectedPage) {
                     VStack(spacing: 66) {
-                        
                         Text("쉬는시간이 지루할때,\n쏘옥~")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                         
-                        Image("sign").resizable()
+                        Image("HandWithPhone")
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 173)
                             .rotationEffect(
-                                Angle(
-                                    degrees: isfirst ? -30 : 30
-                                )
+                                Angle(degrees: isfirst ? -30 : 30)
                             )
                             .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
-                            .onAppear{
+                            .onAppear {
                                 isfirst = true
                             }
                     
                         Spacer()
                             .frame(height: 160)
-
                     }
                     .tag(0)
-
                     
                     VStack(spacing: 38) {
-                        
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
@@ -95,7 +83,6 @@ struct IntroView: View {
                     .tag(1)
                     
                     VStack(spacing: 109) {
-                        
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
@@ -105,6 +92,7 @@ struct IntroView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 22)
+                        
                         Spacer()
                             .frame(height: 160)
                     }
@@ -115,15 +103,15 @@ struct IntroView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 32)
+                        
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(3)
-                    
                 }
-                .onChange(of: selectedPage, perform:  { index in
+                .onChange(of: selectedPage) { _ in
                     isfirst.toggle()
-                })
+                }
                 .tabViewStyle(.page(indexDisplayMode: .never))
        
                 NavigationLink(destination: AddMemberView()) {
@@ -134,27 +122,14 @@ struct IntroView: View {
                         .cornerRadius(12)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView() 
+                   isIntroActive = false
                 })
             }
         }
         .onAppear {
-            isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
-            if isTutorialHidden {
-                selectedPage = 3
-            }
+            if !isIntroActive { selectedPage = 3 }
         }
     }
-}
-
-extension IntroView {
-    
-    private func hideTutorialView() {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "hideTutorial")
-    }
-    
-    
 }
 
 struct IntroView_Previews: PreviewProvider {
