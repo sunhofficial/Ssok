@@ -186,7 +186,7 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(Title: missionTitle, background: missionColor, st: $state)
+                MissionCompleteView(title: missionTitle, background: missionColor, state: $state)
             }
         }
         .navigationBarHidden(true)

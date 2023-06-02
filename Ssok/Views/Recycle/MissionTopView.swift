@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct MissionTopView: View {
-    
-    // MARK: - Properties
-    
+
     @State var title: String
     @State var description: String
-    @EnvironmentObject var arViewModel : ARViewModel
-    
+    @EnvironmentObject var arViewModel: ARViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             Image("Ellipse")
@@ -41,7 +38,6 @@ struct MissionTopView: View {
                         .font(.system(size: 24, weight: .bold))
                     Spacer()
                     Button {
-                        
                     } label: {
                         Image(systemName: "chevron.backward")
                             .resizable()
