@@ -70,8 +70,8 @@ struct MissionSmileView : View {
                                 .position(x: wid / 2 , y: hei / 1.5)
                         }
                         else{
-//                            MissionCameraCompleteView(Title: "팀원웃기기 😝", background: Color.mint, CameraState: $CameraState)
-                            MissionCameraCompleteView(Title: "혀내밀기 😝", background: Color.mint, CameraState: $CameraState)
+//                            MissionCameraCompleteView(title: "팀원웃기기 😝", background: Color.mint, CameraState: $CameraState)
+                            MissionCameraCompleteView(title: "혀내밀기 😝", background: Color.mint, CameraState: $CameraState)
                         }
                     } else if ARstate == "blink"{
                         if(!arViewModel.asyncisblinkCount){
@@ -86,7 +86,7 @@ struct MissionSmileView : View {
                         }
                         else
                         {
-                            MissionCameraCompleteView(Title: "플러팅하기 😘", background: Color.mint, CameraState: $CameraState)
+                            MissionCameraCompleteView(title: "플러팅하기 😘", background: Color.mint, CameraState: $CameraState)
                         }
                     }
                     
