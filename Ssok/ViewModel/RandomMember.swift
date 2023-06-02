@@ -8,9 +8,14 @@
 import SwiftUI
 
 class RandomMember: ObservableObject {
-    
+
     @Published var members: [Member] = []
     @Published var randomWho: String = ""
     @Published var randomWhere: String = ""
-    @Published var randomWhat: Mission = Mission(missionType: .blink, missionTitle: "", missionTip: "", missionColor: .black)
+    @Published var randomWhat: Mission = Mission(
+        missionType: .blink,
+        missionTitle: "",
+        missionTip: "",
+        missionColor: .black)
+
 }

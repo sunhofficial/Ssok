@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct MissionTitleView: View {
-    
+
     @State var missionTitle: String
     @State var backgroundColor: Color
     @State var borderColor: Color
-    
+
     var body: some View {
-        
         Text(missionTitle)
             .font(.system(size: 20, weight: .semibold))
             .padding(.vertical, 6)
@@ -28,7 +27,12 @@ struct MissionTitleView: View {
 }
 
 struct MissionTitleView_Previews: PreviewProvider {
+
     static var previews: some View {
-        MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
+        MissionTitleView(
+            missionTitle: "소리 지르기 💥",
+            backgroundColor: Color("MissionOrange"),
+            borderColor: Color("MissionOrangeBorder")
+        )
     }
 }

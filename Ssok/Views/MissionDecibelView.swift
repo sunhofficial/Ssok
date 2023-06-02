@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MissionDecibelView: View {
-    
-    // MARK: - Properties
-    
+
     @StateObject private var soundMeter = SoundMeter()
     @State var title: String
     @State var missionColor: Color
@@ -19,17 +17,20 @@ struct MissionDecibelView: View {
     @State private var more: String = "더"
     @State var ismore: Int = 0
     @State var progressTintColor = Color(.orange)
-    @Binding var st: Bool
-    
+    @Binding var state: Bool
+
     var body: some View {
-        
         ZStack {
             VStack {
                 MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요.")
                 Spacer()
             }
             VStack(spacing: 64) {
-                MissionTitleView(missionTitle: title, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.7))
+                MissionTitleView(
+                    missionTitle: title,
+                    backgroundColor: missionColor.opacity(0.3),
+                    borderColor: missionColor.opacity(0.7)
+                )
                 ZStack {
                     ZStack {
                         Circle()
@@ -50,14 +51,15 @@ struct MissionDecibelView: View {
                                     }
                                 }
                             }
-                            .onChange(of: soundMeter.decibels/Float(goal)!) { value in
-                                if soundMeter.decibels/Float(goal)! <= 0.25 {
+                            .onChange(of: soundMeter.decibels/Float(goal)!) { _ in
+                                let decibelPercentage = soundMeter.decibels/Float(goal)!
+                                if decibelPercentage <= 0.25 {
                                     ismore = 0
                                     progressTintColor = Color("Progress1")
-                                } else if soundMeter.decibels/Float(goal)! > 0.25 && soundMeter.decibels/Float(goal)! <= 0.5 {
+                                } else if decibelPercentage > 0.25 && decibelPercentage <= 0.5 {
                                     ismore = 1
                                     progressTintColor = Color("Progress2")
-                                } else if soundMeter.decibels/Float(goal)! > 0.5 && soundMeter.decibels/Float(goal)! <= 0.75 {
+                                } else if decibelPercentage > 0.5 && decibelPercentage <= 0.75 {
                                     ismore = 2
                                     progressTintColor = Color("Progress3")
                                 } else {
@@ -77,7 +79,7 @@ struct MissionDecibelView: View {
                             .foregroundColor(Color("GoalRed"))
                     }
                 }
-                HStack{
+                HStack {
                     Text(more).foregroundColor(Color.black)
                     Text(more).foregroundColor(ismore >= 1 ? Color.black : Color("Gray"))
                     Text(more).foregroundColor(ismore >= 2 ? Color.black : Color("Gray"))
@@ -86,9 +88,9 @@ struct MissionDecibelView: View {
             }
             .padding(.top, 80)
             .navigationBarHidden(true)
-            
+
             if isCompleted {
-                MissionCompleteView(title: title, background: missionColor, state: $st)
+                MissionCompleteView(title: title, background: missionColor, state: $state)
             }
         }
         .onAppear {
@@ -100,4 +102,3 @@ struct MissionDecibelView: View {
         }
     }
 }
-

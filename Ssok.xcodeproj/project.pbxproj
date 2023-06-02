@@ -32,12 +32,12 @@
 		7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764162A117D3F007E2C3A /* MissionSmileView.swift */; };
 		7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764182A117D58007E2C3A /* ARViewModel.swift */; };
 		7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641A2A117D6B007E2C3A /* ARModel.swift */; };
-		7CF7641D2A117E08007E2C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641C2A117E08007E2C3A /* AppDelegate.swift */; };
 		AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C482A108E1800EE808B /* WhiteRectangleView.swift */; };
 		AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4A2A10A30A00EE808B /* MissionTopView.swift */; };
 		AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */; };
 		AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C512A10D6B300EE808B /* MissionTitleView.swift */; };
 		AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionPedometerView.swift */; };
+		AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */; };
 		AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3129E52A14D6EF00204C55 /* SoundManager.swift */; };
 		AB3129EE2A14DC6100204C55 /* DingDingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */; };
 		AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */; };
@@ -82,12 +82,12 @@
 		7CF764162A117D3F007E2C3A /* MissionSmileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSmileView.swift; sourceTree = "<group>"; };
 		7CF764182A117D58007E2C3A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		7CF7641A2A117D6B007E2C3A /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
-		7CF7641C2A117E08007E2C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB031C482A108E1800EE808B /* WhiteRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteRectangleView.swift; sourceTree = "<group>"; };
 		AB031C4A2A10A30A00EE808B /* MissionTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTopView.swift; sourceTree = "<group>"; };
 		AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelView.swift; sourceTree = "<group>"; };
 		AB031C512A10D6B300EE808B /* MissionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTitleView.swift; sourceTree = "<group>"; };
 		AB031C552A110D2F00EE808B /* MissionPedometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPedometerView.swift; sourceTree = "<group>"; };
+		AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB3129E52A14D6EF00204C55 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingMusic.mp3; sourceTree = "<group>"; };
 		AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TocaTocaMusic.mp3; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 				C74982A72A03960B00228FD5 /* ViewModel */,
 				C74982A52A0394DF00228FD5 /* Views */,
 				7C94D54B2A02AB3A00AAC279 /* _BubblesApp.swift */,
-				7CF7641C2A117E08007E2C3A /* AppDelegate.swift */,
+				AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */,
 				7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */,
 				7C94D5512A02AB3B00AAC279 /* Preview Content */,
 			);
@@ -349,6 +349,7 @@
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				7C9654CF2A13A38900779750 /* NaviViewModel.swift in Sources */,
 				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
+				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
 				7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */,
 				C74DD5492A065FDE00852B09 /* Where.swift in Sources */,
@@ -384,7 +385,6 @@
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
 				C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */,
 				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
-				7CF7641D2A117E08007E2C3A /* AppDelegate.swift in Sources */,
 				10BCD2E32A11149700303334 /* MissionCompleteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
