@@ -128,7 +128,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         motionmanager = CMMotionManager()
         motionmanager?.startAccelerometerUpdates()
     }
-_
+
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionmanager?.accelerometerData {
             physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 20, dy: accelerometerData.acceleration.y * 10)

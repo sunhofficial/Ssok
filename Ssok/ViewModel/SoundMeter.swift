@@ -9,22 +9,19 @@ import SwiftUI
 import AVFoundation
 
 class SoundMeter: ObservableObject {
+
     let engine = AVAudioEngine()
     let playerNode = AVAudioPlayerNode()
     let bufferSize: AVAudioFrameCount = 4096
-
     @Published var decibels: Float = 0.0
 
     init() {
         let input = engine.inputNode
         let bus = 0
-
-        // 입력 오디오의 하드웨어 샘플 속도로 AVAudioFormat을 만듭니다.
         let hardwareSampleRate = input.inputFormat(forBus: bus).sampleRate
         let recordingFormat = AVAudioFormat(standardFormatWithSampleRate: hardwareSampleRate, channels: 1)!
 
         engine.attach(playerNode)
-
         engine.connect(playerNode, to: engine.mainMixerNode, format: input.inputFormat(forBus: bus))
 
         input.installTap(onBus: bus, bufferSize: bufferSize, format: recordingFormat) { [weak self] (buffer, _) in
@@ -34,12 +31,14 @@ class SoundMeter: ObservableObject {
 
             let channelDataValue = buffer.floatChannelData?.pointee
             let channelData = UnsafeBufferPointer(start: channelDataValue, count: Int(buffer.frameLength))
+
             var decibels: Float = 0.0
+
             if channelData.count > 0 {
                 let rms = sqrt(channelData.reduce(0) {$0 + pow($1, 2)} / Float(channelData.count))
                 decibels = 20.0 * log10(rms)
             }
-            
+
             DispatchQueue.main.async {
                 self.decibels = self.normalizeDecibel(decibels)
             }
@@ -56,14 +55,12 @@ class SoundMeter: ObservableObject {
         playerNode.stop()
         engine.inputNode.removeTap(onBus: 0)
     }
-    
+
     private func normalizeDecibel(_ decibel: Float) -> Float {
         let low: Float = -60.0
         let high: Float = 0.0
-        
         var level = max(0.0, decibel - low)
         level = min(level, high - low)
-        
-        return level //60
+        return level
     }
 }

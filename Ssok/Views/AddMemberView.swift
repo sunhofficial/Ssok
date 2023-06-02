@@ -10,20 +10,15 @@
 import SwiftUI
 
 struct AddMemberView: View {
-    
-    // MARK: - Properties
-    
+
     @StateObject private var viewModel  = AddMemberViewModel()
-    
     @FocusState private var isFocused: Bool
-    
     @EnvironmentObject var random: RandomMember
-    
+
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             ZStack {
                 VStack {
-                    // 추가 textField
                     HStack {
                         TextField("닉네임을 입력해주세요.", text: $viewModel.memberName)
                             .focused($isFocused)
@@ -73,7 +68,6 @@ struct AddMemberView: View {
                             }
                     }
                     .padding(.top, 7)
-                    
                     List {
                         Section {
                             if $viewModel.filteredData.isEmpty {
@@ -81,14 +75,19 @@ struct AddMemberView: View {
                                     .font(.system(size: 14))
                                     .foregroundColor(Color(.lightGray))
                             } else {
-                                ForEach(viewModel.filteredData.prefix($viewModel.members.isEmpty ? 5 : 3), id: \.self) { data in
-                                    Button(action: {
+                                ForEach(
+                                    viewModel
+                                    .filteredData
+                                    .prefix($viewModel.members.isEmpty ? 5 : 3),
+                                    id: \.self) { data in
+                                    Button {
                                         viewModel.memberName = data
                                         viewModel.plusButtonDidTap()
                                         isFocused = false
-                                    }) {
+                                    } label: {
                                         Text(data)
                                     }
+
                                 }
                             }
                         } header: {
@@ -118,9 +117,7 @@ struct AddMemberView: View {
                     }
                     .listStyle(.inset)
                     .scrollDisabled(true)
-                    
                     Spacer()
-                    
                     NavigationLink(destination: StrawView()) {
                         Text("다음")
                             .foregroundColor(.white)
@@ -142,7 +139,7 @@ struct AddMemberView: View {
                 .navigationBarBackButtonHidden()
                 .ignoresSafeArea(.keyboard)
             }
-            
+
             if isFocused {
                 VStack {
                     Rectangle()
@@ -163,7 +160,11 @@ struct AddMemberView: View {
                         .fill(Color.black)
                         .padding(.leading, 0)
                         .padding(.trailing, 0)
-                        .padding(.top, CGFloat(viewModel.filteredData.prefix($viewModel.members.isEmpty ? 5 : 3).count) * 44)
+                        .padding(.top,
+                                 CGFloat(viewModel
+                                    .filteredData
+                                    .prefix($viewModel.members.isEmpty ? 5 : 3)
+                                    .count) * 44)
                 }
                 .opacity(0.00001)
                 .onTapGesture {
@@ -180,9 +181,6 @@ struct AddMemberView: View {
         .onAppear {
             viewModel.setMemberData()
             viewModel.setNextButtonState()
-        }
-        .onDisappear {
-            NotificationCenter.default.removeObserver(self)
         }
     }
 }
