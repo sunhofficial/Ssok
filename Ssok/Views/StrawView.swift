@@ -232,7 +232,7 @@ struct StrawView: View {
                                 missionColor: random.randomWhat.missionColor,
                                 goal: random.randomWhat.goal!,
                                 timer: Double(random.randomWhat.timer!),
-                                st: $state)
+                                state: $state)
             case .smile:
                 CameraEndingView(wheresentence: random.randomWhere,
                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
