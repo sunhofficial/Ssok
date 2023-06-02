@@ -8,32 +8,30 @@
 import SwiftUI
 
 struct MissionSpeechView: View {
-    
+
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
     @State var isComplete: Bool = false
-    @State var havetext : Bool = false
+    @State var havetext: Bool = false
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
     @State var answerText: String
     @State var speechTime: Double
     @State var progressTime: Double = 100.0
-    @State var checkTimer : Timer?
-    @Binding var st: Bool
-    
+    @State var checkTimer: Timer?
+    @Binding var state: Bool
     let progressTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    
+
     var body: some View {
         ZStack {
             VStack {
                 MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 Spacer()
-                // 버튼 & 프로그레스
                 if isSpeech {
                     Image("progress")
-                        .shadow(color: Color(.black).opacity(0.25),radius: 4)
+                        .shadow(color: Color(.black).opacity(0.25), radius: 4)
                         .overlay(
                             ProgressView(value: progressTime, total: 100)
                                 .tint(Color("Bg_bottom2"))
@@ -52,34 +50,38 @@ struct MissionSpeechView: View {
                         )
                         .frame(height: 50)
                         .onAppear {
-                            if(missionTitle == "영국 신사 되기 💂🏻‍♀️"){
+                            if missionTitle == "영국 신사 되기 💂🏻‍♀️" {
                                 speechRecognizer.englishTranscribing()
                             } else {
                                 speechRecognizer.startTranscribing()
                             }
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) { timer in //정답체크
-                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
-                                //영소문자 바꾸는 거 해야함.
-                                //정답체크를 했는데ㅐ 틀리면 이게 됨
-                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") != cleanedTranscript){
-//         
+                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) {  _ in
+                                let cleanedTranscript = speechRecognizer.transcript
+                                    .replacingOccurrences(of: " ", with: "")
+                                    .replacingOccurrences(of: ",", with: "")
+                                if answerText
+                                    .replacingOccurrences(of: " ", with: "")
+                                    .replacingOccurrences(of: ",", with: "") != cleanedTranscript {
                                     isWrong = true
                                     isSpeech = false
                                 }
                             }
                             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                                let cleanedTranscript = speechRecognizer.transcript.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "")
-                                //영소문자 바꾸는 거 해야함.
-                                if(answerText.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ",", with: "") == cleanedTranscript) {
+                                let cleanedTranscript = speechRecognizer.transcript
+                                    .replacingOccurrences(of: " ", with: "")
+                                    .replacingOccurrences(of: ",", with: "")
+                                if answerText
+                                    .replacingOccurrences(of: " ", with: "")
+                                    .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
                                     timer.invalidate()
                                     isComplete = true
-                                    speechRecognizer.stopTranscript() //혹시라도 켜있으면 껏다다시키게
-                                }}
+                                    speechRecognizer.stopTranscript()
+                                }
+                            }
                             RunLoop.main.add(checkTimer!, forMode: .common)
                             RunLoop.main.add(timer, forMode: .common)
                         }
-
-                        .onDisappear{
+                        .onDisappear {
                             speechRecognizer.stopTranscript()
                         }
                 } else {
@@ -100,26 +102,27 @@ struct MissionSpeechView: View {
                 }
             }
             VStack(spacing: 40) {
-                MissionTitleView(missionTitle: missionTitle, backgroundColor: missionColor.opacity(0.3), borderColor: missionColor.opacity(0.71))
-                // 카드 둘
+                MissionTitleView(missionTitle: missionTitle,
+                                 backgroundColor: missionColor.opacity(0.3),
+                                 borderColor: missionColor.opacity(0.71))
                 VStack(spacing: 44) {
                     // 제시어 카드
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 307, height: 175)
                             .foregroundColor(.white)
-                            .shadow(color: Color(.black).opacity(0.2),radius: 8)
+                            .shadow(color: Color(.black).opacity(0.2), radius: 8)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(width: 284, height: 175)
                                     .foregroundColor(.white)
-                                    .shadow(color: Color(.black).opacity(0.2),radius: 8)
+                                    .shadow(color: Color(.black).opacity(0.2), radius: 8)
                                     .offset(y: 12)
                                     .background(
                                         RoundedRectangle(cornerRadius: 20)
                                             .frame(width: 268, height: 175)
                                             .foregroundColor(.white)
-                                            .shadow(color: Color(.black).opacity(0.2),radius: 8)
+                                            .shadow(color: Color(.black).opacity(0.2), radius: 8)
                                             .offset(y: 22)
                                     )
                             )
@@ -154,15 +157,12 @@ struct MissionSpeechView: View {
                                 .cornerRadius(15)
                                 .foregroundColor(.white)
                             if speechRecognizer.transcript == "" {
-                          
-                           
                                     Text("문장을 따라 읽어주세요")
                                         .opacity(0.25)
                                         .font(.system(size: 48, weight: .heavy))
                                         .frame(width: 240, height: 64)
                                         .minimumScaleFactor(0.1)
                                         .lineLimit(1)
-                                
                             } else {
                                 Text(speechRecognizer.transcript)
                                     .font(.system(size: 48, weight: .heavy))
@@ -186,11 +186,11 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(title: missionTitle, background: missionColor, state: $st)
+                MissionCompleteView(title: missionTitle, background: missionColor, state: $state)
             }
         }
         .navigationBarHidden(true)
-        .onDisappear{
+        .onDisappear {
             speechRecognizer.stopTranscript()
             checkTimer?.invalidate()
             checkTimer = nil

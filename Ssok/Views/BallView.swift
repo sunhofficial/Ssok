@@ -4,15 +4,15 @@
 import SwiftUI
 
 struct BallView: View {
-    
+
     @Binding var getCurrentBall: Bool
     @Binding var getNextBall: Bool
-    @Binding var st: Bool
+    @Binding var state: Bool
     @State var stBool: Bool
     @State var ballTitle: String
     @State var contents: String
     @State var pearlImage: String = "Back_pearl1"
-    
+
     var body: some View {
         if getCurrentBall {
             ZStack {
@@ -44,7 +44,7 @@ struct BallView: View {
                     getNextBall = true
                 }
                 withAnimation(.linear) {
-                    st = stBool
+                    state = stBool
                 }
             }
         }
