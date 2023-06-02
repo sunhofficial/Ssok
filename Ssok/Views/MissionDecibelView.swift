@@ -90,7 +90,7 @@ struct MissionDecibelView: View {
             .navigationBarHidden(true)
 
             if isCompleted {
-                MissionCompleteView(Title: title, background: missionColor, st: $state)
+                MissionCompleteView(title: title, background: missionColor, state: $state)
             }
         }
         .onAppear {
