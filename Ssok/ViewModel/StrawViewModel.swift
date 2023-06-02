@@ -8,21 +8,21 @@
 import Foundation
 import CoreMotion
 
-class StrawViewModel : ObservableObject{
+class StrawViewModel: ObservableObject{
     private let motionManger = CMMotionManager()
-    private var timer : Timer?
+    private var timer: Timer?
     private var previousgravity = 0
-    @Published var currentView : Bool = false
-    @Published var isAnimation : Bool = false
-    @Published var isDisplay : Bool = false
-    @Published var BallNumber : Int = 0
-    @Published var nextView : Bool = false
-    @Published var progress : Double = 0.0
-    var maxProgress : Double {
+    @Published var currentView: Bool = false
+    @Published var isAnimation: Bool = false
+    @Published var isDisplay: Bool = false
+    @Published var BallNumber: Int = 0
+    @Published var nextView: Bool = false
+    @Published var progress: Double = 0.0
+    var maxProgress: Double {
         if(progress > 0.99){
             return 1
         }
-        return min(max(progress, 0.0), 1.0) //왜 0.3이랑 0.7에서는 1씩 안더해질까
+        return min(max(progress, 0.0), 1.0) // 왜 0.3이랑 0.7에서는 1씩 안더해질까
     }
   
     func startupdatingMotion(){

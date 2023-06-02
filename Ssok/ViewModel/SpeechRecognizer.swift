@@ -28,7 +28,7 @@ actor SpeechRecognizer: ObservableObject {
     
     
     @MainActor @Published var transcript: String = ""
-    @Published var Langague : String = "Korean"
+    @Published var Langague: String = "Korean"
     
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?

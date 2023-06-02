@@ -13,9 +13,6 @@ struct _BubblesApp: App {
         WindowGroup {
             IntroView()
                 .environmentObject(RandomMember())
-
         }
     }
 }
-
-
