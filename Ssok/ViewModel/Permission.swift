@@ -7,7 +7,7 @@
 
 import AVFoundation
 
-class PermissionManager : ObservableObject {
+class PermissionManager: ObservableObject {
     @Published var permissionGranted = false
     
     /**
