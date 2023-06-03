@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreMotion
+import SpriteKit
 
 struct StrawView: View {
 
@@ -21,6 +22,7 @@ struct StrawView: View {
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
+    private var scene = Bottle(size: CGSize(width: wid, height: hei))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
 
@@ -31,12 +33,22 @@ struct StrawView: View {
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
                                startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
-                if viewModel.maxProgress != 1 {
-                    Image("firstdrink").position(CGPoint(x: wid/2, y: 552.5))
-                } else {
-                    Image("finaldrink").position(CGPoint(x: wid/2, y: 552.5))
+                ZStack {
+                    if viewModel.maxProgress != 1 {
+                        Image("firstdrink").position(CGPoint(x: wid/2, y: 552.5))
+                    } else {
+                        Image("finaldrink").position(CGPoint(x: wid/2, y: 552.5))
+                    }
+                    SpriteView(
+                        scene: scene,
+                        options: [.allowsTransparency],
+                        shouldRender: {_ in return true}
+                    )
+                    .ignoresSafeArea().frame(width: wid, height: hei)
+                    .aspectRatio(contentMode: .fit)
+                    .offset(y: 17)
+                    Image("Cuphead").position(CGPoint(x: wid/2, y: 373))
                 }
-                BottleView()
                 VStack(spacing: 24) {
                     VStack(spacing: 24) {
                         if viewModel.maxProgress == 1 {
