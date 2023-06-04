@@ -9,7 +9,7 @@ import AVFoundation
 
 class PermissionManager: ObservableObject {
     @Published var permissionGranted = false
-    
+
     /**
      * 카메라 권한을 요청합니다.
      */
@@ -26,7 +26,7 @@ class PermissionManager: ObservableObject {
     /**
      * 오디오 권한을  요청합니다.
      */
-    func requestAudioPermission(){
+    func requestAudioPermission() {
         AVCaptureDevice.requestAccess(for: .audio, completionHandler: { (granted: Bool) in
             if granted {
                 print("Audio: 권한 허용")
@@ -35,5 +35,5 @@ class PermissionManager: ObservableObject {
             }
         })
     }
-    
+
 }
