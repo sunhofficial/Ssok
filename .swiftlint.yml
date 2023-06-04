@@ -1,9 +1,11 @@
-//
-//  .swiftlint.yml
-//  Ssok
-//
-//  Created by 235 on 2023/06/01.
+#81/Refactoring-BottleView
 #//
+#//  .swiftlint.yml
+#//  Ssok
+#//
+#//  Created by 235 on 2023/06/01.
+#//
+
 disabled_rules: # 실행에서 제외할 룰 식별자들
   - colon
   - comma
@@ -21,7 +23,6 @@ excluded: # 린트 과정에서 무시할 파일 경로. `included`보다 우선
 #  - Source/ExcludedFolder
 #  - Source/ExcludedFile.swift
   - Ssok/AppDelegate.swift
-
 # 설정 가능한 룰은 이 설정 파일에서 커스터마이징 가능
 # 경고나 에러 중 하나를 발생시키는 룰은 위반 수준을 설정 가능
 force_cast: warning # 암시적으로 지정
