@@ -27,7 +27,7 @@ struct IntroView: View {
                             Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("intro_wave")
                                 .resizable()
-                                .frame(width: wid, height: 200)
+                                .frame(width: screenWidth, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
@@ -52,7 +52,7 @@ struct IntroView: View {
                         Image("HandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 173)
+                            .frame(width: screenWidth - 173)
                             .rotationEffect(
                                 Angle(degrees: isfirst ? -30 : 30)
                             )
@@ -77,7 +77,7 @@ struct IntroView: View {
                         Image("Intro2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 74)
+                            .frame(width: screenWidth - 74)
 
                         Spacer()
                             .frame(height: 160)
@@ -93,7 +93,7 @@ struct IntroView: View {
                         Image("Intro3")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 22)
+                            .frame(width: screenWidth - 22)
 
                         Spacer()
                             .frame(height: 160)
@@ -104,7 +104,7 @@ struct IntroView: View {
                         Image("Intro4")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 32)
+                            .frame(width: screenWidth - 32)
 
                         Spacer()
                             .frame(height: 160)

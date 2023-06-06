@@ -23,10 +23,20 @@ struct ARModel {
     }
 
     mutating func update(faceAnchor: ARFaceAnchor) {
-        smileRight = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .mouthSmileRight})?.value ?? 0)
-        smileLeft = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .mouthSmileLeft})?.value ?? 0)
-        blinkRight = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkRight})?.value ?? 0)
-        blinkLeft = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkLeft})?.value ?? 0)
-        tongueOut = Float(truncating: faceAnchor.blendShapes.first(where: {$0.key == .tongueOut})?.value ?? 0)
+        smileRight = Float(
+            truncating: faceAnchor.blendShapes.first(where: {$0.key == .mouthSmileRight})?.value ?? 0
+        )
+        smileLeft = Float(
+            truncating: faceAnchor.blendShapes.first(where: {$0.key == .mouthSmileLeft})?.value ?? 0
+        )
+        blinkRight = Float(
+            truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkRight})?.value ?? 0
+        )
+        blinkLeft = Float(
+            truncating: faceAnchor.blendShapes.first(where: {$0.key == .eyeBlinkLeft})?.value ?? 0
+        )
+        tongueOut = Float(
+            truncating: faceAnchor.blendShapes.first(where: {$0.key == .tongueOut})?.value ?? 0
+        )
     }
 }

@@ -27,7 +27,7 @@ struct BallView: View {
                         .font(.system(size: 80, weight: .bold))
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.1)
-                        .frame(width: wid / 1.6, height: wid / 2.5)
+                        .frame(width: screenWidth / 1.6, height: screenWidth / 2.5)
                         .foregroundColor(.white)
                     Text("Touch!")
                         .foregroundColor(.white)
@@ -35,8 +35,8 @@ struct BallView: View {
                         .opacity(0.5)
                 }
             }
-            .frame(width: wid / 1.2, height: wid / 1.2)
-            .transition(.asymmetric(insertion: .offset(y: -hei), removal: .offset(y: hei)))
+            .frame(width: screenWidth / 1.2, height: screenWidth / 1.2)
+            .transition(.asymmetric(insertion: .offset(y: -screenHeight), removal: .offset(y: screenHeight)))
             .zIndex(1)
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 1)) {

@@ -17,14 +17,16 @@ class SoundMeter: ObservableObject {
 
     init() {
         let input = engine.inputNode
-        let bus = 0
-        let hardwareSampleRate = input.inputFormat(forBus: bus).sampleRate
+        let busNum = 0
+        let hardwareSampleRate = input.inputFormat(forBus: busNum).sampleRate
         let recordingFormat = AVAudioFormat(standardFormatWithSampleRate: hardwareSampleRate, channels: 1)!
 
         engine.attach(playerNode)
-        engine.connect(playerNode, to: engine.mainMixerNode, format: input.inputFormat(forBus: bus))
+        engine.connect(playerNode, to: engine.mainMixerNode, format: input.inputFormat(forBus: busNum))
 
-        input.installTap(onBus: bus, bufferSize: bufferSize, format: recordingFormat) { [weak self] (buffer, _) in
+        input.installTap(onBus: busNum,
+                         bufferSize: bufferSize,
+                         format: recordingFormat) { [weak self] (buffer, _) in
             guard let self = self else { return }
 
             buffer.frameLength = self.bufferSize
@@ -34,9 +36,9 @@ class SoundMeter: ObservableObject {
 
             var decibels: Float = 0.0
 
-            if channelData.count > 0 {
-                let rms = sqrt(channelData.reduce(0) {$0 + pow($1, 2)} / Float(channelData.count))
-                decibels = 20.0 * log10(rms)
+            if channelData.isEmpty {
+                let rootMeanSquare = sqrt(channelData.reduce(0) {$0 + pow($1, 2)} / Float(channelData.count))
+                decibels = 20.0 * log10(rootMeanSquare)
             }
 
             DispatchQueue.main.async {
@@ -57,10 +59,10 @@ class SoundMeter: ObservableObject {
     }
 
     private func normalizeDecibel(_ decibel: Float) -> Float {
-        let low: Float = -60.0
-        let high: Float = 0.0
-        var level = max(0.0, decibel - low)
-        level = min(level, high - low)
+        let lowLevel: Float = -60.0
+        let highLevel: Float = 0.0
+        var level = max(0.0, decibel - lowLevel)
+        level = min(level, highLevel - lowLevel)
         return level
     }
 }

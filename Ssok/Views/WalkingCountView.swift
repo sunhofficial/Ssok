@@ -16,25 +16,24 @@ struct WalkingCountView: View {
     @State var stepcount: Int = 0
     
     var body: some View {
-        ZStack{
+        ZStack {
             Rectangle().fill(.brown).opacity(0.5).frame(width: wid, height: hei/4).ignoresSafeArea()
             Text("\(stepcount)  회").bold()
         }
-            .onAppear{
-                if CMPedometer.isStepCountingAvailable() {
-                    self.pedometer.startUpdates(from: Date()) { (date, error) in
-                        if error == nil {
-                            if let response = date {
-                                DispatchQueue.main.async {
-                                    self.stepcount = Int(truncating: response.numberOfSteps)
-                                }
+        .onAppear {
+            if CMPedometer.isStepCountingAvailable() {
+                self.pedometer.startUpdates(from: Date()) { (date, error) in
+                    if error == nil {
+                        if let response = date {
+                            DispatchQueue.main.async {
+                                self.stepcount = Int(truncating: response.numberOfSteps)
                             }
                         }
                     }
                 }
             }
+        }
     }
-    
 }
 
 struct WalkingCountView_Previews: PreviewProvider {

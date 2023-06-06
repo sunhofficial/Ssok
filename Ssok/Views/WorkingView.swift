@@ -13,12 +13,12 @@ struct WorkingView: View {
     let activityManager = CMMotionActivityManager()
     let pedometer = CMPedometer()
     
-    @State var a: Int = 0
+    @State var number: Int = 0
     
     var body: some View {
-        ZStack{
-            Text("\(a) 회")
-        }.onAppear{
+        ZStack {
+            Text("\(number) 회")
+        }.onAppear {
             if CMPedometer.isStepCountingAvailable() {
                 self.pedometer.startUpdates(from: Date()) { (date, error) in
                     if error == nil {

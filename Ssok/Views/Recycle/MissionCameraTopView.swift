@@ -20,7 +20,7 @@ struct MissionCameraTopView: View {
         ZStack(alignment: .top) {
             Image("Ellipse")
                 .resizable()
-                .frame(width: wid, height: 160)
+                .frame(width: screenWidth, height: 160)
                 .ignoresSafeArea()
             VStack(spacing: 4) {
                 HStack {
