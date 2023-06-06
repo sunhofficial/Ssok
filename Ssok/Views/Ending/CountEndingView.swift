@@ -23,7 +23,7 @@ struct CountEndingView: View {
     var body: some View {
         ZStack {
             ZStack(alignment: .top) {
-                Image("endingtop").resizable()
+                Image("endingTop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x: wid/2, y: 190)
                 HStack {

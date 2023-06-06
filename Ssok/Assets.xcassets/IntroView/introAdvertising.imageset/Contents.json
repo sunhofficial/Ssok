@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Back_pearl2.png",
+      "filename" : "introAdvertising@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Group@2x.png",
+      "filename" : "introAdvertising@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Group@3x.png",
+      "filename" : "introAdvertising@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

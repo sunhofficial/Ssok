@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Big_Pearl1.png",
+      "filename" : "introWave 1.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "공2@2x.png",
+      "filename" : "introWave 2.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "공2@3x.png",
+      "filename" : "introWave.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Back_pearl1.png",
+      "filename" : "introPointingPhone@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Group@2x.png",
+      "filename" : "introPointingPhone@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Group@3x.png",
+      "filename" : "introPointingPhone@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

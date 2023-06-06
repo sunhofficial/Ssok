@@ -26,7 +26,7 @@ struct CameraEndingView: View {
 
         ZStack {
             ZStack(alignment: .top) {
-                Image("endingtop")
+                Image("endingTop")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid)

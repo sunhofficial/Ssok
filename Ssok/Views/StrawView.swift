@@ -35,9 +35,9 @@ struct StrawView: View {
                     .ignoresSafeArea()
                 ZStack {
                     if viewModel.maxProgress != 1 {
-                        Image("firstdrink").position(CGPoint(x: wid/2, y: 552.5))
+                        Image("firstDrink").position(CGPoint(x: wid/2, y: 552.5))
                     } else {
-                        Image("finaldrink").position(CGPoint(x: wid/2, y: 552.5))
+                        Image("finalDrink").position(CGPoint(x: wid/2, y: 552.5))
                     }
                     SpriteView(
                         scene: scene,
@@ -47,7 +47,7 @@ struct StrawView: View {
                     .ignoresSafeArea().frame(width: wid, height: hei)
                     .aspectRatio(contentMode: .fit)
                     .offset(y: 17)
-                    Image("Cuphead").position(CGPoint(x: wid/2, y: 373))
+                    Image("cupHead").position(CGPoint(x: wid/2, y: 373))
                 }
                 VStack(spacing: 24) {
                     VStack(spacing: 24) {
@@ -58,9 +58,9 @@ struct StrawView: View {
                                     .padding(.top, 100)
                                 VStack {
                                     ZStack {
-                                        Image("PhoneIcon")
+                                        Image("phoneIcon")
                                             .padding(.top, 50)
-                                        Image("HandIcon")
+                                        Image("handIcon")
                                             .padding(.top, 70)
                                             .padding(.leading, 30)
                                     }
@@ -76,7 +76,7 @@ struct StrawView: View {
                                 WhiteRectangleView()
                                     .frame(width: 300, height: 153)
                                 VStack {
-                                    Image("ShakeIcon")
+                                    Image("shakeIcon")
                                         .padding(.top, -60)
                                         .padding(.bottom, 0)
                                     Text("버블티를 흔들어주세요!")
@@ -101,11 +101,11 @@ struct StrawView: View {
                     ZStack {
                         VStack {
                             Spacer()
-                            Image("Pearl1")
+                            Image("pearl1")
                                 .animation(.easeOut(duration: 1.5).delay(1.4), value: isAnimation)
-                            Image("Pearl2")
+                            Image("pearl2")
                                 .animation(.easeOut(duration: 1.5).delay(1.6), value: isAnimation)
-                            Image("Pearl1")
+                            Image("pearl1")
                                 .animation(.easeOut(duration: 1.5).delay(1.8), value: isAnimation)
                         }
                         .frame(width: 28)
@@ -117,7 +117,7 @@ struct StrawView: View {
                 }
                 // 빨대
                 if viewModel.maxProgress == 1 {
-                    Image("Straw")
+                    Image("straw")
                         .frame(width: 200)
                         .contentShape(Rectangle())
                         .opacity(0.8)
@@ -164,7 +164,7 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutcup").position(x: wid/2, y: 377)
+                    Image("cutCup").position(x: wid/2, y: 377)
                 }
                 Color(.white)
                     .edgesIgnoringSafeArea(.all)
@@ -177,7 +177,7 @@ struct StrawView: View {
                     stBool: false,
                     ballTitle: "Who?",
                     contents: random.randomWho,
-                    pearlImage: "Back_pearl1"
+                    pearlImage: "backPearl1"
                 )
                 BallView(
                     getCurrentBall: $getSecondBall,
@@ -186,7 +186,7 @@ struct StrawView: View {
                     stBool: false,
                     ballTitle: "Where?",
                     contents: random.randomWhere,
-                    pearlImage: "Back_pearl2"
+                    pearlImage: "backPearl2"
                 )
                 BallView(
                     getCurrentBall: $getThirdBall,
@@ -195,7 +195,7 @@ struct StrawView: View {
                     stBool: true,
                     ballTitle: "What?",
                     contents: String(random.randomWhat.missionTitle.dropLast(2)),
-                    pearlImage: "Back_pearl1"
+                    pearlImage: "backPearl1"
                 )
                 HStack {
                     VStack {
