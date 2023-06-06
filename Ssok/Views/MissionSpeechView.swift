@@ -55,7 +55,10 @@ struct MissionSpeechView: View {
                             } else {
                                 speechRecognizer.startTranscribing()
                             }
-                            let timer = Timer.scheduledTimer(withTimeInterval: speechTime, repeats: false) {  _ in
+                            let timer = Timer.scheduledTimer(
+                                withTimeInterval: speechTime,
+                                repeats: false
+                            ) { _ in
                                 let cleanedTranscript = speechRecognizer.transcript
                                     .replacingOccurrences(of: " ", with: "")
                                     .replacingOccurrences(of: ",", with: "")

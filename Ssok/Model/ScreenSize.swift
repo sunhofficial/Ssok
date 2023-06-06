@@ -8,5 +8,5 @@
 import Foundation
 import SwiftUI
 
-let wid = UIScreen.main.bounds.width
-let hei = UIScreen.main.bounds.height
+let screenWidth = UIScreen.main.bounds.width
+let screenHeight = UIScreen.main.bounds.height

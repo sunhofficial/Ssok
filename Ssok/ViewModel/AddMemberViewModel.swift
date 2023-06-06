@@ -39,7 +39,7 @@ class AddMemberViewModel: ObservableObject {
     }
 
     func setNextButtonState() {
-        if members.count == 0 {
+        if members.isEmpty {
             isNextButtonDisabled = true
         } else { isNextButtonDisabled = false }
     }

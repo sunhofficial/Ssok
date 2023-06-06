@@ -10,14 +10,14 @@ import SwiftUI
 struct CameraView: View {
 
     @State var arstate: String = ""
-    @Binding var sta: Bool
+    @Binding var cameraState: Bool
     @EnvironmentObject var ARview: ARViewModel
 
     var body: some View {
         ZStack {
             MissionSmileView(ARstate: arstate)
                 .onDisappear {
-                    sta = true
+                    cameraState = true
                 }
         }
     }
