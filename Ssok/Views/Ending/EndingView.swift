@@ -25,7 +25,7 @@ struct EndingView: View {
     var body: some View {
         if !st2{
             ZStack{
-                Image("endingtop").resizable()
+                Image("endingTop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
                 

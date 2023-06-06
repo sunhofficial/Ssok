@@ -18,7 +18,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
     private var motionState = 0
     private var motionManager: CMMotionManager?
-    private var pearls = ["Pearl1", "Pearl2"]
+    private var pearls = ["pearl1", "pearl2"]
     private let leftBorder = SKShapeNode()
     private let leftBottom = SKShapeNode()
     private let rightBorder = SKShapeNode()

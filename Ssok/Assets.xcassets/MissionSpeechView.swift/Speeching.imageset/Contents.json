@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Speeching.svg",
+      "filename" : "speeching.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Speeching 1.svg",
+      "filename" : "speeching 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Speeching 2.svg",
+      "filename" : "speeching 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -20,7 +20,7 @@ struct MissionCameraCompleteView: View {
             Rectangle().opacity(0.62)
 
             ZStack {
-                Image("missioncompletecard")
+                Image("missionCompleteCard")
                 VStack(spacing: 40) {
                     Text("주어진 미션을 성공했어요").font(.system(size: 24, weight: .black))
 

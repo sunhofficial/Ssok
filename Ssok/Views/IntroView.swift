@@ -19,13 +19,13 @@ struct IntroView: View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
-                    Image("intro_bg")
+                    Image("introBg")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
-                            Image("intro_wave")
+                            Image("introPearl").offset(y: CGFloat(-selectedPage * 15))
+                            Image("introWave")
                                 .resizable()
                                 .frame(width: wid, height: 200)
                                 .aspectRatio(contentMode: .fit)
@@ -49,7 +49,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("HandWithPhone")
+                        Image("handWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 173)
@@ -74,7 +74,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("Intro2")
+                        Image("introPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 74)
@@ -90,7 +90,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("Intro3")
+                        Image("introCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 22)
@@ -101,7 +101,7 @@ struct IntroView: View {
                     .tag(2)
 
                     VStack(spacing: 40) {
-                        Image("Intro4")
+                        Image("introAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: wid - 32)

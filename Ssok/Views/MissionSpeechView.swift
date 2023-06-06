@@ -146,7 +146,7 @@ struct MissionSpeechView: View {
                     }
                     // 제시어 말하기
                     ZStack {
-                        Image("Speeching")
+                        Image("speeching")
                             .shadow(color: Color("Orange").opacity(0.5), radius: 5)
                         VStack {
                             Text("내 발음")

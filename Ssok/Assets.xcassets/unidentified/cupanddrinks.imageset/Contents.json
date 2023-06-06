@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cupanddrinks@1x.png",
+      "filename" : "cupandDrinks@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cupanddrinks@2x.png",
+      "filename" : "cupandDrinks@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cupanddrinks@3x.png",
+      "filename" : "cupandDrinks@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
