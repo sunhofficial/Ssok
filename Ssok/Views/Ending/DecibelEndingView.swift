@@ -25,7 +25,7 @@ struct DecibelEndingView: View {
             ZStack(alignment: .top) {
                 Image("endingtop").resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: wid).position(x: wid/2, y: 190)
+                    .frame(width: screenWidth).position(x: screenWidth/2, y: 190)
                 HStack {
                     Spacer()
                     HStack {
@@ -53,7 +53,7 @@ struct DecibelEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: wid/2.9, y: 210)
+                    .position(x: screenWidth/2.9, y: 210)
                 Text(random.randomWhere)
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
@@ -62,7 +62,7 @@ struct DecibelEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: wid/1.81, y: 210)
+                    .position(x: screenWidth/1.81, y: 210)
                 Text(String(random.randomWhat.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
@@ -71,7 +71,7 @@ struct DecibelEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: wid/1.155, y: 210)
+                    .position(x: screenWidth/1.155, y: 210)
             }
             ZStack {
                 Circle()
@@ -120,7 +120,7 @@ struct DecibelEndingView: View {
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
             }
-            .position(x: wid/2, y: hei-59)
+            .position(x: screenWidth/2, y: screenHeight-59)
         }
         .ignoresSafeArea(.all)
         .navigationBarHidden(true)

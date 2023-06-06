@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct _BubblesApp: App {
+struct SsokApp: App {
     var body: some Scene {
         WindowGroup {
             IntroView()

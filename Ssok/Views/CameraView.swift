@@ -8,27 +8,24 @@
 import SwiftUI
 
 struct CameraView: View {
-    
-    @State var arstate : String = ""
-    @Binding var sta: Bool
+
+    @State var arstate: String = ""
+    @Binding var cameraState: Bool
     @EnvironmentObject var ARview: ARViewModel
-    
+
     var body: some View {
-        ZStack{
+        ZStack {
             MissionSmileView(ARstate: arstate)
-                .onDisappear{
-//                    if(ARview.ARtoStarw == true){
-//                        sta = true
-//                    }
-                    sta = true
+                .onDisappear {
+                    cameraState = true
                 }
         }
     }
-    
+
 }
 
-//struct CameraView_Previews: PreviewProvider {
+// struct CameraView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CameraView()
 //    }
-//}
+// }

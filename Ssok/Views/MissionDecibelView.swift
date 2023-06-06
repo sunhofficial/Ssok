@@ -71,8 +71,11 @@ struct MissionDecibelView: View {
                     .frame(width: 308, height: 308)
 
                     VStack {
-                        Text( String(format: "%.f", soundMeter.decibels)
-                        ).font(.system(size: 60, weight: .bold)) + Text("dB").font(.system(size: 40, weight: .bold))
+                        Text(String(format: "%.f", soundMeter.decibels))
+                        .font(
+                            .system(size: 60, weight: .bold))
+                            + Text("dB").font(.system(size: 40, weight: .bold)
+                        )
                         Text("목표 데시벨\n\(goal)dB")
                             .font(.system(size: 18))
                             .multilineTextAlignment(.center)

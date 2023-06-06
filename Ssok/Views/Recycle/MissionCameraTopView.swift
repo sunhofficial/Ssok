@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct MissionCameraTopView: View {
-    
+
     // MARK: - Properties
-    
+
     @State var title: String
     @State var description: String
-    @EnvironmentObject var arViewModel : ARViewModel
-    
+    @EnvironmentObject var arViewModel: ARViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             Image("Ellipse")
                 .resizable()
-                .frame(width: wid, height: 160)
+                .frame(width: screenWidth, height: 160)
                 .ignoresSafeArea()
             VStack(spacing: 4) {
                 HStack {
@@ -41,7 +40,6 @@ struct MissionCameraTopView: View {
                         .font(.system(size: 24, weight: .bold))
                     Spacer()
                     Button {
-                        
                     } label: {
                         Image(systemName: "chevron.backward")
                             .resizable()

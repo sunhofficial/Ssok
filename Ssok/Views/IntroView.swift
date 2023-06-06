@@ -10,11 +10,11 @@
 import SwiftUI
 
 struct IntroView: View {
-    
+
     @State private var selectedPage = 0
     @State private var isfirst = false
     @AppStorage("Tutorial") private var isIntroActive = true
-    
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -27,7 +27,7 @@ struct IntroView: View {
                             Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("intro_wave")
                                 .resizable()
-                                .frame(width: wid, height: 200)
+                                .frame(width: screenWidth, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
@@ -41,69 +41,71 @@ struct IntroView: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
-                
+
                 TabView(selection: $selectedPage) {
                     VStack(spacing: 66) {
                         Text("쉬는시간이 지루할때,\n쏘옥~")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                        
+
                         Image("HandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 173)
+                            .frame(width: screenWidth - 173)
                             .rotationEffect(
                                 Angle(degrees: isfirst ? -30 : 30)
                             )
-                            .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
+                            .animation(Animation
+                                .linear(duration: 0.8)
+                                .repeatForever(autoreverses: true), value: isfirst)
                             .onAppear {
                                 isfirst = true
                             }
-                    
+
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(0)
-                    
+
                     VStack(spacing: 38) {
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                        
+
                         Image("Intro2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 74)
-                           
+                            .frame(width: screenWidth - 74)
+
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(1)
-                    
+
                     VStack(spacing: 109) {
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                        
+
                         Image("Intro3")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 22)
-                        
+                            .frame(width: screenWidth - 22)
+
                         Spacer()
                             .frame(height: 160)
                     }
                     .tag(2)
-                    
+
                     VStack(spacing: 40) {
                         Image("Intro4")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 32)
-                        
+                            .frame(width: screenWidth - 32)
+
                         Spacer()
                             .frame(height: 160)
                     }
@@ -113,7 +115,7 @@ struct IntroView: View {
                     isfirst.toggle()
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-       
+
                 NavigationLink(destination: AddMemberView()) {
                     Text("시작하기").foregroundColor(.white)
                         .fontWeight(.bold)
