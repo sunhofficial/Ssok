@@ -35,9 +35,9 @@ struct StrawView: View {
                     .ignoresSafeArea()
                 ZStack {
                     if viewModel.maxProgress != 1 {
-                        Image("firstDrink").position(CGPoint(x: wid/2, y: 552.5))
+                        Image("firstDrink").position(CGPoint(x: screenWidth/2, y: 552.5))
                     } else {
-                        Image("finalDrink").position(CGPoint(x: wid/2, y: 552.5))
+                        Image("finalDrink").position(CGPoint(x: screenHeight/2, y: 552.5))
                     }
                     SpriteView(
                         scene: scene,
@@ -47,7 +47,7 @@ struct StrawView: View {
                     .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
                     .offset(y: 17)
-                    Image("cupHead").position(CGPoint(x: wid/2, y: 373))
+                    Image("cupHead").position(CGPoint(x: screenWidth/2, y: 373))
                 }
                 VStack(spacing: 24) {
                     VStack(spacing: 24) {
@@ -164,7 +164,7 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutCup").position(x: wid/2, y: 377)
+                    Image("cutCup").position(x: screenWidth/2, y: 377)
                 }
                 Color(.white)
                     .edgesIgnoringSafeArea(.all)
