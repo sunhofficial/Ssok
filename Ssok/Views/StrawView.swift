@@ -22,7 +22,7 @@ struct StrawView: View {
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
-    private var scene = Bottle(size: CGSize(width: wid, height: hei))
+    private var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
 
@@ -44,7 +44,7 @@ struct StrawView: View {
                         options: [.allowsTransparency],
                         shouldRender: {_ in return true}
                     )
-                    .ignoresSafeArea().frame(width: wid, height: hei)
+                    .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
                     .offset(y: 17)
                     Image("cupHead").position(CGPoint(x: wid/2, y: 373))
@@ -110,7 +110,7 @@ struct StrawView: View {
                         }
                         .frame(width: 28)
                         .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -hei : -10)
+                        .offset(y: isAnimation ? -screenHeight : -10)
                         .animation(.easeInOut.delay(1), value: isAnimation)
                     }
                     .frame(width: UIScreen.main.bounds.width / 1.3, height: UIScreen.main.bounds.height / 1.8)
@@ -122,7 +122,7 @@ struct StrawView: View {
                         .contentShape(Rectangle())
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1), value: isAnimation)
-                        .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
+                        .offset(y: isAnimation ? 0 : dragAmount.height - screenHeight/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
@@ -251,7 +251,7 @@ struct StrawView: View {
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 st: $state,
+                                 state: $state,
                                  arstate: "smile")
             case .blink:
                 CameraEndingView(wheresentence: random.randomWhere,
@@ -259,7 +259,7 @@ struct StrawView: View {
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 st: $state,
+                                 state: $state,
                                  arstate: "blink")
             }
         }

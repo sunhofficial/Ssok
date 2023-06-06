@@ -22,7 +22,7 @@ struct MissionSmileView: View {
     @State var camerast: Bool = false
     @State var ARstate: String = ""
     @State var cameraState: Bool = false
-    @State var sta: Bool = false
+    @State var smileState: Bool = false
     @State private var isLoading = false
     @State var delay: Int = 2
     @State var count: Int = 0
@@ -40,12 +40,15 @@ struct MissionSmileView: View {
                     if ARstate == "smile" {
                         if !arViewModel.asyncissmileCount {
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
-                            Text(arViewModel.isSmiling ? "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount())
-                                .padding()
-                                .foregroundColor(arViewModel.isSmiling ? .green : .red)
-                                .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
-                                .font(.system(size: 18, weight: .semibold))
-                                .position(x: wid / 2, y: hei / 1.5)
+                            Text(
+                                arViewModel.isSmiling ?
+                                "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount()
+                            )
+                            .padding()
+                            .foregroundColor(arViewModel.isSmiling ? .green : .red)
+                            .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
+                            .font(.system(size: 18, weight: .semibold))
+                            .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCameraCompleteView(title: "혀내밀기 😝",
                                                       background: Color.mint,
@@ -54,12 +57,15 @@ struct MissionSmileView: View {
                     } else if ARstate == "blink"{
                         if !arViewModel.asyncisblinkCount {
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
-                            Text(arViewModel.isBlinking ? "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount())
-                                .padding()
-                                .foregroundColor(arViewModel.isBlinking ? .green : .red)
-                                .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
-                                .font(.system(size: 18, weight: .semibold))
-                                .position(x: wid / 2, y: hei / 1.5)
+                            Text(
+                                arViewModel.isBlinking ?
+                                "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount()
+                            )
+                            .padding()
+                            .foregroundColor(arViewModel.isBlinking ? .green : .red)
+                            .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
+                            .font(.system(size: 18, weight: .semibold))
+                            .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCameraCompleteView(title: "플러팅하기 😘",
                                                       background: Color.mint,

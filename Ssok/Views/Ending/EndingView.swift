@@ -10,11 +10,9 @@
 
 import SwiftUI
 
-
 struct EndingView: View {
     
-    @State var st2: Bool = false
-//    @State var next = false
+    @State var endingState: Bool = false
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     
@@ -29,7 +27,7 @@ struct EndingView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
                 
-                ZStack{
+                ZStack {
                     Text(random.randomMemberName)
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
@@ -38,7 +36,6 @@ struct EndingView: View {
                         .minimumScaleFactor(0.1)
                         .frame(width: 85, height: 85)
                         .position(x:wid/2.9, y:210)
-                    
                     Text(wheresentence)
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
@@ -47,7 +44,6 @@ struct EndingView: View {
                         .minimumScaleFactor(0.1)
                         .frame(width: 85, height: 85)
                         .position(x:wid/1.81, y:210)
-                    
                     Text(whatsentence)
                         .font(.system(size: 18, weight: .bold))
                         .rotationEffect(Angle(degrees: -30))
@@ -65,13 +61,13 @@ struct EndingView: View {
                     Text("📢")
                         .frame(width: 50, height: 50)
                 
-                VStack(spacing: 8){
+                VStack(spacing: 8) {
                     Text("데시벨 측정기")
                         .font(.system(size: 24, weight: .black))
                     
                     Text("미션을 성공하려면 데시벨을 충족시켜야해요")
                         .font(.system(size:13, weight: .light))
-                    ZStack{
+                    ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .strokeBorder(Color("Border"), lineWidth: 1.5)
                             .frame(width: 295, height: 175)
@@ -80,8 +76,11 @@ struct EndingView: View {
                             .font(.system(size: 20, weight: .black))
                             .foregroundColor(Color("Bg_bottom2"))
                         
-                        VStack(spacing: 50){
-                            MissionTitleView(missionTitle: "소리 지르기 💥", backgroundColor: Color("MissionOrange"), borderColor: Color("MissionOrangeBorder"))
+                        VStack(spacing: 50) {
+                            MissionTitleView(
+                                missionTitle: "소리 지르기 💥",
+                                backgroundColor: Color("MissionOrange"),
+                                borderColor: Color("MissionOrangeBorder"))
                             
                             Text("장소로 이동해서 미션하기 버튼을 누르고\n 소리를 질러 목표 데시벨을 채우세요")
                                 .font(.system(size: 13, weight: .medium))
@@ -90,14 +89,15 @@ struct EndingView: View {
                     }.offset(y:32)
                     
                 }.offset(y:150)
-                
-                Button(action: {
+
+                Button {
                     random.randomMemberName = setRandomMember(random.members)
                     st2 = true
-                }){
+                } label: {
                     Image("retry")
-                }.position(x: wid - 57, y:73)
-                
+                }
+                .position(x: wid - 57, y:73)
+
                 NavigationLink(destination: MissionPedometerView()) {
                     Text("미션하기").foregroundColor(.white)
                         .fontWeight(.bold)
@@ -108,7 +108,7 @@ struct EndingView: View {
             }
             .ignoresSafeArea(.all)
             .navigationBarHidden(true)
-        } else{
+        } else {
             StrawView()
         }
     }
