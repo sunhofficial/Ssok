@@ -19,13 +19,13 @@ struct IntroView: View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
-                    Image("intro_bg")
+                    Image("imgIntroBg")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
-                            Image("intro_wave")
+                            Image("imgIntroPearl").offset(y: CGFloat(-selectedPage * 15))
+                            Image("imgIntroWave")
                                 .resizable()
                                 .frame(width: screenWidth, height: 200)
                                 .aspectRatio(contentMode: .fit)
@@ -49,7 +49,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("HandWithPhone")
+                        Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: screenWidth - 173)
@@ -74,7 +74,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("Intro2")
+                        Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: screenWidth - 74)
@@ -90,7 +90,7 @@ struct IntroView: View {
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
 
-                        Image("Intro3")
+                        Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: screenWidth - 22)
@@ -101,7 +101,7 @@ struct IntroView: View {
                     .tag(2)
 
                     VStack(spacing: 40) {
-                        Image("Intro4")
+                        Image("imgIntroAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: screenWidth - 32)

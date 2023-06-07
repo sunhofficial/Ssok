@@ -23,13 +23,13 @@ struct CountEndingView: View {
     var body: some View {
         ZStack {
             ZStack(alignment: .top) {
-                Image("endingtop").resizable()
+                Image("imgEndingTop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: screenWidth).position(x: screenWidth/2, y: 190)
                 HStack {
                     Spacer()
                     HStack {
-                        Image("retry")
+                        Image("imgRetry")
                         Text("다시뽑기")
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundColor(.white)

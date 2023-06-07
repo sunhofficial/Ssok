@@ -26,7 +26,7 @@ struct CameraEndingView: View {
 
         ZStack {
             ZStack(alignment: .top) {
-                Image("endingtop")
+                Image("imgEndingTop")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: screenWidth)
@@ -34,7 +34,7 @@ struct CameraEndingView: View {
                 HStack {
                     Spacer()
                     HStack {
-                        Image("retry")
+                        Image("imgRetry")
                         Text("다시뽑기")
                             .font(.system(size: 17, weight: .semibold))
                             .foregroundColor(.white)

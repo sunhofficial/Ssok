@@ -21,9 +21,9 @@ struct EndingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        if !st2 {
-            ZStack {
-                Image("endingtop").resizable()
+        if !st2{
+            ZStack{
+                Image("endingTop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
                 
@@ -94,7 +94,7 @@ struct EndingView: View {
                     random.randomMemberName = setRandomMember(random.members)
                     st2 = true
                 } label: {
-                    Image("retry")
+                    Image("imgRetry")
                 }
                 .position(x: wid - 57, y:73)
 
