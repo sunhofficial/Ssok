@@ -18,13 +18,13 @@ class StrawViewModel: ObservableObject {
     @Published var isDisplay: Bool = false
     @Published var ballNumber: Int = 0
     @Published var nextView: Bool = false
-    @Published var imgProgress: Double = 0.0
+    @Published var progress: Double = 0.0
 
     var maxProgress: Double {
-        if imgProgress > 0.99 {
+        if progress > 0.99 {
             return 1
         }
-        return min(max(imgProgress, 0.0), 1.0) // 왜 0.3이랑 0.7에서는 1씩 안더해질까
+        return min(max(progress, 0.0), 1.0) // 왜 0.3이랑 0.7에서는 1씩 안더해질까
     }
     func startupdatingMotion() {
         if motionManger.isDeviceMotionAvailable {
@@ -47,11 +47,11 @@ class StrawViewModel: ObservableObject {
         } else if gravityX < -0.2 || gravityY < -0.2 || gravityZ < 0.2 {
             currentGravity  = 2
         }
-        if imgProgress >= 1 {
+        if progress >= 1 {
             timer?.invalidate()
             return
         } else if currentGravity != previousgravity {
-            imgProgress += 0.1
+            progress += 0.1
             previousgravity = currentGravity
         }
     }

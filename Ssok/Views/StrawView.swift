@@ -216,7 +216,7 @@ struct StrawView: View {
                     getFirstBall = false
                     getSecondBall = false
                     getThirdBall = false
-                    viewModel.imgProgress = 0.0
+                    viewModel.progress = 0.0
                 }
         } else {
             switch random.randomWhat.missionType {
