@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bigPearl1.png",
+      "filename" : "imgBigPearl1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "공2@2x.png",
+      "filename" : "imgBigPearl1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "공2@3x.png",
+      "filename" : "imgBigPearl1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
