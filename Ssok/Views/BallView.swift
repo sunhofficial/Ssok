@@ -11,7 +11,7 @@ struct BallView: View {
     @State var stBool: Bool
     @State var ballTitle: String
     @State var contents: String
-    @State var pearlImage: String = "backPearl1"
+    @State var pearlImage: String = "imgBackPearl1"
 
     var body: some View {
         if getCurrentBall {

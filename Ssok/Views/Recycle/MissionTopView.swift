@@ -16,7 +16,7 @@ struct MissionTopView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            Image("ellipse")
+            Image("imgEllipse")
                 .resizable()
                 .frame(width: screenWidth, height: 160)
                 .ignoresSafeArea()

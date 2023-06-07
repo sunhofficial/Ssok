@@ -94,7 +94,7 @@ struct EndingView: View {
                     random.randomMemberName = setRandomMember(random.members)
                     st2 = true
                 } label: {
-                    Image("retry")
+                    Image("imgRetry")
                 }
                 .position(x: wid - 57, y:73)
 
