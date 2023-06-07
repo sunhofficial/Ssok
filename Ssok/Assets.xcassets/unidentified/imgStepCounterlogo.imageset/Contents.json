@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "stepcounterlogo@1x.png",
+      "filename" : "imgStepCounterlogo@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "stepcounterlogo@2x.png",
+      "filename" : "imgStepCounterlogo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "stepcounterlogo@3x.png",
+      "filename" : "imgStepCounterlogo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

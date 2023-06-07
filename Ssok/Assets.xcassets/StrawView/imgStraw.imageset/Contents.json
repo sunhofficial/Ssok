@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "straw@1x.png",
+      "filename" : "imgStraw@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "straw@2x.png",
+      "filename" : "imgStraw@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "straw@3x.png",
+      "filename" : "imgStraw@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
