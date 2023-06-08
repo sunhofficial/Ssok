@@ -30,7 +30,7 @@ struct MissionSpeechView: View {
                 MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 Spacer()
                 if isSpeech {
-                    Image("progress")
+                    Image("imgProgress")
                         .shadow(color: Color(.black).opacity(0.25), radius: 4)
                         .overlay(
                             ProgressView(value: progressTime, total: 100)
@@ -149,7 +149,7 @@ struct MissionSpeechView: View {
                     }
                     // 제시어 말하기
                     ZStack {
-                        Image("Speeching")
+                        Image("imgSpeeching")
                             .shadow(color: Color("Orange").opacity(0.5), radius: 5)
                         VStack {
                             Text("내 발음")
