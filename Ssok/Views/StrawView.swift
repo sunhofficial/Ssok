@@ -22,9 +22,10 @@ struct StrawView: View {
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
-    private var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
+    var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
+    @Binding var path: NavigationPath
 
     var body: some View {
         if !state {
@@ -282,13 +283,5 @@ extension StrawView {
                     .bold()
             }
         }
-    }
-}
-
-struct StrawView_Previews: PreviewProvider {
-    static let random = RandomMember()
-    static var previews: some View {
-        StrawView()
-            .environmentObject(random)
     }
 }

@@ -28,18 +28,18 @@ struct MissionCameraCompleteView: View {
                                      backgroundColor: background.opacity(0.3),
                                      borderColor: background.opacity(0.71))
 
-                    NavigationLink(destination: StrawView()) {
-                        Text("새로운 미션하기")
-                          .underline()
-                          .font(.system(size: 20, weight: .bold))
-                          .foregroundColor(Color("Bg_center"))
-                          .underline()
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(whereList)
-                    })
+//                    NavigationLink(destination: StrawView()) {
+//                        Text("새로운 미션하기")
+//                          .underline()
+//                          .font(.system(size: 20, weight: .bold))
+//                          .foregroundColor(Color("Bg_center"))
+//                          .underline()
+//                    }
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        random.randomWho = setRandomMember(random.members)
+//                        random.randomWhat = setRandomMission(missions)
+//                        random.randomWhere = setRandomWhere(whereList)
+//                    })
                 }
                 .offset(y: 90)
 

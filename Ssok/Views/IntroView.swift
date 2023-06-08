@@ -14,9 +14,10 @@ struct IntroView: View {
     @State private var selectedPage = 0
     @State private var isfirst = false
     @AppStorage("Tutorial") private var isIntroActive = true
+    @State private var path = NavigationPath()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("imgIntroBg")
@@ -116,16 +117,25 @@ struct IntroView: View {
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
 
-                NavigationLink(destination: AddMemberView()) {
-                    Text("시작하기").foregroundColor(.white)
+                Button {
+                    isIntroActive = false
+                    path.append(ViewType.addMemberView)
+                } label: {
+                    Text("시작하기")
+                        .foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                   isIntroActive = false
-                })
+                .navigationDestination(for: ViewType.self) { viewType in
+                    switch viewType {
+                    case .addMemberView:
+                        AddMemberView(path: $path)
+                    case .strawView:
+                        StrawView(path: $path)
+                    }
+                }
             }
         }
         .onAppear {
