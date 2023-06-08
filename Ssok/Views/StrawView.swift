@@ -208,9 +208,6 @@ struct StrawView: View {
                 .padding(.leading, 8)
                 .padding(.top, 48)
             }.navigationBarHidden(true)
-                .onAppear {
-                    viewModel.startupdatingMotion()
-                }
                 .onDisappear {
                     isAnimation = false
                     isDisplay = false
