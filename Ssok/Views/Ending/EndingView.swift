@@ -21,8 +21,8 @@ struct EndingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        if !st2{
-            ZStack{
+        if !st2 {
+            ZStack {
                 Image("endingTop").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: wid).position(x:wid/2, y:190)
