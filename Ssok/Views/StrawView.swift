@@ -141,14 +141,7 @@ struct StrawView: View {
                                             isAnimation = true
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-                                            let vibrationCount = 3
-                                            let spacevibe: TimeInterval = 0.2
-                                            for index in 0..<vibrationCount {
-                                                DispatchQueue.main.asyncAfter(deadline:
-                                                        .now() + (Double(index) * spacevibe)) {
-                                                    HapticManager.instance.impact(style: .heavy)
-                                                }
-                                            }
+                                            viewModel.uppearlVibration()
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
                                             getFirstBall = true

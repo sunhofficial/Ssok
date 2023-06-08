@@ -55,4 +55,13 @@ class StrawViewModel: ObservableObject {
             previousgravity = currentGravity
         }
     }
+    func uppearlVibration() {
+        let vibration = 3
+        let timeintervalvibe : TimeInterval = 0.2
+        for index in 0..<vibration {
+               DispatchQueue.main.asyncAfter(deadline: .now() + (Double(index) * timeintervalvibe)) {
+                   HapticManager.instance.impact(style: .heavy)
+               }
+           }
+    }
 }
