@@ -14,7 +14,7 @@ struct AddMemberView: View {
     @StateObject private var viewModel  = AddMemberViewModel()
     @FocusState private var isFocused: Bool
     @EnvironmentObject var random: RandomMember
-    @Binding var path: [ViewType.RawValue]
+    @Binding var path: NavigationPath
 
     var body: some View {
         GeometryReader { _ in
@@ -119,21 +119,20 @@ struct AddMemberView: View {
                     .listStyle(.inset)
                     .scrollDisabled(true)
                     Spacer()
-                    NavigationLink(destination: StrawView(path: $path)) {
-                        Text("다음")
-                            .foregroundColor(.white)
-                            .fontWeight(.medium)
-                            .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                            .background(Color("Bg_bottom2"))
-                            .cornerRadius(12)
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        path.append(ViewType.straw.rawValue)
+                    Button {
+                        path.append(ViewType.strawView)
                         random.members = viewModel.members
                         random.randomWho = setRandomMember(viewModel.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
-                    })
+                    } label: {
+                        Text("다음")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                            .background(Color("Bg_bottom2"))
+                            .cornerRadius(12)
+                    }
                     .disabled(viewModel.isNextButtonDisabled)
                 }
                 .navigationTitle("같이 할 사람들")

@@ -25,7 +25,7 @@ struct StrawView: View {
     var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
-    @Binding var path: [Int]
+    @Binding var path: NavigationPath
 
     var body: some View {
         if !state {

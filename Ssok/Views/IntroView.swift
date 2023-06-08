@@ -14,7 +14,7 @@ struct IntroView: View {
     @State private var selectedPage = 0
     @State private var isfirst = false
     @AppStorage("Tutorial") private var isIntroActive = true
-    @State private var path: [ViewType.RawValue] = []
+    @State private var path = NavigationPath()
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -119,7 +119,7 @@ struct IntroView: View {
 
                 Button {
                     isIntroActive = false
-                    path.append(ViewType.addMember.rawValue)
+                    path.append(ViewType.addMemberView)
                 } label: {
                     Text("시작하기")
                         .foregroundColor(.white)
@@ -128,8 +128,13 @@ struct IntroView: View {
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
                 }
-                .navigationDestination(for: ViewType.RawValue.self) { _ in
-                    AddMemberView(path: $path)
+                .navigationDestination(for: ViewType.self) { viewType in
+                    switch viewType {
+                    case .addMemberView:
+                        AddMemberView(path: $path)
+                    case .strawView:
+                        StrawView(path: $path)
+                    }
                 }
             }
         }

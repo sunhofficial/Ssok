@@ -7,10 +7,7 @@
 
 import Foundation
 
-enum ViewType: Int {
-    case intro
-    case addMember
-    case straw
-    case ending
-    case mission
+enum ViewType {
+    case addMemberView
+    case strawView
 }
