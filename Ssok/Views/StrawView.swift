@@ -36,9 +36,11 @@ struct StrawView: View {
                     .ignoresSafeArea()
                 ZStack {
                     if viewModel.maxProgress != 1 {
-                        Image("imgFirstDrink").position(CGPoint(x: screenWidth/2, y: 552.5))
+                        Image("imgFirstDrink")
+                            .position(CGPoint(x: screenWidth / 2, y: screenHeight / 1.5))
                     } else {
-                        Image("imgFinalDrink").position(CGPoint(x: screenHeight/2, y: 552.5))
+                        Image("imgFinalDrink")
+                            .position(CGPoint(x: screenWidth/2, y: screenHeight / 1.5))
                     }
                     SpriteView(
                         scene: scene,
@@ -47,7 +49,6 @@ struct StrawView: View {
                     )
                     .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
-                    .offset(y: 17)
                     Image("imgCupHead").position(CGPoint(x: screenWidth/2, y: 373))
                 }
                 VStack(spacing: 24) {
@@ -102,19 +103,18 @@ struct StrawView: View {
                     ZStack {
                         VStack {
                             Spacer()
-                            Image("imgPearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.4), value: isAnimation)
-                            Image("imgPearl2")
-                                .animation(.easeOut(duration: 1.5).delay(1.6), value: isAnimation)
-                            Image("imgPearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.8), value: isAnimation)
+                            ForEach(0..<3) { index in
+                                Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
+                                    .animation(.easeOut(duration: 1.5)
+                                        .delay(1.4 + Double(index) * 0.2), value: isAnimation)
+                            }
                         }
                         .frame(width: 28)
                         .opacity(isAnimation ? 1 : 0)
                         .offset(y: isAnimation ? -screenHeight : -10)
                         .animation(.easeInOut.delay(1), value: isAnimation)
                     }
-                    .frame(width: UIScreen.main.bounds.width / 1.3, height: UIScreen.main.bounds.height / 1.8)
+                    .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
                 }
                 // 빨대
                 if viewModel.maxProgress == 1 {
@@ -141,16 +141,14 @@ struct StrawView: View {
                                             isAnimation = true
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
+                                            let vibrationCount = 3
+                                            let spacevibe: TimeInterval = 0.2
+                                            for index in 0..<vibrationCount {
+                                                DispatchQueue.main.asyncAfter(deadline:
+                                                        .now() + (Double(index) * spacevibe)) {
+                                                    HapticManager.instance.impact(style: .heavy)
+                                                }
+                                            }
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
                                             getFirstBall = true
