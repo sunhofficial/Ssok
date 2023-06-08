@@ -35,9 +35,9 @@ struct StrawView: View {
                     .ignoresSafeArea()
                 ZStack {
                     if viewModel.maxProgress != 1 {
-                        Image("firstDrink").position(CGPoint(x: screenWidth/2, y: 552.5))
+                        Image("imgFirstDrink").position(CGPoint(x: screenWidth/2, y: 552.5))
                     } else {
-                        Image("finalDrink").position(CGPoint(x: screenHeight/2, y: 552.5))
+                        Image("imgFinalDrink").position(CGPoint(x: screenHeight/2, y: 552.5))
                     }
                     SpriteView(
                         scene: scene,
@@ -47,7 +47,7 @@ struct StrawView: View {
                     .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
                     .offset(y: 17)
-                    Image("cupHead").position(CGPoint(x: screenWidth/2, y: 373))
+                    Image("imgCupHead").position(CGPoint(x: screenWidth/2, y: 373))
                 }
                 VStack(spacing: 24) {
                     VStack(spacing: 24) {
@@ -60,7 +60,7 @@ struct StrawView: View {
                                     ZStack {
                                         Image("imgPhoneIcon")
                                             .padding(.top, 50)
-                                        Image("imghandIcon")
+                                        Image("imgHandIcon")
                                             .padding(.top, 70)
                                             .padding(.leading, 30)
                                     }
