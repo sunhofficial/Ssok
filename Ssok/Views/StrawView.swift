@@ -16,9 +16,7 @@ struct StrawView: View {
     @State var state: Bool = false
     @State var isAnimation: Bool = false
     @State var isDisplay: Bool = false
-    @State var getFirstBall: Bool = false
-    @State var getSecondBall: Bool = false
-    @State var getThirdBall: Bool = false
+    @State var largePearlIndex: Int = -1
     @State var dragAmount: CGSize = CGSize.zero
     @State var isPlug: Bool = false
     @State var previousview: Bool = false
@@ -26,6 +24,12 @@ struct StrawView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
     @Binding var path: NavigationPath
+    private var pearlContents : [[String]] {
+        [
+        ["Who?",random.randomWho, "imgBackPearl1" ],
+        ["Where?", random.randomWhere, "imgBackPearl2"],
+        ["What?",String(random.randomWhat.missionTitle.dropLast(2)),"imgBackPearl1" ]
+        ]}
 
     var body: some View {
         if !state {
@@ -143,7 +147,7 @@ struct StrawView: View {
                                             viewModel.uppearlVibration()
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
-                                            getFirstBall = true
+                                            largePearlIndex = 0
                                         }
                                     } else {
                                         withAnimation(.easeInOut) {
@@ -157,37 +161,15 @@ struct StrawView: View {
                         .animation(.spring(), value: dragAmount)
                     Image("cutCup").position(x: screenWidth/2, y: 377)
                 }
-                Color(.white)
-                    .edgesIgnoringSafeArea(.all)
-                    .opacity(isAnimation ? 0.5 : 0)
-                    .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
-                BallView(
-                    getCurrentBall: $getFirstBall,
-                    getNextBall: $getSecondBall,
-                    state: $state,
-                    stBool: false,
-                    ballTitle: "Who?",
-                    contents: random.randomWho,
-                    pearlImage: "imgBackPearl1"
-                )
-                BallView(
-                    getCurrentBall: $getSecondBall,
-                    getNextBall: $getThirdBall,
-                    state: $state,
-                    stBool: false,
-                    ballTitle: "Where?",
-                    contents: random.randomWhere,
-                    pearlImage: "imgBackPearl2"
-                )
-                BallView(
-                    getCurrentBall: $getThirdBall,
-                    getNextBall: $getThirdBall,
-                    state: $state,
-                    stBool: true,
-                    ballTitle: "What?",
-                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
-                    pearlImage: "imgBackPearl1"
-                )
+                if largePearlIndex >= 0 {
+                    Color(.white)
+                                .edgesIgnoringSafeArea(.all)
+                                .opacity(0.5)
+                                .onTapGesture {
+                                    largePearlIndex += 1
+                                }
+                    BallView(getCurrentPearl: $largePearlIndex, state: $state, pearlContents: pearlContents)
+                }
                 HStack {
                     VStack {
                         backButton
@@ -201,9 +183,7 @@ struct StrawView: View {
                 .onDisappear {
                     isAnimation = false
                     isDisplay = false
-                    getFirstBall = false
-                    getSecondBall = false
-                    getThirdBall = false
+                    largePearlIndex = -1
                     viewModel.progress = 0.0
                 }
         } else {
