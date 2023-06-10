@@ -10,7 +10,7 @@ import CoreMotion
 import SpriteKit
 
 struct ColType {
-    static let ball: UInt32 = 0x1 << 0
+    static let pearl: UInt32 = 0x1 << 0
     static let wall: UInt32 = 0x1 << 1
 }
 
@@ -32,11 +32,11 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         let vector = SKSpriteNode(imageNamed: "Vector 7")
         vector.alpha = 0
         vector.physicsBody = SKPhysicsBody(edgeLoopFrom: vector.frame)
-        vector.position = CGPoint(x: frame.midX, y: frame.height / 3)
+        vector.position = CGPoint(x: frame.midX, y: frame.midY)
         vector.physicsBody?.affectedByGravity = false
         vector.physicsBody?.categoryBitMask = ColType.wall
-        vector.physicsBody?.collisionBitMask = ColType.ball
-        vector.physicsBody?.contactTestBitMask = ColType.ball
+        vector.physicsBody?.collisionBitMask = ColType.pearl
+        vector.physicsBody?.contactTestBitMask = ColType.pearl
         vector.physicsBody?.isDynamic = false
         addChild(vector)
 
@@ -45,25 +45,25 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         leftBorder.position = CGPoint(x: frame.midX - frame.width / 3, y: frame.midY)
         addChild(leftBorder)
 
-        setPhysicsBody(setNode: leftBorder)
-        leftBottom.zRotation = .pi/3.0
-        leftBottom.position = CGPoint(x: frame.midX, y: frame.midY-frame.height / 5)
+        setPhysicsBody(setNode: leftBottom)
+        leftBottom.zRotation = .pi/2.9
+        leftBottom.position = CGPoint(x: frame.midX+50, y: frame.midY-248)
         addChild(leftBottom)
 
-        setPhysicsBody(setNode: leftBorder)
+        setPhysicsBody(setNode: rightBorder)
         rightBorder.zRotation = -.pi/45
-        rightBorder.position = CGPoint(x: frame.midX + frame.width / 4, y: frame.midY)
+        rightBorder.position = CGPoint(x: frame.midX+120, y: frame.midY)
         addChild(rightBorder)
 
-        setPhysicsBody(setNode: leftBorder)
-        rightBottom.zRotation = -.pi/3.0
-        rightBottom.position = CGPoint(x: frame.midX, y: frame.midY-frame.height / 5)
+        setPhysicsBody(setNode: rightBottom)
+        rightBottom.zRotation = -.pi/2.9
+        rightBottom.position = CGPoint(x: frame.midX-50, y: frame.midY-248)
         addChild(rightBottom)
 
         let pearlRadius = 20.0
 
         for xRange in stride(from: 200, to: 300, by: pearlRadius) {
-            for yRange in stride(from: 150, to: 200, by: pearlRadius) {
+            for yRange in stride(from: frame.midY, to: frame.midY+50, by: pearlRadius) {
                 let pearlType = pearls.randomElement()!
 //                let pearl = Pearls(imageNamed: pearlType)
                 let pearl = SKSpriteNode(imageNamed: pearlType)
@@ -73,9 +73,9 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
                 pearl.physicsBody = SKPhysicsBody(circleOfRadius: pearlRadius)
                 pearl.physicsBody?.allowsRotation = true
                 pearl.physicsBody?.restitution = 0.3
-                pearl.physicsBody?.categoryBitMask = ColType.ball
-                pearl.physicsBody?.collisionBitMask = ColType.wall | ColType.ball
-                pearl.physicsBody?.contactTestBitMask = ColType.wall | ColType.ball
+                pearl.physicsBody?.categoryBitMask = ColType.pearl
+                pearl.physicsBody?.collisionBitMask = ColType.wall | ColType.pearl
+                pearl.physicsBody?.contactTestBitMask = ColType.wall | ColType.pearl
                 addChild(pearl)
 
             }
@@ -86,7 +86,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionManager?.accelerometerData {
             physicsWorld.gravity = CGVector(
-                dx: accelerometerData.acceleration.x,
+                dx: accelerometerData.acceleration.x * 10,
                 dy: accelerometerData.acceleration.y * 10)
 
             if accelerometerData.acceleration.x > 0.5
