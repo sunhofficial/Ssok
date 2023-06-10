@@ -13,10 +13,7 @@ class StrawViewModel: ObservableObject {
     private let motionManger = CMMotionManager()
     private var timer: Timer?
     private var previousgravity = 0
-    @Published var currentView: Bool = false
-    @Published var isAnimation: Bool = false
-    @Published var isDisplay: Bool = false
-    @Published var ballNumber: Int = 0
+    @Published var showWhiteRectangle: Bool = true
     @Published var nextView: Bool = false
     @Published var progress: Double = 0.0
 

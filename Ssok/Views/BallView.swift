@@ -36,7 +36,7 @@ struct BallView: View {
         .id(getCurrentPearl)
         .onTapGesture {
             withAnimation(.easeInOut(duration: 1)) {
-                if getCurrentPearl == 2 {
+                if getCurrentPearl >= 2 {
                     state = true
                 } else {
                     getCurrentPearl += 1

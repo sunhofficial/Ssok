@@ -6,20 +6,16 @@
 //
 
 import SwiftUI
-import CoreMotion
 import SpriteKit
 
 struct StrawView: View {
 
-    let motionmanager = CMMotionManager()
     @StateObject private var viewModel = StrawViewModel()
-    @State var state: Bool = false
-    @State var isAnimation: Bool = false
-    @State var isDisplay: Bool = false
-    @State var largePearlIndex: Int = -1
-    @State var dragAmount: CGSize = CGSize.zero
-    @State var isPlug: Bool = false
-    @State var previousview: Bool = false
+    @State private var goNextView: Bool = false
+    @State private var moveStraw: Bool = false
+    @State private var largePearlIndex: Int = -1
+    @State private var dragAmount: CGSize = CGSize.zero
+    @State private var isPlug: Bool = false
     var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
@@ -32,7 +28,7 @@ struct StrawView: View {
         ]}
 
     var body: some View {
-        if !state {
+        if !goNextView {
             ZStack {
                 LinearGradient(gradient:
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
@@ -102,20 +98,20 @@ struct StrawView: View {
                             .padding(.top, 30)
                         }
                     }
-                    .opacity(isDisplay ? 0 : 1)
+                    .opacity(viewModel.showWhiteRectangle ? 1 : 0)
                     ZStack {
                         VStack {
                             Spacer()
                             ForEach(0..<3) { index in
                                 Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
                                     .animation(.easeOut(duration: 1.5)
-                                        .delay(1.4 + Double(index) * 0.2), value: isAnimation)
+                                        .delay(1.4 + Double(index) * 0.2), value: moveStraw)
                             }
                         }
                         .frame(width: 28)
-                        .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -screenHeight : -10)
-                        .animation(.easeInOut.delay(1), value: isAnimation)
+                        .opacity(moveStraw ? 1 : 0)
+                        .offset(y: moveStraw ? -screenHeight : -10)
+                        .animation(.easeInOut.delay(1), value: moveStraw)
                     }
                     .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
                 }
@@ -125,15 +121,15 @@ struct StrawView: View {
                         .frame(width: 200)
                         .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1), value: isAnimation)
-                        .offset(y: isAnimation ? 0 : dragAmount.height - screenHeight/1.7)
+                        .animation(.easeInOut(duration: 1), value: moveStraw)
+                        .offset(y: moveStraw ? 0 : dragAmount.height - screenHeight/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
                                     if gesture.translation.height > 0 && gesture.translation.height < 240 {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
-                                            isDisplay = true
+                                            viewModel.showWhiteRectangle = false
                                         }
                                     }
                                     isPlug = gesture.translation.height > 150
@@ -141,7 +137,7 @@ struct StrawView: View {
                                 .onEnded { _ in
                                     if isPlug {
                                         withAnimation(.easeInOut(duration: 1)) {
-                                            isAnimation = true
+                                            moveStraw = true
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
                                             viewModel.uppearlVibration()
@@ -151,7 +147,7 @@ struct StrawView: View {
                                         }
                                     } else {
                                         withAnimation(.easeInOut) {
-                                            isDisplay = false
+                                            viewModel.showWhiteRectangle = true
                                         }
                                     }
                                     dragAmount = .zero
@@ -168,7 +164,8 @@ struct StrawView: View {
                                 .onTapGesture {
                                     largePearlIndex += 1
                                 }
-                    BallView(getCurrentPearl: $largePearlIndex, state: $state, pearlContents: pearlContents)
+                    BallView(getCurrentPearl: $largePearlIndex,
+                             state: $goNextView, pearlContents: pearlContents)
                 }
                 HStack {
                     VStack {
@@ -181,15 +178,15 @@ struct StrawView: View {
                 .padding(.top, 48)
             }.navigationBarHidden(true)
                 .onDisappear {
-                    isAnimation = false
-                    isDisplay = false
+                    moveStraw = false
+                    viewModel.showWhiteRectangle = true
                     largePearlIndex = -1
                     viewModel.progress = 0.0
                 }
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(state: $state,
+                DecibelEndingView(state: $goNextView,
                                   wheresentence: random.randomWhere,
                                   whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                   missionTitle: random.randomWhat.missionTitle,
@@ -197,7 +194,7 @@ struct StrawView: View {
                                   missionColor: random.randomWhat.missionColor,
                                   goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(state: $state,
+                CountEndingView(state: $goNextView,
                                 wheresentence: random.randomWhere,
                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                 missionTitle: random.randomWhat.missionTitle,
@@ -212,14 +209,14 @@ struct StrawView: View {
                                 missionColor: random.randomWhat.missionColor,
                                 goal: random.randomWhat.goal!,
                                 timer: Double(random.randomWhat.timer!),
-                                state: $state)
+                                state: $goNextView)
             case .smile:
                 CameraEndingView(wheresentence: random.randomWhere,
                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 state: $state,
+                                 state: $goNextView,
                                  arstate: "smile")
             case .blink:
                 CameraEndingView(wheresentence: random.randomWhere,
@@ -227,7 +224,7 @@ struct StrawView: View {
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 state: $state,
+                                 state: $goNextView,
                                  arstate: "blink")
             }
         }
