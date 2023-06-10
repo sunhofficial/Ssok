@@ -42,7 +42,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
         setPhysicsBody(setNode: leftBorder)
         leftBorder.zRotation = .pi/45
-        leftBorder.position = CGPoint(x: frame.midX - frame.width / 3, y: frame.midY)
+        leftBorder.position = CGPoint(x: frame.midX-120, y: frame.midY)
         addChild(leftBorder)
 
         setPhysicsBody(setNode: leftBottom)
