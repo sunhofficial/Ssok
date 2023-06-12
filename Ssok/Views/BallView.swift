@@ -38,6 +38,7 @@ struct BallView: View {
             withAnimation(.easeInOut(duration: 1)) {
                 if getCurrentPearl >= 2 {
                     state = true
+                    getCurrentPearl = 2
                 } else {
                     getCurrentPearl += 1
                 }
