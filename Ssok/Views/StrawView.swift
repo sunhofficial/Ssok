@@ -11,11 +11,11 @@ import SpriteKit
 struct StrawView: View {
 
     @StateObject private var viewModel = StrawViewModel()
-    @State private var goNextView: Bool = false
-    @State private var moveStraw: Bool = false
-    @State private var largePearlIndex: Int = -1
-    @State private var dragAmount: CGSize = CGSize.zero
-    @State private var isPlug: Bool = false
+    @State private var goNextView = false
+    @State private var moveStraw = false
+    @State private var largePearlIndex = -1
+    @State private var dragAmount = CGSize.zero
+    @State private var isPlug = false
     var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
