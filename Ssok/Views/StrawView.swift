@@ -32,37 +32,29 @@ struct StrawView: View {
             ZStack {
                 LinearGradient(gradient:
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
-                               startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
-                ZStack {
-                    if viewModel.maxProgress != 1 {
-                        Image("imgFirstDrink").offset(y: screenHeight/6.5)
-                    } else {
-                        Image("imgFinalDrink").offset(y: screenHeight/6.5)
-                    }
+                               startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                    Image(viewModel.maxProgress != 1 ? "imgFirstDrink" : "imgFinalDrink")
+                        .offset(y: screenHeight/6.5)
                     SpriteView(
                         scene: scene,
                         options: [.allowsTransparency],
                         shouldRender: {_ in return true}
                     )
-                    .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
+                    .ignoresSafeArea()
+                    .frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
                     .offset(y: (screenHeight/6.5) + 20)
                     Image("imgCupHead").offset(y: (screenHeight/6.5) - 180)
-                }
-                VStack(spacing: 24) {
-                    VStack(spacing: 24) {
+                ZStack {
+                WhiteRectangleView()
+                    .frame(width: 300, height: viewModel.maxProgress == 1 ? 106 : 153)
                         if viewModel.maxProgress == 1 {
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 106)
-                                    .padding(.top, 100)
                                 VStack {
                                     ZStack {
                                         Image("imgPhoneIcon")
-                                            .padding(.top, 50)
+                                            .padding(.top, -60)
                                         Image("imgHandIcon")
-                                            .padding(.top, 70)
+                                            .padding(.top, -47)
                                             .padding(.leading, 30)
                                     }
                                     Text("스트로우를 꼽아주세요!")
@@ -71,11 +63,7 @@ struct StrawView: View {
                                     Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
                                         .font(.system(size: 13, weight: .semibold))
                                 }
-                            }
                         } else {
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 153)
                                 VStack {
                                     Image("imgShakeIcon")
                                         .padding(.top, -60)
@@ -94,10 +82,9 @@ struct StrawView: View {
                                         .scaleEffect(x: 1, y: 2)
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
                                 }
-                            }
-                            .padding(.top, 30)
                         }
                     }
+                    .offset(y: viewModel.maxProgress == 1 ? -185 : -225)
                     .opacity(viewModel.showWhiteRectangle ? 1 : 0)
                     ZStack {
                         VStack {
@@ -114,7 +101,6 @@ struct StrawView: View {
                         .animation(.easeInOut.delay(1), value: moveStraw)
                     }
                     .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
-                }
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
@@ -176,7 +162,8 @@ struct StrawView: View {
                 }
                 .padding(.leading, 8)
                 .padding(.top, 48)
-            }.navigationBarHidden(true)
+            }
+            .navigationBarHidden(true)
                 .onDisappear {
                     moveStraw = false
                     viewModel.showWhiteRectangle = true
@@ -247,5 +234,11 @@ extension StrawView {
                     .bold()
             }
         }
+    }
+}
+struct StrawView_Previews: PreviewProvider {
+    static var previews: some View {
+        StrawView(path: .constant(NavigationPath()))
+            .environmentObject(RandomMember())
     }
 }
