@@ -1,3 +1,4 @@
+
 // GachaView
 // 008
 
@@ -8,17 +9,20 @@ struct BallView: View {
     @Binding var getCurrentPearl: Int
     @Binding var state: Bool
     var pearlContents : [[String]]
+    var cappedCurrentPearl: Int {
+           min(getCurrentPearl, 2)
+       }
 
     var body: some View {
         ZStack {
-            Image(pearlContents[getCurrentPearl][2])
+            Image(pearlContents[cappedCurrentPearl][2])
                 .resizable()
                 .foregroundColor(.yellow)
             VStack {
-                Text(pearlContents[getCurrentPearl][0])
+                Text(pearlContents[cappedCurrentPearl][0])
                     .foregroundColor(.white)
                     .font(.system(size: 24))
-                Text(pearlContents[getCurrentPearl][1])
+                Text(pearlContents[cappedCurrentPearl][1])
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
@@ -36,7 +40,7 @@ struct BallView: View {
         .id(getCurrentPearl)
         .onTapGesture {
             withAnimation(.easeInOut(duration: 1)) {
-                if getCurrentPearl >= 2 {
+                if cappedCurrentPearl >= 2 {
                     state = true
                     getCurrentPearl = 2
                 } else {
