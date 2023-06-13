@@ -28,7 +28,6 @@ struct StrawView: View {
         ]}
 
     var body: some View {
-        if !goNextView {
             ZStack {
                 LinearGradient(gradient:
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
@@ -170,52 +169,53 @@ struct StrawView: View {
                     largePearlIndex = -1
                     viewModel.progress = 0.0
                 }
-        } else {
-            switch random.randomWhat.missionType {
-            case .decibel:
-                DecibelEndingView(state: $goNextView,
-                                  wheresentence: random.randomWhere,
-                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                  missionTitle: random.randomWhat.missionTitle,
-                                  missionTip: random.randomWhat.missionTip,
-                                  missionColor: random.randomWhat.missionColor,
-                                  goal: random.randomWhat.goal!)
-            case .shake:
-                CountEndingView(state: $goNextView,
-                                wheresentence: random.randomWhere,
-                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                missionTitle: random.randomWhat.missionTitle,
-                                missionTip: random.randomWhat.missionTip,
-                                missionColor: random.randomWhat.missionColor,
-                                goalCount: random.randomWhat.goal!)
-            case .voice:
-                SpeakEndingView(wheresentence: random.randomWhere,
-                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                missionTitle: random.randomWhat.missionTitle,
-                                missionTip: random.randomWhat.missionTip,
-                                missionColor: random.randomWhat.missionColor,
-                                goal: random.randomWhat.goal!,
-                                timer: Double(random.randomWhat.timer!),
-                                state: $goNextView)
-            case .smile:
-                CameraEndingView(wheresentence: random.randomWhere,
-                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                 missionTitle: random.randomWhat.missionTitle,
-                                 missionTip: random.randomWhat.missionTip,
-                                 missionColor: random.randomWhat.missionColor,
-                                 state: $goNextView,
-                                 arstate: "smile")
-            case .blink:
-                CameraEndingView(wheresentence: random.randomWhere,
-                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                 missionTitle: random.randomWhat.missionTitle,
-                                 missionTip: random.randomWhat.missionTip,
-                                 missionColor: random.randomWhat.missionColor,
-                                 state: $goNextView,
-                                 arstate: "blink")
-            }
+                .fullScreenCover(isPresented: self.$goNextView) {
+                    switch random.randomWhat.missionType {
+                    case .decibel:
+                        DecibelEndingView(state: $goNextView,
+                                          wheresentence: random.randomWhere,
+                                          whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                          missionTitle: random.randomWhat.missionTitle,
+                                          missionTip: random.randomWhat.missionTip,
+                                          missionColor: random.randomWhat.missionColor,
+                                          goal: random.randomWhat.goal!)
+                    case .shake:
+                        CountEndingView(state: $goNextView,
+                                        wheresentence: random.randomWhere,
+                                        whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                        missionTitle: random.randomWhat.missionTitle,
+                                        missionTip: random.randomWhat.missionTip,
+                                        missionColor: random.randomWhat.missionColor,
+                                        goalCount: random.randomWhat.goal!)
+                    case .voice:
+                        SpeakEndingView(wheresentence: random.randomWhere,
+                                        whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                        missionTitle: random.randomWhat.missionTitle,
+                                        missionTip: random.randomWhat.missionTip,
+                                        missionColor: random.randomWhat.missionColor,
+                                        goal: random.randomWhat.goal!,
+                                        timer: Double(random.randomWhat.timer!),
+                                        state: $goNextView)
+                    case .smile:
+                        CameraEndingView(wheresentence: random.randomWhere,
+                                         whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                         missionTitle: random.randomWhat.missionTitle,
+                                         missionTip: random.randomWhat.missionTip,
+                                         missionColor: random.randomWhat.missionColor,
+                                         state: $goNextView,
+                                         arstate: "smile")
+                    case .blink:
+                        CameraEndingView(wheresentence: random.randomWhere,
+                                         whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
+                                         missionTitle: random.randomWhat.missionTitle,
+                                         missionTip: random.randomWhat.missionTip,
+                                         missionColor: random.randomWhat.missionColor,
+                                         state: $goNextView,
+                                         arstate: "blink")
+                    }
+                }
         }
-    }
+
 }
 extension StrawView {
     var backButton: some View {

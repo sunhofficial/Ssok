@@ -15,6 +15,7 @@ struct DecibelEndingView: View {
     @State var whatsentence: String = ""
     @State var missionTitle: String
     @State var missionTip: String
+    @State var showModal = false
     @State var missionColor: Color
     @State var goal: String = ""
     @EnvironmentObject var random: RandomMember
@@ -107,12 +108,7 @@ struct DecibelEndingView: View {
                 .offset(y: 32)
             }
             .offset(y: 150)
-            NavigationLink(destination:
-                            MissionDecibelView(
-                                title: missionTitle,
-                                missionColor: missionColor,
-                                goal: goal,
-                                state: $state)) {
+            Button(action: {showModal = true}) {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -121,6 +117,9 @@ struct DecibelEndingView: View {
                     .cornerRadius(12)
             }
             .position(x: screenWidth/2, y: screenHeight-59)
+            .fullScreenCover(isPresented: $showModal) {
+                MissionDecibelView(title: missionTitle, missionColor: missionColor, goal: goal, state: $state)
+            }
         }
         .ignoresSafeArea(.all)
         .navigationBarHidden(true)
