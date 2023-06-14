@@ -5,46 +5,45 @@ import SwiftUI
 
 struct BallView: View {
 
-    @Binding var getCurrentBall: Bool
-    @Binding var getNextBall: Bool
+    @Binding var getCurrentPearl: Int
     @Binding var state: Bool
-    @State var stBool: Bool
-    @State var ballTitle: String
-    @State var contents: String
-    @State var pearlImage: String = "imgBackPearl1"
+    var pearlContents : [[String]]
+    var cappedCurrentPearl: Int {
+           min(getCurrentPearl, 2)
+       }
 
     var body: some View {
-        if getCurrentBall {
-            ZStack {
-                Image(pearlImage)
-                    .resizable()
-                    .foregroundColor(.yellow)
-                VStack {
-                    Text(ballTitle)
-                        .foregroundColor(.white)
-                        .font(.system(size: 24))
-                    Text(contents)
-                        .font(.system(size: 80, weight: .bold))
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.1)
-                        .frame(width: screenWidth / 1.6, height: screenWidth / 2.5)
-                        .foregroundColor(.white)
-                    Text("Touch!")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                        .opacity(0.5)
-                }
+        ZStack {
+            Image(pearlContents[cappedCurrentPearl][2])
+                .resizable()
+                .foregroundColor(.yellow)
+            VStack {
+                Text(pearlContents[cappedCurrentPearl][0])
+                    .foregroundColor(.white)
+                    .font(.system(size: 24))
+                Text(pearlContents[cappedCurrentPearl][1])
+                    .font(.system(size: 80, weight: .bold))
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.1)
+                    .frame(width: screenWidth / 1.6, height: screenWidth / 2.5)
+                    .foregroundColor(.white)
+                Text("Touch!")
+                    .foregroundColor(.white)
+                    .font(.system(size: 20))
+                    .opacity(0.5)
             }
-            .frame(width: screenWidth / 1.2, height: screenWidth / 1.2)
-            .transition(.asymmetric(insertion: .offset(y: -screenHeight), removal: .offset(y: screenHeight)))
-            .zIndex(1)
-            .onTapGesture {
-                withAnimation(.easeInOut(duration: 1)) {
-                    getCurrentBall = false
-                    getNextBall = true
-                }
-                withAnimation(.linear) {
-                    state = stBool
+        }
+        .frame(width: screenWidth / 1.2, height: screenWidth / 1.2)
+        .transition(.asymmetric(insertion: .offset(y: -screenHeight), removal: .offset(y: screenHeight)))
+        .zIndex(1)
+        .id(getCurrentPearl)
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 1)) {
+                if cappedCurrentPearl >= 2 {
+                    state = true
+                    getCurrentPearl = 2
+                } else {
+                    getCurrentPearl += 1
                 }
             }
         }
