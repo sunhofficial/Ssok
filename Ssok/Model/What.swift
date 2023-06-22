@@ -22,6 +22,11 @@ struct Mission {
     var arstate: String?
 }
 
+struct DecibelMission {
+
+}
+
+
 let missions = [
     Mission(missionType: .decibel,
         missionTitle: "소리 지르기 💥",

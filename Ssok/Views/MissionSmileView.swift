@@ -9,23 +9,11 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State private var currentTime = Date()
+    @State var cameraState: Bool = false
+    @State var ARstate: String = ""
 
     let date = Date()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-    @State var isSmile: Bool = false
-    @State var isBlink: Bool = false
-    @State var timeRemaining: Int = 100
-    @State var blinkCount: Int = 0
-    @State var smileCount: Int = 0
-    @State var camerast: Bool = false
-    @State var ARstate: String = ""
-    @State var cameraState: Bool = false
-    @State var smileState: Bool = false
-    @State private var isLoading = false
-    @State var delay: Int = 2
-    @State var count: Int = 0
 
     @Environment(\.presentationMode) var mode
     @EnvironmentObject var arViewModel: ARViewModel
@@ -73,11 +61,9 @@ struct MissionSmileView: View {
                         }
                     }
                 }
-                .onChange(of: arViewModel.isSmiling) { _ in
-                    calcRemain()
-                }
             }
     }
+
     func smCount() -> String {
         arViewModel.smileCount += 1
         if arViewModel.smileCount > 30 {
@@ -90,6 +76,7 @@ struct MissionSmileView: View {
         }
         return ""
     }
+
     func blCount() -> String {
         arViewModel.blinkCount += 1
         if arViewModel.blinkCount > 30 {
@@ -107,34 +94,6 @@ struct MissionSmileView: View {
         arViewModel.smileCount = 0
         arViewModel.blinkCount = 0
         return ""
-    }
-
-    func convertSecondsToTime(timeInSeconds: Int) -> String {
-        let hours = timeInSeconds / 3600
-        let minutes = (timeInSeconds - hours*3600) / 60
-        let seconds = timeInSeconds % 60
-        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
-    }
-
-    func calcRemain() {
-        let calendar = Calendar.current
-        let targetTime: Date = calendar.date(byAdding: .second,
-                                             value: 2,
-                                             to: date,
-                                             wrappingComponents: false) ?? Date()
-        let remainSeconds = Int(targetTime.timeIntervalSince(date))
-        self.timeRemaining = remainSeconds
-    }
-
-    func getFormattedTime() -> String {
-        updateTime()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .long
-        return formatter.string(from: currentTime)
-        }
-
-    func updateTime() {
-            currentTime = Date()
     }
 }
 
