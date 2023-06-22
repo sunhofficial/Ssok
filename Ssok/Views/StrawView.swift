@@ -6,63 +6,55 @@
 //
 
 import SwiftUI
-import CoreMotion
 import SpriteKit
 
 struct StrawView: View {
 
-    let motionmanager = CMMotionManager()
     @StateObject private var viewModel = StrawViewModel()
-    @State var state: Bool = false
-    @State var isAnimation: Bool = false
-    @State var isDisplay: Bool = false
-    @State var getFirstBall: Bool = false
-    @State var getSecondBall: Bool = false
-    @State var getThirdBall: Bool = false
-    @State var dragAmount: CGSize = CGSize.zero
-    @State var isPlug: Bool = false
-    @State var previousview: Bool = false
+    @State private var goNextView = false
+    @State private var moveStraw = false
+    @State private var largePearlIndex = -1
+    @State private var dragAmount = CGSize.zero
+    @State private var isPlug = false
     var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
     @Binding var path: NavigationPath
+    private var pearlContents : [[String]] {
+        [
+        ["Who?",random.randomWho, "imgBackPearl1" ],
+        ["Where?", random.randomWhere, "imgBackPearl2"],
+        ["What?",String(random.randomWhat.missionTitle.dropLast(2)),"imgBackPearl1" ]
+        ]}
 
     var body: some View {
-        if !state {
+        if !goNextView {
             ZStack {
                 LinearGradient(gradient:
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
-                               startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
-                ZStack {
-                    if viewModel.maxProgress != 1 {
-                        Image("imgFirstDrink").position(CGPoint(x: screenWidth/2, y: 552.5))
-                    } else {
-                        Image("imgFinalDrink").position(CGPoint(x: screenHeight/2, y: 552.5))
-                    }
+                               startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                    Image(viewModel.maxProgress != 1 ? "imgFirstDrink" : "imgFinalDrink")
+                        .offset(y: screenHeight/6.5)
                     SpriteView(
                         scene: scene,
                         options: [.allowsTransparency],
                         shouldRender: {_ in return true}
                     )
-                    .ignoresSafeArea().frame(width: screenWidth, height: screenHeight)
+                    .ignoresSafeArea()
+                    .frame(width: screenWidth, height: screenHeight)
                     .aspectRatio(contentMode: .fit)
-                    .offset(y: 17)
-                    Image("imgCupHead").position(CGPoint(x: screenWidth/2, y: 373))
-                }
-                VStack(spacing: 24) {
-                    VStack(spacing: 24) {
+                    .offset(y: (screenHeight/6.5) + 20)
+                    Image("imgCupHead").offset(y: (screenHeight/6.5) - 180)
+                ZStack {
+                WhiteRectangleView()
+                    .frame(width: 300, height: viewModel.maxProgress == 1 ? 106 : 153)
                         if viewModel.maxProgress == 1 {
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 106)
-                                    .padding(.top, 100)
                                 VStack {
                                     ZStack {
                                         Image("imgPhoneIcon")
-                                            .padding(.top, 50)
+                                            .padding(.top, -60)
                                         Image("imgHandIcon")
-                                            .padding(.top, 70)
+                                            .padding(.top, -47)
                                             .padding(.leading, 30)
                                     }
                                     Text("스트로우를 꼽아주세요!")
@@ -71,11 +63,7 @@ struct StrawView: View {
                                     Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
                                         .font(.system(size: 13, weight: .semibold))
                                 }
-                            }
                         } else {
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 153)
                                 VStack {
                                     Image("imgShakeIcon")
                                         .padding(.top, -60)
@@ -94,43 +82,40 @@ struct StrawView: View {
                                         .scaleEffect(x: 1, y: 2)
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
                                 }
-                            }
-                            .padding(.top, 30)
                         }
                     }
-                    .opacity(isDisplay ? 0 : 1)
+                    .offset(y: viewModel.maxProgress == 1 ? -185 : -225)
+                    .opacity(viewModel.showWhiteRectangle ? 1 : 0)
                     ZStack {
                         VStack {
                             Spacer()
-                            Image("imgPearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.4), value: isAnimation)
-                            Image("imgPearl2")
-                                .animation(.easeOut(duration: 1.5).delay(1.6), value: isAnimation)
-                            Image("imgPearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.8), value: isAnimation)
+                            ForEach(0..<3) { index in
+                                Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
+                                    .animation(.easeOut(duration: 1.5)
+                                        .delay(1.4 + Double(index) * 0.2), value: moveStraw)
+                            }
                         }
                         .frame(width: 28)
-                        .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -screenHeight : -10)
-                        .animation(.easeInOut.delay(1), value: isAnimation)
+                        .opacity(moveStraw ? 1 : 0)
+                        .offset(y: moveStraw ? -screenHeight : -10)
+                        .animation(.easeInOut.delay(1), value: moveStraw)
                     }
-                    .frame(width: UIScreen.main.bounds.width / 1.3, height: UIScreen.main.bounds.height / 1.8)
-                }
+                    .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
                         .frame(width: 200)
                         .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1), value: isAnimation)
-                        .offset(y: isAnimation ? 0 : dragAmount.height - screenHeight/1.7)
+                        .animation(.easeInOut(duration: 1), value: moveStraw)
+                        .offset(y: moveStraw ? 0 : dragAmount.height - screenHeight/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
                                     if gesture.translation.height > 0 && gesture.translation.height < 240 {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
-                                            isDisplay = true
+                                            viewModel.showWhiteRectangle = false
                                         }
                                     }
                                     isPlug = gesture.translation.height > 150
@@ -138,26 +123,17 @@ struct StrawView: View {
                                 .onEnded { _ in
                                     if isPlug {
                                         withAnimation(.easeInOut(duration: 1)) {
-                                            isAnimation = true
+                                            moveStraw = true
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
+                                            viewModel.uppearlVibration()
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
-                                            getFirstBall = true
+                                            largePearlIndex = 0
                                         }
                                     } else {
                                         withAnimation(.easeInOut) {
-                                            isDisplay = false
+                                            viewModel.showWhiteRectangle = true
                                         }
                                     }
                                     dragAmount = .zero
@@ -167,37 +143,16 @@ struct StrawView: View {
                         .animation(.spring(), value: dragAmount)
                     Image("cutCup").position(x: screenWidth/2, y: 377)
                 }
-                Color(.white)
-                    .edgesIgnoringSafeArea(.all)
-                    .opacity(isAnimation ? 0.5 : 0)
-                    .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
-                BallView(
-                    getCurrentBall: $getFirstBall,
-                    getNextBall: $getSecondBall,
-                    state: $state,
-                    stBool: false,
-                    ballTitle: "Who?",
-                    contents: random.randomWho,
-                    pearlImage: "imgBackPearl1"
-                )
-                BallView(
-                    getCurrentBall: $getSecondBall,
-                    getNextBall: $getThirdBall,
-                    state: $state,
-                    stBool: false,
-                    ballTitle: "Where?",
-                    contents: random.randomWhere,
-                    pearlImage: "imgBackPearl2"
-                )
-                BallView(
-                    getCurrentBall: $getThirdBall,
-                    getNextBall: $getThirdBall,
-                    state: $state,
-                    stBool: true,
-                    ballTitle: "What?",
-                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
-                    pearlImage: "imgBackPearl1"
-                )
+                if largePearlIndex >= 0 {
+                    Color(.white)
+                                .edgesIgnoringSafeArea(.all)
+                                .opacity(0.5)
+                                .onTapGesture {
+                                    largePearlIndex += 1
+                                }
+                    BallView(getCurrentPearl: $largePearlIndex,
+                             state: $goNextView, pearlContents: pearlContents)
+                }
                 HStack {
                     VStack {
                         backButton
@@ -207,22 +162,18 @@ struct StrawView: View {
                 }
                 .padding(.leading, 8)
                 .padding(.top, 48)
-            }.navigationBarHidden(true)
-                .onAppear {
-                    viewModel.startupdatingMotion()
-                }
+            }
+            .navigationBarHidden(true)
                 .onDisappear {
-                    isAnimation = false
-                    isDisplay = false
-                    getFirstBall = false
-                    getSecondBall = false
-                    getThirdBall = false
+                    moveStraw = false
+                    viewModel.showWhiteRectangle = true
+                    largePearlIndex = -1
                     viewModel.progress = 0.0
                 }
         } else {
             switch random.randomWhat.missionType {
             case .decibel:
-                DecibelEndingView(state: $state,
+                DecibelEndingView(state: $goNextView,
                                   wheresentence: random.randomWhere,
                                   whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                   missionTitle: random.randomWhat.missionTitle,
@@ -230,7 +181,7 @@ struct StrawView: View {
                                   missionColor: random.randomWhat.missionColor,
                                   goal: random.randomWhat.goal!)
             case .shake:
-                CountEndingView(state: $state,
+                CountEndingView(state: $goNextView,
                                 wheresentence: random.randomWhere,
                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                 missionTitle: random.randomWhat.missionTitle,
@@ -245,14 +196,14 @@ struct StrawView: View {
                                 missionColor: random.randomWhat.missionColor,
                                 goal: random.randomWhat.goal!,
                                 timer: Double(random.randomWhat.timer!),
-                                state: $state)
+                                state: $goNextView)
             case .smile:
                 CameraEndingView(wheresentence: random.randomWhere,
                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 state: $state,
+                                 state: $goNextView,
                                  arstate: "smile")
             case .blink:
                 CameraEndingView(wheresentence: random.randomWhere,
@@ -260,7 +211,7 @@ struct StrawView: View {
                                  missionTitle: random.randomWhat.missionTitle,
                                  missionTip: random.randomWhat.missionTip,
                                  missionColor: random.randomWhat.missionColor,
-                                 state: $state,
+                                 state: $goNextView,
                                  arstate: "blink")
             }
         }
@@ -283,5 +234,11 @@ extension StrawView {
                     .bold()
             }
         }
+    }
+}
+struct StrawView_Previews: PreviewProvider {
+    static var previews: some View {
+        StrawView(path: .constant(NavigationPath()))
+            .environmentObject(RandomMember())
     }
 }
