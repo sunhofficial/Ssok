@@ -15,6 +15,7 @@ struct CameraEndingView: View {
     @ObservedObject var ARview: ARViewModel = ARViewModel()
     @StateObject var permissionManager = PermissionManager()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State private var isPresented = false
     @State var missionTitle: String
     @State var missionTip: String
     @State var missionColor: Color
@@ -119,8 +120,7 @@ struct CameraEndingView: View {
             }.offset(y: 150)
 
             Button {
-                // 첫 번째 액션
-                ARview.ARFrame = true
+                self.isPresented.toggle()
             } label: {
                 Text("미션하기")
                     .foregroundColor(.white)
@@ -130,10 +130,10 @@ struct CameraEndingView: View {
                     .cornerRadius(12)
             }
             .position(x: screenWidth/2, y: screenHeight-103)
-
-            if ARview.ARFrame == true {
-                CameraView(arstate: arstate, cameraState: $cameraState).environmentObject(ARview)
+            .fullScreenCover(isPresented: $isPresented){
+                MissionSmileView(ARstate: arstate, state: $state)
             }
+
         }
         .navigationBarHidden(true)
     }
