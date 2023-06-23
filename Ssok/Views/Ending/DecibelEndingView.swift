@@ -63,7 +63,7 @@ struct DecibelEndingView: View {
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
                     .position(x: screenWidth/1.81, y: 210)
-                Text(String(random.randomWhat.missionTitle.dropLast(2)))
+                Text(String(random.randomWhat.missionDetail.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)
@@ -107,12 +107,24 @@ struct DecibelEndingView: View {
                 .offset(y: 32)
             }
             .offset(y: 150)
-            NavigationLink(destination:
-                            MissionDecibelView(
-                                title: missionTitle,
-                                missionColor: missionColor,
-                                goal: goal,
-                                state: $state)) {
+            NavigationLink {
+                switch random.randomWhat.missionType {
+                case .decibel:
+                    MissionDecibelView(title: missionTitle,
+                                       missionColor: missionColor,
+                                       goal: random.randomWhat.detail["goal"] ?? "",
+                                       state: $state)
+                case .voice:
+                    MissionSpeechView(missionTitle: missionTitle,
+                                      missionTip: missionTip,
+                                      missionColor: missionColor,
+                                      answerText: random.randomWhat.detail["goal"] ?? "",
+                                      speechTime: Double(random.randomWhat.detail["timer"] ?? "30")!,
+                                      state: $state)
+                default:
+                    Text("안됨")
+                }
+            } label: {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
