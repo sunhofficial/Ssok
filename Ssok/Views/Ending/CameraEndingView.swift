@@ -23,7 +23,6 @@ struct CameraEndingView: View {
     @State var cameraState: Bool = false
 
     var body: some View {
-
         ZStack {
             ZStack(alignment: .top) {
                 Image("imgEndingTop")

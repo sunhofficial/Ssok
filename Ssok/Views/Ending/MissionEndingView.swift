@@ -1,5 +1,5 @@
 //
-//  DecibelEndingView.swift
+//  MissionEndingView.swift
 //  Ssok
 //
 //  Created by 김용주 on 2023/05/14.
@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct DecibelEndingView: View {
-
+struct MissionEndingView: View {
     @Binding var state: Bool
     @State var next = false
     @State var wheresentence: String = ""
@@ -114,6 +113,11 @@ struct DecibelEndingView: View {
                                        missionColor: missionColor,
                                        goal: random.randomWhat.detail["goal"] ?? "",
                                        state: $state)
+                case .shake:
+                    MissionPedometerView(title: missionTitle,
+                                         titleColor: missionColor,
+                                         goalCount: random.randomWhat.detail["goal"] ?? "",
+                                         state: $state)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
                                       missionTip: missionTip,
@@ -122,7 +126,7 @@ struct DecibelEndingView: View {
                                       speechTime: Double(random.randomWhat.detail["timer"] ?? "30")!,
                                       state: $state)
                 default:
-                    Text("안됨")
+                    EmptyView()
                 }
             } label: {
                 Text("미션하기")

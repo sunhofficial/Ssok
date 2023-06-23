@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		10882FA32A2B1B0100B76C24 /* BottleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */; };
 		10BCD2E32A11149700303334 /* MissionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E22A11149700303334 /* MissionCompleteView.swift */; };
-		10BCD2E62A1124A600303334 /* DecibelEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E52A1124A600303334 /* DecibelEndingView.swift */; };
+		10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E52A1124A600303334 /* MissionEndingView.swift */; };
 		10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E72A1124C700303334 /* CameraEndingView.swift */; };
 		10BCD2EA2A1124DE00303334 /* CountEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E92A1124DE00303334 /* CountEndingView.swift */; };
 		10BCD2EC2A1124F000303334 /* SpeakEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */; };
@@ -59,7 +59,7 @@
 /* Begin PBXFileReference section */
 		10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleViewModel.swift; sourceTree = "<group>"; };
 		10BCD2E22A11149700303334 /* MissionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCompleteView.swift; sourceTree = "<group>"; };
-		10BCD2E52A1124A600303334 /* DecibelEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelEndingView.swift; sourceTree = "<group>"; };
+		10BCD2E52A1124A600303334 /* MissionEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionEndingView.swift; sourceTree = "<group>"; };
 		10BCD2E72A1124C700303334 /* CameraEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEndingView.swift; sourceTree = "<group>"; };
 		10BCD2E92A1124DE00303334 /* CountEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountEndingView.swift; sourceTree = "<group>"; };
 		10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakEndingView.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		10BCD2E42A11245E00303334 /* Ending */ = {
 			isa = PBXGroup;
 			children = (
-				10BCD2E52A1124A600303334 /* DecibelEndingView.swift */,
+				10BCD2E52A1124A600303334 /* MissionEndingView.swift */,
 				10BCD2E72A1124C700303334 /* CameraEndingView.swift */,
 				10BCD2E92A1124DE00303334 /* CountEndingView.swift */,
 				10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */,
@@ -373,7 +373,7 @@
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,
 				10882FA32A2B1B0100B76C24 /* BottleViewModel.swift in Sources */,
 				AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */,
-				10BCD2E62A1124A600303334 /* DecibelEndingView.swift in Sources */,
+				10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */,
 				AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */,
 				10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,

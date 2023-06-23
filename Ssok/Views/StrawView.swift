@@ -171,7 +171,7 @@ struct StrawView: View {
                     viewModel.progress = 0.0
                 }
         } else {
-            DecibelEndingView(state: $goNextView,
+            MissionEndingView(state: $goNextView,
                               missionTitle: random.randomWhat.missionDetail.missionTitle,
                               missionTip: random.randomWhat.missionDetail.missionTip,
                               missionColor: random.randomWhat.missionDetail.missionColor)
