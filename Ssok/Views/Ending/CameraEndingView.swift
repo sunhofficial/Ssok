@@ -12,7 +12,6 @@ struct CameraEndingView: View {
     @State var wheresentence: String = ""
     @State var whatsentence: String = ""
     @EnvironmentObject var random: RandomMember
-    @ObservedObject var ARview: ARViewModel = ARViewModel()
     @StateObject var permissionManager = PermissionManager()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var isPresented = false
@@ -120,7 +119,7 @@ struct CameraEndingView: View {
             }.offset(y: 150)
 
             Button {
-                self.isPresented.toggle()
+               isPresented.toggle()
             } label: {
                 Text("미션하기")
                     .foregroundColor(.white)

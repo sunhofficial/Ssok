@@ -13,7 +13,7 @@ struct MissionSmileView: View {
     @Binding var state: Bool
 
     @Environment(\.presentationMode) var mode
-    @EnvironmentObject var arViewModel: ARViewModel
+    @ObservedObject var arViewModel: ARViewModel = ARViewModel()
     @StateObject var navi = NaviObservableObject()
 
     var body: some View {
