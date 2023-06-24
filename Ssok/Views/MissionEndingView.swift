@@ -140,7 +140,6 @@ struct MissionEndingView: View {
                     .cornerRadius(12)
             }
             .position(x: screenWidth/2, y: screenHeight-59)
-//            .position(x: screenWidth/2, y: screenHeight-103)
             .fullScreenCover(isPresented: $isPresented){
                 let mission = random.randomWhat.missionType
                 switch mission {
@@ -161,7 +160,7 @@ struct MissionEndingView: View {
                                         .missionDetail[MissionDetail.timer] ?? "30")!,
                                       state: $state)
                 case .smile, .blink:
-                    MissionSmileView(ARstate: random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
+                    MissionSmileView(arState: random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
                                      state: $state
                     )
                 }

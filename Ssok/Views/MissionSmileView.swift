@@ -9,12 +9,11 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State var ARstate: String = ""
+    @State var arState: String = ""
     @Binding var state: Bool
 
     @Environment(\.presentationMode) var mode
     @ObservedObject var arViewModel: ARViewModel = ARViewModel()
-    @StateObject var navi = NaviObservableObject()
 
     var body: some View {
             ZStack {
@@ -22,12 +21,12 @@ struct MissionSmileView: View {
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    if ARstate == "smile" {
-                        if !arViewModel.asyncissmileCount {
+                    if arState == "smile" {
+                        if !arViewModel.asyncIsSmileCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isSmiling ?
-                                "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount()
+                                "한 번 더 메롱 😝" + smCount() : "화면을 보고 혀를 내미세요" + flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isSmiling ? .green : .red)
@@ -39,12 +38,12 @@ struct MissionSmileView: View {
                                                       background: Color.mint,
                                                       state: $state)
                         }
-                    } else if ARstate == "blink"{
-                        if !arViewModel.asyncisblinkCount {
+                    } else if arState == "blink"{
+                        if !arViewModel.asyncIsBlinkCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isBlinking ?
-                                "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount()
+                                "한 번 더 윙크!😜" + blCount() : "화면을 보고 윙크하세요" + flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isBlinking ? .green : .red)
@@ -64,12 +63,12 @@ struct MissionSmileView: View {
     func smCount() -> String {
         arViewModel.smileCount += 1
         if arViewModel.smileCount > 30 {
-            arViewModel.asyncsmileCount += 1
+            arViewModel.asyncSmileCount += 1
             arViewModel.smileCount = 0
         }
-        if arViewModel.asyncsmileCount >= 2 {
-            arViewModel.asyncsmileCount = 2
-            arViewModel.asyncissmileCount = true
+        if arViewModel.asyncSmileCount >= 2 {
+            arViewModel.asyncSmileCount = 2
+            arViewModel.asyncIsSmileCount = true
         }
         return ""
     }
@@ -77,12 +76,12 @@ struct MissionSmileView: View {
     func blCount() -> String {
         arViewModel.blinkCount += 1
         if arViewModel.blinkCount > 30 {
-            arViewModel.asyncblinkCount += 1
+            arViewModel.asyncBlinkCount += 1
             arViewModel.blinkCount = 0
         }
-        if arViewModel.asyncblinkCount >= 2 {
-            arViewModel.asyncblinkCount = 2
-            arViewModel.asyncisblinkCount = true
+        if arViewModel.asyncBlinkCount >= 2 {
+            arViewModel.asyncBlinkCount = 2
+            arViewModel.asyncIsBlinkCount = true
         }
         return ""
     }

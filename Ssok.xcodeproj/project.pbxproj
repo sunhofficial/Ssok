@@ -21,10 +21,7 @@
 		7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */; };
 		7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */; };
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
-		7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5722A02B18100AAC279 /* GachaViewModel.swift */; };
 		7C9654C52A133BDB00779750 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9654C42A133BDB00779750 /* Permission.swift */; };
-		7C9654CF2A13A38900779750 /* NaviViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9654CE2A13A38900779750 /* NaviViewModel.swift */; };
-		7C9654D12A13B0E800779750 /* NaviLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9654D02A13B0E800779750 /* NaviLink.swift */; };
 		7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764162A117D3F007E2C3A /* MissionSmileView.swift */; };
 		7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764182A117D58007E2C3A /* ARViewModel.swift */; };
 		7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641A2A117D6B007E2C3A /* ARModel.swift */; };
@@ -67,10 +64,7 @@
 		7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewModel.swift; sourceTree = "<group>"; };
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
-		7C94D5722A02B18100AAC279 /* GachaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GachaViewModel.swift; sourceTree = "<group>"; };
 		7C9654C42A133BDB00779750 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
-		7C9654CE2A13A38900779750 /* NaviViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewModel.swift; sourceTree = "<group>"; };
-		7C9654D02A13B0E800779750 /* NaviLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviLink.swift; sourceTree = "<group>"; };
 		7CF764162A117D3F007E2C3A /* MissionSmileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSmileView.swift; sourceTree = "<group>"; };
 		7CF764182A117D58007E2C3A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		7CF7641A2A117D6B007E2C3A /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
@@ -201,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */,
-				7C94D5722A02B18100AAC279 /* GachaViewModel.swift */,
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomMember.swift */,
@@ -210,7 +203,6 @@
 				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
 				7C9654C42A133BDB00779750 /* Permission.swift */,
-				7C9654CE2A13A38900779750 /* NaviViewModel.swift */,
 				10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */,
 			);
 			path = ViewModel;
@@ -225,7 +217,6 @@
 				10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */,
 				AB4652AB2A0B700700268304 /* Who.swift */,
 				7CF7641A2A117D6B007E2C3A /* ARModel.swift */,
-				7C9654D02A13B0E800779750 /* NaviLink.swift */,
 				AB08B5A72A2F96480086B8F9 /* ViewType.swift */,
 			);
 			path = Model;
@@ -329,7 +320,6 @@
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
 				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
-				7C9654CF2A13A38900779750 /* NaviViewModel.swift in Sources */,
 				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
 				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
@@ -344,7 +334,6 @@
 				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */,
 				7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */,
-				7C94D5732A02B18100AAC279 /* GachaViewModel.swift in Sources */,
 				7C94D5632A02AE5E00AAC279 /* BallView.swift in Sources */,
 				10882FA32A2B1B0100B76C24 /* BottleViewModel.swift in Sources */,
 				AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */,
@@ -357,7 +346,6 @@
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				C75FB6872A34D1F80031B070 /* StrawView.swift in Sources */,
 				7C587D5A2A47435000D7B9DD /* MissionTypeView.swift in Sources */,
-				7C9654D12A13B0E800779750 /* NaviLink.swift in Sources */,
 				7C9654C52A133BDB00779750 /* Permission.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
 				C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */,
