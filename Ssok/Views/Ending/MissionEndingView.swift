@@ -17,6 +17,7 @@ struct MissionEndingView: View {
     @State var missionColor: Color
     @State var goal: String = ""
     @EnvironmentObject var random: RandomMember
+    @ObservedObject var ARview: ARViewModel = ARViewModel()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
@@ -81,10 +82,28 @@ struct MissionEndingView: View {
                     .frame(width: 50, height: 50)
             }
             VStack(spacing: 8) {
-                Text("데시벨 측정기")
-                    .font(.system(size: 24, weight: .black))
-                Text("미션을 성공하려면 데시벨을 충족시켜야해요")
-                    .font(.system(size: 13, weight: .light))
+                switch random.randomWhat.missionType {
+                case .decibel:
+                    Text("데시벨 측정기")
+                        .font(.system(size: 24, weight: .black))
+                    Text("미션을 성공하려면 데시벨을 충족시켜야해요")
+                        .font(.system(size: 13, weight: .light))
+                case .shake:
+                    Text("만보기")
+                        .font(.system(size: 24, weight: .black))
+                    Text("춤을 춰서 만보기의 횟수를 채워야해요")
+                        .font(.system(size: 13, weight: .light))
+                case .voice:
+                    Text("따라 읽기")
+                        .font(.system(size: 24, weight: .black))
+                    Text("주어진 문장을 정확하게 따라 읽어서 인식시켜요")
+                        .font(.system(size: 13, weight: .light))
+                default:
+                    Text("얼굴 인식")
+                        .font(.system(size: 24, weight: .black))
+                    Text("미션을 성공하려면 얼굴을 인식해야해요.")
+                        .font(.system(size: 13, weight: .light))
+                }
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
@@ -106,7 +125,38 @@ struct MissionEndingView: View {
                 .offset(y: 32)
             }
             .offset(y: 150)
-            NavigationLink {
+//            NavigationLink {
+//                switch random.randomWhat.missionType {
+//                case .decibel:
+//                    MissionDecibelView(title: missionTitle,
+//                                       missionColor: missionColor,
+//                                       goal: random.randomWhat.detail["goal"] ?? "",
+//                                       state: $state)
+//                case .shake:
+//                    MissionPedometerView(title: missionTitle,
+//                                         titleColor: missionColor,
+//                                         goalCount: random.randomWhat.detail["goal"] ?? "",
+//                                         state: $state)
+//                case .voice:
+//                    MissionSpeechView(missionTitle: missionTitle,
+//                                      missionTip: missionTip,
+//                                      missionColor: missionColor,
+//                                      answerText: random.randomWhat.detail["goal"] ?? "",
+//                                      speechTime: Double(random.randomWhat.detail["timer"] ?? "30")!,
+//                                      state: $state)
+//                default:
+//                    EmptyView()
+//                }
+//            } label: {
+//                Text("미션하기")
+//                    .foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+//                    .background(Color("Bg_bottom2"))
+//                    .cornerRadius(12)
+//            }
+
+            NavigationLink(destination: {
                 switch random.randomWhat.missionType {
                 case .decibel:
                     MissionDecibelView(title: missionTitle,
@@ -128,14 +178,14 @@ struct MissionEndingView: View {
                 default:
                     EmptyView()
                 }
-            } label: {
+            }, label: {
                 Text("미션하기")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
-            }
+            })
             .position(x: screenWidth/2, y: screenHeight-59)
         }
         .ignoresSafeArea(.all)

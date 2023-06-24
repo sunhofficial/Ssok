@@ -23,6 +23,7 @@ struct CameraEndingView: View {
     @State var cameraState: Bool = false
 
     var body: some View {
+
         ZStack {
             ZStack(alignment: .top) {
                 Image("imgEndingTop")
@@ -130,9 +131,9 @@ struct CameraEndingView: View {
             }
             .position(x: screenWidth/2, y: screenHeight-103)
 
-            if ARview.ARFrame == true {
-                CameraView(arstate: arstate, cameraState: $cameraState).environmentObject(ARview)
-            }
+//            if ARview.ARFrame == true {
+//                CameraView(arstate: arstate, cameraState: $cameraState).environmentObject(ARview)
+//            }
         }
         .navigationBarHidden(true)
     }

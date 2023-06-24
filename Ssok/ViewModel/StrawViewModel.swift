@@ -16,7 +16,7 @@ class StrawViewModel: ObservableObject {
     @Published var showWhiteRectangle = true
     @Published var nextView = false
     @Published var progress = 0.0
-    //Mark: 0.3,0.7에서는 정직하게 0.1씩 증가하지 않고 소수점이 등장한다.
+
     var maxProgress: Double {
         return min(max(progress > 0.99 ? 1: progress, 0.0), 1.0)
     }
