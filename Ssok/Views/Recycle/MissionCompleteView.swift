@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MissionCompleteView: View {
-
     @State var title: String
     @State var background: Color
     @State var state1: Bool = false
@@ -23,10 +22,8 @@ struct MissionCompleteView: View {
                 Image("imgMissionCompleteCard")
                 VStack(spacing: 40) {
                     Text("주어진 미션을 성공했어요").font(.system(size: 24, weight: .black))
-                    MissionTitleView(
-                        missionTitle: title,
-                        backgroundColor: background.opacity(0.3),
-                        borderColor: background.opacity(0.71))
+                    MissionTitleView(missionTitle: title,
+                        missionColor: background)
                     Button {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)

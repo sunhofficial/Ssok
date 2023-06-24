@@ -25,7 +25,8 @@ struct MissionSpeechView: View {
     var body: some View {
         ZStack {
             VStack {
-                MissionTopView(title: "따라읽기", description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
+                MissionTopView(title: "따라읽기",
+                               description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 Spacer()
                 if isSpeech {
                     Image("imgProgress")
@@ -104,8 +105,7 @@ struct MissionSpeechView: View {
             }
             VStack(spacing: 40) {
                 MissionTitleView(missionTitle: missionTitle,
-                                 backgroundColor: Color("MissionVoice").opacity(0.3),
-                                 borderColor: Color("MissionVoice").opacity(0.71))
+                                 missionColor: Color("MissionVoice"))
                 VStack(spacing: 44) {
                     // 제시어 카드
                     ZStack {

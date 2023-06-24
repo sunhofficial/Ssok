@@ -107,8 +107,7 @@ struct CameraEndingView: View {
 
                     VStack(spacing: 50) {
                         MissionTitleView(missionTitle: missionTitle,
-                                         backgroundColor: missionColor.opacity(0.35),
-                                         borderColor: missionColor.opacity(0.71))
+                                         missionColor: Color("MissionFace"))
 
                         Text(missionTip)
                             .font(.system(size: 13, weight: .medium))

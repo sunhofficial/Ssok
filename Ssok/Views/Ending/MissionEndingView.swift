@@ -84,16 +84,16 @@ struct MissionEndingView: View {
                 switch mission {
                 case .decibel:
                     MissionTypeView(title: "데시벨 측정기",
-                                           description: "미션을 성공하려면 데시벨을 충족시켜야해요")
+                                    description: "미션을 성공하려면 데시벨을 충족시켜야해요")
                 case .shake:
                     MissionTypeView(title: "만보기",
-                                           description: "춤을 춰서 만보기의 횟수를 채워야해요")
+                                    description: "춤을 춰서 만보기의 횟수를 채워야해요")
                 case .voice:
                     MissionTypeView(title: "따라 읽기",
-                                           description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
+                                    description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
                 case .smile, .blink:
                     MissionTypeView(title: "얼굴 인식",
-                                           description: "미션을 성공하려면 얼굴을 인식해야해요.")
+                                    description: "미션을 성공하려면 얼굴을 인식해야해요.")
                 }
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
@@ -106,29 +106,17 @@ struct MissionEndingView: View {
                         let mission = random.randomWhat.missionType
                         switch mission {
                         case .decibel:
-                            MissionTitleView(
-                                missionTitle: missionTitle,
-                                backgroundColor: Color("MissionDecibel").opacity(0.35),
-                                borderColor: Color("MissionDecibel").opacity(0.71)
-                            )
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionDecibel"))
                         case .shake:
-                            MissionTitleView(
-                                missionTitle: missionTitle,
-                                backgroundColor: Color("MissionShake").opacity(0.35),
-                                borderColor: Color("MissionShake").opacity(0.71)
-                            )
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionShake"))
                         case .voice:
-                            MissionTitleView(
-                                missionTitle: missionTitle,
-                                backgroundColor: Color("MissionVoice").opacity(0.35),
-                                borderColor: Color("MissionVoice").opacity(0.71)
-                            )
+                            MissionTitleView(missionTitle: missionTitle,
+                                            missionColor: Color("MissionVoice"))
                         case .smile, .blink:
-                            MissionTitleView(
-                                missionTitle: missionTitle,
-                                backgroundColor: Color("MissionFace").opacity(0.35),
-                                borderColor: Color("MissionFace").opacity(0.71)
-                            )
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionFace"))
                         }
                         Text(missionTip)
                             .font(.system(size: 13, weight: .medium))

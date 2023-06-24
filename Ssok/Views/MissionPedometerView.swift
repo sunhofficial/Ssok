@@ -29,14 +29,13 @@ struct MissionPedometerView: View {
     var body: some View {
         ZStack {
             VStack {
-                MissionTopView(title: "만보기", description: "춤을 춰서 만보기의 횟수를 채워야 해요.")
+                MissionTopView(title: "만보기",
+                               description: "춤을 춰서 만보기의 횟수를 채워야 해요.")
                 Spacer()
             }
             VStack(spacing: 64) {
-                MissionTitleView(
-                    missionTitle: title,
-                    backgroundColor: Color("MissionShake").opacity(0.28),
-                    borderColor: Color("MissionShake").opacity(0.71))
+                MissionTitleView(missionTitle: title,
+                    missionColor: Color("MissionShake"))
                 ZStack {
                     ZStack {
                         Circle()
