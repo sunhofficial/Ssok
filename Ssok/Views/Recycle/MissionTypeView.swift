@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MissionDescriptionView: View {
+struct MissionTypeView: View {
     let title: String
     let description: String
 
@@ -21,6 +21,6 @@ struct MissionDescriptionView: View {
 
 struct MissionDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionDescriptionView(title: "", description: "")
+        MissionTypeView(title: "", description: "")
     }
 }

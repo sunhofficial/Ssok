@@ -83,16 +83,16 @@ struct MissionEndingView: View {
                 let mission = random.randomWhat.missionType
                 switch mission {
                 case .decibel:
-                    MissionDescriptionView(title: "데시벨 측정기",
+                    MissionTypeView(title: "데시벨 측정기",
                                            description: "미션을 성공하려면 데시벨을 충족시켜야해요")
                 case .shake:
-                    MissionDescriptionView(title: "만보기",
+                    MissionTypeView(title: "만보기",
                                            description: "춤을 춰서 만보기의 횟수를 채워야해요")
                 case .voice:
-                    MissionDescriptionView(title: "따라 읽기",
+                    MissionTypeView(title: "따라 읽기",
                                            description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
                 case .smile, .blink:
-                    MissionDescriptionView(title: "얼굴 인식",
+                    MissionTypeView(title: "얼굴 인식",
                                            description: "미션을 성공하려면 얼굴을 인식해야해요.")
                 }
                 ZStack {
