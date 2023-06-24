@@ -64,11 +64,11 @@ struct AddMemberView: View {
                             .onDelete(perform: viewModel.removeMembers)
                         } header: {
                             Text("같이 할 사람들")
-                                .font(.system(size: 13))
+                                .font(.system(size: UIScreen.getHeight(13)))
                                 .foregroundColor(Color(.darkGray))
                         } footer: {
                             Text("인원은 최대 6명까지 가능합니다.")
-                                .font(.system(size: 13))
+                                .font(.system(size: UIScreen.getHeight(13)))
                                 .foregroundColor(Color(.darkGray))
                         }
                     }
@@ -92,6 +92,7 @@ struct AddMemberView: View {
                         .cornerRadius(12)
                 }
                 .padding(.horizontal, UIScreen.getWidth(20))
+                .padding(.bottom, UIScreen.getHeight(10))
                 .offset(y: -keyboardHeight)
                 .disabled(viewModel.isNextButtonDisabled)
             }
@@ -119,5 +120,4 @@ struct AddMemberView: View {
             self.keyboardHeight = max(0, keyboardHeight)
         }
     }
-
 }

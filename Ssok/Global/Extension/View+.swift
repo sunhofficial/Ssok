@@ -21,13 +21,10 @@ extension View {
     func setRandomMember(_ members: [Member]) -> String {
         var memberName: String = ""
         memberName = members.randomElement()!.name
-
         // 한글 조사 입력
         guard let text = memberName.last else { return memberName }
-
         let value = UnicodeScalar(String(text))?.value
         guard let value = value else { return memberName }
-
         let index = (value - 0xac00) % 28
         if index == 0 {
             return memberName + "가"
