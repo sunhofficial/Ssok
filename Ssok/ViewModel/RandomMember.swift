@@ -14,7 +14,7 @@ class RandomMember: ObservableObject {
     @Published var randomWhere: String = ""
     @Published var randomWhat = Mission(
         missionType: .decibel,
-        missionDetail: MissionDetail(
+        missionInfo: MissionInfo(
             missionTitle: "",
             missionTip: ""),
         detail: [:])

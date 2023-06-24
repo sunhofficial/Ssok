@@ -61,7 +61,7 @@ struct MissionEndingView: View {
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
                     .position(x: screenWidth/1.81, y: 210)
-                Text(String(random.randomWhat.missionDetail.missionTitle.dropLast(2)))
+                Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)

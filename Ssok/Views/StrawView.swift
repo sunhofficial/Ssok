@@ -24,7 +24,7 @@ struct StrawView: View {
         [
         ["Who?",random.randomWho, "imgBackPearl1" ],
         ["Where?", random.randomWhere, "imgBackPearl2"],
-        ["What?",String(random.randomWhat.missionDetail.missionTitle.dropLast(2)),"imgBackPearl1" ]
+        ["What?",String(random.randomWhat.missionInfo.missionTitle.dropLast(2)),"imgBackPearl1" ]
         ]}
 
     var body: some View {
@@ -172,8 +172,8 @@ struct StrawView: View {
                 }
         } else {
             MissionEndingView(state: $goNextView,
-                              missionTitle: random.randomWhat.missionDetail.missionTitle,
-                              missionTip: random.randomWhat.missionDetail.missionTip)
+                              missionTitle: random.randomWhat.missionInfo.missionTitle,
+                              missionTip: random.randomWhat.missionInfo.missionTip)
         }
     }
 }
