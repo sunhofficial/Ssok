@@ -22,11 +22,6 @@ extension View {
         var memberName: String = ""
         memberName = members.randomElement()!.name
 
-        // 영어 이름 바꾸기
-        if let name = whoList[memberName] {
-            memberName = name
-        }
-
         // 한글 조사 입력
         guard let text = memberName.last else { return memberName }
 
