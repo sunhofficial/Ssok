@@ -17,5 +17,5 @@ class RandomMember: ObservableObject {
         missionInfo: MissionInfo(
             missionTitle: "",
             missionTip: ""),
-        detail: [:])
+        missionDetail: [:])
 }

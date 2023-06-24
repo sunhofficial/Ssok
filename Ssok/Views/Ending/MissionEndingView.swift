@@ -131,17 +131,19 @@ struct MissionEndingView: View {
                 switch mission {
                 case .decibel:
                     MissionDecibelView(title: missionTitle,
-                                       goal: random.randomWhat.detail["goal"] ?? "",
+                                       goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
                                        state: $state)
                 case .shake:
                     MissionPedometerView(title: missionTitle,
-                                         goalCount: random.randomWhat.detail["goal"] ?? "",
+                                         goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
                                          state: $state)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
                                       missionTip: missionTip,
-                                      answerText: random.randomWhat.detail["goal"] ?? "",
-                                      speechTime: Double(random.randomWhat.detail["timer"] ?? "30")!,
+                                      answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
+                                      speechTime: Double(random
+                                                        .randomWhat
+                                                        .missionDetail[MissionDetail.timer] ?? "30")!,
                                       state: $state)
                 default:
                     EmptyView()
