@@ -36,7 +36,7 @@ struct MissionSmileView: View {
                             .foregroundColor(arViewModel.isSmiling ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
-                            .position(x: screenWidth / 2, y: screenHeight / 1.5)
+                            .position(x: UIScreen.screenWidth / 2, y: UIScreen.screenHeight / 1.5)
                         } else {
                             MissionCameraCompleteView(title: "혀내밀기 😝",
                                                       background: Color.mint,
@@ -53,7 +53,7 @@ struct MissionSmileView: View {
                             .foregroundColor(arViewModel.isBlinking ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
-                            .position(x: screenWidth / 2, y: screenHeight / 1.5)
+                            .position(x: UIScreen.screenWidth / 2, y: UIScreen.screenHeight / 1.5)
                         } else {
                             MissionCameraCompleteView(title: "플러팅하기 😘",
                                                       background: Color.mint,

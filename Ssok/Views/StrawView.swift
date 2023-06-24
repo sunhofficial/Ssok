@@ -16,7 +16,7 @@ struct StrawView: View {
     @State private var largePearlIndex = -1
     @State private var dragAmount = CGSize.zero
     @State private var isPlug = false
-    var scene = Bottle(size: CGSize(width: screenWidth, height: screenHeight))
+    var scene = Bottle(size: CGSize(width: UIScreen.screenWidth, height: UIScreen.screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var random: RandomMember
     @Binding var path: NavigationPath
@@ -34,17 +34,17 @@ struct StrawView: View {
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
                                startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                     Image(viewModel.maxProgress != 1 ? "imgFirstDrink" : "imgFinalDrink")
-                        .offset(y: screenHeight/6.5)
+                    .offset(y: UIScreen.screenHeight/6.5)
                     SpriteView(
                         scene: scene,
                         options: [.allowsTransparency],
                         shouldRender: {_ in return true}
                     )
                     .ignoresSafeArea()
-                    .frame(width: screenWidth, height: screenHeight)
+                    .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight)
                     .aspectRatio(contentMode: .fit)
-                    .offset(y: (screenHeight/6.5) + 20)
-                    Image("imgCupHead").offset(y: (screenHeight/6.5) - 180)
+                    .offset(y: (UIScreen.screenHeight/6.5) + 20)
+                Image("imgCupHead").offset(y: (UIScreen.screenHeight/6.5) - 180)
                 ZStack {
                 WhiteRectangleView()
                     .frame(width: 300, height: viewModel.maxProgress == 1 ? 106 : 153)
@@ -97,10 +97,10 @@ struct StrawView: View {
                         }
                         .frame(width: 28)
                         .opacity(moveStraw ? 1 : 0)
-                        .offset(y: moveStraw ? -screenHeight : -10)
+                        .offset(y: moveStraw ? -UIScreen.screenHeight : -10)
                         .animation(.easeInOut.delay(1), value: moveStraw)
                     }
-                    .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
+                    .frame(width: UIScreen.screenWidth / 1.3, height: UIScreen.screenHeight / 1.8)
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
@@ -108,7 +108,7 @@ struct StrawView: View {
                         .contentShape(Rectangle())
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1), value: moveStraw)
-                        .offset(y: moveStraw ? 0 : dragAmount.height - screenHeight/1.7)
+                        .offset(y: moveStraw ? 0 : dragAmount.height - UIScreen.screenHeight/1.7)
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
@@ -141,7 +141,7 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutCup").position(x: screenWidth/2, y: 377)
+                    Image("cutCup").position(x: UIScreen.screenWidth/2, y: 377)
                 }
                 if largePearlIndex >= 0 {
                     Color(.white)

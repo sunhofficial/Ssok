@@ -13,7 +13,7 @@
 		10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E72A1124C700303334 /* CameraEndingView.swift */; };
 		10BCD2EA2A1124DE00303334 /* CountEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E92A1124DE00303334 /* CountEndingView.swift */; };
 		10BCD2EC2A1124F000303334 /* SpeakEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */; };
-		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
+		10E73D022A0A3BEB00AD2F91 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */; };
 		10EED21D2A13CB33008939B3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EED21C2A13CB33008939B3 /* CameraView.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* SsokApp.swift */; };
 		7C94D5502A02AB3B00AAC279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C94D54F2A02AB3B00AAC279 /* Assets.xcassets */; };
@@ -42,7 +42,6 @@
 		AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3129E52A14D6EF00204C55 /* SoundManager.swift */; };
 		AB3129EE2A14DC6100204C55 /* DingDingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */; };
 		AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */; };
-		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
 		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
@@ -63,7 +62,7 @@
 		10BCD2E72A1124C700303334 /* CameraEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEndingView.swift; sourceTree = "<group>"; };
 		10BCD2E92A1124DE00303334 /* CountEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountEndingView.swift; sourceTree = "<group>"; };
 		10BCD2EB2A1124F000303334 /* SpeakEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakEndingView.swift; sourceTree = "<group>"; };
-		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		10EED21C2A13CB33008939B3 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C94D54B2A02AB3A00AAC279 /* SsokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SsokApp.swift; sourceTree = "<group>"; };
@@ -93,7 +92,6 @@
 		AB3129E52A14D6EF00204C55 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingMusic.mp3; sourceTree = "<group>"; };
 		AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TocaTocaMusic.mp3; sourceTree = "<group>"; };
-		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
@@ -197,6 +195,7 @@
 		ABB019BF2A07CD8A0000556F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */,
 				C74DD5432A065B1500852B09 /* View+.swift */,
 			);
 			path = Extension;
@@ -245,8 +244,6 @@
 				C74DD5462A065C2C00852B09 /* Member.swift */,
 				C74DD5482A065FDE00852B09 /* Where.swift */,
 				C74DD54A2A065FEB00852B09 /* What.swift */,
-				10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */,
-				AB4652AB2A0B700700268304 /* Who.swift */,
 				7CF7641A2A117D6B007E2C3A /* ARModel.swift */,
 				7C9654D02A13B0E800779750 /* NaviLink.swift */,
 				AB08B5A72A2F96480086B8F9 /* ViewType.swift */,
@@ -353,7 +350,6 @@
 				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				7C9654CF2A13A38900779750 /* NaviViewModel.swift in Sources */,
-				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
 				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
 				7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */,
@@ -364,7 +360,7 @@
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				AB031C562A110D2F00EE808B /* MissionPedometerView.swift in Sources */,
 				7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */,
-				10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */,
+				10E73D022A0A3BEB00AD2F91 /* UIScreen+.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */,
 				10EED21D2A13CB33008939B3 /* CameraView.swift in Sources */,
 				10BCD2EC2A1124F000303334 /* SpeakEndingView.swift in Sources */,
@@ -537,7 +533,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrol-statement";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrol-statemen";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

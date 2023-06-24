@@ -29,8 +29,8 @@ struct CameraEndingView: View {
                 Image("imgEndingTop")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screenWidth)
-                    .position(x: screenWidth/2, y: 190)
+                    .frame(width: UIScreen.screenWidth)
+                    .position(x: UIScreen.screenWidth/2, y: 190)
                 HStack {
                     Spacer()
                     HStack {
@@ -60,7 +60,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/2.9, y: 166)
+                    .position(x: UIScreen.screenWidth/2.9, y: 166)
 
                 Text(random.randomWhere)
                     .font(.system(size: 20, weight: .bold))
@@ -70,7 +70,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/1.81, y: 166)
+                    .position(x: UIScreen.screenWidth/1.81, y: 166)
 
                 Text(String(random.randomWhat.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
@@ -80,7 +80,7 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/1.155, y: 166)
+                    .position(x: UIScreen.screenWidth/1.155, y: 166)
             }
             ZStack {
                 Circle()
@@ -129,7 +129,7 @@ struct CameraEndingView: View {
                     .background(Color("Bg_bottom2"))
                     .cornerRadius(12)
             }
-            .position(x: screenWidth/2, y: screenHeight-103)
+            .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight-103)
 
             if ARview.ARFrame == true {
                 CameraView(arstate: arstate, cameraState: $cameraState).environmentObject(ARview)

@@ -28,7 +28,7 @@ struct IntroView: View {
                             Image("imgIntroPearl").offset(y: CGFloat(-selectedPage * 15))
                             Image("imgIntroWave")
                                 .resizable()
-                                .frame(width: screenWidth, height: 200)
+                                .frame(width: UIScreen.screenWidth, height: 200)
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: 12) {
@@ -53,7 +53,7 @@ struct IntroView: View {
                         Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 173)
+                            .frame(width: UIScreen.screenWidth - 173)
                             .rotationEffect(
                                 Angle(degrees: isfirst ? -30 : 30)
                             )
@@ -78,7 +78,7 @@ struct IntroView: View {
                         Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 74)
+                            .frame(width: UIScreen.screenWidth - 74)
 
                         Spacer()
                             .frame(height: 160)
@@ -94,7 +94,7 @@ struct IntroView: View {
                         Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 22)
+                            .frame(width: UIScreen.screenWidth - 22)
 
                         Spacer()
                             .frame(height: 160)
@@ -105,7 +105,7 @@ struct IntroView: View {
                         Image("imgIntroAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 32)
+                            .frame(width: UIScreen.screenWidth - 32)
 
                         Spacer()
                             .frame(height: 160)
