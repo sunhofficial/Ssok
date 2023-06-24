@@ -35,7 +35,7 @@ struct MissionSmileView: View {
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "혀내밀기 😝",
-                                                      background: Color.mint,
+                                                      background: Color("MissionFace"),
                                                       state: $state)
                         }
                     } else if arState == "blink"{
@@ -52,7 +52,7 @@ struct MissionSmileView: View {
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "플러팅하기 😘",
-                                                      background: Color.mint,
+                                                      background: Color("MissionFace"),
                                                       state: $state)
                         }
                     }
