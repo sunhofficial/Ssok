@@ -21,7 +21,6 @@ struct MissionSmileView: View {
                 ARViewContainer(arViewModel: arViewModel, state: $state)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-
                     if ARstate == "smile" {
                         if !arViewModel.asyncissmileCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")

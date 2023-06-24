@@ -72,15 +72,15 @@ struct CameraEndingView: View {
                     .lineLimit(2)
                     .position(x: screenWidth/1.81, y: 166)
 
-                Text(String(random.randomWhat.missionTitle.dropLast(2)))
-                    .font(.system(size: 20, weight: .bold))
-                    .rotationEffect(Angle(degrees: -30))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: 75, height: 75)
-                    .lineLimit(2)
-                    .position(x: screenWidth/1.155, y: 166)
+//                Text(String(random.randomWhat.missionTitle.dropLast(2)))
+//                    .font(.system(size: 20, weight: .bold))
+//                    .rotationEffect(Angle(degrees: -30))
+//                    .foregroundColor(.white)
+//                    .multilineTextAlignment(.center)
+//                    .minimumScaleFactor(0.1)
+//                    .frame(width: 75, height: 75)
+//                    .lineLimit(2)
+//                    .position(x: screenWidth/1.155, y: 166)
             }
             ZStack {
                 Circle()
@@ -107,8 +107,7 @@ struct CameraEndingView: View {
 
                     VStack(spacing: 50) {
                         MissionTitleView(missionTitle: missionTitle,
-                                         backgroundColor: missionColor.opacity(0.35),
-                                         borderColor: missionColor.opacity(0.71))
+                                         missionColor: Color("MissionFace"))
 
                         Text(missionTip)
                             .font(.system(size: 13, weight: .medium))

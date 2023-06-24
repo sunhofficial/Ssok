@@ -10,14 +10,10 @@
 import SwiftUI
 
 struct IntroView: View {
-
-    @State private var selectedPage = 0
-    @State private var isfirst = false
-    @AppStorage("Tutorial") private var isIntroActive = true
-    @State private var path = NavigationPath()
+    @StateObject private var viewModel = IntroViewModel()
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $viewModel.path) {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
                     Image("imgIntroBg")
@@ -25,7 +21,8 @@ struct IntroView: View {
                         .edgesIgnoringSafeArea(.all)
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("imgIntroPearl").offset(y: CGFloat(-selectedPage * 15))
+                            Image("imgIntroPearl")
+                                .offset(y: CGFloat(-viewModel.selectedPage * 15))
                             Image("imgIntroWave")
                                 .resizable()
                                 .frame(width: screenWidth, height: 200)
@@ -34,7 +31,10 @@ struct IntroView: View {
                         HStack(spacing: 12) {
                             ForEach(0..<4) { pageNumber in
                                 Circle()
-                                    .fill(selectedPage == pageNumber ? Color("Bg_top") : Color("Bg"))
+                                    .fill(
+                                        viewModel.selectedPage == pageNumber ?
+                                        Color("Bg_top") : Color("Bg")
+                                    )
                                     .frame(width: 8, height: 8)
                             }
                         }
@@ -43,27 +43,25 @@ struct IntroView: View {
                 }
                 .edgesIgnoringSafeArea(.all)
 
-                TabView(selection: $selectedPage) {
+                TabView(selection: $viewModel.selectedPage) {
                     VStack(spacing: 66) {
                         Text("쉬는시간이 지루할때,\n쏘옥~")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-
                         Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: screenWidth - 173)
                             .rotationEffect(
-                                Angle(degrees: isfirst ? -30 : 30)
+                                Angle(degrees: viewModel.isFirst ? -30 : 30)
                             )
                             .animation(Animation
                                 .linear(duration: 0.8)
-                                .repeatForever(autoreverses: true), value: isfirst)
+                                .repeatForever(autoreverses: true), value: viewModel.isFirst)
                             .onAppear {
-                                isfirst = true
+                                viewModel.isFirst = true
                             }
-
                         Spacer()
                             .frame(height: 160)
                     }
@@ -112,14 +110,13 @@ struct IntroView: View {
                     }
                     .tag(3)
                 }
-                .onChange(of: selectedPage) { _ in
-                    isfirst.toggle()
+                .onChange(of: viewModel.selectedPage) { _ in
+                    viewModel.isFirst.toggle()
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
 
                 Button {
-                    isIntroActive = false
-                    path.append(ViewType.addMemberView)
+                    viewModel.setPageLast()
                 } label: {
                     Text("시작하기")
                         .foregroundColor(.white)
@@ -131,15 +128,15 @@ struct IntroView: View {
                 .navigationDestination(for: ViewType.self) { viewType in
                     switch viewType {
                     case .addMemberView:
-                        AddMemberView(path: $path)
+                        AddMemberView(path: $viewModel.path)
                     case .strawView:
-                        StrawView(path: $path)
+                        StrawView(path: $viewModel.path)
                     }
                 }
             }
         }
         .onAppear {
-            if !isIntroActive { selectedPage = 3 }
+            if !viewModel.isIntroActive { viewModel.selectedPage = 3 }
         }
     }
 }
