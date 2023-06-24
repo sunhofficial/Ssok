@@ -20,6 +20,7 @@ struct MissionSmileView: View {
             ZStack {
                 ARViewContainer(arViewModel: arViewModel, state: $state)
                     .edgesIgnoringSafeArea(.all)
+
                 VStack {
                     if ARstate == "smile" {
                         if !arViewModel.asyncissmileCount {

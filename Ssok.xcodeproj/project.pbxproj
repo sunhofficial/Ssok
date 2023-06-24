@@ -10,7 +10,6 @@
 		10882FA32A2B1B0100B76C24 /* BottleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */; };
 		10BCD2E32A11149700303334 /* MissionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E22A11149700303334 /* MissionCompleteView.swift */; };
 		10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E52A1124A600303334 /* MissionEndingView.swift */; };
-		10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BCD2E72A1124C700303334 /* CameraEndingView.swift */; };
 		10E73D022A0A3BEB00AD2F91 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */; };
 		7C587D5A2A47435000D7B9DD /* MissionTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C587D592A47435000D7B9DD /* MissionTypeView.swift */; };
 		7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D54B2A02AB3A00AAC279 /* SsokApp.swift */; };
@@ -56,7 +55,6 @@
 		10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleViewModel.swift; sourceTree = "<group>"; };
 		10BCD2E22A11149700303334 /* MissionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCompleteView.swift; sourceTree = "<group>"; };
 		10BCD2E52A1124A600303334 /* MissionEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionEndingView.swift; sourceTree = "<group>"; };
-		10BCD2E72A1124C700303334 /* CameraEndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEndingView.swift; sourceTree = "<group>"; };
 		10E73D012A0A3BEB00AD2F91 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		7C587D592A47435000D7B9DD /* MissionTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTypeView.swift; sourceTree = "<group>"; };
 		7C94D5482A02AB3A00AAC279 /* Ssok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ssok.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,15 +109,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		10BCD2E42A11245E00303334 /* Ending */ = {
-			isa = PBXGroup;
-			children = (
-				10BCD2E52A1124A600303334 /* MissionEndingView.swift */,
-				10BCD2E72A1124C700303334 /* CameraEndingView.swift */,
-			);
-			path = Ending;
-			sourceTree = "<group>";
-		};
 		7C94D53F2A02AB3900AAC279 = {
 			isa = PBXGroup;
 			children = (
@@ -194,12 +183,12 @@
 		C74982A52A0394DF00228FD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				10BCD2E42A11245E00303334 /* Ending */,
 				AB031C4E2A10D24C00EE808B /* Recycle */,
 				7C94D55B2A02ABA300AAC279 /* IntroView.swift */,
 				7C94D55E2A02ADE400AAC279 /* AddMemberView.swift */,
 				7C94D5622A02AE5E00AAC279 /* BallView.swift */,
 				C75FB6862A34D1F80031B070 /* StrawView.swift */,
+				10BCD2E52A1124A600303334 /* MissionEndingView.swift */,
 				AB031C4F2A10D59A00EE808B /* MissionDecibelView.swift */,
 				AB031C552A110D2F00EE808B /* MissionPedometerView.swift */,
 				7CF764162A117D3F007E2C3A /* MissionSmileView.swift */,
@@ -361,7 +350,6 @@
 				AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */,
 				10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */,
 				AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */,
-				10BCD2E82A1124C700303334 /* CameraEndingView.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
 				AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
