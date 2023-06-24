@@ -173,8 +173,7 @@ struct StrawView: View {
         } else {
             MissionEndingView(state: $goNextView,
                               missionTitle: random.randomWhat.missionDetail.missionTitle,
-                              missionTip: random.randomWhat.missionDetail.missionTip,
-                              missionColor: random.randomWhat.missionDetail.missionColor)
+                              missionTip: random.randomWhat.missionDetail.missionTip)
         }
     }
 }

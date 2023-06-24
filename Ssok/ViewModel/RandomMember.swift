@@ -21,7 +21,6 @@ class RandomMember: ObservableObject {
         missionType: .decibel,
         missionDetail: MissionDetail(
             missionTitle: "",
-            missionTip: "",
-            missionColor: .black),
+            missionTip: ""),
         detail: [:])
 }

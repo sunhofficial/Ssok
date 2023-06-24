@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MissionSpeechView: View {
-
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
@@ -16,7 +15,6 @@ struct MissionSpeechView: View {
     @State var havetext: Bool = false
     @State var missionTitle: String
     @State var missionTip: String
-    @State var missionColor: Color
     @State var answerText: String
     @State var speechTime: Double
     @State var progressTime: Double = 100.0
@@ -106,8 +104,8 @@ struct MissionSpeechView: View {
             }
             VStack(spacing: 40) {
                 MissionTitleView(missionTitle: missionTitle,
-                                 backgroundColor: missionColor.opacity(0.3),
-                                 borderColor: missionColor.opacity(0.71))
+                                 backgroundColor: Color("MissionVoice").opacity(0.3),
+                                 borderColor: Color("MissionVoice").opacity(0.71))
                 VStack(spacing: 44) {
                     // 제시어 카드
                     ZStack {
@@ -189,7 +187,7 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(title: missionTitle, background: missionColor, state: $state)
+                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state)
             }
         }
         .navigationBarHidden(true)

@@ -41,6 +41,7 @@
 		AB3129EE2A14DC6100204C55 /* DingDingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */; };
 		AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */; };
 		AB4652AC2A0B700700268304 /* Who.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4652AB2A0B700700268304 /* Who.swift */; };
+		AB6B767A2A46F87300750305 /* MissionDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6B76792A46F87300750305 /* MissionDescriptionView.swift */; };
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
 		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
@@ -90,6 +91,7 @@
 		AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingMusic.mp3; sourceTree = "<group>"; };
 		AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TocaTocaMusic.mp3; sourceTree = "<group>"; };
 		AB4652AB2A0B700700268304 /* Who.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Who.swift; sourceTree = "<group>"; };
+		AB6B76792A46F87300750305 /* MissionDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDescriptionView.swift; sourceTree = "<group>"; };
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				AB031C512A10D6B300EE808B /* MissionTitleView.swift */,
 				10BCD2E22A11149700303334 /* MissionCompleteView.swift */,
 				7C9654C82A1389DB00779750 /* MissionCameraCompleteView.swift */,
+				AB6B76792A46F87300750305 /* MissionDescriptionView.swift */,
 			);
 			path = Recycle;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
+				AB6B767A2A46F87300750305 /* MissionDescriptionView.swift in Sources */,
 				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				7C9654CF2A13A38900779750 /* NaviViewModel.swift in Sources */,

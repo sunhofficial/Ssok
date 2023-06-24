@@ -14,7 +14,6 @@ struct MissionEndingView: View {
     @State var whatsentence: String = ""
     @State var missionTitle: String
     @State var missionTip: String
-    @State var missionColor: Color
     @State var goal: String = ""
     @EnvironmentObject var random: RandomMember
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -81,27 +80,20 @@ struct MissionEndingView: View {
                     .frame(width: 50, height: 50)
             }
             VStack(spacing: 8) {
-                switch random.randomWhat.missionType {
+                let mission = random.randomWhat.missionType
+                switch mission {
                 case .decibel:
-                    Text("데시벨 측정기")
-                        .font(.system(size: 24, weight: .black))
-                    Text("미션을 성공하려면 데시벨을 충족시켜야해요")
-                        .font(.system(size: 13, weight: .light))
+                    MissionDescriptionView(title: "데시벨 측정기",
+                                           description: "미션을 성공하려면 데시벨을 충족시켜야해요")
                 case .shake:
-                    Text("만보기")
-                        .font(.system(size: 24, weight: .black))
-                    Text("춤을 춰서 만보기의 횟수를 채워야해요")
-                        .font(.system(size: 13, weight: .light))
+                    MissionDescriptionView(title: "만보기",
+                                           description: "춤을 춰서 만보기의 횟수를 채워야해요")
                 case .voice:
-                    Text("따라 읽기")
-                        .font(.system(size: 24, weight: .black))
-                    Text("주어진 문장을 정확하게 따라 읽어서 인식시켜요")
-                        .font(.system(size: 13, weight: .light))
-                default:
-                    Text("얼굴 인식")
-                        .font(.system(size: 24, weight: .black))
-                    Text("미션을 성공하려면 얼굴을 인식해야해요.")
-                        .font(.system(size: 13, weight: .light))
+                    MissionDescriptionView(title: "따라 읽기",
+                                           description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
+                case .smile, .blink:
+                    MissionDescriptionView(title: "얼굴 인식",
+                                           description: "미션을 성공하려면 얼굴을 인식해야해요.")
                 }
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
@@ -111,11 +103,33 @@ struct MissionEndingView: View {
                         .font(.system(size: 20, weight: .black))
                         .foregroundColor(Color("Bg_bottom2"))
                     VStack(spacing: 50) {
-                        MissionTitleView(
-                            missionTitle: missionTitle,
-                            backgroundColor: missionColor.opacity(0.35),
-                            borderColor: missionColor.opacity(0.71)
-                        )
+                        let mission = random.randomWhat.missionType
+                        switch mission {
+                        case .decibel:
+                            MissionTitleView(
+                                missionTitle: missionTitle,
+                                backgroundColor: Color("MissionDecibel").opacity(0.35),
+                                borderColor: Color("MissionDecibel").opacity(0.71)
+                            )
+                        case .shake:
+                            MissionTitleView(
+                                missionTitle: missionTitle,
+                                backgroundColor: Color("MissionShake").opacity(0.35),
+                                borderColor: Color("MissionShake").opacity(0.71)
+                            )
+                        case .voice:
+                            MissionTitleView(
+                                missionTitle: missionTitle,
+                                backgroundColor: Color("MissionVoice").opacity(0.35),
+                                borderColor: Color("MissionVoice").opacity(0.71)
+                            )
+                        case .smile, .blink:
+                            MissionTitleView(
+                                missionTitle: missionTitle,
+                                backgroundColor: Color("MissionFace").opacity(0.35),
+                                borderColor: Color("MissionFace").opacity(0.71)
+                            )
+                        }
                         Text(missionTip)
                             .font(.system(size: 13, weight: .medium))
                             .multilineTextAlignment(.center)
@@ -125,21 +139,19 @@ struct MissionEndingView: View {
             }
             .offset(y: 150)
             NavigationLink {
-                switch random.randomWhat.missionType {
+                let mission = random.randomWhat.missionType
+                switch mission {
                 case .decibel:
                     MissionDecibelView(title: missionTitle,
-                                       missionColor: missionColor,
                                        goal: random.randomWhat.detail["goal"] ?? "",
                                        state: $state)
                 case .shake:
                     MissionPedometerView(title: missionTitle,
-                                         titleColor: missionColor,
                                          goalCount: random.randomWhat.detail["goal"] ?? "",
                                          state: $state)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
                                       missionTip: missionTip,
-                                      missionColor: missionColor,
                                       answerText: random.randomWhat.detail["goal"] ?? "",
                                       speechTime: Double(random.randomWhat.detail["timer"] ?? "30")!,
                                       state: $state)

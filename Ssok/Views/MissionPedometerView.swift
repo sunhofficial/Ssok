@@ -9,12 +9,10 @@ import SwiftUI
 import CoreMotion
 
 struct MissionPedometerView: View {
-
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let motionManager = CMMotionManager()
     let activityManager = CMMotionActivityManager()
     @State var title: String
-    @State var titleColor: Color
     @State var goalCount: String
     @State private var stepCount: Float = 0
     @State private var currentGravity = 0
@@ -37,8 +35,8 @@ struct MissionPedometerView: View {
             VStack(spacing: 64) {
                 MissionTitleView(
                     missionTitle: title,
-                    backgroundColor: titleColor.opacity(0.28),
-                    borderColor: titleColor.opacity(0.71))
+                    backgroundColor: Color("MissionShake").opacity(0.28),
+                    borderColor: Color("MissionShake").opacity(0.71))
                 ZStack {
                     ZStack {
                         Circle()
@@ -143,7 +141,7 @@ struct MissionPedometerView: View {
             if String(stepCount) == goalCount {
                 MissionCompleteView(
                     title: title,
-                    background: titleColor,
+                    background: Color("MissionShake"),
                     state: $state)
             }
         }
