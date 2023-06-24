@@ -25,8 +25,7 @@ struct MissionCameraCompleteView: View {
                     Text("주어진 미션을 성공했어요").font(.system(size: 24, weight: .black))
 
                     MissionTitleView(missionTitle: title,
-                                     backgroundColor: background.opacity(0.3),
-                                     borderColor: background.opacity(0.71))
+                                     missionColor: background)
 
 //                    NavigationLink(destination: StrawView()) {
 //                        Text("새로운 미션하기")

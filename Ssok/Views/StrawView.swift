@@ -24,7 +24,7 @@ struct StrawView: View {
         [
         ["Who?",random.randomWho, "imgBackPearl1" ],
         ["Where?", random.randomWhere, "imgBackPearl2"],
-        ["What?",String(random.randomWhat.missionTitle.dropLast(2)),"imgBackPearl1" ]
+        ["What?",String(random.randomWhat.missionInfo.missionTitle.dropLast(2)),"imgBackPearl1" ]
         ]}
 
     var body: some View {
@@ -171,49 +171,9 @@ struct StrawView: View {
                     viewModel.progress = 0.0
                 }
         } else {
-            switch random.randomWhat.missionType {
-            case .decibel:
-                DecibelEndingView(state: $goNextView,
-                                  wheresentence: random.randomWhere,
-                                  whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                  missionTitle: random.randomWhat.missionTitle,
-                                  missionTip: random.randomWhat.missionTip,
-                                  missionColor: random.randomWhat.missionColor,
-                                  goal: random.randomWhat.goal!)
-            case .shake:
-                CountEndingView(state: $goNextView,
-                                wheresentence: random.randomWhere,
-                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                missionTitle: random.randomWhat.missionTitle,
-                                missionTip: random.randomWhat.missionTip,
-                                missionColor: random.randomWhat.missionColor,
-                                goalCount: random.randomWhat.goal!)
-            case .voice:
-                SpeakEndingView(wheresentence: random.randomWhere,
-                                whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                missionTitle: random.randomWhat.missionTitle,
-                                missionTip: random.randomWhat.missionTip,
-                                missionColor: random.randomWhat.missionColor,
-                                goal: random.randomWhat.goal!,
-                                timer: Double(random.randomWhat.timer!),
-                                state: $goNextView)
-            case .smile:
-                CameraEndingView(wheresentence: random.randomWhere,
-                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                 missionTitle: random.randomWhat.missionTitle,
-                                 missionTip: random.randomWhat.missionTip,
-                                 missionColor: random.randomWhat.missionColor,
-                                 state: $goNextView,
-                                 arstate: "smile")
-            case .blink:
-                CameraEndingView(wheresentence: random.randomWhere,
-                                 whatsentence: String(random.randomWhat.missionTitle.dropLast(2)),
-                                 missionTitle: random.randomWhat.missionTitle,
-                                 missionTip: random.randomWhat.missionTip,
-                                 missionColor: random.randomWhat.missionColor,
-                                 state: $goNextView,
-                                 arstate: "blink")
-            }
+            MissionEndingView(state: $goNextView,
+                              missionTitle: random.randomWhat.missionInfo.missionTitle,
+                              missionTip: random.randomWhat.missionInfo.missionTip)
         }
     }
 }
