@@ -29,7 +29,8 @@ struct MissionSmileView: View {
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isSmiling ?
-                                "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount()
+                                "한 번 더 메롱 😝" + arViewModel.calculateSmileCount() :
+                                "화면을 보고 혀를 내미세요" + arViewModel.flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isSmiling ? .green : .red)
@@ -46,7 +47,8 @@ struct MissionSmileView: View {
                             MissionCameraTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isBlinking ?
-                                "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount()
+                                "한 번 더 윙크!😜" + arViewModel.calculateBlinkCount() :
+                                "화면을 보고 윙크하세요" + arViewModel.flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isBlinking ? .green : .red)
