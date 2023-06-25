@@ -12,20 +12,23 @@ import ARKit
 class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
     @Published private var model: ARModel = ARModel()
     @Published var ARFrame: Bool = false
+    @Published var ARtoStarw: Bool = false
 
+    var processedblinks: Set<Int> = []
     var blinkCount: Int = 0
     var smileCount: Int = 0
     var blinkStatus: Bool = false
     var smileStatus: Bool = false
     var tongueOutStatus: Bool = false
-    var asyncBlinkCount: Int = 0
-    var asyncSmileCount: Int = 0
-    var asyncIsBlinkCount: Bool = false
-    var asyncIsSmileCount: Bool = false
+    var asyncblinkCount: Int = 0
+    var asyncsmileCount: Int = 0
+    var asyncisblinkCount: Bool = false
+    var asyncissmileCount: Bool = false
+    var cameraControl: Bool = false
 
     var arView: ARView {
         model.arView
-    }
+        }
 
     var isSmiling: Bool {
         var tempSmile = false
@@ -35,8 +38,15 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
             tempSmile = true
         }
         return tempSmile
+        }
+
+    func pauseSession() {
+        model.arView.session.pause()
     }
 
+    func flipcameraControl() {
+        cameraControl.toggle()
+    }
     var isBlinking: Bool {
         blinkStatus = false
 
@@ -45,7 +55,7 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         }
 
         return blinkStatus
-    }
+        }
 
     var istongueOut: Bool {
         tongueOutStatus = false
@@ -71,10 +81,10 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
             asyncSmileCount = 2
             asyncIsSmileCount = true
         }
-        return ""
+      return ""
     }
-
-    func calculateBlinkCount() -> String {
+  
+  func calculateBlinkCount() -> String {
         blinkCount += 1
         if blinkCount > 30 {
             asyncBlinkCount += 1
@@ -86,20 +96,19 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         }
         return ""
     }
-
-    func flushCount() -> String {
+  
+  func flushCount() -> String {
         smileCount = 0
         blinkCount = 0
         return ""
     }
 
-    func startSessionDelegate() {
-        model.arView.session.delegate = self
-    }
-
-    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        if let faceAnchor = anchors.first  as? ARFaceAnchor {
-            model.update(faceAnchor: faceAnchor)
-        }
-    }
+  func startSessionDelegate() {
+      model.arView.session.delegate = self
+  
+  func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+      if let faceAnchor = anchors.first  as? ARFaceAnchor {
+          model.update(faceAnchor: faceAnchor)
+      }
+  }
 }
