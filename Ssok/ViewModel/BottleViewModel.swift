@@ -25,7 +25,6 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
     private let rightBottom = SKShapeNode()
 
     override func didMove(to view: SKView) {
-        self.removeAllChildren()
         self.backgroundColor = .clear
         view.allowsTransparency = true
         physicsWorld.contactDelegate = self
