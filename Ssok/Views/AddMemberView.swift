@@ -81,7 +81,7 @@ struct AddMemberView: View {
                     random.members = viewModel.members
                     random.randomWho = setRandomMember(viewModel.members)
                     random.randomWhat = setRandomMission(missions)
-                    random.randomWhere = setRandomWhere(whereList)
+                    random.randomWhere = setRandomWhere(howList)
                 } label: {
                     Text("다음")
                         .foregroundColor(.white)

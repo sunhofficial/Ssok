@@ -38,7 +38,7 @@ struct MissionCameraCompleteView: View {
 //                    .simultaneousGesture(TapGesture().onEnded {
 //                        random.randomWho = setRandomMember(random.members)
 //                        random.randomWhat = setRandomMission(missions)
-//                        random.randomWhere = setRandomWhere(whereList)
+//                        random.randomWhere = setRandomWhere(howList)
 //                    })
                 }
                 .offset(y: 90)
