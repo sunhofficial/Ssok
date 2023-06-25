@@ -1,5 +1,5 @@
 //
-//  CameraEndingView.swift
+//  MissionEndingView.swift
 //  Ssok
 //
 //  Created by 김용주 on 2023/05/14.
@@ -7,23 +7,16 @@
 
 import SwiftUI
 
-struct CameraEndingView: View {
-
-    @State var wheresentence: String = ""
-    @State var whatsentence: String = ""
-    @EnvironmentObject var random: RandomMember
-    @ObservedObject var ARview: ARViewModel = ARViewModel()
-    @StateObject var permissionManager = PermissionManager()
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+struct MissionEndingView: View {
+    @Binding var state: Bool
+    @State private var isPresented = false
     @State var missionTitle: String
     @State var missionTip: String
-    @State var missionColor: Color
-    @Binding var state: Bool
-    @State var arstate: String = ""
-    @State var cameraState: Bool = false
+    @State var goal: String = ""
+    @EnvironmentObject var random: RandomMember
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
-
         ZStack {
             ZStack(alignment: .top) {
                 Image("imgEndingTop")
@@ -60,7 +53,6 @@ struct CameraEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: UIScreen.screenWidth/2.9, y: 166)
 
                 Text(random.randomWhere)
                     .font(.system(size: 20, weight: .bold))
@@ -71,8 +63,7 @@ struct CameraEndingView: View {
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
                     .position(x: UIScreen.screenWidth/1.81, y: 166)
-
-                Text(String(random.randomWhat.missionTitle.dropLast(2)))
+                Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
                     .foregroundColor(.white)
@@ -87,40 +78,59 @@ struct CameraEndingView: View {
                     .foregroundColor(.white)
                     .frame(width: 50, height: 50)
                     .shadow(color: Color("Bg_bottom2"), radius: 2)
-                Text("📷")
+                Text("📢")
                     .frame(width: 50, height: 50)
             }
             VStack(spacing: 8) {
-                Text("얼굴 인식")
-                    .font(.system(size: 24, weight: .black))
-
-                Text("미션을 성공하려면 얼굴을 인식해야해요.")
-                    .font(.system(size: 13, weight: .light))
+                let mission = random.randomWhat.missionType
+                switch mission {
+                case .decibel:
+                    MissionTypeView(title: "데시벨 측정기",
+                                    description: "미션을 성공하려면 데시벨을 충족시켜야해요")
+                case .shake:
+                    MissionTypeView(title: "만보기",
+                                    description: "춤을 춰서 만보기의 횟수를 채워야해요")
+                case .voice:
+                    MissionTypeView(title: "따라 읽기",
+                                    description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
+                case .smile, .blink:
+                    MissionTypeView(title: "얼굴 인식",
+                                    description: "미션을 성공하려면 얼굴을 인식해야해요.")
+                }
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
                         .frame(width: 295, height: 175)
-
                     Text("미션 성공 TIP")
                         .font(.system(size: 20, weight: .black))
                         .foregroundColor(Color("Bg_bottom2"))
-
                     VStack(spacing: 50) {
-                        MissionTitleView(missionTitle: missionTitle,
-                                         backgroundColor: missionColor.opacity(0.35),
-                                         borderColor: missionColor.opacity(0.71))
-
+                        let mission = random.randomWhat.missionType
+                        switch mission {
+                        case .decibel:
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionDecibel"))
+                        case .shake:
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionShake"))
+                        case .voice:
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionVoice"))
+                        case .smile, .blink:
+                            MissionTitleView(missionTitle: missionTitle,
+                                             missionColor: Color("MissionFace"))
+                        }
                         Text(missionTip)
                             .font(.system(size: 13, weight: .medium))
                             .multilineTextAlignment(.center)
                     }
-                }.offset(y: 32)
-
-            }.offset(y: 150)
+                }
+                .offset(y: 32)
+            }
+            .offset(y: 150)
 
             Button {
-                // 첫 번째 액션
-                ARview.ARFrame = true
+                isPresented.toggle()
             } label: {
                 Text("미션하기")
                     .foregroundColor(.white)
@@ -130,31 +140,33 @@ struct CameraEndingView: View {
                     .cornerRadius(12)
             }
             .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight-103)
-
-            if ARview.ARFrame == true {
-                CameraView(arstate: arstate, cameraState: $cameraState).environmentObject(ARview)
+            .fullScreenCover(isPresented: $isPresented){
+                let mission = random.randomWhat.missionType
+                switch mission {
+                case .decibel:
+                    MissionDecibelView(title: missionTitle,
+                                       goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
+                                       state: $state)
+                case .shake:
+                    MissionPedometerView(title: missionTitle,
+                                         goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
+                                         state: $state)
+                case .voice:
+                    MissionSpeechView(missionTitle: missionTitle,
+                                      missionTip: missionTip,
+                                      answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
+                                      speechTime: Double(random
+                                        .randomWhat
+                                        .missionDetail[MissionDetail.timer] ?? "30")!,
+                                      state: $state)
+                case .smile, .blink:
+                    MissionSmileView(arState: random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
+                                     state: $state
+                    )
+                }
             }
-        }
-        .navigationBarHidden(true)
-    }
-}
-
-extension CameraEndingView {
-    var backButton: some View {
-        Button {
-            mode.wrappedValue.dismiss()
-        } label: {
-            ZStack {
-                Rectangle()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(.clear)
-                Image(systemName: "chevron.backward")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.white)
-                    .bold()
-            }
+            .ignoresSafeArea(.all)
+            .navigationBarHidden(true)
         }
     }
 }

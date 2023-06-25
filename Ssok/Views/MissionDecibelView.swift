@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct MissionDecibelView: View {
-
     @StateObject private var soundMeter = SoundMeter()
     @State var title: String
-    @State var missionColor: Color
     @State var goal: String
     @State private var isCompleted = false
     @State private var more: String = "더"
@@ -22,15 +20,13 @@ struct MissionDecibelView: View {
     var body: some View {
         ZStack {
             VStack {
-                MissionTopView(title: "데시벨 측정기", description: "미션을 성공하려면 데시벨을 충족시켜야 해요.")
+                MissionTopView(title: "데시벨 측정기",
+                               description: "미션을 성공하려면 데시벨을 충족시켜야 해요.")
                 Spacer()
             }
             VStack(spacing: 64) {
-                MissionTitleView(
-                    missionTitle: title,
-                    backgroundColor: missionColor.opacity(0.3),
-                    borderColor: missionColor.opacity(0.7)
-                )
+                MissionTitleView(missionTitle: title,
+                    missionColor: Color("MissionDecibel"))
                 ZStack {
                     ZStack {
                         Circle()
@@ -93,7 +89,7 @@ struct MissionDecibelView: View {
             .navigationBarHidden(true)
 
             if isCompleted {
-                MissionCompleteView(title: title, background: missionColor, state: $state)
+                MissionCompleteView(title: title, background: Color("MissionDecibel"), state: $state)
             }
         }
         .onAppear {
