@@ -61,6 +61,38 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         return blinkCount
     }
 
+    func smileCount() -> String {
+        smileCount += 1
+        if smileCount > 30 {
+            asyncSmileCount += 1
+            smileCount = 0
+        }
+        if asyncSmileCount >= 2 {
+            asyncSmileCount = 2
+            asyncIsSmileCount = true
+        }
+        return ""
+    }
+
+    func blinkCount() -> String {
+        blinkCount += 1
+        if blinkCount > 30 {
+            asyncBlinkCount += 1
+            blinkCount = 0
+        }
+        if asyncBlinkCount >= 2 {
+            asyncBlinkCount = 2
+            asyncIsBlinkCount = true
+        }
+        return ""
+    }
+
+    func flushCount() -> String {
+        smileCount = 0
+        blinkCount = 0
+        return ""
+    }
+
     func startSessionDelegate() {
         model.arView.session.delegate = self
     }

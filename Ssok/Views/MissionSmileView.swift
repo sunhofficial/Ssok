@@ -9,11 +9,11 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State var arState: String = ""
+    @State var arState = ""
     @Binding var state: Bool
 
     @Environment(\.presentationMode) var mode
-    @ObservedObject var arViewModel: ARViewModel = ARViewModel()
+    @ObservedObject var arViewModel = ARViewModel()
 
     var body: some View {
             ZStack {
@@ -26,7 +26,7 @@ struct MissionSmileView: View {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isSmiling ?
-                                "한 번 더 메롱 😝" + smCount() : "화면을 보고 혀를 내미세요" + flushCount()
+                                "한 번 더 메롱 😝" + arViewModel.smileCount() : "화면을 보고 혀를 내미세요" + arViewModel.flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isSmiling ? .green : .red)
@@ -43,7 +43,7 @@ struct MissionSmileView: View {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
                                 arViewModel.isBlinking ?
-                                "한 번 더 윙크!😜" + blCount() : "화면을 보고 윙크하세요" + flushCount()
+                                "한 번 더 윙크!😜" + arViewModel.blinkCount() : "화면을 보고 윙크하세요" + arViewModel.flushCount()
                             )
                             .padding()
                             .foregroundColor(arViewModel.isBlinking ? .green : .red)
@@ -58,38 +58,6 @@ struct MissionSmileView: View {
                     }
                 }
             }
-    }
-
-    func smCount() -> String {
-        arViewModel.smileCount += 1
-        if arViewModel.smileCount > 30 {
-            arViewModel.asyncSmileCount += 1
-            arViewModel.smileCount = 0
-        }
-        if arViewModel.asyncSmileCount >= 2 {
-            arViewModel.asyncSmileCount = 2
-            arViewModel.asyncIsSmileCount = true
-        }
-        return ""
-    }
-
-    func blCount() -> String {
-        arViewModel.blinkCount += 1
-        if arViewModel.blinkCount > 30 {
-            arViewModel.asyncBlinkCount += 1
-            arViewModel.blinkCount = 0
-        }
-        if arViewModel.asyncBlinkCount >= 2 {
-            arViewModel.asyncBlinkCount = 2
-            arViewModel.asyncIsBlinkCount = true
-        }
-        return ""
-    }
-
-    func flushCount() -> String {
-        arViewModel.smileCount = 0
-        arViewModel.blinkCount = 0
-        return ""
     }
 }
 
