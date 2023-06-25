@@ -61,7 +61,7 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         return blinkCount
     }
 
-    func smileCount() -> String {
+    func calculateSmileCount() -> String {
         smileCount += 1
         if smileCount > 30 {
             asyncSmileCount += 1
@@ -74,7 +74,7 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         return ""
     }
 
-    func blinkCount() -> String {
+    func calculateBlinkCount() -> String {
         blinkCount += 1
         if blinkCount > 30 {
             asyncBlinkCount += 1
