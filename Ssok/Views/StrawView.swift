@@ -170,9 +170,6 @@ struct StrawView: View {
                     largePearlIndex = -1
                     viewModel.progress = 0.0
                 }
-                .onAppear {
-                    viewModel.startupdatingMotion()
-                }
         } else {
             MissionEndingView(state: $goNextView,
                               missionTitle: random.randomWhat.missionInfo.missionTitle,
