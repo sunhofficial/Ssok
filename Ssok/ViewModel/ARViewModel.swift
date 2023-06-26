@@ -10,18 +10,18 @@ import RealityKit
 import ARKit
 
 class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
-    @Published private var model: ARModel = ARModel()
-    @Published var ARFrame: Bool = false
+    @Published private var model = ARModel()
+    @Published var ARFrame = false
 
-    var blinkCount: Int = 0
-    var smileCount: Int = 0
-    var isBlink: Bool = false
-    var isSmile: Bool = false
-    var isTongueOut: Bool = false
-    var asyncBlinkCount: Int = 0
-    var asyncSmileCount: Int = 0
-    var asyncIsBlinkCount: Bool = false
-    var asyncIsSmileCount: Bool = false
+    var blinkCount = 0
+    var smileCount = 0
+    var isBlink = false
+    var isSmile = false
+    var isTongueOut = false
+    var asyncBlinkCount = 0
+    var asyncSmileCount = 0
+    var asyncIsBlinkCount = false
+    var asyncIsSmileCount = false
 
     var arView: ARView {
         model.arView
