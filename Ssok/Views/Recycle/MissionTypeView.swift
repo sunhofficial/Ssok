@@ -12,11 +12,12 @@ struct MissionTypeView: View {
     let description: String
 
     var body: some View {
-        Text(title)
-            .font(.system(size: 24, weight: .black))
-        Text(description)
-            .font(.system(size: 13, weight: .light))
-    }
+        VStack(spacing: 4) {
+            Text(title)
+                .font(.system(size: 24, weight: .black))
+            Text(description)
+                .font(.system(size: 13, weight: .light))
+        }}
 }
 
 struct MissionDescriptionView_Previews: PreviewProvider {

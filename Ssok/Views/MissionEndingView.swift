@@ -17,130 +17,133 @@ struct MissionEndingView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
-        ZStack {
-            ZStack(alignment: .top) {
-                Image("imgEndingTop")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: UIScreen.screenWidth)
-                    .position(x: UIScreen.screenWidth/2, y: 190)
-                HStack {
-                    Spacer()
+        GeometryReader { geomtry in
+            VStack {
+                ZStack(alignment: .top) {
+                    Image("imgEndingTop")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geomtry.size.width)
+
                     HStack {
-                        Image("imgRetry")
-                        Text("다시뽑기")
-                            .font(.system(size: 17, weight: .semibold))
+                        Spacer()
+                        HStack {
+                            Image("imgRetry")
+                            Text("다시뽑기")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            random.randomWho = setRandomMember(random.members)
+                            random.randomWhat = setRandomMission(missions)
+                            random.randomWhere = setRandomWhere(whereList)
+                            state = false
+                        }
+                        .padding(.trailing, UIScreen.getWidth(20))
+                        .padding(.top, UIScreen.getHeight(60))
+                    }
+                    HStack {
+                        Text(random.randomWho)
+                            .font(.system(size: 18, weight: .bold))
+                            .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.1)
+                            .frame(width: UIScreen.getWidth(75), height: UIScreen.getHeight(75))
+                            .lineLimit(2)
+                        Text(random.randomWhere)
+                            .font(.system(size: 18, weight: .bold))
+                            .rotationEffect(Angle(degrees: -30))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.1)
+                            .frame(width: UIScreen.getWidth(75), height: UIScreen.getHeight(75))
+                            .lineLimit(2)
+                        Spacer()
+                        Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
+                            .font(.system(size: 18, weight: .bold))
+                            .rotationEffect(Angle(degrees: -30))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.1)
+                            .frame(width: UIScreen.getWidth(75), height: UIScreen.getHeight(75))
+                            .lineLimit(2)
                     }
-                    .onTapGesture {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(whereList)
-                        state = false
-                    }
-                    .padding(.trailing, 20)
-                    .padding(.top, 56)
+                    .padding(.leading, UIScreen.getWidth(100))
+                    .padding(.trailing, UIScreen.getWidth(18))
+                    .padding(.top,UIScreen.getHeight(170))
                 }
-            }
-            .edgesIgnoringSafeArea(.top)
-
-            ZStack {
-                Text(random.randomWho)
-                    .font(.system(size: 20, weight: .bold))
-                    .rotationEffect(Angle(degrees: -30))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: 75, height: 75)
-                    .lineLimit(2)
-
-                Text(random.randomWhere)
-                    .font(.system(size: 20, weight: .bold))
-                    .rotationEffect(Angle(degrees: -30))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: 75, height: 75)
-                    .lineLimit(2)
-                    .position(x: UIScreen.screenWidth/1.81, y: 166)
-                Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
-                    .font(.system(size: 20, weight: .bold))
-                    .rotationEffect(Angle(degrees: -30))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.1)
-                    .frame(width: 75, height: 75)
-                    .lineLimit(2)
-                    .position(x: UIScreen.screenWidth/1.155, y: 166)
-            }
-            ZStack {
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 50, height: 50)
-                    .shadow(color: Color("Bg_bottom2"), radius: 2)
-                Text("📢")
-                    .frame(width: 50, height: 50)
-            }
-            VStack(spacing: 8) {
-                let mission = random.randomWhat.missionType
-                switch mission {
-                case .decibel:
-                    MissionTypeView(title: "데시벨 측정기",
-                                    description: "미션을 성공하려면 데시벨을 충족시켜야해요")
-                case .shake:
-                    MissionTypeView(title: "만보기",
-                                    description: "춤을 춰서 만보기의 횟수를 채워야해요")
-                case .voice:
-                    MissionTypeView(title: "따라 읽기",
-                                    description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
-                case .smile, .blink:
-                    MissionTypeView(title: "얼굴 인식",
-                                    description: "미션을 성공하려면 얼굴을 인식해야해요.")
-                }
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .strokeBorder(Color("Border"), lineWidth: 1.5)
-                        .frame(width: 295, height: 175)
-                    Text("미션 성공 TIP")
-                        .font(.system(size: 20, weight: .black))
-                        .foregroundColor(Color("Bg_bottom2"))
-                    VStack(spacing: 50) {
+                .offset(x:0, y: -geomtry.safeAreaInsets.top)
+                VStack(spacing: 20) {
+                    VStack(spacing: 10) {
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.white)
+                                .shadow(color: Color("Bg_bottom2"), radius: 2)
+                            Text("📢")
+                        }.padding(.horizontal,UIScreen.getWidth(170))
                         let mission = random.randomWhat.missionType
                         switch mission {
                         case .decibel:
-                            MissionTitleView(missionTitle: missionTitle,
-                                             missionColor: Color("MissionDecibel"))
+                            MissionTypeView(title: "데시벨 측정기",
+                                            description: "미션을 성공하려면 데시벨을 충족시켜야해요")
                         case .shake:
-                            MissionTitleView(missionTitle: missionTitle,
-                                             missionColor: Color("MissionShake"))
+                            MissionTypeView(title: "만보기",
+                                            description: "춤을 춰서 만보기의 횟수를 채워야해요")
                         case .voice:
-                            MissionTitleView(missionTitle: missionTitle,
-                                             missionColor: Color("MissionVoice"))
+                            MissionTypeView(title: "따라 읽기",
+                                            description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요")
                         case .smile, .blink:
-                            MissionTitleView(missionTitle: missionTitle,
-                                             missionColor: Color("MissionFace"))
-                        }
-                        Text(missionTip)
-                            .font(.system(size: 13, weight: .medium))
-                            .multilineTextAlignment(.center)
+                            MissionTypeView(title: "얼굴 인식",
+                                            description: "미션을 성공하려면 얼굴을 인식해야해요.")
+                        }}
+                    .offset(x:0,y:-geomtry.safeAreaInsets.top)
+                    RoundedRectangle(cornerRadius: 20)
+                        .strokeBorder(Color("Border"), lineWidth: 1.5)
+                        .padding(.horizontal,UIScreen.getWidth(50))
+                        .overlay(
+                            ZStack {
+                                Text("미션 성공 TIP")
+                                    .font(.system(size: 20, weight: .black))
+                                    .foregroundColor(Color("Bg_bottom2"))
+                                VStack(spacing: UIScreen.getHeight(50)) {
+                                    let mission = random.randomWhat.missionType
+                                    switch mission {
+                                    case .decibel:
+                                        MissionTitleView(missionTitle: missionTitle,
+                                                         missionColor: Color("MissionDecibel"))
+                                    case .shake:
+                                        MissionTitleView(missionTitle: missionTitle,
+                                                         missionColor: Color("MissionShake"))
+                                    case .voice:
+                                        MissionTitleView(missionTitle: missionTitle,
+                                                         missionColor: Color("MissionVoice"))
+                                    case .smile, .blink:
+                                        MissionTitleView(missionTitle: missionTitle,
+                                                         missionColor: Color("MissionFace"))
+                                    }
+                                    Text(missionTip)
+                                        .font(.system(size: 13, weight: .medium))
+                                        .multilineTextAlignment(.center)
+                                }
+                            })
+                    Button {
+                        isPresented.toggle()
+                    } label: {
+                        Text("미션하기")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, UIScreen.getHeight(15))
+                            .background(Color("Bg_bottom2"))
+                            .cornerRadius(12)
                     }
-                }
-                .offset(y: 32)
-            }
-            .offset(y: 150)
+                    .padding(.horizontal, UIScreen.getWidth(20))
 
-            Button {
-                isPresented.toggle()
-            } label: {
-                Text("미션하기")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
-                    .background(Color("Bg_bottom2"))
-                    .cornerRadius(12)
+                }
             }
-            .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight-103)
-            .fullScreenCover(isPresented: $isPresented){
+            .navigationBarHidden(true)
+            .fullScreenCover(isPresented: $isPresented) {
                 let mission = random.randomWhat.missionType
                 switch mission {
                 case .decibel:
@@ -165,8 +168,6 @@ struct MissionEndingView: View {
                     )
                 }
             }
-            .ignoresSafeArea(.all)
-            .navigationBarHidden(true)
         }
     }
 }
