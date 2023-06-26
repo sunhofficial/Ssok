@@ -27,7 +27,7 @@ struct MissionCompleteView: View {
                     Button {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(whereList)
+                        random.randomWhere = setRandomWhere(howList)
                         mode.wrappedValue.dismiss()
                         state = false
                     } label: {
