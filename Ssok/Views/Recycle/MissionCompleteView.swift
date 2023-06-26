@@ -10,7 +10,6 @@ import SwiftUI
 struct MissionCompleteView: View {
     @State var title: String
     @State var background: Color
-    @State var state1: Bool = false
     @EnvironmentObject var random: RandomMember
     @Binding var state: Bool
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
