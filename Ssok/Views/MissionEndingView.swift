@@ -30,7 +30,7 @@ struct MissionEndingView: View {
                         HStack {
                             Image("imgRetry")
                             Text("다시뽑기")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(Font.custom17semi())
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
@@ -44,7 +44,7 @@ struct MissionEndingView: View {
                     }
                     HStack {
                         Text(random.randomWho)
-                            .font(.system(size: 18, weight: .bold))
+                            .font(Font.custom15bold())
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
@@ -52,7 +52,7 @@ struct MissionEndingView: View {
                             .frame(width: UIScreen.getWidth(75), height: UIScreen.getHeight(75))
                             .lineLimit(2)
                         Text(random.randomWhere)
-                            .font(.system(size: 18, weight: .bold))
+                            .font(Font.custom15bold())
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
@@ -61,7 +61,7 @@ struct MissionEndingView: View {
                             .lineLimit(2)
                         Spacer()
                         Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
-                            .font(.system(size: 18, weight: .bold))
+                            .font(Font.custom15bold())
                             .rotationEffect(Angle(degrees: -30))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
@@ -104,7 +104,7 @@ struct MissionEndingView: View {
                         .overlay(
                             ZStack {
                                 Text("미션 성공 TIP")
-                                    .font(.system(size: 20, weight: .black))
+                                    .font(Font.custom20bold())
                                     .foregroundColor(Color("Bg_bottom2"))
                                 VStack(spacing: UIScreen.getHeight(50)) {
                                     let mission = random.randomWhat.missionType
@@ -123,7 +123,7 @@ struct MissionEndingView: View {
                                                          missionColor: Color("MissionFace"))
                                     }
                                     Text(missionTip)
-                                        .font(.system(size: 13, weight: .medium))
+                                        .font(Font.custom13semibold())
                                         .multilineTextAlignment(.center)
                                 }
                             })
@@ -139,7 +139,6 @@ struct MissionEndingView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, UIScreen.getWidth(20))
-
                 }
             }
             .navigationBarHidden(true)

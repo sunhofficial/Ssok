@@ -14,9 +14,9 @@ struct MissionTypeView: View {
     var body: some View {
         VStack(spacing: 4) {
             Text(title)
-                .font(.system(size: 24, weight: .black))
+                .font(Font.custom24black())
             Text(description)
-                .font(.system(size: 13, weight: .light))
+                .font(Font.custom13semibold())
         }}
 }
 

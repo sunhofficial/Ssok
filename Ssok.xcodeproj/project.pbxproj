@@ -37,6 +37,7 @@
 		AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */; };
 		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
+		C71C86212A49E0AC00522E89 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71C86202A49E0AC00522E89 /* Font+.swift */; };
 		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
 		C74DD5442A065B1500852B09 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5432A065B1500852B09 /* View+.swift */; };
 		C74DD5472A065C2C00852B09 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5462A065C2C00852B09 /* Member.swift */; };
@@ -80,6 +81,7 @@
 		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
+		C71C86202A49E0AC00522E89 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C74C18862A2859D500D69345 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C74DD5432A065B1500852B09 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C74DD5462A065C2C00852B09 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */,
+				C71C86202A49E0AC00522E89 /* Font+.swift */,
 				C74DD5432A065B1500852B09 /* View+.swift */,
 			);
 			path = Extension;
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71C86212A49E0AC00522E89 /* Font+.swift in Sources */,
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
 				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
