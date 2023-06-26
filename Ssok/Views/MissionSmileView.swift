@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State var arState = ""
+    @State var arViewState = ""
     @Binding var state: Bool
 
     @Environment(\.presentationMode) var mode
@@ -21,16 +21,16 @@ struct MissionSmileView: View {
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    if arState == "smile" {
+                    if arViewState == "smile" {
                         if !arViewModel.asyncIsSmileCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
-                                arViewModel.isSmiling ?
+                                arViewModel.getSmiling ?
                                 "한 번 더 메롱 😝" + arViewModel.calculateSmileCount() :
                                 "화면을 보고 혀를 내미세요" + arViewModel.flushCount()
                             )
                             .padding()
-                            .foregroundColor(arViewModel.isSmiling ? .green : .red)
+                            .foregroundColor(arViewModel.getSmiling ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)
@@ -39,16 +39,16 @@ struct MissionSmileView: View {
                                                       background: Color("MissionFace"),
                                                       state: $state)
                         }
-                    } else if arState == "blink"{
+                    } else if arViewState == "blink"{
                         if !arViewModel.asyncIsBlinkCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
-                                arViewModel.isBlinking ?
+                                arViewModel.getBlinking ?
                                 "한 번 더 윙크!😜" + arViewModel.calculateBlinkCount() :
                                 "화면을 보고 윙크하세요" + arViewModel.flushCount()
                             )
                             .padding()
-                            .foregroundColor(arViewModel.isBlinking ? .green : .red)
+                            .foregroundColor(arViewModel.getBlinking ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)

@@ -15,9 +15,9 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
 
     var blinkCount: Int = 0
     var smileCount: Int = 0
-    var blinkStatus: Bool = false
-    var smileStatus: Bool = false
-    var tongueOutStatus: Bool = false
+    var isBlink: Bool = false
+    var isSmile: Bool = false
+    var isTongueOut: Bool = false
     var asyncBlinkCount: Int = 0
     var asyncSmileCount: Int = 0
     var asyncIsBlinkCount: Bool = false
@@ -27,34 +27,36 @@ class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
         model.arView
     }
 
-    var isSmiling: Bool {
+    var getSmiling: Bool {
         var tempSmile = false
-        smileStatus = false
+        isBlink = false
+
         if model.tongueOut > 0.5 {
-            smileStatus = true
+            isSmile = true
             tempSmile = true
         }
+
         return tempSmile
     }
 
-    var isBlinking: Bool {
-        blinkStatus = false
+    var getBlinking: Bool {
+        isBlink = false
 
         if model.blinkLeft > 0.5 || model.blinkRight > 0.5 {
-            blinkStatus = true
+            isBlink = true
         }
 
-        return blinkStatus
+        return isBlink
     }
 
-    var istongueOut: Bool {
-        tongueOutStatus = false
+    var setTongueOut: Bool {
+        isTongueOut = false
 
         if model.tongueOut > 0.5 {
-            tongueOutStatus = true
+            isTongueOut = true
         }
 
-        return tongueOutStatus
+        return isTongueOut
     }
 
     var getBlinkCount: Int {
