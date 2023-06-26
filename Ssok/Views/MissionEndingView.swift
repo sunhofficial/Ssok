@@ -160,7 +160,8 @@ struct MissionEndingView: View {
                                         .missionDetail[MissionDetail.timer] ?? "30")!,
                                       state: $state)
                 case .smile, .blink:
-                    MissionSmileView(arViewState: random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
+                    MissionSmileView(arViewState:
+                                     random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
                                      state: $state
                     )
                 }
