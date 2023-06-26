@@ -74,7 +74,7 @@ struct MissionEndingView: View {
                     .padding(.top,UIScreen.getHeight(170))
                 }
                 .offset(x:0, y: -geomtry.safeAreaInsets.top)
-                VStack(spacing: 20) {
+                VStack {
                     VStack(spacing: 10) {
                         ZStack {
                             Circle()
@@ -100,13 +100,10 @@ struct MissionEndingView: View {
                     .offset(x:0,y:-geomtry.safeAreaInsets.top)
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
+                        .frame(minHeight: UIScreen.getHeight(175))
                         .padding(.horizontal,UIScreen.getWidth(50))
                         .overlay(
-                            ZStack {
-                                Text("미션 성공 TIP")
-                                    .font(Font.custom20bold())
-                                    .foregroundColor(Color("Bg_bottom2"))
-                                VStack(spacing: UIScreen.getHeight(50)) {
+                                VStack(spacing: UIScreen.getHeight(15)) {
                                     let mission = random.randomWhat.missionType
                                     switch mission {
                                     case .decibel:
@@ -122,11 +119,17 @@ struct MissionEndingView: View {
                                         MissionTitleView(missionTitle: missionTitle,
                                                          missionColor: Color("MissionFace"))
                                     }
+                                    Text("미션 성공 TIP")
+                                        .font(Font.custom20bold())
+                                        .foregroundColor(Color("Bg_bottom2"))
                                     Text(missionTip)
                                         .font(Font.custom13semibold())
                                         .multilineTextAlignment(.center)
+                                        .padding(.bottom,UIScreen.getHeight(15))
                                 }
-                            })
+                                    .padding(.top,UIScreen.getHeight(20))
+                            )
+                        .offset(x:0,y:-geomtry.safeAreaInsets.top + UIScreen.getHeight(20))
                     Button {
                         isPresented.toggle()
                     } label: {
@@ -139,6 +142,7 @@ struct MissionEndingView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, UIScreen.getWidth(20))
+                    .padding(.bottom,UIScreen.getHeight(10))
                 }
             }
             .navigationBarHidden(true)

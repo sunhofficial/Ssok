@@ -11,8 +11,8 @@ extension Font {
     // 피그마에 사용된 폰트 보시고, 사용하시면 됩니다!
     // font(Font.customTitle1()) 이런식으로 사용하시면 돼요!
 
-    static func customLargeTitle() -> Font {
-        return Font.system(size: 34 * setSize(), weight: .heavy)
+    static func custom20semibold() -> Font {
+        return Font.system(size: 20 * setSize(), weight: .semibold)
     }
     static func custom13semibold() -> Font {
         return Font.system(size: 13 * setSize(), weight: .semibold)
@@ -32,23 +32,21 @@ extension Font {
     static func custom15bold() -> Font {
         return Font.system(size: 15 * setSize(), weight: .bold)
     }
-
-
     static func setSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
 
         switch height {
-        case 480.0: //Iphone 3,4S => 3.5 inch
+        case 480.0: // Iphone 3,4S => 3.5 inch
             size = 0.85
             break
-        case 568.0: //iphone 5, SE => 4 inch
+        case 568.0: // iphone 5, SE => 4 inch
             size = 0.9
             break
-        case 667.0: //iphone 6, 6s, 7, 8 => 4.7 inch
+        case 667.0: // iphone 6, 6s, 7, 8 => 4.7 inch
             size = 0.9
             break
-        case 736.0: //iphone 6s+ 6+, 7+, 8+ => 5.5 inch
+        case 736.0: // iphone 6s+ 6+, 7+, 8+ => 5.5 inch
             size = 0.95
             break
         case 812.0: //iphone X, XS => 5.8 inch, 13 mini, 12, mini
