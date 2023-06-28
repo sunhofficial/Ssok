@@ -23,8 +23,6 @@ struct MissionEndingView: View {
                     Image("imgEndingTop")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: geomtry.size.width)
-
                     HStack {
                         Spacer()
                         HStack {
@@ -71,17 +69,20 @@ struct MissionEndingView: View {
                     }
                     .padding(.leading, UIScreen.getWidth(100))
                     .padding(.trailing, UIScreen.getWidth(18))
-                    .padding(.top,UIScreen.getHeight(170))
+                    .padding(.top,UIScreen.getHeight(200))
+                    .offset(x:0, y: -geomtry.safeAreaInsets.top)
                 }
+                .frame(maxHeight: geomtry.size.height/2)
                 .offset(x:0, y: -geomtry.safeAreaInsets.top)
                 VStack {
-                    VStack(spacing: 10) {
+                    VStack(spacing: UIScreen.getHeight(10)) {
                         ZStack {
                             Circle()
                                 .foregroundColor(.white)
                                 .shadow(color: Color("Bg_bottom2"), radius: 2)
                             Text("📢")
-                        }.padding(.horizontal,UIScreen.getWidth(170))
+                        }
+                        .padding(.horizontal,UIScreen.getWidth(170))
                         let mission = random.randomWhat.missionType
                         switch mission {
                         case .decibel:
@@ -97,39 +98,42 @@ struct MissionEndingView: View {
                             MissionTypeView(title: "얼굴 인식",
                                             description: "미션을 성공하려면 얼굴을 인식해야해요.")
                         }}
+                    .padding(.top,UIScreen.getHeight(16))
                     .offset(x:0,y:-geomtry.safeAreaInsets.top)
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
                         .frame(minHeight: UIScreen.getHeight(175))
                         .padding(.horizontal,UIScreen.getWidth(50))
+                        .padding(.top,UIScreen.getHeight(20))
                         .overlay(
-                                VStack(spacing: UIScreen.getHeight(15)) {
-                                    let mission = random.randomWhat.missionType
-                                    switch mission {
-                                    case .decibel:
-                                        MissionTitleView(missionTitle: missionTitle,
-                                                         missionColor: Color("MissionDecibel"))
-                                    case .shake:
-                                        MissionTitleView(missionTitle: missionTitle,
-                                                         missionColor: Color("MissionShake"))
-                                    case .voice:
-                                        MissionTitleView(missionTitle: missionTitle,
-                                                         missionColor: Color("MissionVoice"))
-                                    case .smile, .blink:
-                                        MissionTitleView(missionTitle: missionTitle,
-                                                         missionColor: Color("MissionFace"))
-                                    }
-                                    Text("미션 성공 TIP")
-                                        .font(Font.custom20bold())
-                                        .foregroundColor(Color("Bg_bottom2"))
-                                    Text(missionTip)
-                                        .font(Font.custom13semibold())
-                                        .multilineTextAlignment(.center)
-                                        .padding(.bottom,UIScreen.getHeight(15))
+                            VStack(spacing: UIScreen.getHeight(15)) {
+                                let mission = random.randomWhat.missionType
+                                switch mission {
+                                case .decibel:
+                                    MissionTitleView(missionTitle: missionTitle,
+                                                     missionColor: Color("MissionDecibel"))
+                                case .shake:
+                                    MissionTitleView(missionTitle: missionTitle,
+                                                     missionColor: Color("MissionShake"))
+                                case .voice:
+                                    MissionTitleView(missionTitle: missionTitle,
+                                                     missionColor: Color("MissionVoice"))
+                                case .smile, .blink:
+                                    MissionTitleView(missionTitle: missionTitle,
+                                                     missionColor: Color("MissionFace"))
                                 }
-                                    .padding(.top,UIScreen.getHeight(20))
-                            )
-                        .offset(x:0,y:-geomtry.safeAreaInsets.top + UIScreen.getHeight(20))
+                                Text("미션 성공 TIP")
+                                    .font(Font.custom20bold())
+                                    .foregroundColor(Color("Bg_bottom2"))
+                                Text(missionTip)
+                                    .font(Font.custom13semibold())
+                                    .multilineTextAlignment(.center)
+                                    .padding(.bottom,UIScreen.getHeight(15))
+                            }
+                        .padding(.top, UIScreen.getHeight(20))
+                        )
+                        .offset(x:0,y:-geomtry.safeAreaInsets.top )
+
                     Button {
                         isPresented.toggle()
                     } label: {
@@ -142,7 +146,8 @@ struct MissionEndingView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, UIScreen.getWidth(20))
-                    .padding(.bottom,UIScreen.getHeight(10))
+                    .padding(.vertical,UIScreen.getHeight(5))
+                    .offset(x:0,y: -geomtry.safeAreaInsets.top)
                 }
             }
             .navigationBarHidden(true)

@@ -12,7 +12,7 @@ struct MissionTypeView: View {
     let description: String
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: UIScreen.getHeight(4)) {
             Text(title)
                 .font(Font.custom24black())
             Text(description)
