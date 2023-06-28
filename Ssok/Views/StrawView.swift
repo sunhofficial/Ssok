@@ -37,8 +37,8 @@ struct StrawView: View {
                 Image(viewModel.maxProgress != 1 ? "imgFirstDrink" : "imgFinalDrink")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-//                    .frame(height: 454 * screenHeight/844)
-                    .padding(EdgeInsets(top: 323 * screenHeight/844, leading: 0, bottom: 57 * screenHeight/844, trailing: 0))
+                    .padding(.top, UIScreen.getHeight(323))
+                    .padding(.bottom, UIScreen.getHeight(57))
                 
                 SpriteView(
                     scene: scene,
@@ -46,60 +46,65 @@ struct StrawView: View {
                     shouldRender: {_ in return true}
                 )
                 .aspectRatio(0.5, contentMode: .fit)
-                .padding(.bottom, screenHeight == 844 ? 0 : 37*screenHeight/844)
+                .padding(.bottom, screenHeight == 844 ? 0 : UIScreen.getHeight(37))
                 
                 Image("imgCupHead")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 102 * screenHeight/844)
-                    .padding(EdgeInsets(top: 323 * screenHeight/844, leading: 0, bottom: 419 * screenHeight/844, trailing: 0))
+                    .frame(height: UIScreen.getHeight(102))
+                    .padding(.top, UIScreen.getHeight(323))
+                    .padding(.bottom, UIScreen.getHeight(419))
                 
                 ZStack {
                     WhiteRectangleView()
-                        .frame(width: 300 * screenWidth/390, height: viewModel.maxProgress == 1 ? 106 * screenHeight/844 : 153 * screenHeight/844)
+                        .frame(
+                            width: UIScreen.getWidth(300),
+                            height: viewModel.maxProgress == 1 ?
+                            UIScreen.getHeight(106) : UIScreen.getHeight(153)
+                        )
                     if viewModel.maxProgress == 1 {
                         VStack {
                             ZStack {
                                 Image("imgPhoneIcon")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(width: 58 * screenWidth/390, height: 79 * screenHeight/844)
-                                    .padding(.top, -60 * screenHeight/844)
+                                    .frame(width: UIScreen.getWidth(58), height: UIScreen.getHeight(79))
+                                    .padding(.top, UIScreen.getHeight(-60))
                                 Image("imgHandIcon")
-                                    .padding(.top, -47 * screenHeight/844)
-                                    .padding(.leading, 30 * screenWidth/390)
+                                    .padding(.top, UIScreen.getHeight(-47))
+                                    .padding(.leading, UIScreen.getWidth(30))
                             }
                             Text("스트로우를 꼽아주세요!")
-                                .font(.system(size: 18 * screenHeight/844, weight: .bold))
-                                .padding(.bottom, 1)
+                                .font(Font.custom18bold())
+                                .padding(.bottom, UIScreen.getHeight(1))
                             Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
-                                .font(.system(size: 13 * screenHeight/844, weight: .semibold))
+                                .font(Font.custom13semibold())
                         }
                     } else {
                         VStack {
                             Image("imgShakeIcon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 58 * screenWidth/390, height: 79 * screenHeight/844)
-                                .padding(.top, -60 * screenHeight/844)
-                                .padding(.bottom, 0)
+                                .frame(width: UIScreen.getWidth(58), height: UIScreen.getHeight(79))
+                                .padding(.top, UIScreen.getHeight(-60))
                             Text("버블티를 흔들어주세요!")
-                                .font(.system(size: 18 * screenHeight/844, weight: .bold))
-                                .padding(.bottom, 5 * screenHeight/844)
+                                .font(Font.custom18bold())
+                                .padding(.bottom, UIScreen.getHeight(5))
                             Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
                                 .multilineTextAlignment(.center)
-                                .font(.system(size: 13 * screenHeight/844, weight: .semibold))
-                                .padding(.bottom, 10 * screenHeight/844)
+                                .font(Font.custom13semibold())
+                                .padding(.bottom, UIScreen.getHeight(10))
                             ProgressView(value: viewModel.maxProgress)
                                 .tint(Color("Orange_Progress"))
                                 .background(Color("LightGray"))
-                                .frame(width: 240 * screenWidth/390, height: 8 * screenHeight/844)
+                                .frame(width: UIScreen.getWidth(240), height: UIScreen.getHeight(8))
                                 .scaleEffect(x: 1, y: 2)
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
                         }
                     }
                 }
-                .offset(y: viewModel.maxProgress == 1 ? -185 * screenHeight/844 : -225 * screenHeight/844)
+                .offset(y: viewModel.maxProgress == 1 ?
+                        UIScreen.getHeight(-185) : UIScreen.getHeight(-225))
                 .opacity(viewModel.showWhiteRectangle ? 1 : 0)
                 ZStack {
                     VStack {
@@ -110,30 +115,31 @@ struct StrawView: View {
                                     .delay(1.4 + Double(index) * 0.2), value: moveStraw)
                         }
                     }
-                    .frame(width: 28)
+                    .frame(width: UIScreen.getWidth(28))
                     .opacity(moveStraw ? 1 : 0)
                     .offset(y: moveStraw ? -screenHeight : -10)
                     .animation(.easeInOut.delay(1), value: moveStraw)
                 }
-                .frame(width: screenWidth / 1.3, height: screenHeight / 1.8)
+                .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(469))
                 // 빨대
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
-                        .frame(width: 200)
+                        .frame(width: UIScreen.getWidth(200))
                         .contentShape(Rectangle())
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1), value: moveStraw)
-                        .offset(y: moveStraw ? 0 : dragAmount.height - screenHeight/1.7)
+                        .offset(y: moveStraw ? 0 : dragAmount.height - UIScreen.getHeight(496.5))
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    if gesture.translation.height > 0 && gesture.translation.height < 240 {
+                                    if gesture.translation.height > 0
+                                        && gesture.translation.height < UIScreen.getHeight(240) {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
                                             viewModel.showWhiteRectangle = false
                                         }
                                     }
-                                    isPlug = gesture.translation.height > 150
+                                    isPlug = gesture.translation.height > UIScreen.getHeight(150)
                                 }
                                 .onEnded { _ in
                                     if isPlug {
@@ -156,7 +162,12 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutCup").position(x: screenWidth/2, y: 377)
+                    Image("imgCutCup")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: UIScreen.getHeight(102))
+                        .padding(.top, UIScreen.getHeight(323))
+                        .padding(.bottom, UIScreen.getHeight(419))
                 }
                 if largePearlIndex >= 0 {
                     Color(.white)
@@ -175,8 +186,8 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 8 * screenWidth/390)
-                .padding(.top, 48 * screenHeight/844)
+                .padding(.leading, UIScreen.getWidth(8))
+                .padding(.top, UIScreen.getHeight(48))
             }
             .navigationBarHidden(true)
             .onDisappear {

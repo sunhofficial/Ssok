@@ -25,7 +25,7 @@ struct IntroView: View {
                                 .offset(y: CGFloat(-viewModel.selectedPage * 15))
                             Image("imgIntroWave")
                                 .resizable()
-                                .frame(width: screenWidth, height: screenHeight * 0.23)
+                                .frame(width: screenWidth, height: UIScreen.getHeight(194))
                                 .aspectRatio(contentMode: .fit)
                         }
                         HStack(spacing: screenHeight/40) {
@@ -46,10 +46,10 @@ struct IntroView: View {
                 TabView(selection: $viewModel.selectedPage) {
                     VStack {
                         Text("쉬는시간이 지루할때,\n쏘옥~")
-                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
+                            .padding(.top, UIScreen.getHeight(42))
                         Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -63,56 +63,45 @@ struct IntroView: View {
                             .onAppear {
                                 viewModel.isFirst = true
                             }
-                            .padding(
-                                EdgeInsets(
-                                    top: screenHeight/13,
-                                    leading: 0,
-                                    bottom: screenHeight*0.311,
-                                    trailing: 0
-                                )
-                            )
+                            .padding(.top, UIScreen.getHeight(65))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(0)
                     
                     VStack {
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
-                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
+                            .padding(.top, UIScreen.getHeight(42))
                         
                         Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .padding(
-                                EdgeInsets(
-                                    top: screenHeight/26,
-                                    leading: 0,
-                                    bottom: screenHeight*0.311,
-                                    trailing: 0
-                                )
-                            )
+                            .padding(.top, UIScreen.getHeight(32.5))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(1)
                     
                     VStack {
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
-                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
+                            .padding(.top, UIScreen.getHeight(42))
                         
                         Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(
                                 EdgeInsets(
-                                    top: screenHeight/9,
-                                    leading: screenWidth/40,
-                                    bottom: screenHeight * 0.4,
-                                    trailing: screenWidth/40
+                                    top: UIScreen.getHeight(94),
+                                    leading: UIScreen.getWidth(10),
+                                    bottom: UIScreen.getHeight(338),
+                                    trailing: UIScreen.getWidth(10)
                                 )
                             )
+                        
                     }
                     .tag(2)
                     
@@ -121,7 +110,7 @@ struct IntroView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(
-                                .bottom, screenHeight * 0.3
+                                .bottom, UIScreen.getHeight(253)
                             )
                     }
                     .tag(3)
@@ -135,17 +124,17 @@ struct IntroView: View {
                     viewModel.setPageLast()
                 } label: {
                     Text("시작하기")
-                        .font(.system(size: 17 * screenHeight/844, weight: .bold))
+                        .font(Font.custom17bold())
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .frame(
-                            maxWidth: screenWidth * 0.9,
-                            maxHeight: 50 * screenHeight/844,
+                            maxWidth: UIScreen.getWidth(351),
+                            maxHeight: UIScreen.getHeight(50),
                             alignment: .center
                         )
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
-                        .padding(.bottom, screenHeight * 0.02 * screenHeight/844)
+                        .padding(.bottom, UIScreen.getHeight(17))
                 }
                 .navigationDestination(for: ViewType.self) { viewType in
                     switch viewType {

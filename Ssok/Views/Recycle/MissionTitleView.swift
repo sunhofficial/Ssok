@@ -14,9 +14,9 @@ struct MissionTitleView: View {
 
     var body: some View {
         Text(missionTitle)
-            .font(.system(size: 20, weight: .semibold))
-            .padding(.vertical, 6)
-            .padding(.horizontal, 10)
+            .font(Font.custom20semibold())
+            .padding(.vertical, UIScreen.getHeight(6))
+            .padding(.horizontal, UIScreen.getWidth(10))
             .background(missionColor.opacity(0.35).cornerRadius(15))
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
