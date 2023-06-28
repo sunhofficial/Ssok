@@ -8,6 +8,7 @@
 import Foundation
 import CoreMotion
 import SpriteKit
+import SwiftUI
 
 struct ColType {
     static let pearl: UInt32 = 0x1 << 0
@@ -31,8 +32,9 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
         let vector = SKSpriteNode(imageNamed: "Vector 7")
         vector.alpha = 0
+        vector.anchorPoint = CGPoint(x: 0.5, y: 0)
         vector.physicsBody = SKPhysicsBody(edgeLoopFrom: vector.frame)
-        vector.position = CGPoint(x: frame.midX, y: frame.midY)
+        vector.position = CGPoint(x: frame.midX, y: 42)
         vector.physicsBody?.affectedByGravity = false
         vector.physicsBody?.categoryBitMask = ColType.wall
         vector.physicsBody?.collisionBitMask = ColType.pearl
@@ -42,28 +44,28 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
 
         setPhysicsBody(setNode: leftBorder)
         leftBorder.zRotation = .pi/45
-        leftBorder.position = CGPoint(x: frame.midX-120, y: frame.midY)
+        leftBorder.position = CGPoint(x: frame.midX-130, y: frame.midY)
         addChild(leftBorder)
 
         setPhysicsBody(setNode: leftBottom)
         leftBottom.zRotation = .pi/2.9
-        leftBottom.position = CGPoint(x: frame.midX+50, y: frame.midY-248)
+        leftBottom.position = CGPoint(x: frame.midX+50, y: -8)
         addChild(leftBottom)
 
         setPhysicsBody(setNode: rightBorder)
         rightBorder.zRotation = -.pi/45
-        rightBorder.position = CGPoint(x: frame.midX+120, y: frame.midY)
+        rightBorder.position = CGPoint(x: frame.midX+130, y: frame.midY)
         addChild(rightBorder)
 
         setPhysicsBody(setNode: rightBottom)
         rightBottom.zRotation = -.pi/2.9
-        rightBottom.position = CGPoint(x: frame.midX-50, y: frame.midY-248)
+        rightBottom.position = CGPoint(x: frame.midX-50, y: -8)
         addChild(rightBottom)
 
         let pearlRadius = 20.0
 
-        for xRange in stride(from: 200, to: 300, by: pearlRadius) {
-            for yRange in stride(from: frame.midY, to: frame.midY+50, by: pearlRadius) {
+        for xRange in stride(from: frame.midX-50, to: frame.midX+50, by: pearlRadius) {
+            for yRange in stride(from: frame.minY+100, to: frame.minY+150, by: pearlRadius) {
                 let pearlType = pearls.randomElement()!
 //                let pearl = Pearls(imageNamed: pearlType)
                 let pearl = SKSpriteNode(imageNamed: pearlType)
@@ -120,5 +122,24 @@ class HapticManager {
     func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
+    }
+}
+
+struct BottleView: View {
+    var scene = Bottle(size: CGSize(width: 390, height: 844))
+    var body: some View {
+        SpriteView(
+            scene: scene,
+            options: [.allowsTransparency],
+            shouldRender: {_ in return true}
+        )
+        .aspectRatio(0.5, contentMode: .fit)
+        .frame(width: screenWidth, height: screenHeight)
+    }
+}
+
+struct BottleView_Previews: PreviewProvider {
+    static var previews: some View {
+        BottleView()
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 
 struct IntroView: View {
     @StateObject private var viewModel = IntroViewModel()
-
+    
     var body: some View {
         NavigationStack(path: $viewModel.path) {
             ZStack(alignment: .bottom) {
@@ -25,10 +25,10 @@ struct IntroView: View {
                                 .offset(y: CGFloat(-viewModel.selectedPage * 15))
                             Image("imgIntroWave")
                                 .resizable()
-                                .frame(width: screenWidth, height: 200)
+                                .frame(width: screenWidth, height: screenHeight * 0.23)
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 12) {
+                        HStack(spacing: screenHeight/40) {
                             ForEach(0..<4) { pageNumber in
                                 Circle()
                                     .fill(
@@ -38,21 +38,22 @@ struct IntroView: View {
                                     .frame(width: 8, height: 8)
                             }
                         }
-                        .padding(.bottom, 80)
+                        .padding(.bottom, screenHeight * 0.1)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
-
+                
                 TabView(selection: $viewModel.selectedPage) {
-                    VStack(spacing: 66) {
+                    VStack {
                         Text("쉬는시간이 지루할때,\n쏘옥~")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
                         Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 173)
+                            .frame(maxWidth: screenWidth * 0.6)
                             .rotationEffect(
                                 Angle(degrees: viewModel.isFirst ? -30 : 30)
                             )
@@ -62,51 +63,66 @@ struct IntroView: View {
                             .onAppear {
                                 viewModel.isFirst = true
                             }
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                EdgeInsets(
+                                    top: screenHeight/13,
+                                    leading: 0,
+                                    bottom: screenHeight*0.311,
+                                    trailing: 0
+                                )
+                            )
                     }
                     .tag(0)
-
-                    VStack(spacing: 38) {
+                    
+                    VStack {
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-
+                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
+                        
                         Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 74)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                EdgeInsets(
+                                    top: screenHeight/26,
+                                    leading: 0,
+                                    bottom: screenHeight*0.311,
+                                    trailing: 0
+                                )
+                            )
                     }
                     .tag(1)
-
-                    VStack(spacing: 109) {
+                    
+                    VStack {
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.system(size: 24 * screenHeight/844, weight: .bold))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-
+                            .padding(EdgeInsets(top: screenHeight * 0.05, leading: 0, bottom: 0, trailing: 0))
+                        
                         Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 22)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                EdgeInsets(
+                                    top: screenHeight/9,
+                                    leading: screenWidth/40,
+                                    bottom: screenHeight * 0.4,
+                                    trailing: screenWidth/40
+                                )
+                            )
                     }
                     .tag(2)
-
-                    VStack(spacing: 40) {
+                    
+                    VStack {
                         Image("imgIntroAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: screenWidth - 32)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                .bottom, screenHeight * 0.3
+                            )
                     }
                     .tag(3)
                 }
@@ -114,16 +130,22 @@ struct IntroView: View {
                     viewModel.isFirst.toggle()
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-
+                
                 Button {
                     viewModel.setPageLast()
                 } label: {
                     Text("시작하기")
+                        .font(.system(size: 17 * screenHeight/844, weight: .bold))
                         .foregroundColor(.white)
                         .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .frame(
+                            maxWidth: screenWidth * 0.9,
+                            maxHeight: 50 * screenHeight/844,
+                            alignment: .center
+                        )
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
+                        .padding(.bottom, screenHeight * 0.02 * screenHeight/844)
                 }
                 .navigationDestination(for: ViewType.self) { viewType in
                     switch viewType {
