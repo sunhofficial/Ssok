@@ -168,7 +168,6 @@ struct StrawView: View {
                     moveStraw = false
                     viewModel.showWhiteRectangle = true
                     largePearlIndex = -1
-                    viewModel.progress = 0.0
                 }
                 .onAppear {
                     viewModel.startupdatingMotion()
