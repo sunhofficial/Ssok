@@ -164,14 +164,17 @@ struct StrawView: View {
                 .padding(.top, 48)
             }
             .navigationBarHidden(true)
-                .onDisappear {
-                    moveStraw = false
-                    viewModel.showWhiteRectangle = true
-                    largePearlIndex = -1
-                }
-                .onAppear {
-                    viewModel.startupdatingMotion()
-                }
+            // largePearlIndex = -1 을 onDisappear에서 실행하면 뷰가 잘 실행이 되고
+            // onAppear에서 실행하면 뷰가 오류가 나고 종료됩니다.
+//            .onDisappear {
+//                largePearlIndex = -1
+//            }
+            .onAppear {
+//                largePearlIndex = -1
+                moveStraw = false
+                viewModel.showWhiteRectangle = true
+                viewModel.startupdatingMotion()
+            }
         } else {
             MissionEndingView(state: $goNextView,
                               missionTitle: random.randomWhat.missionInfo.missionTitle,
