@@ -69,11 +69,11 @@ struct MissionEndingView: View {
                     }
                     .padding(.leading, UIScreen.getWidth(100))
                     .padding(.trailing, UIScreen.getWidth(18))
-                    .padding(.top,UIScreen.getHeight(200))
-                    .offset(x:0, y: -geomtry.safeAreaInsets.top)
+                    .padding(.top,getSafeArea().bottom == 0 ?
+                             UIScreen.getHeight(210) : UIScreen.getHeight(170))
                 }
+                .offset(x:0, y: getSafeArea().bottom == 0 ? 0 :  -geomtry.safeAreaInsets.top )
                 .frame(maxHeight: geomtry.size.height/2)
-                .offset(x:0, y: -geomtry.safeAreaInsets.top)
                 VStack {
                     VStack(spacing: UIScreen.getHeight(10)) {
                         ZStack {
@@ -178,4 +178,19 @@ struct MissionEndingView: View {
             }
         }
     }
+//    private struct TextModifier: ViewModifier {
+//        let xFactor: CGFloat
+//
+//        func body(content: Content) -> some View {
+//            content
+//                .font(Font.custom20bold())
+//                .rotationEffect(Angle(degrees: -30))
+//                .foregroundColor(.white)
+//                .multilineTextAlignment(.center)
+//                .minimumScaleFactor(0.1)
+//                .frame(width: UIScreen.getWidth(75), height: UIScreen.getWidth(75))
+//                .lineLimit(2)
+//                .position(x: UIScreen.getWidth(xFactor), y: UIScreen.getHeight(166))
+//        }
+//    }
 }
