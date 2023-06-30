@@ -12,6 +12,7 @@ struct MissionCompleteView: View {
     @State var background: Color
     @EnvironmentObject var random: RandomMember
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
@@ -27,6 +28,7 @@ struct MissionCompleteView: View {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
+                        largePearlIndex = -1
                         mode.wrappedValue.dismiss()
                         state = false
                     } label: {

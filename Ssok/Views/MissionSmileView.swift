@@ -11,13 +11,14 @@ import RealityKit
 struct MissionSmileView: View {
     @State var arViewState = ""
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     @Environment(\.presentationMode) var mode
     @ObservedObject var arViewModel = ARViewModel()
 
     var body: some View {
             ZStack {
-                ARViewContainer(arViewModel: arViewModel, state: $state)
+                ARViewContainer(arViewModel: arViewModel, state: $state, largePearlIndex: $largePearlIndex)
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
@@ -37,7 +38,8 @@ struct MissionSmileView: View {
                         } else {
                             MissionCompleteView(title: "혀내밀기 😝",
                                                       background: Color("MissionFace"),
-                                                      state: $state)
+                                                      state: $state,
+                                                largePearlIndex: $largePearlIndex)
                         }
                     } else if arViewState == "blink"{
                         if !arViewModel.asyncIsBlinkCount {
@@ -55,7 +57,8 @@ struct MissionSmileView: View {
                         } else {
                             MissionCompleteView(title: "플러팅하기 😘",
                                                       background: Color("MissionFace"),
-                                                      state: $state)
+                                                      state: $state,
+                                                largePearlIndex: $largePearlIndex)
                         }
                     }
                 }
@@ -66,6 +69,7 @@ struct MissionSmileView: View {
 struct ARViewContainer: UIViewRepresentable {
     var arViewModel: ARViewModel
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     func makeUIView(context: Context) -> ARView {
         arViewModel.startSessionDelegate()

@@ -13,6 +13,7 @@ struct MissionEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var goal: String = ""
+    @Binding var largePearlIndex: Int
     @EnvironmentObject var random: RandomMember
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
@@ -36,6 +37,7 @@ struct MissionEndingView: View {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
+                        largePearlIndex = -1
                         state = false
                     }
                     .padding(.trailing, 20)
@@ -146,11 +148,13 @@ struct MissionEndingView: View {
                 case .decibel:
                     MissionDecibelView(title: missionTitle,
                                        goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                       state: $state)
+                                       state: $state,
+                                       largePearlIndex: $largePearlIndex)
                 case .shake:
                     MissionPedometerView(title: missionTitle,
                                          goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                         state: $state)
+                                         state: $state,
+                                         largePearlIndex: $largePearlIndex)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
                                       missionTip: missionTip,
@@ -158,11 +162,13 @@ struct MissionEndingView: View {
                                       speechTime: Double(random
                                         .randomWhat
                                         .missionDetail[MissionDetail.timer] ?? "30")!,
-                                      state: $state)
+                                      state: $state,
+                                      largePearlIndex: $largePearlIndex)
                 case .smile, .blink:
                     MissionSmileView(arViewState:
                                      random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
-                                     state: $state
+                                     state: $state,
+                                     largePearlIndex: $largePearlIndex
                     )
                 }
             }
