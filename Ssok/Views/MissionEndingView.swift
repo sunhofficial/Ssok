@@ -13,6 +13,7 @@ struct MissionEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var goal: String = ""
+    @Binding var largePearlIndex: Int
     @EnvironmentObject var random: RandomMember
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
@@ -66,6 +67,13 @@ struct MissionEndingView: View {
                             .minimumScaleFactor(0.1)
                             .frame(width: UIScreen.getWidth(75), height: UIScreen.getHeight(75))
                             .lineLimit(2)
+                    }
+                    .onTapGesture {
+                        random.randomWho = setRandomMember(random.members)
+                        random.randomWhat = setRandomMission(missions)
+                        random.randomWhere = setRandomWhere(howList)
+                        largePearlIndex = -1
+                        state = false
                     }
                     .padding(.leading, UIScreen.getWidth(100))
                     .padding(.trailing, UIScreen.getWidth(18))
@@ -157,11 +165,13 @@ struct MissionEndingView: View {
                 case .decibel:
                     MissionDecibelView(title: missionTitle,
                                        goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                       state: $state)
+                                       state: $state,
+                                       largePearlIndex: $largePearlIndex)
                 case .shake:
                     MissionPedometerView(title: missionTitle,
                                          goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                         state: $state)
+                                         state: $state,
+                                         largePearlIndex: $largePearlIndex)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
                                       missionTip: missionTip,
@@ -169,10 +179,13 @@ struct MissionEndingView: View {
                                       speechTime: Double(random
                                         .randomWhat
                                         .missionDetail[MissionDetail.timer] ?? "30")!,
-                                      state: $state)
+                                      state: $state,
+                                      largePearlIndex: $largePearlIndex)
                 case .smile, .blink:
-                    MissionSmileView(arState: random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
-                                     state: $state
+                    MissionSmileView(arViewState:
+                                     random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
+                                     state: $state,
+                                     largePearlIndex: $largePearlIndex
                     )
                 }
             }

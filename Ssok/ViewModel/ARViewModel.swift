@@ -10,51 +10,53 @@ import RealityKit
 import ARKit
 
 class ARViewModel: UIViewController, ObservableObject, ARSessionDelegate {
-    @Published private var model: ARModel = ARModel()
-    @Published var ARFrame: Bool = false
+    @Published private var model = ARModel()
+    @Published var ARFrame = false
 
-    var blinkCount: Int = 0
-    var smileCount: Int = 0
-    var blinkStatus: Bool = false
-    var smileStatus: Bool = false
-    var tongueOutStatus: Bool = false
-    var asyncBlinkCount: Int = 0
-    var asyncSmileCount: Int = 0
-    var asyncIsBlinkCount: Bool = false
-    var asyncIsSmileCount: Bool = false
+    var blinkCount = 0
+    var smileCount = 0
+    var isBlink = false
+    var isSmile = false
+    var isTongueOut = false
+    var asyncBlinkCount = 0
+    var asyncSmileCount = 0
+    var asyncIsBlinkCount = false
+    var asyncIsSmileCount = false
 
     var arView: ARView {
         model.arView
     }
 
-    var isSmiling: Bool {
+    var getSmiling: Bool {
         var tempSmile = false
-        smileStatus = false
+        isBlink = false
+
         if model.tongueOut > 0.5 {
-            smileStatus = true
+            isSmile = true
             tempSmile = true
         }
+
         return tempSmile
     }
 
-    var isBlinking: Bool {
-        blinkStatus = false
+    var getBlinking: Bool {
+        isBlink = false
 
         if model.blinkLeft > 0.5 || model.blinkRight > 0.5 {
-            blinkStatus = true
+            isBlink = true
         }
 
-        return blinkStatus
+        return isBlink
     }
 
-    var istongueOut: Bool {
-        tongueOutStatus = false
+    var setTongueOut: Bool {
+        isTongueOut = false
 
         if model.tongueOut > 0.5 {
-            tongueOutStatus = true
+            isTongueOut = true
         }
 
-        return tongueOutStatus
+        return isTongueOut
     }
 
     var getBlinkCount: Int {

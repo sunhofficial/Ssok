@@ -164,19 +164,16 @@ struct StrawView: View {
                 .padding(.top, 48)
             }
             .navigationBarHidden(true)
-                .onDisappear {
-                    moveStraw = false
-                    viewModel.showWhiteRectangle = true
-                    largePearlIndex = -1
-                    viewModel.progress = 0.0
-                }
-                .onAppear {
-                    viewModel.startupdatingMotion()
-                }
+            .onAppear {
+                moveStraw = false
+                viewModel.showWhiteRectangle = true
+                viewModel.startupdatingMotion()
+            }
         } else {
             MissionEndingView(state: $goNextView,
                               missionTitle: random.randomWhat.missionInfo.missionTitle,
-                              missionTip: random.randomWhat.missionInfo.missionTip)
+                              missionTip: random.randomWhat.missionInfo.missionTip,
+                              largePearlIndex: $largePearlIndex)
         }
     }
 }

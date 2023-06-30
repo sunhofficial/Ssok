@@ -16,6 +16,7 @@ struct MissionDecibelView: View {
     @State var ismore: Int = 0
     @State var progressTintColor = Color(.orange)
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     var body: some View {
         ZStack {
@@ -89,7 +90,7 @@ struct MissionDecibelView: View {
             .navigationBarHidden(true)
 
             if isCompleted {
-                MissionCompleteView(title: title, background: Color("MissionDecibel"), state: $state)
+                MissionCompleteView(title: title, background: Color("MissionDecibel"), state: $state, largePearlIndex: $largePearlIndex)
             }
         }
         .onAppear {

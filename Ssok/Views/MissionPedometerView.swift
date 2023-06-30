@@ -25,6 +25,7 @@ struct MissionPedometerView: View {
     private let more: String = "더"
     @State private var isMore: Int = 0
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     var body: some View {
         ZStack {
@@ -141,7 +142,8 @@ struct MissionPedometerView: View {
                 MissionCompleteView(
                     title: title,
                     background: Color("MissionShake"),
-                    state: $state)
+                    state: $state,
+                    largePearlIndex: $largePearlIndex)
             }
         }
         .navigationBarHidden(true)

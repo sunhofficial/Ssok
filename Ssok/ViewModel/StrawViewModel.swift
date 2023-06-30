@@ -25,6 +25,7 @@ class StrawViewModel: ObservableObject {
         startupdatingMotion()
     }
     func startupdatingMotion() {
+        progress = 0.0
         if motionManger.isDeviceMotionAvailable {
             motionManger.deviceMotionUpdateInterval = 0.2
             timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
