@@ -36,6 +36,7 @@ struct MissionEndingView: View {
                             random.randomWho = setRandomMember(random.members)
                             random.randomWhat = setRandomMission(missions)
                             random.randomWhere = setRandomWhere(howList)
+                            largePearlIndex = -1
                             state = false
                         }
                         .padding(.trailing, UIScreen.getWidth(20))
