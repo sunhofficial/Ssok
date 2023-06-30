@@ -9,21 +9,22 @@ import SwiftUI
 
 struct MissionEndingView: View {
     @Binding var state: Bool
-    @State var next = false
-    @State var wheresentence: String = ""
-    @State var whatsentence: String = ""
+    @State private var isPresented = false
     @State var missionTitle: String
     @State var missionTip: String
     @State var goal: String = ""
+    @Binding var largePearlIndex: Int
     @EnvironmentObject var random: RandomMember
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
         ZStack {
             ZStack(alignment: .top) {
-                Image("imgEndingTop").resizable()
+                Image("imgEndingTop")
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: screenWidth).position(x: screenWidth/2, y: 190)
+                    .frame(width: screenWidth)
+                    .position(x: screenWidth/2, y: 190)
                 HStack {
                     Spacer()
                     HStack {
@@ -36,12 +37,15 @@ struct MissionEndingView: View {
                         random.randomWho = setRandomMember(random.members)
                         random.randomWhat = setRandomMission(missions)
                         random.randomWhere = setRandomWhere(whereList)
+                        largePearlIndex = -1
                         state = false
                     }
                     .padding(.trailing, 20)
                     .padding(.top, 56)
                 }
             }
+            .edgesIgnoringSafeArea(.top)
+
             ZStack {
                 Text(random.randomWho)
                     .font(.system(size: 20, weight: .bold))
@@ -51,7 +55,7 @@ struct MissionEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/2.9, y: 210)
+                    .position(x: screenWidth/2.9, y: 166)
                 Text(random.randomWhere)
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
@@ -60,7 +64,7 @@ struct MissionEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/1.81, y: 210)
+                    .position(x: screenWidth/1.81, y: 166)
                 Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
                     .font(.system(size: 20, weight: .bold))
                     .rotationEffect(Angle(degrees: -30))
@@ -69,7 +73,7 @@ struct MissionEndingView: View {
                     .minimumScaleFactor(0.1)
                     .frame(width: 75, height: 75)
                     .lineLimit(2)
-                    .position(x: screenWidth/1.155, y: 210)
+                    .position(x: screenWidth/1.155, y: 166)
             }
             ZStack {
                 Circle()
@@ -113,7 +117,7 @@ struct MissionEndingView: View {
                                              missionColor: Color("MissionShake"))
                         case .voice:
                             MissionTitleView(missionTitle: missionTitle,
-                                            missionColor: Color("MissionVoice"))
+                                             missionColor: Color("MissionVoice"))
                         case .smile, .blink:
                             MissionTitleView(missionTitle: missionTitle,
                                              missionColor: Color("MissionFace"))
@@ -126,28 +130,9 @@ struct MissionEndingView: View {
                 .offset(y: 32)
             }
             .offset(y: 150)
-            NavigationLink {
-                let mission = random.randomWhat.missionType
-                switch mission {
-                case .decibel:
-                    MissionDecibelView(title: missionTitle,
-                                       goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                       state: $state)
-                case .shake:
-                    MissionPedometerView(title: missionTitle,
-                                         goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
-                                         state: $state)
-                case .voice:
-                    MissionSpeechView(missionTitle: missionTitle,
-                                      missionTip: missionTip,
-                                      answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
-                                      speechTime: Double(random
-                                                        .randomWhat
-                                                        .missionDetail[MissionDetail.timer] ?? "30")!,
-                                      state: $state)
-                default:
-                    EmptyView()
-                }
+
+            Button {
+                isPresented.toggle()
             } label: {
                 Text("미션하기")
                     .foregroundColor(.white)
@@ -157,8 +142,38 @@ struct MissionEndingView: View {
                     .cornerRadius(12)
             }
             .position(x: screenWidth/2, y: screenHeight-59)
+            .fullScreenCover(isPresented: $isPresented){
+                let mission = random.randomWhat.missionType
+                switch mission {
+                case .decibel:
+                    MissionDecibelView(title: missionTitle,
+                                       goal: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
+                                       state: $state,
+                                       largePearlIndex: $largePearlIndex)
+                case .shake:
+                    MissionPedometerView(title: missionTitle,
+                                         goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
+                                         state: $state,
+                                         largePearlIndex: $largePearlIndex)
+                case .voice:
+                    MissionSpeechView(missionTitle: missionTitle,
+                                      missionTip: missionTip,
+                                      answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
+                                      speechTime: Double(random
+                                        .randomWhat
+                                        .missionDetail[MissionDetail.timer] ?? "30")!,
+                                      state: $state,
+                                      largePearlIndex: $largePearlIndex)
+                case .smile, .blink:
+                    MissionSmileView(arViewState:
+                                     random.randomWhat.missionDetail[MissionDetail.arState] ?? "",
+                                     state: $state,
+                                     largePearlIndex: $largePearlIndex
+                    )
+                }
+            }
+            .ignoresSafeArea(.all)
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea(.all)
-        .navigationBarHidden(true)
     }
 }

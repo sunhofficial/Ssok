@@ -20,6 +20,7 @@ struct MissionSpeechView: View {
     @State var progressTime: Double = 100.0
     @State var checkTimer: Timer?
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
     let progressTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -187,7 +188,7 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state)
+                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state, largePearlIndex: $largePearlIndex)
             }
         }
         .navigationBarHidden(true)

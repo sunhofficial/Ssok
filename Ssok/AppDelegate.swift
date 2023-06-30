@@ -9,21 +9,19 @@ import UIKit
 import SwiftUI
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
     var window: UIWindow?
 
-    init(state: Binding<Bool>){
+    init(state: Binding<Bool>, largePearlIndex: Binding<Int>){
         self._state = state
+        self._largePearlIndex = largePearlIndex
     }
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // Create the SwiftUI view that provides the window contents.
-        let smileView = MissionSmileView(state: $state)
+        let smileView = MissionSmileView(state: $state, largePearlIndex: $largePearlIndex)
 
-        // Use a UIHostingController as window root view controller.
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = UIHostingController(rootView: smileView)
         self.window = window
