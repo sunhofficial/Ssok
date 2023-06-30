@@ -46,6 +46,7 @@
 		C75FB6872A34D1F80031B070 /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FB6862A34D1F80031B070 /* StrawView.swift */; };
 		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
 		C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */; };
+		C7B95D5B2A4F318C00DB7307 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B95D5A2A4F318C00DB7307 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		C75FB6862A34D1F80031B070 /* StrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
 		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSpeechView.swift; sourceTree = "<group>"; };
+		C7B95D5A2A4F318C00DB7307 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				10E73D012A0A3BEB00AD2F91 /* UIScreen+.swift */,
 				C71C86202A49E0AC00522E89 /* Font+.swift */,
 				C74DD5432A065B1500852B09 /* View+.swift */,
+				C7B95D5A2A4F318C00DB7307 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			files = (
 				C71C86212A49E0AC00522E89 /* Font+.swift in Sources */,
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
+				C7B95D5B2A4F318C00DB7307 /* String.swift in Sources */,
 				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,

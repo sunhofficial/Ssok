@@ -22,7 +22,7 @@ struct AddMemberView: View {
         ZStack {
             VStack {
                 VStack(spacing: 0) {
-                    TextField("닉네임을 입력해주세요.", text: $viewModel.memberName)
+                    TextField("한글로 닉네임을 입력해주세요.", text: $viewModel.memberName)
                         .focused($isFocused)
                         .padding(.vertical, UIScreen.getHeight(7))
                 }
@@ -40,7 +40,7 @@ struct AddMemberView: View {
                         viewModel.isSubmitFail = false
                     }
                 } message: {
-                    Text("입력하신이름을\n확인해주세요.")
+                    Text("입력하신 이름을확인해주세요.\n이름은 한글만 가능합니다.")
                 }
                 .alert("인원은 최대 6명까지 가능합니다.", isPresented: $viewModel.isTotalAlertShowing) {
                     Button("OK") {

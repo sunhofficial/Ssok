@@ -44,12 +44,14 @@ class AddMemberViewModel: ObservableObject {
     }
     func textFieldSubmit() {
         if memberName.isEmpty {
-                isSubmitFail = true
+            isSubmitFail = true
         } else if members.contains(where: {$0.name == memberName}) {
-               isSubmitFail = true
-           } else {
-               plusButtonDidTap()
-              isSubmitFail = false
-           }
+            isSubmitFail = true
+        } else if !memberName.isKorean {
+            isSubmitFail = true
+        } else {
+            plusButtonDidTap()
+            isSubmitFail = false
+        }
     }
 }
