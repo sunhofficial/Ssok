@@ -2,13 +2,12 @@ import Foundation
 
 class AddMemberViewModel: ObservableObject {
 
-    @Published var memberName: String = ""
-    @Published var isTotalAlertShowing: Bool = false
-    @Published var isExistAlertShowing: Bool = false
-    @Published var isTextFieldEmtpy: Bool = true
-    @Published var isNextButtonDisabled: Bool = false
-    @Published var members: [Member] = []
-    @Published var filteredData: [String] = []
+    @Published var memberName = ""
+    @Published var isSubmitFail = false
+    @Published var isTotalAlertShowing = false
+    @Published var isExistAlertShowing = false
+    @Published var isNextButtonDisabled = false
+    @Published var members = [Member]()
 
     func setMemberData() {
         if let data = UserDefaults.standard.value(forKey: "members") as? Data {
@@ -43,10 +42,14 @@ class AddMemberViewModel: ObservableObject {
             isNextButtonDisabled = true
         } else { isNextButtonDisabled = false }
     }
-
-    func filterData() {
-        filteredData = whoArray.filter { data in
-            data.localizedCaseInsensitiveContains(memberName)
+    func textFieldSubmit() {
+        guard !memberName.isEmpty,
+              !members.contains(where: { $0.name == memberName }),
+              memberName.isKorean else {
+            isSubmitFail = true
+            return
         }
+        plusButtonDidTap()
+        isSubmitFail = false
     }
 }
