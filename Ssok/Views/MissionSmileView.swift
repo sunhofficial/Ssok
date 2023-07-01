@@ -9,93 +9,67 @@ import SwiftUI
 import RealityKit
 
 struct MissionSmileView: View {
-    @State var ARstate: String = ""
+    @State var arViewState = ""
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     @Environment(\.presentationMode) var mode
-    @ObservedObject var arViewModel: ARViewModel = ARViewModel()
-    @StateObject var navi = NaviObservableObject()
+    @ObservedObject var arViewModel = ARViewModel()
 
     var body: some View {
             ZStack {
-                ARViewContainer(arViewModel: arViewModel, state: $state)
+                ARViewContainer(arViewModel: arViewModel, state: $state, largePearlIndex: $largePearlIndex)
                     .edgesIgnoringSafeArea(.all)
+
                 VStack {
-                    if ARstate == "smile" {
-                        if !arViewModel.asyncissmileCount {
+                    if arViewState == "smile" {
+                        if !arViewModel.asyncIsSmileCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
-                                arViewModel.isSmiling ?
-                                "한 번 더 메롱 😝 \(smCount())" : "화면을 보고 혀를 내미세요" + flushCount()
+                                arViewModel.getSmiling ?
+                                "한 번 더 메롱 😝" + arViewModel.calculateSmileCount() :
+                                "화면을 보고 혀를 내미세요" + arViewModel.flushCount()
                             )
                             .padding()
-                            .foregroundColor(arViewModel.isSmiling ? .green : .red)
+                            .foregroundColor(arViewModel.getSmiling ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "혀내밀기 😝",
-                                                      background: Color.mint,
-                                                      state: $state)
+                                                      background: Color("MissionFace"),
+                                                      state: $state,
+                                                largePearlIndex: $largePearlIndex)
                         }
-                    } else if ARstate == "blink"{
-                        if !arViewModel.asyncisblinkCount {
+                    } else if arViewState == "blink"{
+                        if !arViewModel.asyncIsBlinkCount {
                             MissionTopView(title: "얼굴 인식", description: "미션을 성공하려면 얼굴을 인식해야해요.")
                             Text(
-                                arViewModel.isBlinking ?
-                                "한 번 더 윙크!😜 \(blCount())" : "화면을 보고 윙크하세요" + flushCount()
+                                arViewModel.getBlinking ?
+                                "한 번 더 윙크!😜" + arViewModel.calculateBlinkCount() :
+                                "화면을 보고 윙크하세요" + arViewModel.flushCount()
                             )
                             .padding()
-                            .foregroundColor(arViewModel.isBlinking ? .green : .red)
+                            .foregroundColor(arViewModel.getBlinking ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
                             .font(.system(size: 18, weight: .semibold))
                             .position(x: screenWidth / 2, y: screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "플러팅하기 😘",
-                                                      background: Color.mint,
-                                                      state: $state)
+                                                      background: Color("MissionFace"),
+                                                      state: $state,
+                                                largePearlIndex: $largePearlIndex)
                         }
                     }
                 }
             }
-    }
-
-    func smCount() -> String {
-        arViewModel.smileCount += 1
-        if arViewModel.smileCount > 30 {
-            arViewModel.asyncsmileCount += 1
-            arViewModel.smileCount = 0
-        }
-        if arViewModel.asyncsmileCount >= 2 {
-            arViewModel.asyncsmileCount = 2
-            arViewModel.asyncissmileCount = true
-        }
-        return ""
-    }
-
-    func blCount() -> String {
-        arViewModel.blinkCount += 1
-        if arViewModel.blinkCount > 30 {
-            arViewModel.asyncblinkCount += 1
-            arViewModel.blinkCount = 0
-        }
-        if arViewModel.asyncblinkCount >= 2 {
-            arViewModel.asyncblinkCount = 2
-            arViewModel.asyncisblinkCount = true
-        }
-        return ""
-    }
-
-    func flushCount() -> String {
-        arViewModel.smileCount = 0
-        arViewModel.blinkCount = 0
-        return ""
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
     var arViewModel: ARViewModel
     @Binding var state: Bool
+    @Binding var largePearlIndex: Int
 
     func makeUIView(context: Context) -> ARView {
         arViewModel.startSessionDelegate()

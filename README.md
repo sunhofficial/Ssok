@@ -1,4 +1,4 @@
-# MC2-Team8-5YearsOldGap
+# MC2-Team8-Ssok
 
 <div align="center"> 
 
@@ -61,15 +61,16 @@ Ssok
 │ 
 ├── Model
     ├── Member.swift
+    ├── Who.swift
     ├── Where.swift
     ├── What.swift
     ├── ScreenSize.swift
-    ├── Who.swift
+    ├── viewType.swift
     ├── ARModel.swift
-    ├── NavLink.swift
 └── ViewModel
     ├── StrawViewModel.swift
     └── GatchaViewModel.swift
+    ├── BottleViewModel.swift
     └── IntroViewModel.swift
     └── AddMemberViewModel.swift
     └── RandomMember.swift
@@ -78,13 +79,8 @@ Ssok
     └── SoundManger.swift
     └── ARViewModel.swift
     └── Permission.swift
-    └── NaviViewModel.swift
 ├── Views
-    ├── Ending
-        └── DecibelEndingView.swift
-        └── CameraEndingView.swift
-        └── CountEndingView.swift
-        └── SpeakEndingView.swift
+    ├── EndingView.swift
     └── Recycle
         └── WhiteRectangleView.swift
         └── MissionTopView.swift
@@ -100,7 +96,6 @@ Ssok
     └── MissionPedometerView.swift
     └── MissionSmileView.swift
     └── MissionSpeechView.swift
-    └── CameraView.swift
 └── _BubblesApp.swift
 └── AppDelegate.swift
 
