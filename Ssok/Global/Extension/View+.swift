@@ -21,18 +21,10 @@ extension View {
     func setRandomMember(_ members: [Member]) -> String {
         var memberName: String = ""
         memberName = members.randomElement()!.name
-
-        // 영어 이름 바꾸기
-        if let name = whoList[memberName] {
-            memberName = name
-        }
-
         // 한글 조사 입력
         guard let text = memberName.last else { return memberName }
-
         let value = UnicodeScalar(String(text))?.value
         guard let value = value else { return memberName }
-
         let index = (value - 0xac00) % 28
         if index == 0 {
             return memberName + "가"
@@ -48,4 +40,10 @@ extension View {
     func setRandomWhere(_ places: [String]) -> String {
         return places.randomElement()!
     }
+
+    func getSafeArea() -> UIEdgeInsets {
+        return UIApplication.shared.windows.first?.safeAreaInsets ??
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
 }

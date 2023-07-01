@@ -25,7 +25,7 @@ struct BallView: View {
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
-                    .frame(width: screenWidth / 1.6, height: screenWidth / 2.5)
+                    .frame(width: UIScreen.screenWidth / 1.6, height: UIScreen.screenWidth / 2.5)
                     .foregroundColor(.white)
                 Text("Touch!")
                     .foregroundColor(.white)
@@ -33,8 +33,8 @@ struct BallView: View {
                     .opacity(0.5)
             }
         }
-        .frame(width: screenWidth / 1.2, height: screenWidth / 1.2)
-        .transition(.asymmetric(insertion: .offset(y: -screenHeight), removal: .offset(y: screenHeight)))
+        .frame(width: UIScreen.screenWidth / 1.2, height: UIScreen.screenWidth / 1.2)
+        .transition(.asymmetric(insertion: .offset(y: -UIScreen.screenHeight), removal: .offset(y: UIScreen.screenHeight)))
         .zIndex(1)
         .id(getCurrentPearl)
         .onTapGesture {
