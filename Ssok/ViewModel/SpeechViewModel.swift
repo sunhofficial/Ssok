@@ -7,8 +7,7 @@ import AVFoundation
 import Speech
 import SwiftUI
 
-/// A helper for transcribing speech to text using SFSpeechRecognizer and AVAudioEngine.
-actor SpeechRecognizer: ObservableObject {
+actor SpeechViewModel: ObservableObject {
     enum RecognizerError: Error {
         case nilRecognizer
         case notAuthorizedToRecognize
@@ -19,7 +18,7 @@ actor SpeechRecognizer: ObservableObject {
             case .nilRecognizer: return "Can't initialize speech recognizer"
             case .notAuthorizedToRecognize: return "Not authorized to recognize speech"
             case .notPermittedToRecord: return "Not permitted to record audio"
-            case .recognizerIsUnavailable: return "Recognizer is unavailab  le"
+            case .recognizerIsUnavailable: return "Recognizer is unavailable"
             }
         }
     }
@@ -29,10 +28,7 @@ actor SpeechRecognizer: ObservableObject {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
     private var recognizer: SFSpeechRecognizer?
-    /**
-     Initializes a new speech recognizer. If this is the first time you've used the class, it
-     requests access to the speech recognizer and the microphone.
-     */
+
     init() {
         recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
         guard recognizer != nil else {
@@ -52,31 +48,30 @@ actor SpeechRecognizer: ObservableObject {
             }
         }
     }
+
     @MainActor func startTranscribing() {
         Task {
             await transcribe()
         }
     }
+
     @MainActor func englishTranscribing() {
         Task {
             await englishtranscribe()
         }
     }
+
     @MainActor func stopTranscript() {
         Task {
             await reset()
         }
     }
-    /**
-     Begin transcribing audio.
-     
-     Creates a `SFSpeechRecognitionTask` that transcribes speech to text until you call `stopTranscribing()`.
-     The resulting transcription is continuously written to the published `transcript` property.
-     */
+
     private func englishtranscribe() {
         recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
         transcribe()
     }
+
     private func transcribe() {
         guard let recognizer, recognizer.isAvailable else {
             self.transcribe(RecognizerError.recognizerIsUnavailable)
@@ -97,14 +92,13 @@ actor SpeechRecognizer: ObservableObject {
         }
     }
 
-    /// Reset the speech recognizer.
     private func reset() {
-//        task?.cancel()
         audioEngine?.stop()
         audioEngine = nil
         request = nil
         task = nil
     }
+
     private static func prepareEngine() throws -> (AVAudioEngine, SFSpeechAudioBufferRecognitionRequest) {
         let audioEngine = AVAudioEngine()
         let request = SFSpeechAudioBufferRecognitionRequest()
@@ -139,7 +133,6 @@ actor SpeechRecognizer: ObservableObject {
     nonisolated private func transcribe(_ message: String) {
         Task { @MainActor in
             transcript = message
-            print(transcript)
         }
     }
     nonisolated private func transcribe(_ error: Error) {

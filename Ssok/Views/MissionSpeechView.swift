@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissionSpeechView: View {
-    @StateObject var speechRecognizer = SpeechRecognizer()
+    @StateObject var speechRecognizer = SpeechViewModel()
     @State var isSpeech: Bool = true
     @State var isWrong: Bool = false
     @State var isComplete: Bool = false
