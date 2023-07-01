@@ -111,9 +111,7 @@ actor SpeechViewModel: ObservableObject {
     }
     nonisolated private func recognitionHandler(audioEngine: AVAudioEngine,
                                                 result: SFSpeechRecognitionResult?, error: Error?) {
-        let receivedFinalResult = result?.isFinal ?? false
-        let receivedError = error != nil
-        if receivedFinalResult || receivedError {
+        if let error = error {
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
         }
