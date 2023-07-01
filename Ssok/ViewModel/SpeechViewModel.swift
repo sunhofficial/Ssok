@@ -30,11 +30,6 @@ actor SpeechViewModel: ObservableObject {
     private var recognizer: SFSpeechRecognizer?
 
     init() {
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
-        guard recognizer != nil else {
-            transcribe(RecognizerError.nilRecognizer)
-            return
-        }
         Task {
             do {
                 guard await SFSpeechRecognizer.hasAuthorizationToRecognize() else {
@@ -44,20 +39,14 @@ actor SpeechViewModel: ObservableObject {
                     throw RecognizerError.notPermittedToRecord
                 }
             } catch {
-                transcribe(error)
+                showText(error)
             }
         }
     }
 
-    @MainActor func startTranscribing() {
+    @MainActor func startTranscribing(language: String) {
         Task {
-            await transcribe()
-        }
-    }
-
-    @MainActor func englishTranscribing() {
-        Task {
-            await englishtranscribe()
+            await transcribe(language: language)
         }
     }
 
@@ -67,14 +56,16 @@ actor SpeechViewModel: ObservableObject {
         }
     }
 
-    private func englishtranscribe() {
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-        transcribe()
-    }
-
-    private func transcribe() {
-        guard let recognizer, recognizer.isAvailable else {
-            self.transcribe(RecognizerError.recognizerIsUnavailable)
+    private func transcribe(language: String) {
+        recognizer = language == "English" ?
+        SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        : SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
+        guard let recognizer = recognizer else {
+            showText(RecognizerError.nilRecognizer)
+            return
+        }
+        guard recognizer.isAvailable else {
+            self.showText(RecognizerError.recognizerIsUnavailable)
             return
         }
         do {
@@ -88,7 +79,7 @@ actor SpeechViewModel: ObservableObject {
             })
         } catch {
             self.reset()
-            self.transcribe(error)
+            self.showText(error)
         }
     }
 
@@ -127,15 +118,15 @@ actor SpeechViewModel: ObservableObject {
             audioEngine.inputNode.removeTap(onBus: 0)
         }
         if let result {
-            transcribe(result.bestTranscription.formattedString)
+            showText(result.bestTranscription.formattedString)
         }
     }
-    nonisolated private func transcribe(_ message: String) {
+    nonisolated private func showText(_ message: String) {
         Task { @MainActor in
             transcript = message
         }
     }
-    nonisolated private func transcribe(_ error: Error) {
+    nonisolated private func showText(_ error: Error) {
         var errorMessage = ""
         if let error = error as? RecognizerError {
             errorMessage += error.message

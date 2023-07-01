@@ -44,7 +44,7 @@
 		C74DD5492A065FDE00852B09 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* Where.swift */; };
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
 		C75FB6872A34D1F80031B070 /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FB6862A34D1F80031B070 /* StrawView.swift */; };
-		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
+		C77F77292A0FF75300C59882 /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechViewModel.swift */; };
 		C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +88,7 @@
 		C74DD5482A065FDE00852B09 /* Where.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Where.swift; sourceTree = "<group>"; };
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 		C75FB6862A34D1F80031B070 /* StrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
-		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		C77F77282A0FF75300C59882 /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSpeechView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,7 +198,7 @@
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomMember.swift */,
-				C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */,
+				C77F77282A0FF75300C59882 /* SpeechViewModel.swift */,
 				AB98FFA22A11704200B95643 /* SoundMeter.swift */,
 				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
-				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
+				C77F77292A0FF75300C59882 /* SpeechViewModel.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				AB4652AC2A0B700700268304 /* Who.swift in Sources */,
 				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,
@@ -480,7 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = DD63847N69;
+				DEVELOPMENT_TEAM = NG2NLR2Z86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;

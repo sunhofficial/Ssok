@@ -50,11 +50,8 @@ struct MissionSpeechView: View {
                         )
                         .frame(height: 50)
                         .onAppear {
-                            if missionTitle == "영국 신사 되기 💂🏻‍♀️" {
-                                speechRecognizer.englishTranscribing()
-                            } else {
-                                speechRecognizer.startTranscribing()
-                            }
+                            let language = missionTitle == "영국 신사 되기 💂🏻‍♀️" ? "English" : "Korean"
+                            speechRecognizer.startTranscribing(language: language)
                             let timer = Timer.scheduledTimer(
                                 withTimeInterval: speechTime,
                                 repeats: false
