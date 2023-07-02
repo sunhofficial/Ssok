@@ -51,7 +51,7 @@ struct MissionTopView: View {
                 .padding(.top, 16)
                 Text(description)
                     .foregroundColor(.white)
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(Font.custom13semibold())
             }
         }
     }

@@ -32,6 +32,9 @@ extension Font {
     static func custom15bold() -> Font {
         return Font.system(size: 15 * setSize(), weight: .bold)
     }
+    static func custom40heavy() -> Font {
+        return Font.system(size: 40 * setSize(), weight: .heavy)
+    }
     static func setSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0

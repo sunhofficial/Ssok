@@ -175,7 +175,6 @@ struct MissionEndingView: View {
                                          largePearlIndex: $largePearlIndex)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
-                                      missionTip: missionTip,
                                       answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
                                       speechTime: Double(random
                                         .randomWhat
