@@ -14,24 +14,51 @@ extension Font {
     static func custom20semibold() -> Font {
         return Font.system(size: 20 * setSize(), weight: .semibold)
     }
+
     static func custom13semibold() -> Font {
         return Font.system(size: 13 * setSize(), weight: .semibold)
     }
+
     static func custom20bold() -> Font {
         return Font.system(size: 20 * setSize(), weight: .bold)
     }
+
     static func custom24black() -> Font {
         return Font.system(size: 24 * setSize(), weight: .black)
-    }   
+    }
+
     static func custom17bold() -> Font {
         return Font.system(size: 17 * setSize(), weight: .bold)
     }
+
     static func custom17semi() -> Font {
         return Font.system(size: 17 * setSize(), weight: .semibold)
     }
+
     static func custom15bold() -> Font {
         return Font.system(size: 15 * setSize(), weight: .bold)
     }
+
+    static func custom24bold() -> Font {
+        return Font.system(size: 24 * setSize(), weight: .bold)
+    }
+
+    static func custom60bold() -> Font {
+        return Font.system(size: 60 * setSize(), weight: .bold)
+    }
+
+    static func custom40bold() -> Font {
+        return Font.system(size: 40 * setSize(), weight: .bold)
+    }
+
+    static func custom48bold() -> Font {
+        return Font.system(size: 48 * setSize(), weight: .bold)
+    }
+
+    static func customTitle4() -> Font {
+        return Font.system(size: 18 * setSize(), weight: .regular)
+    }
+
     static func setSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
@@ -76,6 +103,7 @@ extension Font {
 }
 
 extension UIFont {
+
     static func customTitle3() -> UIFont {
         return .systemFont(ofSize: 20 * setSize(), weight: .regular)
     }
