@@ -29,7 +29,7 @@ struct MissionEndingView: View {
                         HStack {
                             Image("imgRetry")
                             Text("다시뽑기")
-                                .font(Font.custom17semi())
+                                .font(Font.custom17semibold())
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
