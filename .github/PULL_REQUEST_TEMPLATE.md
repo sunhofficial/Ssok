@@ -4,7 +4,7 @@
 - 
 
 ```
-func Ssok(){
+func Ssok() -> String {
     return "best"
 }
 ```
