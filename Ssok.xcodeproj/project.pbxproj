@@ -36,7 +36,6 @@
 		AB3129EE2A14DC6100204C55 /* DingDingMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */; };
 		AB3129F02A1512AB00204C55 /* TocaTocaMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */; };
 		AB5B7D602A514A7A009CC74E /* MissionDecibelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */; };
-		AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98FFA22A11704200B95643 /* SoundMeter.swift */; };
 		ABB019CB2A07FB900000556F /* RandomMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomMember.swift */; };
 		C71C86212A49E0AC00522E89 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71C86202A49E0AC00522E89 /* Font+.swift */; };
 		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
@@ -81,7 +80,6 @@
 		AB3129ED2A14DC6100204C55 /* DingDingMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DingDingMusic.mp3; sourceTree = "<group>"; };
 		AB3129EF2A1512AB00204C55 /* TocaTocaMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TocaTocaMusic.mp3; sourceTree = "<group>"; };
 		AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelViewModel.swift; sourceTree = "<group>"; };
-		AB98FFA22A11704200B95643 /* SoundMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMeter.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMember.swift; sourceTree = "<group>"; };
 		C71C86202A49E0AC00522E89 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomMember.swift */,
 				C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */,
-				AB98FFA22A11704200B95643 /* SoundMeter.swift */,
 				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
 				7C9654C42A133BDB00779750 /* Permission.swift */,
@@ -346,7 +343,6 @@
 				10882FA32A2B1B0100B76C24 /* BottleViewModel.swift in Sources */,
 				AB031C4B2A10A30A00EE808B /* MissionTopView.swift in Sources */,
 				10BCD2E62A1124A600303334 /* MissionEndingView.swift in Sources */,
-				AB98FFA32A11704200B95643 /* SoundMeter.swift in Sources */,
 				7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */,
 				AB031C522A10D6B300EE808B /* MissionTitleView.swift in Sources */,
 				7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */,
