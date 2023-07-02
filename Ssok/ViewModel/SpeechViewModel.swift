@@ -22,8 +22,8 @@ actor SpeechViewModel: ObservableObject {
             }
         }
     }
-    @MainActor @Published var transcript: String = ""
-    @Published var langague: String = "Korean"
+    @MainActor @Published var transcript = ""
+    @Published var langague = "Korean"
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
