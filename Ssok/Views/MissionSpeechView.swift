@@ -29,7 +29,6 @@ struct MissionSpeechView: View {
                                description: "주어진 문장을 정확하게 따라 읽어서 인식시켜요.")
                 MissionTitleView(missionTitle: missionTitle,
                                  missionColor: Color("MissionVoice"))
-                .padding(.top, UIScreen.getHeight(5))
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .padding(.horizontal, UIScreen.getWidth(40))
@@ -64,9 +63,10 @@ struct MissionSpeechView: View {
                             .minimumScaleFactor(0.1)
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
+                            .padding(.horizontal,UIScreen.getWidth(65))
                     }
                 }
-                .padding(.top,40)
+                .padding(.top,UIScreen.getHeight(40))
                 ZStack {
                     Image("imgSpeeching")
                         .shadow(color: Color("Orange").opacity(0.5), radius: 5)
@@ -84,74 +84,41 @@ struct MissionSpeechView: View {
                         .font(Font.custom40heavy())
                         .minimumScaleFactor(0.1)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, UIScreen.getWidth(50))
-                        .multilineTextAlignment(.center)
                         .lineLimit(speechRecognizer.transcript.isEmpty ? 1 : 2)
-                        if isWrong {
-                            Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
-                                .font(Font.custom13semibold())
-                                .padding(.vertical, UIScreen.getHeight(2))
-                                .background(Color("LightRed"))
-                                .foregroundColor(Color("Red"))
-                        }
+                        Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
+                            .font(Font.custom13semibold())
+                            .padding(.vertical, UIScreen.getHeight(2))
+                            .background(Color("LightRed"))
+                            .foregroundColor(Color("Red"))
+                            .opacity(isWrong ? 1 : 0)
                     }
+                    .padding(.top,UIScreen.getHeight(25))
+                    .padding(.horizontal, UIScreen.getWidth(50))
                 }
-                .padding(.top, 3)
+                .padding(.top, UIScreen.getHeight(25))
                 if isSpeech {
-                    Image("imgProgress")
-                        .shadow(color: Color(.black).opacity(0.25), radius: 4)
-                        .overlay(
-                            ProgressView(value: progressTime, total: 100)
-                                .tint(Color("Bg_bottom2"))
-                                .background(Color("LightGray"))
-                                .frame(width: 260, height: 8)
-                                .scaleEffect(x: 1, y: 2)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                                .padding(.top, 17)
-                                .onReceive(progressTimer) { _ in
-                                    withAnimation(.easeInOut(duration: 0.1)) {
-                                        if progressTime > 0 {
-                                            progressTime -= 0.1 * (100 / speechTime)
-                                        }
+                    ZStack {
+                        Image("imgProgress")
+                            .shadow(color: Color(.black).opacity(0.25), radius: 4)
+                        ProgressView(value: progressTime, total: 100)
+                            .tint(Color("Bg_bottom2"))
+                            .background(Color("LightGray"))
+                            .scaleEffect(x: 1, y: 2)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                            .padding(.horizontal,UIScreen.getWidth(40))
+                            .padding(.top, 35)
+                            .padding(.bottom, UIScreen.getHeight(20))
+                            .onReceive(progressTimer) { _ in
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    if progressTime > 0 {
+                                        progressTime -= 0.1 * (100 / speechTime)
                                     }
                                 }
-                        )
-                        .frame(height: 50)
-                        .onAppear {
-                            let language = missionTitle == "영국 신사 되기 💂🏻‍♀️" ? "English" : "Korean"
-                            speechRecognizer.startTranscribing(language: language)
-                            let timer = Timer.scheduledTimer(
-                                withTimeInterval: speechTime,
-                                repeats: false
-                            ) { _ in
-                                let cleanedTranscript = speechRecognizer.transcript
-                                    .replacingOccurrences(of: " ", with: "")
-                                    .replacingOccurrences(of: ",", with: "")
-                                if answerText
-                                    .replacingOccurrences(of: " ", with: "")
-                                    .replacingOccurrences(of: ",", with: "") != cleanedTranscript {
-                                    isWrong = true
-                                    isSpeech = false
-                                }
                             }
-                            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                                let cleanedTranscript = speechRecognizer.transcript
-                                    .replacingOccurrences(of: " ", with: "")
-                                    .replacingOccurrences(of: ",", with: "")
-                                if answerText
-                                    .replacingOccurrences(of: " ", with: "")
-                                    .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
-                                    timer.invalidate()
-                                    isComplete = true
-                                    speechRecognizer.stopTranscript()
-                                }
-                            }
-                            RunLoop.main.add(checkTimer!, forMode: .common)
-                            RunLoop.main.add(timer, forMode: .common)
-                        }
-                        .onDisappear {
-                            speechRecognizer.stopTranscript()
-                        }
+                    }
+                    .padding(.horizontal, UIScreen.getWidth(43))
+                    .padding(.bottom,UIScreen.getHeight(10))
+
                 } else {
                     Button {
                         isSpeech = true
@@ -162,16 +129,51 @@ struct MissionSpeechView: View {
                         Text("다시 말하기")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
-                            .frame(maxWidth: 350, alignment: .center)
-                            .frame(height: 50)
+                            .padding(.vertical, UIScreen.getHeight(15))
+                            .frame(maxWidth: .infinity)
                             .background(Color("Bg_bottom2"))
                             .cornerRadius(12)
+
                     }
+                    .padding(.horizontal,UIScreen.getWidth(43))
+                    .padding(.bottom, UIScreen.getHeight(10))
                 }
             }
             if isComplete {
                 MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state, largePearlIndex: $largePearlIndex)
             }
+        }
+        .onAppear {
+            let language = missionTitle == "영국 신사 되기 💂🏻‍♀️" ? "English" : "Korean"
+            speechRecognizer.startTranscribing(language: language)
+            let timer = Timer.scheduledTimer(
+                withTimeInterval: speechTime,
+                repeats: false
+            ) { _ in
+                let cleanedTranscript = speechRecognizer.transcript
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: ",", with: "")
+                if answerText
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: ",", with: "") != cleanedTranscript {
+                    isWrong = true
+                    isSpeech = false
+                }
+            }
+            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                let cleanedTranscript = speechRecognizer.transcript
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: ",", with: "")
+                if answerText
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
+                    timer.invalidate()
+                    isComplete = true
+                    speechRecognizer.stopTranscript()
+                }
+            }
+            RunLoop.main.add(checkTimer!, forMode: .common)
+            RunLoop.main.add(timer, forMode: .common)
         }
         .navigationBarHidden(true)
         .onDisappear {
