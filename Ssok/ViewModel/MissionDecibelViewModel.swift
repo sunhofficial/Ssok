@@ -12,18 +12,11 @@ class MissionDecibelViewModel: ObservableObject {
 
     @Published var decibels: Float = 0.0
     @Published var isCompleted = false
-    @Published var isMore = 0
 
     let engine = AVAudioEngine()
     let playerNode = AVAudioPlayerNode()
     let bufferSize: AVAudioFrameCount = 4096
-    var goal = "50" // 임시
-    var title: String = "테스트중" // 임시
-
-    var percentage: Float {
-        return decibels / Float(goal)!
-    }
-
+    
     init() {
         let input = engine.inputNode
         let busNum = 0
@@ -66,6 +59,17 @@ class MissionDecibelViewModel: ObservableObject {
         playerNode.stop()
         engine.inputNode.removeTap(onBus: 0)
         decibels = 0.0
+    }
+
+    func setPercentage(_ goal: String) -> Float {
+        return decibels / Float(goal)!
+    }
+
+    func isMissionCompleted(_ goal: String) {
+        if decibels >= Float(goal)! {
+            isCompleted = true
+            stop()
+        }
     }
 
     private func normalizeDecibel(_ decibel: Float) -> Float {

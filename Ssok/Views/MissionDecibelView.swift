@@ -14,8 +14,8 @@ struct MissionDecibelView: View {
     @State var progressTintColor = Color(.orange)
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
-
     @StateObject private var viewModel = MissionDecibelViewModel()
+
     let progressColors = [Color("Progress1"), Color("Progress2"), Color("Progress3"), Color("Progress4")]
     let moreIndexes = [1, 2, 3, 4]
 
@@ -24,7 +24,7 @@ struct MissionDecibelView: View {
             VStack {
                 MissionTopView(title: "데시벨 측정기",
                                description: "미션을 성공하려면 데시벨을 충족시켜야 해요.")
-                MissionTitleView(missionTitle: viewModel.title,
+                MissionTitleView(missionTitle: title,
                                  missionColor: Color("MissionDecibel"))
                     .padding(.top, UIScreen.getHeight(5))
                     .padding(.bottom, UIScreen.getHeight(60))
@@ -41,22 +41,17 @@ struct MissionDecibelView: View {
                                     y: -2)
                         Circle()
                             .trim(from: 0.0,
-                                  to: CGFloat(viewModel.percentage))
+                                  to: CGFloat(viewModel.setPercentage(goal)))
                             .stroke(style: StrokeStyle(lineWidth: UIScreen.getWidth(25),
                                                        lineCap: .round, lineJoin: .round))
                             .foregroundColor(progressTintColor)
                             .rotationEffect(.degrees(270))
                             .animation(.linear,
-                                       value: viewModel.percentage)
-                            .onReceive(viewModel.$decibels) { decibels in
-                                if decibels >= Float(goal)! {
-                                    withAnimation {
-                                        viewModel.isCompleted = true
-                                        viewModel.stop()
-                                    }
-                                }
+                                       value: viewModel.setPercentage(goal))
+                            .onReceive(viewModel.$decibels) { _ in
+                                viewModel.isMissionCompleted(goal)
                             }
-                            .onChange(of: viewModel.percentage) { percentage in
+                            .onChange(of: viewModel.setPercentage(goal)) { percentage in
                                 switch percentage {
                                 case ..<0.25:
                                     isMore = 0
@@ -80,7 +75,7 @@ struct MissionDecibelView: View {
                             .font(Font.custom60bold())
                             + Text("dB")
                             .font(Font.custom40bold())
-                        Text("목표 데시벨\n\(viewModel.goal)dB")
+                        Text("목표 데시벨\n\(goal)dB")
                             .font(Font.customTitle4())
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("GoalRed"))
