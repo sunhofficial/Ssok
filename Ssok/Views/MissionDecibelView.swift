@@ -90,7 +90,8 @@ struct MissionDecibelView: View {
             .navigationBarHidden(true)
 
             if isCompleted {
-                MissionCompleteView(title: title, background: Color("MissionDecibel"), state: $state, largePearlIndex: $largePearlIndex)
+                MissionCompleteView(title: title, background: Color("MissionDecibel"),
+                                    state: $state, largePearlIndex: $largePearlIndex)
             }
         }
         .onAppear {

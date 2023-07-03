@@ -11,8 +11,8 @@ struct MissionSpeechView: View {
     @StateObject var speechViewModel = SpeechViewModel()
     @State var missionTitle: String
     @State var answerText: String
-    var speechTime: Double
     @State var checkTimer: Timer?
+    var speechTime: Double
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
     private var language : String {
@@ -94,7 +94,8 @@ struct MissionSpeechView: View {
                     .padding(.horizontal, UIScreen.getWidth(50))
                 }
                 .padding(.top, UIScreen.getHeight(25))
-                if speechViewModel.isSpeech {
+                
+                if !speechViewModel.isWrong {
                     ZStack {
                         Image("imgProgress")
                             .shadow(color: Color(.black).opacity(0.25), radius: 4)
@@ -104,13 +105,11 @@ struct MissionSpeechView: View {
                             .scaleEffect(x: 1, y: 2)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                             .padding(.horizontal,UIScreen.getWidth(40))
-                            .padding(.top, 35)
+                            .padding(.top, UIScreen.getHeight(30))
                             .padding(.bottom, UIScreen.getHeight(20))
                             .onReceive(progressTimer) { _ in
                                 withAnimation(.easeInOut(duration: 0.1)) {
-                                    if speechViewModel.progressTime > 0 {
-                                        speechViewModel.progressTime -= 0.1 * (100 / speechTime)
-                                    }
+                                    speechViewModel.updateProgressTime(speechTime: speechTime)
                                 }
                             }
                     }
@@ -148,11 +147,10 @@ struct MissionSpeechView: View {
         .onAppear {
             speechViewModel.startTranscribing(language: language)
             let queue = DispatchQueue.global()
-            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 queue.async {
                     if speechViewModel.isCorrectResult(answerText: answerText) {
                         checkTimer?.invalidate()
-                     
                         speechViewModel.completeMission()
                     }
                 }
