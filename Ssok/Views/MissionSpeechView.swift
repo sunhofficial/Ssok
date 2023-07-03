@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct MissionSpeechView: View {
-    @StateObject var speechRecognizer = SpeechViewModel()
-    @State var isSpeech = true
-    @State var isWrong = false
-    @State var isComplete = false
-    @State var havetext = false
+    @StateObject var speechViewModel = SpeechViewModel()
     @State var missionTitle: String
     @State var answerText: String
-    @State var speechTime: Double
-    @State var progressTime = 100.0
+    var speechTime: Double
     @State var checkTimer: Timer?
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
+    private var language : String {
+        return missionTitle == "영국 신사 되기 💂🏻‍♀️" ? "English" : "Korean"
+    }
     let progressTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -78,29 +76,29 @@ struct MissionSpeechView: View {
                             .background(Color("Orange"))
                             .cornerRadius(15)
                             .foregroundColor(.white)
-                        Text(speechRecognizer.transcript.isEmpty ?
-                             "문장을 따라 읽어주세요" : speechRecognizer.transcript)
-                        .opacity(speechRecognizer.transcript.isEmpty ? 0.25 : 1.0)
+                        Text(speechViewModel.transcript.isEmpty ?
+                             "문장을 따라 읽어주세요" : speechViewModel.transcript)
+                        .opacity(speechViewModel.transcript.isEmpty ? 0.25 : 1.0)
                         .font(Font.custom40heavy())
                         .minimumScaleFactor(0.1)
                         .multilineTextAlignment(.center)
-                        .lineLimit(speechRecognizer.transcript.isEmpty ? 1 : 2)
+                        .lineLimit(speechViewModel.transcript.isEmpty ? 1 : 2)
                         Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
                             .font(Font.custom13semibold())
                             .padding(.vertical, UIScreen.getHeight(2))
                             .background(Color("LightRed"))
                             .foregroundColor(Color("Red"))
-                            .opacity(isWrong ? 1 : 0)
+                            .opacity(speechViewModel.isWrong ? 1 : 0)
                     }
                     .padding(.top,UIScreen.getHeight(25))
                     .padding(.horizontal, UIScreen.getWidth(50))
                 }
                 .padding(.top, UIScreen.getHeight(25))
-                if isSpeech {
+                if speechViewModel.isSpeech {
                     ZStack {
                         Image("imgProgress")
                             .shadow(color: Color(.black).opacity(0.25), radius: 4)
-                        ProgressView(value: progressTime, total: 100)
+                        ProgressView(value: speechViewModel.progressTime, total: 100)
                             .tint(Color("Bg_bottom2"))
                             .background(Color("LightGray"))
                             .scaleEffect(x: 1, y: 2)
@@ -110,21 +108,25 @@ struct MissionSpeechView: View {
                             .padding(.bottom, UIScreen.getHeight(20))
                             .onReceive(progressTimer) { _ in
                                 withAnimation(.easeInOut(duration: 0.1)) {
-                                    if progressTime > 0 {
-                                        progressTime -= 0.1 * (100 / speechTime)
+                                    if speechViewModel.progressTime > 0 {
+                                        speechViewModel.progressTime -= 0.1 * (100 / speechTime)
                                     }
                                 }
                             }
                     }
+                    .onAppear {
+                        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + speechTime) {
+                            if (!speechViewModel.isCorrectResult(answerText: answerText)) {
+                                speechViewModel.missionFail()
+                            }
+                        }
+                    }
                     .padding(.horizontal, UIScreen.getWidth(43))
                     .padding(.bottom,UIScreen.getHeight(10))
-
                 } else {
                     Button {
-                        isSpeech = true
-                        speechRecognizer.transcript = ""
-                        progressTime = 100
-                        isWrong = false
+                        speechViewModel.retryBtnTap()
+                        speechViewModel.startTranscribing(language: language)
                     } label: {
                         Text("다시 말하기")
                             .foregroundColor(.white)
@@ -133,62 +135,32 @@ struct MissionSpeechView: View {
                             .frame(maxWidth: .infinity)
                             .background(Color("Bg_bottom2"))
                             .cornerRadius(12)
-
                     }
                     .padding(.horizontal,UIScreen.getWidth(43))
                     .padding(.bottom, UIScreen.getHeight(10))
                 }
             }
-            if isComplete {
-                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state, largePearlIndex: $largePearlIndex)
+            if speechViewModel.isComplete {
+                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"),
+                                    state: $state, largePearlIndex: $largePearlIndex)
             }
         }
         .onAppear {
-            let language = missionTitle == "영국 신사 되기 💂🏻‍♀️" ? "English" : "Korean"
-            speechRecognizer.startTranscribing(language: language)
-            let timer = Timer.scheduledTimer(
-                withTimeInterval: speechTime,
-                repeats: false
-            ) { _ in
-                let cleanedTranscript = speechRecognizer.transcript
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: ",", with: "")
-                if answerText
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: ",", with: "") != cleanedTranscript {
-                    isWrong = true
-                    isSpeech = false
-                }
-            }
+            speechViewModel.startTranscribing(language: language)
+            let queue = DispatchQueue.global()
             checkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                let cleanedTranscript = speechRecognizer.transcript
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: ",", with: "")
-                if answerText
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: ",", with: "") == cleanedTranscript {
-                    timer.invalidate()
-                    isComplete = true
-                    speechRecognizer.stopTranscript()
+                queue.async {
+                    if speechViewModel.isCorrectResult(answerText: answerText) {
+                        checkTimer?.invalidate()
+                     
+                        speechViewModel.completeMission()
+                    }
                 }
             }
-            RunLoop.main.add(checkTimer!, forMode: .common)
-            RunLoop.main.add(timer, forMode: .common)
         }
         .navigationBarHidden(true)
         .onDisappear {
-            speechRecognizer.stopTranscript()
-            checkTimer?.invalidate()
-            checkTimer = nil
+            speechViewModel.stopTranscript()
         }
-    }
-}
-struct MissionSpeechView_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionSpeechView(missionTitle: "test입니다",
-                          answerText: "이것은test",
-                          speechTime: 4.0,
-                          state: .constant(false),
-                          largePearlIndex: .constant(2))
     }
 }
