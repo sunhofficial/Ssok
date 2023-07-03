@@ -54,16 +54,16 @@ struct MissionDecibelView: View {
                             .onChange(of: viewModel.setPercentage(goal)) { percentage in
                                 switch percentage {
                                 case ..<0.25:
-                                    isMore = 0
+                                    isMore = 1
                                     progressTintColor = progressColors[0]
                                 case 0.25..<0.5:
-                                    isMore = 1
+                                    isMore = 2
                                     progressTintColor = progressColors[1]
                                 case 0.5..<0.75:
-                                    isMore = 2
+                                    isMore = 3
                                     progressTintColor = progressColors[2]
                                 default:
-                                    isMore = 3
+                                    isMore = 4
                                     progressTintColor = progressColors[3]
                                 }
                             }
