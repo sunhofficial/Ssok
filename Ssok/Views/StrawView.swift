@@ -123,7 +123,7 @@ struct StrawView: View {
                     .animation(.easeInOut.delay(1), value: moveStraw)
                 }
                 .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(469))
-                // 빨대
+
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
                         .frame(width: UIScreen.getWidth(200))
