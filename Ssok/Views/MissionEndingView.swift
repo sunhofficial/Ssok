@@ -167,7 +167,7 @@ struct MissionEndingView: View {
                                        state: $state,
                                        largePearlIndex: $largePearlIndex)
                 case .shake:
-                    MissionPedometerView(title: missionTitle,
+                    MissionShakeView(title: missionTitle,
                                          goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
                                          state: $state,
                                          largePearlIndex: $largePearlIndex)

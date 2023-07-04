@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MissionCompleteView: View {
+    
     @State var title: String
     @State var background: Color
     @EnvironmentObject var random: RandomMember
@@ -20,8 +21,12 @@ struct MissionCompleteView: View {
             Rectangle().opacity(0.62)
             ZStack {
                 Image("imgMissionCompleteCard")
-                VStack(spacing: 40) {
-                    Text("주어진 미션을 성공했어요").font(.system(size: 24, weight: .black))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.top, UIScreen.getHeight(190))
+                    .padding(.bottom, UIScreen.getHeight(190))
+                VStack(spacing: UIScreen.getHeight(40)) {
+                    Text("주어진 미션을 성공했어요").font(Font.custom24black())
                     MissionTitleView(missionTitle: title,
                         missionColor: background)
                     Button {
@@ -34,12 +39,12 @@ struct MissionCompleteView: View {
                     } label: {
                       Text("새로운 미션하기")
                         .underline()
-                        .font(.system(size: 20, weight: .bold))
+                        .font(Font.custom20bold())
                         .foregroundColor(Color("Bg_center"))
                         .underline()
                     }
                 }
-                .offset(y: 90)
+                .padding(.top, UIScreen.getHeight(180))
             }
         }
         .ignoresSafeArea()
@@ -47,16 +52,11 @@ struct MissionCompleteView: View {
     }
 }
 
-extension MissionCompleteView {
-    var back: some View {
-        Button {
-            mode.wrappedValue.dismiss()
-        } label: {
-            ZStack {
-                Text("새로운 미션하기")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(Color("Bg_bottom2")).underline()
-            }
-        }
+struct MissionCompleteView_Previews: PreviewProvider {
+    static var previews: some View {
+        MissionCompleteView(title: "HI",
+                            background: Color("MissionVoice"),
+                            state: .constant(true),
+                            largePearlIndex: .constant(2))
     }
 }

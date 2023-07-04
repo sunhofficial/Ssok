@@ -28,6 +28,14 @@ extension Font {
     static func custom17bold() -> Font {
         return Font.system(size: 17 * setFontSize(), weight: .bold)
     }
+    
+    static func custom18regular() -> Font {
+        return Font.system(size: 18 * setFontSize(), weight: .regular)
+    }
+    
+    static func custom18bold() -> Font {
+        return Font.system(size: 18 * setFontSize(), weight: .bold)
+    }
 
     static func custom20bold() -> Font {
         return Font.system(size: 20 * setFontSize(), weight: .bold)
@@ -64,7 +72,7 @@ extension Font {
     static func setFontSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
-
+        
         switch height {
         case 480.0: // Iphone 3,4S => 3.5 inch
             size = 0.85
