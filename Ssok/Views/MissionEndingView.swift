@@ -14,7 +14,7 @@ struct MissionEndingView: View {
     @State var missionTip: String
     @State var goal: String = ""
     @Binding var largePearlIndex: Int
-    @EnvironmentObject var random: RandomMember
+    @EnvironmentObject var random: RandomContents
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
@@ -33,9 +33,6 @@ struct MissionEndingView: View {
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            random.randomWho = setRandomMember(random.members)
-                            random.randomWhat = setRandomMission(missions)
-                            random.randomWhere = setRandomWhere(howList)
                             largePearlIndex = -1
                             state = false
                         }
@@ -85,6 +82,10 @@ struct MissionEndingView: View {
                                     .lineLimit(2)
                                     .padding(.all,UIScreen.getWidth(20))
                             )
+                    }
+                    .onTapGesture {
+                        largePearlIndex = -1
+                        state = false
                     }
                     .padding(.leading, UIScreen.getWidth(100))
                     .padding(.trailing, UIScreen.getWidth(18))
@@ -177,7 +178,7 @@ struct MissionEndingView: View {
                                        state: $state,
                                        largePearlIndex: $largePearlIndex)
                 case .shake:
-                    MissionPedometerView(title: missionTitle,
+                    MissionShakeView(title: missionTitle,
                                          goalCount: random.randomWhat.missionDetail[MissionDetail.goal] ?? "",
                                          state: $state,
                                          largePearlIndex: $largePearlIndex)

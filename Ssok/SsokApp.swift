@@ -12,7 +12,7 @@ struct SsokApp: App {
     var body: some Scene {
         WindowGroup {
             IntroView()
-                .environmentObject(RandomMember())
+                .environmentObject(RandomContents())
         }
     }
 }
