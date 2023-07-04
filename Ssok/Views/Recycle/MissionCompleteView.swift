@@ -11,7 +11,6 @@ struct MissionCompleteView: View {
     
     @State var title: String
     @State var background: Color
-    @EnvironmentObject var random: RandomMember
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -26,13 +25,11 @@ struct MissionCompleteView: View {
                     .padding(.top, UIScreen.getHeight(190))
                     .padding(.bottom, UIScreen.getHeight(190))
                 VStack(spacing: UIScreen.getHeight(40)) {
-                    Text("주어진 미션을 성공했어요").font(Font.custom24black())
+                    Text("주어진 미션을 성공했어요")
+                        .font(Font.custom24black())
                     MissionTitleView(missionTitle: title,
                         missionColor: background)
                     Button {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(howList)
                         largePearlIndex = -1
                         mode.wrappedValue.dismiss()
                         state = false
