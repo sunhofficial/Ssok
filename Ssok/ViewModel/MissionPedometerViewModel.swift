@@ -5,7 +5,6 @@
 //  Created by 김용주 on 2023/07/02.
 //
 
-import Foundation
 import CoreMotion
 import SwiftUI
 
