@@ -13,7 +13,7 @@ struct AddMemberView: View {
 
     @StateObject private var viewModel  = AddMemberViewModel()
     @FocusState private var isFocused: Bool
-    @EnvironmentObject var random: RandomMember
+    @EnvironmentObject var random: RandomContents
     @Binding var path: NavigationPath
     @State private var keyboardHeight: CGFloat = 0
 
@@ -79,9 +79,6 @@ struct AddMemberView: View {
                 Button {
                     path.append(ViewType.strawView)
                     random.members = viewModel.members
-                    random.randomWho = setRandomMember(viewModel.members)
-                    random.randomWhat = setRandomMission(missions)
-                    random.randomWhere = setRandomWhere(howList)
                 } label: {
                     Text("다음")
                         .foregroundColor(.white)

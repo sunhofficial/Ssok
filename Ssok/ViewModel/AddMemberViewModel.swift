@@ -42,6 +42,7 @@ class AddMemberViewModel: ObservableObject {
             isNextButtonDisabled = true
         } else { isNextButtonDisabled = false }
     }
+    
     func textFieldSubmit() {
         guard !memberName.isEmpty,
               !members.contains(where: { $0.name == memberName }),
