@@ -24,6 +24,9 @@ struct MissionEndingView: View {
                     Image("imgEndingTop")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .edgesIgnoringSafeArea(.top)
+                        .frame(maxHeight: UIScreen.screenHeight / 5 * 2)
+                        .offset(x:0, y: -geomtry.safeAreaInsets.top)
                     HStack {
                         Spacer()
                         HStack {
@@ -37,9 +40,10 @@ struct MissionEndingView: View {
                             state = false
                         }
                         .padding(.trailing, UIScreen.getWidth(20))
-                        .padding(.top, UIScreen.getHeight(60))
+                        .padding(.top, UIScreen.getHeight(30))
                     }
                     HStack {
+                        Spacer()
                         Image("imgBackPearl1")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -54,6 +58,7 @@ struct MissionEndingView: View {
                                     .lineLimit(2)
                                     .padding(.all,UIScreen.getWidth(20))
                             )
+                            .padding(.trailing, -UIScreen.getWidth(24))
                         Image("imgBackPearl2")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -82,18 +87,11 @@ struct MissionEndingView: View {
                                     .lineLimit(2)
                                     .padding(.all,UIScreen.getWidth(20))
                             )
+                            .padding(.trailing, UIScreen.getWidth(6))
                     }
-                    .onTapGesture {
-                        largePearlIndex = -1
-                        state = false
-                    }
-                    .padding(.leading, UIScreen.getWidth(100))
-                    .padding(.trailing, UIScreen.getWidth(18))
-                    .padding(.top,getSafeArea().bottom == 0 ?
-                             UIScreen.getHeight(210) : UIScreen.getHeight(170))
+                    .padding(.top, getSafeArea().bottom == 0 ?
+                             UIScreen.getHeight(140) : UIScreen.getHeight(120))
                 }
-                .offset(x:0, y: getSafeArea().bottom == 0 ? 0 :  -geomtry.safeAreaInsets.top )
-                .frame(maxHeight: geomtry.size.height/2)
                 VStack {
                     VStack(spacing: UIScreen.getHeight(10)) {
                         ZStack {
@@ -118,12 +116,10 @@ struct MissionEndingView: View {
                             MissionTypeView(title: "얼굴 인식",
                                             description: "미션을 성공하려면 얼굴을 인식해야해요.")
                         }}
-                    .padding(.top,UIScreen.getHeight(16))
-                    .offset(x:0,y:-geomtry.safeAreaInsets.top)
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
                         .padding(.horizontal,UIScreen.getWidth(50))
-                        .padding(.top,UIScreen.getHeight(30))
+                        .padding(.top,UIScreen.getHeight(10))
                         .frame(minHeight: UIScreen.getHeight(185))
                         .overlay(
                             VStack(spacing: UIScreen.getHeight(15)) {
@@ -152,7 +148,6 @@ struct MissionEndingView: View {
                             }
                         .padding(.top, UIScreen.getHeight(25))
                         )
-                        .offset(x:0,y:-geomtry.safeAreaInsets.top )
 
                     Button {
                         isPresented.toggle()
@@ -166,7 +161,10 @@ struct MissionEndingView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, UIScreen.getWidth(20))
+                    .padding(.top, UIScreen.getHeight(10))
                 }
+                .padding(.top,UIScreen.getHeight(10))
+                .padding(.bottom,UIScreen.getHeight(10))
             }
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $isPresented) {
@@ -215,4 +213,14 @@ struct MissionEndingView: View {
 //                .position(x: UIScreen.getWidth(xFactor), y: UIScreen.getHeight(166))
 //        }
 //    }
+}
+
+struct MissionEndingView_Previews: PreviewProvider {
+    static var previews: some View {
+        MissionEndingView(state: .constant(false),
+                          missionTitle: "테스트",
+                          missionTip: "미션팁",
+                          largePearlIndex: .constant(0))
+            .environmentObject(RandomContents())
+    }
 }
