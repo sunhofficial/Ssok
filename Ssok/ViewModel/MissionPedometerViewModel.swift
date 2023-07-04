@@ -10,8 +10,6 @@ import SwiftUI
 
 class MissionPedometerViewModel: ObservableObject {
     let motionManager = CMMotionManager()
-    private var timer: Timer?
-    let activityManager = CMMotionActivityManager()
     @Published var gravityX: Double = 0
     @Published var gravityY: Double = 0
     @Published var gravityZ: Double = 0
@@ -48,7 +46,7 @@ class MissionPedometerViewModel: ObservableObject {
     
     func countUp(_ goalCount:String) {
         if self.currentGravity == self.previousGravity &&
-            self.self.previousGravity != 0 {
+            self.previousGravity != 0 {
             self.previousGravity = self.currentGravity
         } else if self.currentGravity != self.previousGravity {
             if goalCount == "40.0"{
