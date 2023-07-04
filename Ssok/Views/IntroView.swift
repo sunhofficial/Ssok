@@ -19,16 +19,18 @@ struct IntroView: View {
                     Image("imgIntroBg")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
+                    
                     ZStack {
                         ZStack(alignment: .top) {
                             Image("imgIntroPearl")
                                 .offset(y: CGFloat(-viewModel.selectedPage * 15))
                             Image("imgIntroWave")
                                 .resizable()
-                                .frame(width: UIScreen.screenWidth, height: 200)
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.getHeight(194))
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 12) {
+                        
+                        HStack(spacing: UIScreen.screenHeight/40) {
                             ForEach(0..<4) { pageNumber in
                                 Circle()
                                     .fill(
@@ -38,21 +40,23 @@ struct IntroView: View {
                                     .frame(width: 8, height: 8)
                             }
                         }
-                        .padding(.bottom, 80)
+                        .padding(.bottom, UIScreen.screenHeight * 0.1)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
 
                 TabView(selection: $viewModel.selectedPage) {
-                    VStack(spacing: 66) {
+                    VStack {
                         Text("쉬는시간이 지루할때,\n쏘옥~")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .padding(.top, UIScreen.getHeight(42))
+                        
                         Image("imgHandWithPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.screenWidth - 173)
+                            .frame(width: UIScreen.screenWidth * 0.6)
                             .rotationEffect(
                                 Angle(degrees: viewModel.isFirst ? -30 : 30)
                             )
@@ -62,51 +66,54 @@ struct IntroView: View {
                             .onAppear {
                                 viewModel.isFirst = true
                             }
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(.top, UIScreen.getHeight(65))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(0)
 
                     VStack(spacing: 38) {
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-
+                            .padding(.top, UIScreen.getHeight(42))
+                        
                         Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.screenWidth - 74)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(.top, UIScreen.getHeight(32.5))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(1)
 
-                    VStack(spacing: 109) {
+                    VStack {
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .padding(.top, UIScreen.getHeight(42))
 
                         Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.screenWidth - 22)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                EdgeInsets(
+                                    top: UIScreen.getHeight(94),
+                                    leading: UIScreen.getWidth(10),
+                                    bottom: UIScreen.getHeight(338),
+                                    trailing: UIScreen.getWidth(10)
+                                )
+                            )
                     }
                     .tag(2)
 
-                    VStack(spacing: 40) {
+                    VStack {
                         Image("imgIntroAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.screenWidth - 32)
-
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                .bottom, UIScreen.getHeight(253)
+                            )
                     }
                     .tag(3)
                 }
@@ -121,9 +128,14 @@ struct IntroView: View {
                     Text("시작하기")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .frame(
+                            maxWidth: UIScreen.getWidth(351),
+                            maxHeight: UIScreen.getHeight(50),
+                            alignment: .center
+                        )
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
+                        .padding(.bottom, UIScreen.getHeight(17))
                 }
                 .navigationDestination(for: ViewType.self) { viewType in
                     switch viewType {
