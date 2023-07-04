@@ -68,7 +68,7 @@ actor SpeechViewModel: ObservableObject {
 
     @MainActor func stopTranscript() {
         Task {
-            await reset()
+            await recognizerReset()
         }
     }
 
@@ -117,12 +117,12 @@ actor SpeechViewModel: ObservableObject {
                  self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
             })
         } catch {
-            self.reset()
+            self.recognizerReset()
             self.showErrorText(error)
         }
     }
 
-    private func reset() {
+    private func recognizerReset() {
         audioEngine?.stop()
         audioEngine = nil
         request = nil
