@@ -10,11 +10,9 @@ import CoreMotion
 import SwiftUI
 
 class MissionPedometerViewModel: ObservableObject {
-    
     let motionManager = CMMotionManager()
     private var timer: Timer?
     let activityManager = CMMotionActivityManager()
-    
     @Published var gravityX: Double = 0
     @Published var gravityY: Double = 0
     @Published var gravityZ: Double = 0

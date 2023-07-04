@@ -9,21 +9,15 @@ import SwiftUI
 import CoreMotion
 
 struct MissionPedometerView: View {
-    
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let motionManager = CMMotionManager()
-    let activityManager = CMMotionActivityManager()
-    
+    @StateObject private var pedometerModel = MissionPedometerViewModel()
     @State var title: String
     @State var goalCount: String
-    @StateObject private var pedometerModel = MissionPedometerViewModel()
-    @State var progressTintColor = Color(.orange)
-    let progressColors = [Color("Progress1"), Color("Progress2"), Color("Progress3"), Color("Progress4")]
-    let moreIndexes = [1, 2, 3, 4]
-    
     @State private var isMore: Int = 0
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
+    @State var progressTintColor = Color(.orange)
+    let progressColors = [Color("Progress1"), Color("Progress2"), Color("Progress3"), Color("Progress4")]
+    let moreIndexes = [1, 2, 3, 4]
     
     var body: some View {
         ZStack {
@@ -119,6 +113,9 @@ struct MissionPedometerView: View {
 
 struct MissionPedometerView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionPedometerView(title: "HI", goalCount: "40.0", state: .constant(true), largePearlIndex: .constant(2))
+        MissionPedometerView(title: "HI",
+                             goalCount: "40.0",
+                             state: .constant(true),
+                             largePearlIndex: .constant(2))
     }
 }

@@ -19,6 +19,7 @@ struct IntroView: View {
                     Image("imgIntroBg")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
+                    
                     ZStack {
                         ZStack(alignment: .top) {
                             Image("imgIntroPearl")
@@ -28,6 +29,7 @@ struct IntroView: View {
                                 .frame(width: UIScreen.screenWidth, height: UIScreen.getHeight(194))
                                 .aspectRatio(contentMode: .fit)
                         }
+                        
                         HStack(spacing: UIScreen.screenHeight/40) {
                             ForEach(0..<4) { pageNumber in
                                 Circle()

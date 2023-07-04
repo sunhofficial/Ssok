@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MissionCompleteView: View {
+    
     @State var title: String
     @State var background: Color
     @EnvironmentObject var random: RandomMember
@@ -51,22 +52,11 @@ struct MissionCompleteView: View {
     }
 }
 
-//extension MissionCompleteView {
-//    var back: some View {
-//        Button {
-//            mode.wrappedValue.dismiss()
-//        } label: {
-//            ZStack {
-//                Text("새로운 미션하기")
-//                    .font(Font.custom20bold())
-//                    .foregroundColor(Color("Bg_bottom2")).underline()
-//            }
-//        }
-//    }
-//}
-
 struct MissionCompleteView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionCompleteView(title: "HI", background: Color("MissionVoice"), state: .constant(true), largePearlIndex: .constant(2))
+        MissionCompleteView(title: "HI",
+                            background: Color("MissionVoice"),
+                            state: .constant(true),
+                            largePearlIndex: .constant(2))
     }
 }

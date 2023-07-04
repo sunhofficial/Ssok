@@ -9,7 +9,6 @@ import SwiftUI
 import SpriteKit
 
 struct StrawView: View {
-    
     @StateObject private var viewModel = StrawViewModel()
     @State private var goNextView = false
     @State private var moveStraw = false
@@ -108,6 +107,7 @@ struct StrawView: View {
                 .offset(y: viewModel.maxProgress == 1 ?
                         UIScreen.getHeight(-185) : UIScreen.getHeight(-225))
                 .opacity(viewModel.showWhiteRectangle ? 1 : 0)
+                
                 ZStack {
                     VStack {
                         Spacer()
@@ -171,6 +171,7 @@ struct StrawView: View {
                         .padding(.top, UIScreen.getHeight(323))
                         .padding(.bottom, UIScreen.getHeight(419))
                 }
+                
                 if largePearlIndex >= 0 {
                     Color(.white)
                         .edgesIgnoringSafeArea(.all)
@@ -205,6 +206,7 @@ struct StrawView: View {
         }
     }
 }
+
 extension StrawView {
     var backButton: some View {
         Button {
@@ -224,6 +226,7 @@ extension StrawView {
         }
     }
 }
+
 struct StrawView_Previews: PreviewProvider {
     static var previews: some View {
         StrawView(path: .constant(NavigationPath()))

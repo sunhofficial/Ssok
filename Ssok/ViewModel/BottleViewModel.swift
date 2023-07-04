@@ -16,7 +16,6 @@ struct ColType {
 }
 
 class Bottle: SKScene, SKPhysicsContactDelegate {
-    
     private var motionState = 0
     private var motionManager: CMMotionManager?
     private var pearls = ["imgPearl1", "imgPearl2"]
@@ -86,6 +85,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         motionManager = CMMotionManager()
         motionManager?.startAccelerometerUpdates()
     }
+    
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionManager?.accelerometerData {
             physicsWorld.gravity = CGVector(
@@ -102,6 +102,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.node?.name == "ball" {
             if motionState == 1 {
@@ -109,6 +110,7 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
     func setPhysicsBody(setNode: SKShapeNode) {
         setNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1, height: frame.height))
         setNode.physicsBody?.affectedByGravity = false
