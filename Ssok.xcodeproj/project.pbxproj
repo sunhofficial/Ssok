@@ -45,7 +45,7 @@
 		C74DD5492A065FDE00852B09 /* How.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD5482A065FDE00852B09 /* How.swift */; };
 		C74DD54B2A065FEB00852B09 /* What.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74DD54A2A065FEB00852B09 /* What.swift */; };
 		C75FB6872A34D1F80031B070 /* StrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75FB6862A34D1F80031B070 /* StrawView.swift */; };
-		C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */; };
+		C77F77292A0FF75300C59882 /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F77282A0FF75300C59882 /* SpeechViewModel.swift */; };
 		C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */; };
 		C7B95D5B2A4F318C00DB7307 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B95D5A2A4F318C00DB7307 /* String.swift */; };
 /* End PBXBuildFile section */
@@ -91,7 +91,7 @@
 		C74DD5482A065FDE00852B09 /* How.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = How.swift; sourceTree = "<group>"; };
 		C74DD54A2A065FEB00852B09 /* What.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What.swift; sourceTree = "<group>"; };
 		C75FB6862A34D1F80031B070 /* StrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrawView.swift; sourceTree = "<group>"; };
-		C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		C77F77282A0FF75300C59882 /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		C77F772A2A0FF77300C59882 /* MissionSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSpeechView.swift; sourceTree = "<group>"; };
 		C7B95D5A2A4F318C00DB7307 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,7 +205,7 @@
 				7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */,
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomContents.swift */,
-				C77F77282A0FF75300C59882 /* SpeechRecognizer.swift */,
+				C77F77282A0FF75300C59882 /* SpeechViewModel.swift */,
 				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
 				7C9654C42A133BDB00779750 /* Permission.swift */,
@@ -326,7 +326,7 @@
 				C71C86212A49E0AC00522E89 /* Font+.swift in Sources */,
 				AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */,
 				C7B95D5B2A4F318C00DB7307 /* String.swift in Sources */,
-				C77F77292A0FF75300C59882 /* SpeechRecognizer.swift in Sources */,
+				C77F77292A0FF75300C59882 /* SpeechViewModel.swift in Sources */,
 				AB031C492A108E1800EE808B /* WhiteRectangleView.swift in Sources */,
 				AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */,
 				7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */,
@@ -488,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = AZDJLQL538;
+				DEVELOPMENT_TEAM = NG2NLR2Z86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;

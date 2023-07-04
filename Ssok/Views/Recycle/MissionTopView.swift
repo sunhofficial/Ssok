@@ -18,7 +18,7 @@ struct MissionTopView: View {
         ZStack(alignment: .top) {
             Image("imgEllipse")
                 .resizable()
-                .frame(width: UIScreen.screenWidth, height: 160)
+                .frame(width: UIScreen.screenWidth, height: UIScreen.getHeight(160))
                 .ignoresSafeArea()
             VStack(spacing: 4) {
                 HStack {
@@ -30,28 +30,19 @@ struct MissionTopView: View {
                             .aspectRatio(contentMode: .fit)
                             .foregroundColor(.white)
                             .bold()
-                            .frame(width: 20, height: 20)
+                            .frame(width: UIScreen.getWidth(20), height: UIScreen.getWidth(20))
                     }
-                    Spacer()
                     Text(title)
+                        .font(Font.custom24black())
+                        .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
-                        .font(.system(size: 24, weight: .bold))
-                    Spacer()
-                    Button {
-                    } label: {
-                        Image(systemName: "chevron.backward")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.clear)
-                            .bold()
-                            .frame(width: 20, height: 20)
-                    }
+                        .padding(.trailing,UIScreen.getWidth(20))
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
+                .padding(.horizontal, UIScreen.getWidth(16))
+                .padding(.top, UIScreen.getHeight(16))
                 Text(description)
                     .foregroundColor(.white)
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(Font.custom13semibold())
             }
         }
     }

@@ -22,6 +22,7 @@ struct MissionTitleView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(missionColor.opacity(0.71), lineWidth: 1.5)
             )
+            .padding(.top, UIScreen.getHeight(10))
     }
 }
 
