@@ -8,8 +8,8 @@
 import SwiftUI
 import CoreMotion
 
-struct MissionPedometerView: View {
-    @StateObject private var pedometerModel = MissionPedometerViewModel()
+struct MissionShakeView: View {
+    @StateObject private var shakeModel = MissionShakeViewModel()
     @State var title: String
     @State var goalCount: String
     @State private var progressValue: Int = 0
@@ -43,12 +43,12 @@ struct MissionPedometerView: View {
                         
                         Circle()
                             .trim(from: 0.0,
-                                  to: goalCount == "40.0" ? CGFloat(pedometerModel.stepCount/40.0) :
-                                    CGFloat(pedometerModel.stepCount/10.0))
+                                  to: goalCount == "40.0" ? CGFloat(shakeModel.stepCount/40.0) :
+                                    CGFloat(shakeModel.stepCount/10.0))
                             .stroke(style: StrokeStyle(lineWidth: 25.0, lineCap: .round, lineJoin: .round))
                             .foregroundColor(progressTintColor)
                             .rotationEffect(.degrees(270))
-                            .onChange(of: pedometerModel.stepCount) { percentage in
+                            .onChange(of: shakeModel.stepCount) { percentage in
                                 switch percentage {
                                 case ..<(Float(goalCount)!*0.25):
                                     progressValue = 1
@@ -68,7 +68,7 @@ struct MissionPedometerView: View {
                     .padding(.horizontal, UIScreen.getWidth(41))
                     
                     VStack {
-                        Text("\(pedometerModel.stepCount, specifier: "%.0f")")
+                        Text("\(shakeModel.stepCount, specifier: "%.0f")")
                             .font(Font.custom60bold()) + Text("회")
                             .font(Font.custom40bold())
                         Text("목표 진동수\n\(goalCount == "40.0" ? "40회" : "10회")")
@@ -92,7 +92,7 @@ struct MissionPedometerView: View {
             }
             .navigationBarHidden(true)
             
-            if String(pedometerModel.stepCount) == goalCount {
+            if String(shakeModel.stepCount) == goalCount {
                 MissionCompleteView(
                     title: title,
                     background: Color("MissionShake"),
@@ -102,14 +102,14 @@ struct MissionPedometerView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            pedometerModel.startUpdate(goalCount)
+            shakeModel.startUpdate(goalCount)
         }
     }
 }
 
-struct MissionPedometerView_Previews: PreviewProvider {
+struct MissionShakeView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionPedometerView(title: "HI",
+        MissionShakeView(title: "HI",
                              goalCount: "40.0",
                              state: .constant(true),
                              largePearlIndex: .constant(2))

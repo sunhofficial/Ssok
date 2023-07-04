@@ -8,7 +8,7 @@
 import CoreMotion
 import SwiftUI
 
-class MissionPedometerViewModel: ObservableObject {
+class MissionShakeViewModel: ObservableObject {
     let motionManager = CMMotionManager()
     @Published var gravityX: Double = 0
     @Published var gravityY: Double = 0
