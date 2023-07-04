@@ -57,6 +57,7 @@ extension Font {
         return Font.system(size: 18 * setFontSize(), weight: .regular)
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     static func setFontSize() -> Double {
         let height = UIScreen.screenHeight
         var size = 1.0
