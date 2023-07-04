@@ -67,6 +67,8 @@ struct MissionSpeechView: View {
                 .padding(.top,UIScreen.getHeight(40))
                 ZStack {
                     Image("imgSpeeching")
+                        .resizable()
+                        .padding(.horizontal,UIScreen.getWidth(40))
                         .shadow(color: Color("Orange").opacity(0.5), radius: 5)
                     VStack {
                         Text("내 발음")
@@ -83,6 +85,7 @@ struct MissionSpeechView: View {
                         .minimumScaleFactor(0.1)
                         .multilineTextAlignment(.center)
                         .lineLimit(speechViewModel.transcript.isEmpty ? 1 : 2)
+                        .padding(.horizontal, UIScreen.getWidth(10))
                         Text("❌ 제시어와 달라요 다시 읽어 주세요 ❌")
                             .font(Font.custom13semibold())
                             .padding(.vertical, UIScreen.getHeight(2))
@@ -90,10 +93,11 @@ struct MissionSpeechView: View {
                             .foregroundColor(Color("Red"))
                             .opacity(speechViewModel.isWrong ? 1 : 0)
                     }
-                    .padding(.top,UIScreen.getHeight(25))
+                    .padding(.top,UIScreen.getHeight(30))
                     .padding(.horizontal, UIScreen.getWidth(50))
                 }
                 .padding(.top, UIScreen.getHeight(25))
+                .padding(.bottom,UIScreen.getHeight(20))
                 
                 if !speechViewModel.isWrong {
                     ZStack {
@@ -160,5 +164,14 @@ struct MissionSpeechView: View {
         .onDisappear {
             speechViewModel.stopTranscript()
         }
+    }
+}
+struct MissionSpeechView_Previews: PreviewProvider {
+    static var previews: some View {
+        MissionSpeechView(missionTitle: "test입니다",
+                          answerText: "이것은test",
+                          speechTime: 4.0,
+                          state: .constant(false),
+                          largePearlIndex: .constant(2))
     }
 }
