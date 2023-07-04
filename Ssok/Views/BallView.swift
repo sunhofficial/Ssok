@@ -8,20 +8,20 @@ struct BallView: View {
     @Binding var getCurrentPearl: Int
     @Binding var state: Bool
     var pearlContents : [[String]]
-    var cappedCurrentPearl: Int {
+    var currentPearl: Int {
            min(getCurrentPearl, 2)
        }
 
     var body: some View {
         ZStack {
-            Image(pearlContents[cappedCurrentPearl][2])
+            Image(pearlContents[currentPearl][2])
                 .resizable()
                 .foregroundColor(.yellow)
             VStack {
-                Text(pearlContents[cappedCurrentPearl][0])
+                Text(pearlContents[currentPearl][0])
                     .foregroundColor(.white)
                     .font(.system(size: 24))
-                Text(pearlContents[cappedCurrentPearl][1])
+                Text(pearlContents[currentPearl][1])
                     .font(.system(size: 80, weight: .bold))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.1)
@@ -40,8 +40,10 @@ struct BallView: View {
         .id(getCurrentPearl)
         .onTapGesture {
             withAnimation(.easeInOut(duration: 1)) {
-                if cappedCurrentPearl >= 2 {
-                    state = true
+                if currentPearl >= 2 {
+                    DispatchQueue.main.async {
+                        state = true
+                    }
                     getCurrentPearl = 2
                 } else {
                     getCurrentPearl += 1
