@@ -25,8 +25,8 @@ struct MissionCompleteView: View {
                     .padding(.top, UIScreen.getHeight(190))
                     .padding(.bottom, UIScreen.getHeight(190))
                 VStack(spacing: UIScreen.getHeight(40)) {
-                    Text("주어진 미션을 성공했어요").
-                    font(Font.custom24black())
+                    Text("주어진 미션을 성공했어요")
+                        .font(Font.custom24black())
                     MissionTitleView(missionTitle: title,
                         missionColor: background)
                     Button {
