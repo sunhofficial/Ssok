@@ -24,7 +24,7 @@ class MissionPedometerViewModel: ObservableObject {
             motionManager.deviceMotionUpdateInterval = 0.2
             motionManager.startDeviceMotionUpdates(to: OperationQueue.main) { data, _ in
                 self.gravityX = data?.gravity.x ?? 0
-
+                
                 self.checkRotation()
                 
                 self.countUp(goalCount)
@@ -45,23 +45,15 @@ class MissionPedometerViewModel: ObservableObject {
     }
     
     func countUp(_ goalCount:String) {
-        if self.currentGravity == self.previousGravity &&
-            self.previousGravity != 0 {
-            self.previousGravity = self.currentGravity
-        } else if self.currentGravity != self.previousGravity {
-            if goalCount == "40.0"{
-                if self.stepCount != 40.0 {
-                    self.stepCount += 1.0
-                } else if self.stepCount == 40.0 {
-                    self.motionManager.stopDeviceMotionUpdates()
-                }
+        if self.currentGravity != self.previousGravity {
+            let targetCount: Float = (goalCount == "40.0" ? 40.0 : 10.0)
+            if self.stepCount != targetCount {
+                self.stepCount += 1.0
             } else {
-                if self.stepCount != 10.0 {
-                    self.stepCount += 1.0
-                } else if self.stepCount == 10.0 {
-                    self.motionManager.stopDeviceMotionUpdates()
-                }
+                self.motionManager.stopDeviceMotionUpdates()
             }
+            self.previousGravity = self.currentGravity
+        } else if self.previousGravity != 0 {
             self.previousGravity = self.currentGravity
         }
     }

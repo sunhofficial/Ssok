@@ -66,7 +66,6 @@ class Bottle: SKScene, SKPhysicsContactDelegate {
         for xRange in stride(from: frame.midX-50, to: frame.midX+50, by: pearlRadius) {
             for yRange in stride(from: frame.minY+100, to: frame.minY+150, by: pearlRadius) {
                 let pearlType = pearls.randomElement()!
-                //                let pearl = Pearls(imageNamed: pearlType)
                 let pearl = SKSpriteNode(imageNamed: pearlType)
                 pearl.position = CGPoint(x: xRange, y: yRange)
                 pearl.name = "ball"

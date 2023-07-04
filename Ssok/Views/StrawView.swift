@@ -33,7 +33,7 @@ struct StrawView: View {
                                 Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
                                startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                Image(viewModel.maxProgress != 1 ? "imgFirstDrink" : "imgFinalDrink")
+                Image(viewModel.maxProgress == 1 ? "imgFinalDrink" : "imgFirstDrink")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(.top, UIScreen.getHeight(323))

@@ -12,7 +12,7 @@ struct MissionPedometerView: View {
     @StateObject private var pedometerModel = MissionPedometerViewModel()
     @State var title: String
     @State var goalCount: String
-    @State private var isMore: Int = 0
+    @State private var progressValue: Int = 0
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
     @State var progressTintColor = Color(.orange)
@@ -51,16 +51,16 @@ struct MissionPedometerView: View {
                             .onChange(of: pedometerModel.stepCount) { percentage in
                                 switch percentage {
                                 case ..<(Float(goalCount)!*0.25):
-                                    isMore = 1
+                                    progressValue = 1
                                     progressTintColor = progressColors[0]
                                 case (Float(goalCount)!*0.25)..<(Float(goalCount)!*0.5):
-                                    isMore = 2
+                                    progressValue = 2
                                     progressTintColor = progressColors[1]
                                 case (Float(goalCount)!*0.5)..<(Float(goalCount)!*0.75):
-                                    isMore = 3
+                                    progressValue = 3
                                     progressTintColor = progressColors[2]
                                 default:
-                                    isMore = 4
+                                    progressValue = 4
                                     progressTintColor = progressColors[3]
                                 }
                             }
@@ -81,7 +81,7 @@ struct MissionPedometerView: View {
                 HStack {
                     ForEach(moreIndexes, id: \.self) { index in
                         Text("더")
-                            .foregroundColor(isMore >= index ? Color.black : Color("Gray"))
+                            .foregroundColor(progressValue >= index ? Color.black : Color("Gray"))
                     }
                 }
                 .font(Font.custom48bold())
