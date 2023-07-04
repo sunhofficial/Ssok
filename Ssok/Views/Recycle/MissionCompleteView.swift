@@ -10,7 +10,6 @@ import SwiftUI
 struct MissionCompleteView: View {
     @State var title: String
     @State var background: Color
-    @EnvironmentObject var random: RandomMember
     @Binding var state: Bool
     @Binding var largePearlIndex: Int
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -25,9 +24,6 @@ struct MissionCompleteView: View {
                     MissionTitleView(missionTitle: title,
                         missionColor: background)
                     Button {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(howList)
                         largePearlIndex = -1
                         mode.wrappedValue.dismiss()
                         state = false

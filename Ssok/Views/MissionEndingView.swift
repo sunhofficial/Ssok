@@ -14,7 +14,7 @@ struct MissionEndingView: View {
     @State var missionTip: String
     @State var goal: String = ""
     @Binding var largePearlIndex: Int
-    @EnvironmentObject var random: RandomMember
+    @EnvironmentObject var random: RandomContents
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var body: some View {
@@ -33,9 +33,6 @@ struct MissionEndingView: View {
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            random.randomWho = setRandomMember(random.members)
-                            random.randomWhat = setRandomMission(missions)
-                            random.randomWhere = setRandomWhere(howList)
                             largePearlIndex = -1
                             state = false
                         }
@@ -70,9 +67,6 @@ struct MissionEndingView: View {
                             .lineLimit(2)
                     }
                     .onTapGesture {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(howList)
                         largePearlIndex = -1
                         state = false
                     }

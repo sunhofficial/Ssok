@@ -18,7 +18,7 @@ struct StrawView: View {
     @State private var isPlug = false
     var scene = Bottle(size: CGSize(width: UIScreen.screenWidth, height: UIScreen.screenHeight))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @EnvironmentObject var random: RandomMember
+    @EnvironmentObject var random: RandomContents
     @Binding var path: NavigationPath
     private var pearlContents : [[String]] {
         [
@@ -168,6 +168,7 @@ struct StrawView: View {
                 moveStraw = false
                 viewModel.showWhiteRectangle = true
                 viewModel.startupdatingMotion()
+                random.setRandomContents()
             }
         } else {
             MissionEndingView(state: $goNextView,
@@ -177,6 +178,7 @@ struct StrawView: View {
         }
     }
 }
+
 extension StrawView {
     var backButton: some View {
         Button {
@@ -196,9 +198,10 @@ extension StrawView {
         }
     }
 }
+
 struct StrawView_Previews: PreviewProvider {
     static var previews: some View {
         StrawView(path: .constant(NavigationPath()))
-            .environmentObject(RandomMember())
+            .environmentObject(RandomContents())
     }
 }
