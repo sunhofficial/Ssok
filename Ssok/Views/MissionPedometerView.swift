@@ -71,12 +71,8 @@ struct MissionPedometerView: View {
                         Text("\(pedometerModel.stepCount, specifier: "%.0f")")
                             .font(Font.custom60bold()) + Text("회")
                             .font(Font.custom40bold())
-                        Text("목표 진동수\n")
+                        Text("목표 진동수\n\(goalCount == "40.0" ? "40회" : "10회")")
                             .font(Font.customTitle4())
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color("GoalRed"))
-                        Text(goalCount == "40.0" ? "40회" : "10회")
-                            .font(Font.custom18regular())
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color("GoalRed"))
                     }
