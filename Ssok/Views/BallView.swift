@@ -34,7 +34,8 @@ struct BallView: View {
             }
         }
         .frame(width: UIScreen.screenWidth / 1.2, height: UIScreen.screenWidth / 1.2)
-        .transition(.asymmetric(insertion: .offset(y: -UIScreen.screenHeight), removal: .offset(y: UIScreen.screenHeight)))
+        .transition(.asymmetric(insertion: .offset(y: -UIScreen.screenHeight),
+                                removal: .offset(y: UIScreen.screenHeight)))
         .zIndex(1)
         .id(getCurrentPearl)
         .onTapGesture {

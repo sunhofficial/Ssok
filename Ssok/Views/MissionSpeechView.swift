@@ -188,7 +188,10 @@ struct MissionSpeechView: View {
             }
             .padding(.top, 40)
             if isComplete {
-                MissionCompleteView(title: missionTitle, background: Color("MissionVoice"), state: $state, largePearlIndex: $largePearlIndex)
+                MissionCompleteView(title: missionTitle,
+                                    background: Color("MissionVoice"),
+                                    state: $state,
+                                    largePearlIndex: $largePearlIndex)
             }
         }
         .navigationBarHidden(true)

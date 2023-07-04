@@ -1,20 +1,22 @@
 //
-//  SoundMeter.swift
+//  MissionDecibelViewModel.swift
 //  Ssok
 //
-//  Created by 김민 on 2023/05/15.
+//  Created by 김민 on 2023/06/29.
 //
 
-import SwiftUI
 import AVFoundation
+import Foundation
 
-class SoundMeter: ObservableObject {
+class MissionDecibelViewModel: ObservableObject {
+
+    @Published var decibels: Float = 0.0
+    @Published var isCompleted = false
 
     let engine = AVAudioEngine()
     let playerNode = AVAudioPlayerNode()
     let bufferSize: AVAudioFrameCount = 4096
-    @Published var decibels: Float = 0.0
-
+    
     init() {
         let input = engine.inputNode
         let busNum = 0
@@ -36,7 +38,7 @@ class SoundMeter: ObservableObject {
 
             var decibels: Float = 0.0
 
-            if channelData.isEmpty {
+            if !channelData.isEmpty {
                 let rootMeanSquare = sqrt(channelData.reduce(0) {$0 + pow($1, 2)} / Float(channelData.count))
                 decibels = 20.0 * log10(rootMeanSquare)
             }
@@ -56,10 +58,22 @@ class SoundMeter: ObservableObject {
         engine.stop()
         playerNode.stop()
         engine.inputNode.removeTap(onBus: 0)
+        decibels = 0.0
+    }
+
+    func setPercentage(_ goal: String) -> Float {
+        return decibels / Float(goal)!
+    }
+
+    func isMissionCompleted(_ goal: String) {
+        if decibels >= Float(goal)! {
+            isCompleted = true
+            stop()
+        }
     }
 
     private func normalizeDecibel(_ decibel: Float) -> Float {
-        let lowLevel: Float = -60.0
+        let lowLevel: Float = -70.0
         let highLevel: Float = 0.0
         var level = max(0.0, decibel - lowLevel)
         level = min(level, highLevel - lowLevel)
