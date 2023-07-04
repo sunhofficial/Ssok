@@ -28,6 +28,14 @@ extension Font {
     static func custom17bold() -> Font {
         return Font.system(size: 17 * setFontSize(), weight: .bold)
     }
+    
+    static func custom18regular() -> Font {
+        return Font.system(size: 18 * setFontSize(), weight: .regular)
+    }
+    
+    static func custom18bold() -> Font {
+        return Font.system(size: 18 * setFontSize(), weight: .bold)
+    }
 
     static func custom20bold() -> Font {
         return Font.system(size: 20 * setFontSize(), weight: .bold)
