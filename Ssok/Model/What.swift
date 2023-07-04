@@ -65,12 +65,12 @@ let missions = [
                                             말하기 버튼을 누르고 크게 외쳐주세요!
                                             """),
             missionDetail: [MissionDetail.answer: "나는 바보다", MissionDetail.timer: "5.0"]),
-    Mission(missionType: .blink,
-            missionInfo: MissionInfo(missionTitle: "플러팅하기 😘",
-                                         missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요!"),
-            missionDetail: [MissionDetail.arState: "blink"]),
-    Mission(missionType: .smile,
-            missionInfo:MissionInfo(missionTitle: "혀내밀기 😄",
-                                         missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 혀를 내미세요!"),
-           missionDetail: [MissionDetail.arState: "smile"])
+//    Mission(missionType: .blink,
+//            missionInfo: MissionInfo(missionTitle: "플러팅하기 😘",
+//                                         missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 두 눈을 윙크하세요!"),
+//            missionDetail: [MissionDetail.arState: "blink"]),
+//    Mission(missionType: .smile,
+//            missionInfo:MissionInfo(missionTitle: "혀내밀기 😄",
+//                                         missionTip: "장소로 이동해서 미션하기 버튼을 누르고\n얼굴을 인식시켜 미션 완료까지 혀를 내미세요!"),
+//           missionDetail: [MissionDetail.arState: "smile"])
 ]

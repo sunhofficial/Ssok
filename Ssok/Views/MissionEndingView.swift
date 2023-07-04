@@ -111,9 +111,9 @@ struct MissionEndingView: View {
                     .offset(x:0,y:-geomtry.safeAreaInsets.top)
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
-                        .frame(minHeight: UIScreen.getHeight(175))
                         .padding(.horizontal,UIScreen.getWidth(50))
-                        .padding(.top,UIScreen.getHeight(20))
+                        .padding(.top,UIScreen.getHeight(30))
+                        .frame(minHeight: UIScreen.getHeight(185))
                         .overlay(
                             VStack(spacing: UIScreen.getHeight(15)) {
                                 let mission = random.randomWhat.missionType
@@ -139,7 +139,7 @@ struct MissionEndingView: View {
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom,UIScreen.getHeight(15))
                             }
-                        .padding(.top, UIScreen.getHeight(20))
+                        .padding(.top, UIScreen.getHeight(25))
                         )
                         .offset(x:0,y:-geomtry.safeAreaInsets.top )
 
@@ -155,8 +155,6 @@ struct MissionEndingView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, UIScreen.getWidth(20))
-                    .padding(.vertical,UIScreen.getHeight(5))
-                    .offset(x:0,y: -geomtry.safeAreaInsets.top)
                 }
             }
             .navigationBarHidden(true)
@@ -175,7 +173,6 @@ struct MissionEndingView: View {
                                          largePearlIndex: $largePearlIndex)
                 case .voice:
                     MissionSpeechView(missionTitle: missionTitle,
-                                      missionTip: missionTip,
                                       answerText: random.randomWhat.missionDetail[MissionDetail.answer] ?? "",
                                       speechTime: Double(random
                                         .randomWhat
