@@ -47,7 +47,7 @@ struct IntroView: View {
 
                 TabView(selection: $viewModel.selectedPage) {
                     VStack {
-                        Text("쉬는시간이 지루할때,\n쏘옥~")
+                        Text("기분 전환이 필요할 때,\n쏘옥~")
                             .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
@@ -114,6 +114,7 @@ struct IntroView: View {
                             .padding(
                                 .bottom, UIScreen.getHeight(253)
                             )
+                            .padding(.top, UIScreen.screenHeight >= 844 ? UIScreen.getHeight(20) : 0)
                     }
                     .tag(3)
                 }
