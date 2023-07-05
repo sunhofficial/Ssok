@@ -15,7 +15,7 @@ class StrawViewModel: ObservableObject {
     private var previousgravity = 0
     @Published var showWhiteRectangle = true
     @Published var nextView = false
-    @Published var progress = 1.0
+    @Published var progress = 0.0
 
     var maxProgress: Double {
         return min(max(progress > 0.99 ? 1: progress, 0.0), 1.0)

@@ -91,7 +91,7 @@ struct StrawView: View {
                             Text("버블티를 흔들어주세요!")
                                 .font(Font.custom18bold())
                                 .padding(.bottom, UIScreen.getHeight(5))
-                            Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
+                            Text("컵에서 미션들이 섞이는 중이에요")
                                 .multilineTextAlignment(.center)
                                 .font(Font.custom13semibold())
                                 .padding(.bottom, UIScreen.getHeight(10))
@@ -113,11 +113,13 @@ struct StrawView: View {
                         Spacer()
                         ForEach(0..<3) { index in
                             Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: UIScreen.getWidth(36))
                                 .animation(.easeOut(duration: 1.5)
                                     .delay(1.4 + Double(index) * 0.2), value: moveStraw)
                         }
                     }
-                    .frame(width: UIScreen.getWidth(28))
                     .opacity(moveStraw ? 1 : 0)
                     .offset(y: moveStraw ? -UIScreen.screenHeight : -10)
                     .animation(.easeInOut.delay(1), value: moveStraw)
@@ -126,7 +128,11 @@ struct StrawView: View {
 
                 if viewModel.maxProgress == 1 {
                     Image("imgStraw")
-                        .frame(width: UIScreen.getWidth(200))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.screenWidth >= 390 ?
+                               UIScreen.getWidth(43) :
+                                UIScreen.getWidth(36))
                         .contentShape(Rectangle())
                         .opacity(0.8)
                         .animation(.easeInOut(duration: 1), value: moveStraw)
