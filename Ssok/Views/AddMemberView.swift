@@ -22,7 +22,7 @@ struct AddMemberView: View {
         ZStack {
             VStack {
                 VStack(spacing: 0) {
-                    TextField("한글로 닉네임을 입력해주세요.", text: $viewModel.memberName)
+                    TextField("  한글로 닉네임을 입력해주세요.", text: $viewModel.memberName)
                         .focused($isFocused)
                         .padding(.vertical, UIScreen.getHeight(7))
                 }

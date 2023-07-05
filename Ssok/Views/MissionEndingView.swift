@@ -44,49 +44,11 @@ struct MissionEndingView: View {
                     }
                     HStack {
                         Spacer()
-                        Image("imgBackPearl1")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.getWidth(96), height: UIScreen.getWidth(96))
-                            .overlay(
-                                Text(random.randomWho)
-                                    .font(Font.custom15bold())
-                                    .rotationEffect(Angle(degrees: -30))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .minimumScaleFactor(0.1)
-                                    .lineLimit(2)
-                                    .padding(.all,UIScreen.getWidth(20))
-                            )
+                        createImageWithOverlay(imageName: "imgBackPearl1", text: random.randomWho)
                             .padding(.trailing, -UIScreen.getWidth(24))
-                        Image("imgBackPearl2")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.getWidth(96), height: UIScreen.getWidth(96))
-                            .overlay(
-                                Text(random.randomWhere)
-                                    .font(Font.custom15bold())
-                                    .rotationEffect(Angle(degrees: -30))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .minimumScaleFactor(0.1)
-                                    .lineLimit(2)
-                                    .padding(.all,UIScreen.getWidth(20))
-                            )
-                        Image("imgBackPearl1")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: UIScreen.getWidth(96), height: UIScreen.getWidth(96))
-                            .overlay(
-                                Text(String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
-                                    .font(Font.custom15bold())
-                                    .rotationEffect(Angle(degrees: -30))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .minimumScaleFactor(0.1)
-                                    .lineLimit(2)
-                                    .padding(.all,UIScreen.getWidth(20))
-                            )
+                        createImageWithOverlay(imageName: "imgBackPearl2", text: random.randomWhere)
+                        createImageWithOverlay(imageName: "imgBackPearl1",
+                                               text: String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
                             .padding(.trailing, UIScreen.getWidth(6))
                     }
                     .padding(.top, getSafeArea().bottom == 0 ?
@@ -100,6 +62,7 @@ struct MissionEndingView: View {
                                 .shadow(color: Color("Bg_bottom2"), radius: 2)
                             Text("📢")
                         }
+                        .frame(width: UIScreen.getWidth(40))
                         .padding(.horizontal,UIScreen.getWidth(170))
                         let mission = random.randomWhat.missionType
                         switch mission {
@@ -119,7 +82,7 @@ struct MissionEndingView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .strokeBorder(Color("Border"), lineWidth: 1.5)
                         .padding(.horizontal,UIScreen.getWidth(50))
-                        .padding(.top,UIScreen.getHeight(10))
+                        .padding(.vertical,UIScreen.getHeight(10))
                         .frame(minHeight: UIScreen.getHeight(185))
                         .overlay(
                             VStack(spacing: UIScreen.getHeight(15)) {
@@ -146,7 +109,7 @@ struct MissionEndingView: View {
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom,UIScreen.getHeight(15))
                             }
-                        .padding(.top, UIScreen.getHeight(25))
+                        .padding(.top, UIScreen.getHeight(20))
                         )
 
                     Button {
@@ -198,21 +161,22 @@ struct MissionEndingView: View {
             }
         }
     }
-//    private struct TextModifier: ViewModifier {
-//        let xFactor: CGFloat
-//
-//        func body(content: Content) -> some View {
-//            content
-//                .font(Font.custom20bold())
-//                .rotationEffect(Angle(degrees: -30))
-//                .foregroundColor(.white)
-//                .multilineTextAlignment(.center)
-//                .minimumScaleFactor(0.1)
-//                .frame(width: UIScreen.getWidth(75), height: UIScreen.getWidth(75))
-//                .lineLimit(2)
-//                .position(x: UIScreen.getWidth(xFactor), y: UIScreen.getHeight(166))
-//        }
-//    }
+    func createImageWithOverlay(imageName: String, text: String) -> some View {
+         Image(imageName)
+             .resizable()
+             .aspectRatio(contentMode: .fit)
+             .frame(width: UIScreen.getWidth(96), height: UIScreen.getWidth(96))
+             .overlay(
+                 Text(text)
+                     .font(Font.custom15bold())
+                     .rotationEffect(Angle(degrees: -30))
+                     .foregroundColor(.white)
+                     .multilineTextAlignment(.center)
+                     .minimumScaleFactor(0.1)
+                     .lineLimit(2)
+                     .padding(.all, UIScreen.getWidth(20))
+             )
+     }
 }
 
 struct MissionEndingView_Previews: PreviewProvider {
