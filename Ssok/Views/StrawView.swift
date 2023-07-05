@@ -115,7 +115,9 @@ struct StrawView: View {
                             Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: UIScreen.getWidth(36))
+                                .frame(width: UIScreen.screenWidth >= 390 ?
+                                       UIScreen.getWidth(40) :
+                                        UIScreen.getWidth(36))
                                 .animation(.easeOut(duration: 1.5)
                                     .delay(1.4 + Double(index) * 0.2), value: moveStraw)
                         }
