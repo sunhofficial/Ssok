@@ -37,6 +37,10 @@ extension Font {
         return Font.system(size: 18 * setFontSize(), weight: .bold)
     }
 
+    static func custom18semibold() -> Font {
+        return Font.system(size: 18 * setFontSize(), weight: .semibold)
+    }
+
     static func custom20bold() -> Font {
         return Font.system(size: 20 * setFontSize(), weight: .bold)
     }

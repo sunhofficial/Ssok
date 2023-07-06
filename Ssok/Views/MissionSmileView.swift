@@ -33,7 +33,7 @@ struct MissionSmileView: View {
                             .padding()
                             .foregroundColor(arViewModel.getSmiling ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(Font.custom18semibold())
                             .position(x: UIScreen.screenWidth / 2, y: UIScreen.screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "혀내밀기 😝",
@@ -52,7 +52,7 @@ struct MissionSmileView: View {
                             .padding()
                             .foregroundColor(arViewModel.getBlinking ? .green : .red)
                             .background(RoundedRectangle(cornerRadius: 20).fill(.thickMaterial))
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(Font.custom18semibold())
                             .position(x: UIScreen.screenWidth / 2, y: UIScreen.screenHeight / 1.5)
                         } else {
                             MissionCompleteView(title: "플러팅하기 😘",
@@ -78,3 +78,12 @@ struct ARViewContainer: UIViewRepresentable {
 
     func updateUIView(_ uiView: ARView, context: Context) {}
 }
+
+struct MissionSmileView_Previews: PreviewProvider {
+    static var previews: some View {
+        MissionSmileView(arViewState: "smile",
+                          state: .constant(false),
+                          largePearlIndex: .constant(2))
+    }
+}
+

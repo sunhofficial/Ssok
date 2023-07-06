@@ -22,7 +22,6 @@
 		7C94D5692A02B08E00AAC279 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */; };
 		7C94D56C2A02B15400AAC279 /* AddMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */; };
 		7C94D5702A02B16F00AAC279 /* StrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */; };
-		7C9654C52A133BDB00779750 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9654C42A133BDB00779750 /* Permission.swift */; };
 		7CF764172A117D3F007E2C3A /* MissionSmileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764162A117D3F007E2C3A /* MissionSmileView.swift */; };
 		7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF764182A117D58007E2C3A /* ARViewModel.swift */; };
 		7CF7641B2A117D6B007E2C3A /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF7641A2A117D6B007E2C3A /* ARModel.swift */; };
@@ -33,7 +32,6 @@
 		AB031C562A110D2F00EE808B /* MissionShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB031C552A110D2F00EE808B /* MissionShakeView.swift */; };
 		AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */; };
 		AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08B5A72A2F96480086B8F9 /* ViewType.swift */; };
-		AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3129E52A14D6EF00204C55 /* SoundManager.swift */; };
 		AB5B7D602A514A7A009CC74E /* MissionDecibelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */; };
 		ABB019CB2A07FB900000556F /* RandomContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomContents.swift */; };
 		C71C86212A49E0AC00522E89 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71C86202A49E0AC00522E89 /* Font+.swift */; };
@@ -65,7 +63,6 @@
 		7C94D5682A02B08E00AAC279 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewModel.swift; sourceTree = "<group>"; };
 		7C94D56F2A02B16F00AAC279 /* StrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrawViewModel.swift; sourceTree = "<group>"; };
-		7C9654C42A133BDB00779750 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
 		7CF764162A117D3F007E2C3A /* MissionSmileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionSmileView.swift; sourceTree = "<group>"; };
 		7CF764182A117D58007E2C3A /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		7CF7641A2A117D6B007E2C3A /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		AB031C552A110D2F00EE808B /* MissionShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionShakeView.swift; sourceTree = "<group>"; };
 		AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB08B5A72A2F96480086B8F9 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
-		AB3129E52A14D6EF00204C55 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelViewModel.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomContents.swift; sourceTree = "<group>"; };
@@ -200,9 +196,7 @@
 				7C94D56B2A02B15400AAC279 /* AddMemberViewModel.swift */,
 				ABB019CA2A07FB900000556F /* RandomContents.swift */,
 				C77F77282A0FF75300C59882 /* SpeechViewModel.swift */,
-				AB3129E52A14D6EF00204C55 /* SoundManager.swift */,
 				7CF764182A117D58007E2C3A /* ARViewModel.swift */,
-				7C9654C42A133BDB00779750 /* Permission.swift */,
 				10882FA22A2B1B0100B76C24 /* BottleViewModel.swift */,
 				10EC55632A5159AB00184980 /* MissionShakeViewModel.swift */,
 				AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */,
@@ -327,7 +321,6 @@
 				ABB019CB2A07FB900000556F /* RandomContents.swift in Sources */,
 				AB5B7D602A514A7A009CC74E /* MissionDecibelViewModel.swift in Sources */,
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
-				AB3129E62A14D6EF00204C55 /* SoundManager.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				AB031C562A110D2F00EE808B /* MissionShakeView.swift in Sources */,
 				7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */,
@@ -346,7 +339,6 @@
 				7C94D55C2A02ABA300AAC279 /* IntroView.swift in Sources */,
 				C75FB6872A34D1F80031B070 /* StrawView.swift in Sources */,
 				7C587D5A2A47435000D7B9DD /* MissionTypeView.swift in Sources */,
-				7C9654C52A133BDB00779750 /* Permission.swift in Sources */,
 				C74DD54B2A065FEB00852B09 /* What.swift in Sources */,
 				C77F772B2A0FF77300C59882 /* MissionSpeechView.swift in Sources */,
 				C74DD5442A065B1500852B09 /* View+.swift in Sources */,
@@ -480,14 +472,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = NG2NLR2Z86;
+				DEVELOPMENT_TEAM = DD63847N69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok uses camera";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "데시벨 측정을 위한 마이크 권한 허용";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ssok이 데시벨 측정과 음성 인식을 위해 기기의 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "따라 말하기를 위한 음성 인식 권한 필요";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ssok이 사용자의 음성을 받아쓰기 위해 음성 인식을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -497,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrolst-Satement1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Sso";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -514,14 +506,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = N3H5YNSQ64;
+				DEVELOPMENT_TEAM = DD63847N69;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok uses camera";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "데시벨 측정을 위한 마이크 권한 허용";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Ssok이 얼굴 인식을 위해 기기의 카메라에 접근합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ssok이 데시벨 측정과 음성 인식을 위해 기기의 마이크에 접근합니다.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "따라 말하기를 위한 음성 인식 권한 필요";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ssok이 사용자의 음성을 받아쓰기 위해 음성 인식을 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -531,7 +523,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kwansiknam.Ssok;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CSSP.Ssok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
