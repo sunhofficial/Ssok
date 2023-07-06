@@ -86,4 +86,3 @@ struct MissionSmileView_Previews: PreviewProvider {
                           largePearlIndex: .constant(2))
     }
 }
-

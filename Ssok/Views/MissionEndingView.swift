@@ -48,7 +48,8 @@ struct MissionEndingView: View {
                             .padding(.trailing, -UIScreen.getWidth(24))
                         createImageWithOverlay(imageName: "imgBackPearl2", text: random.randomWhere)
                         createImageWithOverlay(imageName: "imgBackPearl1",
-                                               text: String(random.randomWhat.missionInfo.missionTitle.dropLast(2)))
+                                               text: String(
+                                                    random.randomWhat.missionInfo.missionTitle.dropLast(2)))
                             .padding(.trailing, UIScreen.getWidth(6))
                     }
                     .padding(.top, getSafeArea().bottom == 0 ?
