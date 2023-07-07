@@ -56,7 +56,7 @@ let missions = [
                                             영국 발음으로 읽어야만 성공할 수 있어요!
                                             """),
             missionDetail: [MissionDetail.answer: "Could I have a bottle of water please",
-//                            MissionDetail.timer: "10.0"]),
+                            MissionDetail.timer: "10.0"]),
     Mission(missionType: .voice,
             missionInfo: MissionInfo(missionTitle: "바보 되기 🤪",
                                          missionTip: """
