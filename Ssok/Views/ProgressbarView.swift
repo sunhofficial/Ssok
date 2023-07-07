@@ -9,15 +9,13 @@ import SwiftUI
 
 struct ProgressbarView: View {
     
-    @State var progress = 0.3
+    @State var imgProgress = 0.3
     
     var body: some View {
-        ZStack{
-            
+        ZStack {
             Circle().stroke(lineWidth: 20).opacity(0.2)
-            
             Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+                .trim(from: 0.0, to: CGFloat(min(self.imgProgress, 1.0)))
                 .stroke(lineWidth: 20)
                 .rotationEffect(Angle(degrees: 270))
         }

@@ -6,159 +6,165 @@
 //
 
 import SwiftUI
-import CoreMotion
-
+import SpriteKit
 
 struct StrawView: View {
-    
-    let motionmanager = CMMotionManager()
     @StateObject private var viewModel = StrawViewModel()
-    @State var st: Bool = false
-    @State var isAnimation: Bool = false
-    @State var isDisplay: Bool = false
-    @State var getFirstBall: Bool = false
-    @State var getSecondBall: Bool = false
-    @State var getThirdBall: Bool = false
-    @State var dragAmount: CGSize = CGSize.zero
-    @State var isPlug: Bool = false
-    @State var previousview: Bool = false
-    
+    @State private var goNextView = false
+    @State private var moveStraw = false
+    @State private var largePearlIndex = -1
+    @State private var dragAmount = CGSize.zero
+    @State private var isPlug = false
+    var scene = Bottle(size: CGSize(width: 390, height: 844))
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
-    @EnvironmentObject var random: RandomMember
-    
+    @EnvironmentObject var random: RandomContents
+    @Binding var path: NavigationPath
+    private var pearlContents : [[String]] {
+        [
+            ["Who?",random.randomWho, "imgBackPearl1" ],
+            ["How?", random.randomWhere, "imgBackPearl2"],
+            ["What?",String(random.randomWhat.missionInfo.missionTitle.dropLast(2)),"imgBackPearl1" ]
+        ]}
     
     var body: some View {
-        if !st{
+        if !goNextView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                LinearGradient(gradient:
+                                Gradient(colors: [ Color("Bg_top"), Color("Bg_center"), Color("Bg_bottom2")]),
+                               startPoint: .top, endPoint: .bottom).ignoresSafeArea()
                 
-                if viewModel.maxProgress != 1 {
-                    Image("firstdrink").position(CGPoint(x:wid/2, y: 552.5))
-                } else {
-                    Image("finaldrink").position(CGPoint(x:wid/2, y: 552.5))
-                }
+                Image(viewModel.maxProgress == 1 ? "imgFinalDrink" : "imgFirstDrink")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.top, UIScreen.getHeight(323))
+                    .padding(.bottom, UIScreen.getHeight(57))
                 
+                SpriteView(
+                    scene: scene,
+                    options: [.allowsTransparency],
+                    shouldRender: {_ in return true}
+                )
+                .aspectRatio(0.5, contentMode: .fit)
+                .padding(
+                    .bottom,
+                    (UIScreen.screenHeight >= 844)&&(UIScreen.screenHeight<=932) ? 0 : UIScreen.getHeight(30))
                 
-                BottleView()
+                Image("imgCupHead")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: UIScreen.getHeight(102))
+                    .padding(.top, UIScreen.getHeight(323))
+                    .padding(.bottom, UIScreen.getHeight(419))
                 
-                
-                VStack(spacing: 24) {
-                    // 가이드
-                    VStack(spacing: 24) {
-                        if viewModel.maxProgress == 1 {
-                            // 흔들기 완료 후 여기
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 106)
-                                    .padding(.top, 100)
-                                VStack {
-                                    ZStack {
-                                        Image("PhoneIcon")
-                                            .padding(.top, 50)
-                                        Image("HandIcon")
-                                            .padding(.top, 70)
-                                            .padding(.leading, 30)
-                                    }
-                                    Text("스트로우를 꼽아주세요!")
-                                        .font(.system(size: 18, weight: .bold))
-                                        .padding(.bottom, 1)
-                                    Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
-                                        .font(.system(size: 13, weight: .semibold))
-                                }
-                            }
-                        } else {
-                            ZStack {
-                                WhiteRectangleView()
-                                    .frame(width: 300, height: 153)
-                                VStack {
-                                    Image("ShakeIcon")
-                                        .padding(.top, -60)
-                                        .padding(.bottom, 0)
-                                    Text("버블티를 흔들어주세요!")
-                                        .font(.system(size: 18, weight: .bold))
-                                        .padding(.bottom, 5)
-                                    Text("팀원들, 장소 그리고 미션들이\n섞이는 중이에요")
-                                        .multilineTextAlignment(.center)
-                                        .font(.system(size: 13, weight: .semibold))
-                                        .padding(.bottom, 10)
-                                    ProgressView(value: viewModel.maxProgress)
-                                        .tint(Color("Orange_Progress"))
-                                        .background(Color("LightGray"))
-                                        .frame(width: 240, height: 8)
-                                        .scaleEffect(x: 1, y: 2)
-                                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                                }
-                            }
-                            .padding(.top, 30)
-                        }
-                    }
-                    .opacity(isDisplay ? 0 : 1)
-                    // 컵 & 버블
-                    ZStack {
-                        // 버블
+                ZStack {
+                    WhiteRectangleView()
+                        .frame(
+                            width: UIScreen.getWidth(300),
+                            height: viewModel.maxProgress == 1 ?
+                            UIScreen.getHeight(106) : UIScreen.getHeight(153)
+                        )
+                    if viewModel.maxProgress == 1 {
                         VStack {
-                            Spacer()
-                            Image("Pearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.4),value: isAnimation)
-                            
-                            Image("Pearl2")
-                                .animation(.easeOut(duration: 1.5).delay(1.6),value: isAnimation)
-                            
-                            Image("Pearl1")
-                                .animation(.easeOut(duration: 1.5).delay(1.8),value: isAnimation)
+                            ZStack {
+                                Image("imgPhoneIcon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: UIScreen.getWidth(58), height: UIScreen.getHeight(79))
+                                    .padding(.top, UIScreen.getHeight(-60))
+                                Image("imgHandIcon")
+                                    .padding(.top, UIScreen.getHeight(-47))
+                                    .padding(.leading, UIScreen.getWidth(30))
+                            }
+                            Text("스트로우를 꽂아주세요!")
+                                .font(Font.custom18bold())
+                                .padding(.bottom, UIScreen.getHeight(1))
+                            Text("스트로우를 꽂으면 미션이 담긴 펄이 올라와요")
+                                .font(Font.custom13semibold())
                         }
-                        .frame(width: 28)
-                        .opacity(isAnimation ? 1 : 0)
-                        .offset(y: isAnimation ? -hei : -10)
-                        .animation(.easeInOut.delay(1), value: isAnimation)
+                    } else {
+                        VStack {
+                            Image("imgShakeIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: UIScreen.getWidth(58), height: UIScreen.getHeight(79))
+                                .padding(.top, UIScreen.getHeight(-60))
+                            Text("버블티를 흔들어주세요!")
+                                .font(Font.custom18bold())
+                                .padding(.bottom, UIScreen.getHeight(5))
+                            Text("컵에서 미션들이 섞이는 중이에요")
+                                .multilineTextAlignment(.center)
+                                .font(Font.custom13semibold())
+                                .padding(.bottom, UIScreen.getHeight(10))
+                            ProgressView(value: viewModel.maxProgress)
+                                .tint(Color("Orange_Progress"))
+                                .background(Color("LightGray"))
+                                .frame(width: UIScreen.getWidth(240), height: UIScreen.getHeight(8))
+                                .scaleEffect(x: 1, y: 2)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
                     }
-                    .frame(width: UIScreen.main.bounds.width / 1.3, height:UIScreen.main.bounds.height / 1.8)
                 }
+                .offset(y: viewModel.maxProgress == 1 ?
+                        UIScreen.getHeight(-185) : UIScreen.getHeight(-225))
+                .opacity(viewModel.showWhiteRectangle ? 1 : 0)
                 
-                // 빨대
+                ZStack {
+                    VStack {
+                        Spacer()
+                        ForEach(0..<3) { index in
+                            Image(index % 2 == 0 ? "imgPearl1" : "imgPearl2")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: UIScreen.screenWidth >= 390 ?
+                                       UIScreen.getWidth(40) :
+                                        UIScreen.getWidth(36))
+                                .animation(.easeOut(duration: 1.5)
+                                    .delay(1.4 + Double(index) * 0.2), value: moveStraw)
+                        }
+                    }
+                    .opacity(moveStraw ? 1 : 0)
+                    .offset(y: moveStraw ? -UIScreen.screenHeight : -10)
+                    .animation(.easeInOut.delay(1), value: moveStraw)
+                }
+                .frame(width: UIScreen.getWidth(300), height: UIScreen.getHeight(469))
+
                 if viewModel.maxProgress == 1 {
-                    Image("Straw")
-                        .frame(width: 200)
+                    Image("imgStraw")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.screenWidth >= 390 ?
+                               UIScreen.getWidth(43) :
+                                UIScreen.getWidth(36))
                         .contentShape(Rectangle())
                         .opacity(0.8)
-                        .animation(.easeInOut(duration: 1), value: isAnimation)
-                        .offset(y: isAnimation ? 0 : dragAmount.height - hei/1.7)
+                        .animation(.easeInOut(duration: 1), value: moveStraw)
+                        .offset(y: moveStraw ? 0 : dragAmount.height - UIScreen.getHeight(496.5))
                         .gesture(
                             DragGesture()
                                 .onChanged { gesture in
-                                    if gesture.translation.height > 0 && gesture.translation.height < 240 {
+                                    if gesture.translation.height > 0
+                                        && gesture.translation.height < UIScreen.getHeight(240) {
                                         dragAmount = CGSize(width: 0, height: gesture.translation.height)
                                         withAnimation(.easeInOut) {
-                                            isDisplay = true
+                                            viewModel.showWhiteRectangle = false
                                         }
                                     }
-                                    isPlug = gesture.translation.height > 150
-                                    
+                                    isPlug = gesture.translation.height > UIScreen.getHeight(150)
                                 }
                                 .onEnded { _ in
                                     if isPlug {
                                         withAnimation(.easeInOut(duration: 1)) {
-                                            isAnimation = true
+                                            moveStraw = true
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-                                            HapticManager.instance.impact(style: .heavy)
-                                            HapticManager.instance.impact(style: .heavy)
+                                            viewModel.uppearlVibration()
                                         }
                                         withAnimation(.easeInOut(duration: 1).delay(3)) {
-                                            getFirstBall = true
+                                            largePearlIndex = 0
                                         }
                                     } else {
                                         withAnimation(.easeInOut) {
-                                            isDisplay = false
+                                            viewModel.showWhiteRectangle = true
                                         }
                                     }
                                     dragAmount = .zero
@@ -166,47 +172,24 @@ struct StrawView: View {
                                 }
                         )
                         .animation(.spring(), value: dragAmount)
-                    Image("cutcup").position(x: wid/2 ,y:377)
+                    Image("imgCutCup")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: UIScreen.getHeight(102))
+                        .padding(.top, UIScreen.getHeight(323))
+                        .padding(.bottom, UIScreen.getHeight(419))
                 }
                 
-                //Dim
-                Color(.white)
-                    .edgesIgnoringSafeArea(.all)
-                    .opacity(isAnimation ? 0.5 : 0)
-                    .animation(.easeInOut(duration: 1).delay(2.5), value: isAnimation)
-                
-                //  첫 번째 볼
-                BallView(
-                    getCurrentBall: $getFirstBall,
-                    getNextBall: $getSecondBall,
-                    st: $st,
-                    stBool: false,
-                    ballTitle: "Who?",
-                    contents: random.randomWho,
-                    pearlImage: "Back_pearl1"
-                )
-                
-                // 두 번째 볼
-                BallView(
-                    getCurrentBall: $getSecondBall,
-                    getNextBall: $getThirdBall,
-                    st: $st,
-                    stBool: false,
-                    ballTitle: "Where?",
-                    contents: random.randomWhere,
-                    pearlImage: "Back_pearl2"
-                )
-                
-                // 세 번째 볼
-                BallView(
-                    getCurrentBall: $getThirdBall,
-                    getNextBall: $getThirdBall,
-                    st: $st,
-                    stBool: true,
-                    ballTitle: "What?",
-                    contents: String(random.randomWhat.missionTitle.dropLast(2)),
-                    pearlImage: "Back_pearl1"
-                )
+                if largePearlIndex >= 0 {
+                    Color(.white)
+                        .edgesIgnoringSafeArea(.all)
+                        .opacity(0.5)
+                        .onTapGesture {
+                            largePearlIndex += 1
+                        }
+                    BallView(getCurrentPearl: $largePearlIndex,
+                             state: $goNextView, pearlContents: pearlContents)
+                }
                 HStack {
                     VStack {
                         backButton
@@ -214,35 +197,21 @@ struct StrawView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 8)
-                .padding(.top, 48)
-                
-            }.navigationBarHidden(true)
-            .onAppear{
+                .padding(.leading, UIScreen.getWidth(8))
+                .padding(.top, UIScreen.getHeight(48))
+            }
+            .navigationBarHidden(true)
+            .onAppear {
+                moveStraw = false
+                viewModel.showWhiteRectangle = true
                 viewModel.startupdatingMotion()
+                random.setRandomContents()
             }
-            .onDisappear{
-                isAnimation = false
-                isDisplay = false
-                getFirstBall = false
-                getSecondBall = false
-                getThirdBall = false
-                viewModel.progress = 0.0
-            }
-            
         } else {
-            switch random.randomWhat.missionType {
-            case .decibel:
-                DecibelEndingView(st: $st, wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!)
-            case .shake:
-                CountEndingView(wheresentence: random.randomWhere ,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, GoalCount: random.randomWhat.goal!, st: $st)
-            case .voice:
-                SpeakEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, goal: random.randomWhat.goal!, timer: Double(random.randomWhat.timer!), st: $st)
-            case .smile:
-                CameraEndingView(wheresentence: random.randomWhere, whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "smile")
-            case .blink:
-                CameraEndingView(wheresentence: random.randomWhere,whatsentence: String(random.randomWhat.missionTitle.dropLast(2)), missionTitle: random.randomWhat.missionTitle, missionTip: random.randomWhat.missionTip, missionColor: random.randomWhat.missionColor, st: $st, arstate: "blink")
-            }
+            MissionEndingView(state: $goNextView,
+                              missionTitle: random.randomWhat.missionInfo.missionTitle,
+                              missionTip: random.randomWhat.missionInfo.missionTip,
+                              largePearlIndex: $largePearlIndex)
         }
     }
 }
@@ -259,19 +228,17 @@ extension StrawView {
                 Image(systemName: "chevron.backward")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
+                    .frame(width: 25, height: 25)
                     .foregroundColor(.white)
                     .bold()
             }
         }
     }
-    
 }
 
 struct StrawView_Previews: PreviewProvider {
-    static let random = RandomMember()
     static var previews: some View {
-        StrawView()
-            .environmentObject(random)
+        StrawView(path: .constant(NavigationPath()))
+            .environmentObject(RandomContents())
     }
 }

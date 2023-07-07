@@ -10,151 +10,148 @@
 import SwiftUI
 
 struct IntroView: View {
-    
-//    @StateObject var permissionManager = PermissionManager()
-    @State var selectedPage: Int = 0
-    @State var isTutorialHidden: Bool = false
-    @State var isfirst: Bool = false
-    
+    @StateObject private var viewModel = IntroViewModel()
+
     var body: some View {
-        NavigationStack(){
+        NavigationStack(path: $viewModel.path) {
             ZStack(alignment: .bottom) {
                 ZStack(alignment: .bottom) {
-                    Image("intro_bg")
+                    Image("imgIntroBg")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
+                    
                     ZStack {
                         ZStack(alignment: .top) {
-                            Image("intro_pearl").offset(y: CGFloat(-selectedPage * 15))
-                            Image("intro_wave")
+                            Image("imgIntroPearl")
+                                .offset(y: CGFloat(-viewModel.selectedPage * 15))
+                            Image("imgIntroWave")
                                 .resizable()
-                                .frame(width: UIScreen.main.bounds.width, height: 200)
+                                .frame(width: UIScreen.screenWidth, height: UIScreen.getHeight(194))
                                 .aspectRatio(contentMode: .fit)
                         }
-                        HStack(spacing: 12) {
-                            Circle()
-                                .fill(selectedPage == 0 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 1 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 2 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
-                            Circle()
-                                .fill(selectedPage == 3 ? Color("Bg_top") : Color("Bg"))
-                                .frame(width: 8, height: 8)
+                        
+                        HStack(spacing: UIScreen.screenHeight/40) {
+                            ForEach(0..<4) { pageNumber in
+                                Circle()
+                                    .fill(
+                                        viewModel.selectedPage == pageNumber ?
+                                        Color("Bg_top") : Color("Bg")
+                                    )
+                                    .frame(width: 8, height: 8)
+                            }
                         }
-                        .padding(.bottom, 81)
+                        .padding(.bottom, UIScreen.screenHeight * 0.1)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
-                TabView(selection: $selectedPage) {
-                    VStack(spacing: 66) {
-                        
-                        Text("쉬는시간이 지루할때,\n쏘옥~")
-                            .font(.system(size: 24, weight: .bold))
+
+                TabView(selection: $viewModel.selectedPage) {
+                    VStack {
+                        Text("기분 전환이 필요할 때,\n쏘옥~")
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .padding(.top, UIScreen.getHeight(42))
                         
-                        Image("sign").resizable()
+                        Image("imgHandWithPhone")
+                            .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 173)
+                            .frame(width: UIScreen.screenWidth * 0.6)
                             .rotationEffect(
-                                Angle(
-                                    degrees: isfirst ? -30 : 30
-                                )
+                                Angle(degrees: viewModel.isFirst ? -30 : 30)
                             )
-                            .animation(Animation.linear(duration: 0.8).repeatForever(autoreverses: true), value: isfirst)
-                            .onAppear{
-                                isfirst = true
+                            .animation(Animation
+                                .linear(duration: 0.8)
+                                .repeatForever(autoreverses: true), value: viewModel.isFirst)
+                            .onAppear {
+                                viewModel.isFirst = true
                             }
-                    
-                        Spacer()
-                            .frame(height: 160)
-
+                            .padding(.top, UIScreen.getHeight(65))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(0)
 
-                    
                     VStack(spacing: 38) {
-                        
                         Text("각종 미션들이\n펄안에 쏘옥 숨어있어요!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .padding(.top, UIScreen.getHeight(42))
                         
-                        Image("Intro2")
+                        Image("imgIntroPointingPhone")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 74)
-                           
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(.top, UIScreen.getHeight(32.5))
+                            .padding(.bottom, UIScreen.getHeight(262.5))
                     }
                     .tag(1)
-                    
-                    VStack(spacing: 109) {
-                        
+
+                    VStack {
                         Text("미션 수행 후\n완료 카드를 받으면 성공!")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(Font.custom24bold())
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                        
-                        Image("Intro3")
+                            .padding(.top, UIScreen.getHeight(42))
+
+                        Image("imgIntroCard")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 22)
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                EdgeInsets(
+                                    top: UIScreen.getHeight(94),
+                                    leading: UIScreen.getWidth(10),
+                                    bottom: UIScreen.getHeight(338),
+                                    trailing: UIScreen.getWidth(10)
+                                )
+                            )
                     }
                     .tag(2)
-                    
-                    VStack(spacing: 40) {
-                        Image("Intro4")
+
+                    VStack {
+                        Image("imgIntroAdvertising")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: wid - 32)
-                        Spacer()
-                            .frame(height: 160)
+                            .padding(
+                                .bottom, UIScreen.getHeight(253)
+                            )
+                            .padding(.top, UIScreen.screenHeight >= 844 ? UIScreen.getHeight(20) : 0)
                     }
                     .tag(3)
-                    
                 }
-                .onChange(of: selectedPage, perform:  { index in
-                    isfirst.toggle()
-                })
+                .onChange(of: viewModel.selectedPage) { _ in
+                    viewModel.isFirst.toggle()
+                }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-       
-                NavigationLink(destination: AddMemberView()) {
-                    Text("시작하기").foregroundColor(.white)
+
+                Button {
+                    viewModel.setPageLast()
+                } label: {
+                    Text("시작하기")
+                        .foregroundColor(.white)
                         .fontWeight(.bold)
-                        .frame(maxWidth: 350, maxHeight: 50, alignment: .center)
+                        .frame(
+                            maxWidth: UIScreen.getWidth(351),
+                            maxHeight: UIScreen.getHeight(50),
+                            alignment: .center
+                        )
                         .background(Color("Bg_bottom2"))
                         .cornerRadius(12)
+                        .padding(.bottom, UIScreen.getHeight(17))
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    hideTutorialView() 
-                })
+                .navigationDestination(for: ViewType.self) { viewType in
+                    switch viewType {
+                    case .addMemberView:
+                        AddMemberView(path: $viewModel.path)
+                    case .strawView:
+                        StrawView(path: $viewModel.path)
+                    }
+                }
             }
         }
         .onAppear {
-            isTutorialHidden = UserDefaults.standard.bool(forKey: "hideTutorial")
-            if isTutorialHidden {
-                selectedPage = 3
-            }
+            if !viewModel.isIntroActive { viewModel.selectedPage = 3 }
         }
     }
-}
-
-extension IntroView {
-    
-    private func hideTutorialView() {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "hideTutorial")
-    }
-    
-    
 }
 
 struct IntroView_Previews: PreviewProvider {

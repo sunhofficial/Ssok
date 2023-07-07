@@ -9,61 +9,51 @@ import SwiftUI
 
 struct MissionCompleteView: View {
     
-    @State var Title: String
+    @State var title: String
     @State var background: Color
-    @State var state1: Bool = false
-    @EnvironmentObject var random: RandomMember
-    @Binding var st: Bool
-    
+    @Binding var state: Bool
+    @Binding var largePearlIndex: Int
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
+
     var body: some View {
-        ZStack{
+        ZStack {
             Rectangle().opacity(0.62)
-            
-            ZStack{
-                Image("missioncompletecard")
-                VStack(spacing: 40){
-                    Text("주어진 미션을 성공했어요").font(.system(size: 24, weight: .black))
-                    
-                    MissionTitleView(missionTitle: Title, backgroundColor: background.opacity(0.3), borderColor: background.opacity(0.71))
-                    
+            ZStack {
+                Image("imgMissionCompleteCard")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(.top, UIScreen.getHeight(190))
+                    .padding(.bottom, UIScreen.getHeight(190))
+                VStack(spacing: UIScreen.getHeight(40)) {
+                    Text("주어진 미션을 성공했어요")
+                        .font(Font.custom24black())
+                    MissionTitleView(missionTitle: title,
+                        missionColor: background)
                     Button {
-                        random.randomWho = setRandomMember(random.members)
-                        random.randomWhat = setRandomMission(missions)
-                        random.randomWhere = setRandomWhere(whereList)
+                        largePearlIndex = -1
                         mode.wrappedValue.dismiss()
-                        st = false
+                        state = false
                     } label: {
                       Text("새로운 미션하기")
                         .underline()
-                        .font(.system(size: 20, weight: .bold))
+                        .font(Font.custom20bold())
                         .foregroundColor(Color("Bg_center"))
                         .underline()
                     }
-                    
-                }.offset(y:90)
-
-                
+                }
+                .padding(.top, UIScreen.getHeight(180))
             }
-        }.ignoresSafeArea()
-            .navigationBarHidden(true)
+        }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
     }
 }
 
-
-extension MissionCompleteView {
-    var back: some View {
-        Button {
-
-            mode.wrappedValue.dismiss()
-        } label: {
-            ZStack {
-                Text("새로운 미션하기")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(Color("Bg_bottom2")).underline()
-            }
-        }
-        
+struct MissionCompleteView_Previews: PreviewProvider {
+    static var previews: some View {
+        MissionCompleteView(title: "HI",
+                            background: Color("MissionVoice"),
+                            state: .constant(true),
+                            largePearlIndex: .constant(2))
     }
 }
