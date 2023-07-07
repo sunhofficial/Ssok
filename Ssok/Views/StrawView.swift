@@ -22,7 +22,7 @@ struct StrawView: View {
     private var pearlContents : [[String]] {
         [
             ["Who?",random.randomWho, "imgBackPearl1" ],
-            ["Where?", random.randomWhere, "imgBackPearl2"],
+            ["How?", random.randomWhere, "imgBackPearl2"],
             ["What?",String(random.randomWhat.missionInfo.missionTitle.dropLast(2)),"imgBackPearl1" ]
         ]}
     
@@ -75,10 +75,10 @@ struct StrawView: View {
                                     .padding(.top, UIScreen.getHeight(-47))
                                     .padding(.leading, UIScreen.getWidth(30))
                             }
-                            Text("스트로우를 꼽아주세요!")
+                            Text("스트로우를 꽂아주세요!")
                                 .font(Font.custom18bold())
                                 .padding(.bottom, UIScreen.getHeight(1))
-                            Text("스트로우를 꼽으면 벌칙이 담긴 펄이 올라와요")
+                            Text("스트로우를 꽂으면 미션이 담긴 펄이 올라와요")
                                 .font(Font.custom13semibold())
                         }
                     } else {
