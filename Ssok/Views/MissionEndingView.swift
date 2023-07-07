@@ -162,10 +162,11 @@ struct MissionEndingView: View {
             }
             .onAppear {
                 let mission = random.randomWhat.missionType
-                if mission == .blink || mission == .smile {
-                    let modelName = getDeviceModelName()
-                    isShowingARAlert = checkDeviceARUnable(modelName)
+                guard mission == .blink || mission == .smile else {
+                    return
                 }
+                let modelName = getDeviceModelName()
+                isShowingARAlert = checkDeviceARUnable(modelName)
             }
             .alert("이 디바이스는 AR 사용을 지원하지 않습니다.", isPresented: $isShowingARAlert) {
                 Button {
