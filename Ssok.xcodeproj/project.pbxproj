@@ -33,6 +33,7 @@
 		AB08B57B2A2A14F60086B8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08B57A2A2A14F60086B8F9 /* AppDelegate.swift */; };
 		AB08B5A82A2F96480086B8F9 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08B5A72A2F96480086B8F9 /* ViewType.swift */; };
 		AB5B7D602A514A7A009CC74E /* MissionDecibelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */; };
+		ABA58E902A57F99B00799799 /* ARUnableDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA58E8F2A57F99B00799799 /* ARUnableDevices.swift */; };
 		ABB019CB2A07FB900000556F /* RandomContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB019CA2A07FB900000556F /* RandomContents.swift */; };
 		C71C86212A49E0AC00522E89 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71C86202A49E0AC00522E89 /* Font+.swift */; };
 		C74C18872A2859D500D69345 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C74C18862A2859D500D69345 /* .swiftlint.yml */; };
@@ -75,6 +76,7 @@
 		AB08B5A72A2F96480086B8F9 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		AB5B7D5F2A514A7A009CC74E /* MissionDecibelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDecibelViewModel.swift; sourceTree = "<group>"; };
 		AB98FFAA2A11FBDF00B95643 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABA58E8F2A57F99B00799799 /* ARUnableDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARUnableDevices.swift; sourceTree = "<group>"; };
 		ABB019CA2A07FB900000556F /* RandomContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomContents.swift; sourceTree = "<group>"; };
 		C71C86202A49E0AC00522E89 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		C74C18862A2859D500D69345 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				C74DD54A2A065FEB00852B09 /* What.swift */,
 				7CF7641A2A117D6B007E2C3A /* ARModel.swift */,
 				AB08B5A72A2F96480086B8F9 /* ViewType.swift */,
+				ABA58E8F2A57F99B00799799 /* ARUnableDevices.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				AB031C502A10D59A00EE808B /* MissionDecibelView.swift in Sources */,
 				7C94D55F2A02ADE400AAC279 /* AddMemberView.swift in Sources */,
 				AB031C562A110D2F00EE808B /* MissionShakeView.swift in Sources */,
+				ABA58E902A57F99B00799799 /* ARUnableDevices.swift in Sources */,
 				7CF764192A117D58007E2C3A /* ARViewModel.swift in Sources */,
 				10E73D022A0A3BEB00AD2F91 /* UIScreen+.swift in Sources */,
 				7C94D54C2A02AB3A00AAC279 /* SsokApp.swift in Sources */,
@@ -472,7 +476,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = AZDJLQL538;
+				DEVELOPMENT_TEAM = N3H5YNSQ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -489,7 +493,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CSSP.Ssok;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrolst-atement-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -506,7 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ssok/Preview Content\"";
-				DEVELOPMENT_TEAM = AZDJLQL538;
+				DEVELOPMENT_TEAM = N3H5YNSQ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Ssok/Info.plist;
@@ -523,7 +527,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.CSSP.Ssok;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.letsbuildthatapps.-Ssokkcontrolst-atement-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

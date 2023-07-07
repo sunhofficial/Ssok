@@ -13,6 +13,7 @@ struct MissionEndingView: View {
     @State var missionTitle: String
     @State var missionTip: String
     @State var goal: String = ""
+    @State var isShowingARAlert = false
     @Binding var largePearlIndex: Int
     @EnvironmentObject var random: RandomContents
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
@@ -49,8 +50,8 @@ struct MissionEndingView: View {
                         createImageWithOverlay(imageName: "imgBackPearl2", text: random.randomWhere)
                         createImageWithOverlay(imageName: "imgBackPearl1",
                                                text: String(
-                                                    random.randomWhat.missionInfo.missionTitle.dropLast(2)))
-                            .padding(.trailing, UIScreen.getWidth(6))
+                                                random.randomWhat.missionInfo.missionTitle.dropLast(2)))
+                        .padding(.trailing, UIScreen.getWidth(6))
                     }
                     .padding(.top, getSafeArea().bottom == 0 ?
                              UIScreen.getHeight(140) : UIScreen.getHeight(120))
@@ -110,9 +111,8 @@ struct MissionEndingView: View {
                                     .multilineTextAlignment(.center)
                                     .padding(.bottom,UIScreen.getHeight(15))
                             }
-                        .padding(.top, UIScreen.getHeight(20))
+                                .padding(.top, UIScreen.getHeight(20))
                         )
-
                     Button {
                         isPresented.toggle()
                     } label: {
@@ -160,8 +160,26 @@ struct MissionEndingView: View {
                     )
                 }
             }
+            .onAppear {
+                let mission = random.randomWhat.missionType
+                guard mission == .blink || mission == .smile else {
+                    return
+                }
+                let modelName = getDeviceModelName()
+                isShowingARAlert = checkDeviceARUnable(modelName)
+            }
+            .alert("이 디바이스는 AR 사용을 지원하지 않습니다.", isPresented: $isShowingARAlert) {
+                Button {
+                    largePearlIndex = -1
+                    state = false
+                } label: {
+                    Text("다시 뽑기")
+                }
+
+            }
         }
     }
+
     func createImageWithOverlay(imageName: String, text: String) -> some View {
          Image(imageName)
              .resizable()
@@ -187,5 +205,27 @@ struct MissionEndingView_Previews: PreviewProvider {
                           missionTip: "미션팁",
                           largePearlIndex: .constant(0))
             .environmentObject(RandomContents())
+    }
+}
+
+extension MissionEndingView {
+
+    func getDeviceModelName() -> String {
+        var modelName = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"]
+        let device = UIDevice.current
+        let selName = "_\("deviceInfo")ForKey:"
+        let selector = NSSelectorFromString(selName)
+
+        if device.responds(to: selector) {
+            modelName = String(describing: device.perform(selector,
+                                                          with: "marketing-name").takeRetainedValue())
+        }
+
+        guard let modelName = modelName else { return "" }
+        return modelName
+    }
+
+    func checkDeviceARUnable(_ modelName: String) -> Bool {
+        return ARUnableDevices.contains(modelName) ? true : false
     }
 }
