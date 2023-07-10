@@ -71,16 +71,14 @@ Ssok
     ├── ARUnableDevices.swift
 └── ViewModel
     ├── StrawViewModel.swift
-    ├── GatchaViewModel.swift
-    ├── BottleViewModel.swift
     ├── IntroViewModel.swift
     ├── AddMemberViewModel.swift
-    ├── RandomMember.swift
-    ├── SpeechRecognizer.swift
-    ├── SoundMeter.swift
-    ├── SoundManger.swift
+    ├── RandomContents.swift
+    ├── SpeechViewModel.swift
     ├── ARViewModel.swift
-    └── Permission.swift
+    ├── BottleViewModel.swift
+    ├── MissionShakeViewModel.swift
+    └── MissionDecibelViewModel.swift
 ├── Views
     ├── EndingView.swift
     └── Recycle
