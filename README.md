@@ -57,27 +57,29 @@ Ssok
 │ 
 ├── Global
 │   ├── Extension
-│       └── View+
+│       ├── UIScreen+
+│       ├── Font+
+│       ├── View+       
+│       └── String
 │ 
 ├── Model
     ├── Member.swift
-    ├── Who.swift
+    ├── How.swift
     ├── Where.swift
     ├── What.swift
-    ├── ScreenSize.swift
     ├── viewType.swift
-    ├── ARModel.swift
+    ├── ARUnableDevices.swift
 └── ViewModel
     ├── StrawViewModel.swift
-    └── GatchaViewModel.swift
+    ├── GatchaViewModel.swift
     ├── BottleViewModel.swift
-    └── IntroViewModel.swift
-    └── AddMemberViewModel.swift
-    └── RandomMember.swift
-    └── SpeechRecognizer.swift
-    └── SoundMeter.swift
-    └── SoundManger.swift
-    └── ARViewModel.swift
+    ├── IntroViewModel.swift
+    ├── AddMemberViewModel.swift
+    ├── RandomMember.swift
+    ├── SpeechRecognizer.swift
+    ├── SoundMeter.swift
+    ├── SoundManger.swift
+    ├── ARViewModel.swift
     └── Permission.swift
 ├── Views
     ├── EndingView.swift
@@ -96,7 +98,7 @@ Ssok
     └── MissionPedometerView.swift
     └── MissionSmileView.swift
     └── MissionSpeechView.swift
-└── _BubblesApp.swift
+└── SsokApp.swift
 └── AppDelegate.swift
 
 
