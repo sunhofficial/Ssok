@@ -3,7 +3,8 @@
 <div align="center"> 
 
 <!-- <img width="1512" alt="image" src=""> -->
-<img src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-5YearsOldGap/assets/54494793/f740ffb4-ba44-4c9b-b66b-0035a4bd55b5" height="500">
+<img src="https://github.com/DeveloperAcademy-POSTECH/MC2-Team8-Ssok/assets/54494793/057a3cc0-f292-4578-a8da-b68962f8eb63" height="500">
+
 
 <br/><br/>
     
